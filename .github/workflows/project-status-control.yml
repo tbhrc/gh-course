@@ -42,8 +42,44 @@ jobs:
 
           printf '%s\n' "$ready"
 
+  list-active:
+    if: github.actor == 'tbhrc' && github.ref_name == 'dispatch/project-status/list-active'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
+    steps:
+      - name: List active Project Issues
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "PROJECT_MANAGEMENT_TOKEN is not configured." >&2
+            exit 1
+          fi
+
+          query='query { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100) { nodes { content { ... on Issue { number title state stateReason url } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } }'
+          active="$(gh api graphql -f query="$query" --jq '.data.user.projectV2.items.nodes[] | select(.fieldValueByName.name == "Ready" or .fieldValueByName.name == "In progress" or .fieldValueByName.name == "Blocked" or .fieldValueByName.name == "Review") | [.fieldValueByName.name, .content.number, .content.state, (.content.stateReason // ""), .content.title, .content.url] | @tsv')"
+
+          {
+            echo '## Active Project housekeeping queue'
+            if [ -z "$active" ]; then
+              echo 'No Project Issues are currently Ready, In progress, Blocked or Review.'
+            else
+              echo '| Project Status | Issue | Issue state | Title |'
+              echo '| --- | ---: | --- | --- |'
+              while IFS=$'\t' read -r status number state reason title url; do
+                if [ -n "$reason" ]; then
+                  state="$state ($reason)"
+                fi
+                printf '| %s | [#%s](%s) | %s | %s |\n' "$status" "$number" "$url" "$state" "$title"
+              done <<< "$active"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          printf '%s\n' "$active"
+
   set-status:
-    if: github.actor == 'tbhrc' && github.ref_name != 'dispatch/project-status/list-ready'
+    if: github.actor == 'tbhrc' && github.ref_name != 'dispatch/project-status/list-ready' && github.ref_name != 'dispatch/project-status/list-active'
     runs-on: ubuntu-latest
     env:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
