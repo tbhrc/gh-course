@@ -20,6 +20,7 @@ The authoritative knowledge files live in the main repository under [`knowledge-
 - [Source and freshness policy](https://github.com/tbhrc/github-course/blob/main/knowledge-base/source-policy.md)
 - [Wiki vs repository Markdown](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-vs-repository-markdown.md)
 - [Wiki as a documentation platform](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-as-documentation-platform.md)
+- [Governed Wiki publishing architecture](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
 - [Knowledge gap register](https://github.com/tbhrc/github-course/blob/main/knowledge-base/gap-register.md)
 
 ## How New Knowledge Enters the Course
@@ -36,6 +37,18 @@ question / gap
 → merge
 → teach / reference from Wiki
 ```
+
+## How Wiki Content Is Published
+
+```text
+wiki/*.md in main repo
+→ Issue / branch / PR / merge
+→ GitHub Action
+→ .wiki.git
+→ live Wiki
+```
+
+The published Wiki is intentionally downstream of governed repository source.
 
 ## Important Distinction
 
