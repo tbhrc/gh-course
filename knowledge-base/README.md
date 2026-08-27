@@ -64,6 +64,7 @@ use it in lesson / exercise / coaching
 - [`chatgpt-web-github-control-plane.md`](chatgpt-web-github-control-plane.md) — ChatGPT Web as the conversational front door and GitHub as the durable execution/control plane, including direct coding-agent assignment vs Agentic Workflows.
 - [`chatgpt-web-codex-dispatch.md`](chatgpt-web-codex-dispatch.md) — the deterministic ChatGPT Web → Issue trigger → native Codex assignment architecture, authentication boundary and one-time setup.
 - [`deterministic-actions-vs-agentic-ai.md`](deterministic-actions-vs-agentic-ai.md) — verified distinction between deterministic GitHub Actions, agent dispatch, downstream AI reasoning and delivery evidence, including the live Issue #24 failure ladder.
+- [`copilot-free-ai-in-actions.md`](copilot-free-ai-in-actions.md) — operational proof that Copilot Free can perform genuine AI inference inside GitHub Actions via Copilot CLI while the paid cloud-agent Issue assignee remains unavailable.
 - [`gap-register.md`](gap-register.md) — known knowledge gaps and verification status.
 
 ## Knowledge Note Standard
