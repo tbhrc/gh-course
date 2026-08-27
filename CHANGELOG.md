@@ -8,6 +8,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Added
 
+- Native-agent Project lifecycle pilot under Issue #92: GitHub Issue assignment synchronises Project Status, PR-to-Review and Issue-close-to-Done hooks, with no automatic merge or deployment.
 - Comprehensive course-integrity rebuild under Issue #71, expanding previously shallow canonical modules for Start Here, Pull Requests, Actions, Security/Governance and GitHub × FolderDesk into full operator lessons with live examples, hands-on tasks, mastery checks and evidence requirements.
 - Substantive GitHub Projects module and live `GitHub Course — Execution & Mastery` Project blueprint, including minimal fields/views and David's dated Projects learning evidence.
 - Reusable executor benchmark framework with fixed T0–T4 timing, 100-point scoring, setup-friction separation and first-review-ready quality rules.
