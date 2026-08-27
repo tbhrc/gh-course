@@ -129,13 +129,13 @@ Different GitHub objects solve different knowledge problems:
 ```text
 README                = fast project orientation
 repository Markdown   = governed durable knowledge
-knowledge-base/        = authoritative verified course knowledge
+knowledge-base/       = authoritative verified course knowledge
 Wiki                  = browsable documentation/publishing layer
 Issue                 = actionable work/problem
 Discussion            = conversation before commitment
 Project               = portfolio/planning view
-Release                = shipped-version communication
-Pages                  = static website publishing
+Release               = shipped-version communication
+Pages                 = static website publishing
 ```
 
 ## This Course's Architecture
@@ -150,8 +150,12 @@ skills/github-power-user/    ← strategic accelerator / feature map
 course modules               ← teaching sequence
         ↓
 students/                    ← personal learning evidence
-
-Wiki                          ← human-friendly documentation/navigation layer
+        ↓
+wiki/*.md                    ← governed reader-facing source
+        ↓
+GitHub Action                ← publisher
+        ↓
+live Wiki                    ← handbook/dashboard/navigation
 ```
 
 A Wiki can become a knowledge base if structured deliberately, but for this course normal repository Markdown remains canonical because it participates directly in:
@@ -174,7 +178,8 @@ Do not maintain two independent versions of the same truth.
 | `README.md` | orientation and entry point |
 | `knowledge-base/` | verified authoritative GitHub knowledge |
 | `/docs` | architecture/explanatory project documentation |
-| Wiki | reader-friendly handbook, SOP/documentation portal and navigation |
+| `wiki/` source | governed reader-facing Wiki content |
+| live Wiki | handbook, SOP/documentation portal and navigation |
 | Issues | actionable work and decisions requiring execution |
 | Discussions | open-ended ideas/Q&A/community conversation |
 | Projects | planning metadata and views across work |
@@ -186,27 +191,62 @@ Do not maintain two independent versions of the same truth.
 
 # Part 4 — Build Navigation
 
-Create a second Wiki page such as:
+The course Wiki should not remain a single Home page.
+
+Build/use pages for:
+
+- Home dashboard;
+- Course Handbook;
+- Course Manual;
+- Course Modules;
+- Course Materials;
+- Knowledge Base;
+- Student Dashboard — David;
+- Epiphanies & Learning Breakthroughs;
+- Exercises & Assessments;
+- GitHub Power User;
+- SOP & Operating Library;
+- Reference & Glossary;
+- About This Learning System;
+- custom sidebar;
+- custom footer.
+
+Then confirm the pages interlink and the main repository links back to the Wiki.
+
+---
+
+# Part 5 — Governed Wiki Publishing
+
+A mature course should not require agents to maintain an unmanaged second copy manually.
+
+For this repository:
 
 ```text
-GitHub Knowledge Architecture
+wiki/*.md
+        ↓
+Issue → branch → Pull Request → merge
+        ↓
+.github/workflows/publish-wiki.yml
+        ↓
+tbhrc/github-course.wiki.git
+        ↓
+live Wiki
 ```
 
-Then:
+This is a practical GitHub Actions lesson as well as a knowledge-architecture lesson.
 
-1. link Home → second page;
-2. link second page → Home;
-3. add meaningful Edit messages;
-4. inspect the additional revisions;
-5. create or inspect a custom sidebar and consider how it could become site navigation.
+Read:
+
+- `knowledge-base/wiki-publishing-architecture.md`
+- `.github/workflows/publish-wiki.yml`
 
 ## Agentic Scenario
 
 Imagine you tell an AI agent:
 
-> Build an SOP library in this repository's Wiki. Create a Home page, categories, SOP pages, cross-links, sidebar navigation and meaningful revision messages. Keep canonical policy in the main repository where PR governance is required.
+> Update the course handbook and student dashboard. Preserve canonical student evidence in `students/`, update the reader-facing `wiki/` source, use the normal Issue/PR workflow, and verify that the Wiki publishing Action succeeds after merge.
 
-Explain what the agent would create and which source should be authoritative.
+Explain why this is better governed than editing unrelated copies manually.
 
 ## Mastery Evidence
 
@@ -218,7 +258,9 @@ A learner demonstrates this module when they can:
 - distinguish Wiki from GitHub Pages;
 - distinguish Wiki from a database or semantic memory system;
 - classify information into README, repository Markdown/knowledge base, Wiki, Issue, Discussion, Project, Release and Pages;
-- decide when an AI agent should build documentation in Wiki versus governed Markdown.
+- decide when an AI agent should build documentation in Wiki versus governed Markdown;
+- explain the `wiki/` → Action → `.wiki.git` publishing architecture;
+- verify the publishing workflow rather than assuming it worked.
 
 ## Official References
 
@@ -226,3 +268,4 @@ A learner demonstrates this module when they can:
 - https://docs.github.com/en/communities/documenting-your-project-with-wikis/adding-or-editing-wiki-pages
 - https://docs.github.com/en/communities/documenting-your-project-with-wikis/creating-a-footer-or-sidebar-for-your-wiki
 - https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
+- https://docs.github.com/en/actions/concepts/security/github_token
