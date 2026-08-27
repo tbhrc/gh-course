@@ -24,6 +24,21 @@ This is not a replacement for Issues, Pull Requests or repository files. It is t
 | Type | Lesson / Exercise / Benchmark / Documentation / Infrastructure / Release |
 | Target date | Date only when meaningful |
 
+### Current intake rule
+
+Every newly opened repository Issue is deterministically added to this Project as **Ready**.
+
+```text
+new Issue
+→ Ready
+→ work starts
+→ In progress
+→ Review
+→ Done
+```
+
+Use **Backlog** only when work is deliberately parked, deferred, pending a decision/dependency, or otherwise not available to start.
+
 ### Review means acceptance, not only software testing
 
 Keep the Project gate named **Review**.
