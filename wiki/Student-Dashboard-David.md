@@ -7,8 +7,7 @@ This is the **reader-facing progress dashboard** for Student #1.
 ## Current Status
 
 **Stage:** Stage 2 — Crash Course  
-**Current module:** 07 — GitHub Knowledge Architecture  
-**Current exercise:** Wiki / documentation architecture  
+**Current focus:** Wiki / Pages / Integrations operating architecture  
 **Baseline date:** 27 August 2026
 
 ## Starting Position
@@ -40,38 +39,54 @@ This is the **reader-facing progress dashboard** for Student #1.
 - GitHub Wiki operated hands-on.
 - Wiki recognised independently as a Git-backed documentation publishing surface.
 - Applied product/operating judgement: the Wiki should become the actual course handbook/dashboard instead of remaining a standalone demonstration.
+- GitHub Pages found and enabled independently from repository Settings.
+- Actions permissions and workflow approval settings explored independently.
+- Repository Integrations explored independently.
+- ChatGPT/Codex, Claude, Gemini and Vercel permissions reportedly authorised/updated from the GitHub UI.
+- Integrations recognised independently as a major AI-first operating layer.
 
-### Current architecture application
-
-David's Wiki insight is now being applied through:
+### Applied Architecture
 
 ```text
-canonical repository evidence
-→ governed wiki/*.md source
-→ Issue / branch / PR / merge
-→ GitHub Action
-→ .wiki.git
-→ live course Wiki
+GitHub
+├── repository truth
+├── Issues / PR governance
+├── Wiki handbook
+├── Pages public website
+├── Actions automation
+└── Integrations
+    ├── AI coding/review agents
+    └── deployment/services
 ```
 
-This is **not yet automation mastery** for David because the publishing workflow is being implemented by the coach. It is evidence of strong applied architectural judgement.
+The professional correction now being learned is:
 
-### Still requires hands-on mastery
+```text
+installed / authorised
+≠
+permission for every operation
+≠
+operation proven end to end
+```
+
+### Still Requires Hands-On Mastery
 
 - personally complete the full Issue → branch → commit → PR → merge workflow;
 - Pull Requests as the control gate;
 - Projects;
-- Actions;
+- Actions beyond settings/configuration-level familiarity;
 - tag + GitHub Release workflow;
-- security/governance;
-- GitHub-native AI-agent workflows;
-- final Wiki vs Pages vs canonical Markdown explanation, including the governed publishing path.
+- security/governance and least-privilege permission design;
+- one end-to-end AI integration test;
+- compare connected agents by proven capability rather than assumed equivalence;
+- final Wiki vs Pages vs canonical Markdown explanation.
 
 ## Learning Evidence
 
 - [Canonical progress file](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md)
 - [Semantic Versioning learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-semver.md)
 - [Wiki / knowledge architecture learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-wiki.md)
+- [Pages / Actions / Integrations learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-integrations.md)
 
 ## Major Epiphanies
 
@@ -80,13 +95,19 @@ This is **not yet automation mastery** for David because the publishing workflow
 3. Release numbers communicate change meaning; they are not decimal counters.
 4. AI coaches should teach from verified durable knowledge, not assumed memory.
 5. GitHub Wiki can function as a documentation website/CMS and can support agent-built SOP libraries and handbooks.
-6. A powerful feature should be **integrated into the operating model**, not merely discovered; the Wiki should become the course's actual human interface.
+6. A powerful feature should be integrated into the operating model, not merely discovered.
+7. GitHub Pages turns the repository into a public website publishing source.
+8. Integrations can make GitHub the shared control plane connecting AI agents, automation and deployment services.
 
 [Open the full epiphany log →](Epiphanies-and-Learning-Breakthroughs)
 
+## Public Course Site
+
+[Open GitHub Pages site →](https://tbhrc.github.io/github-course/)
+
 ## Current Next Step
 
-Verify the redesigned Wiki and publishing Action, then complete the Module 07 explanation unaided. After that, return to the first full learner-operated Issue workflow.
+Run one bounded integration test with a connected AI agent and record exactly which operations succeed: repository read → Issue → branch/change → Pull Request → review/checks.
 
 ## Navigation
 
