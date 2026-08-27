@@ -110,6 +110,29 @@ Rules:
 - Use dated files under `students/<student-id>/assessments/` for significant checkpoints, misconceptions, tests and learning notes.
 - Student-specific learning evidence stays in the student folder; reusable teaching material belongs in shared course folders.
 
+## Course Development Accelerator
+
+For substantial GitHub course development, read:
+
+```text
+skills/github-power-user/SKILL.md
+```
+
+Then load only the relevant reference:
+
+- `references/power-guide.md` for feature selection and professional patterns;
+- `references/cheat-sheet.md` for commands, search and fast decisions;
+- `references/agentic-github.md` for AI-agent-first repository operation.
+
+Rules:
+
+1. Use the Skill to accelerate course design; do not duplicate its entire contents into every module.
+2. Convert strategic guidance into practical lessons, exercises and mastery evidence appropriate to the student's level.
+3. Prefer live operation in this repository over passive explanation where safe.
+4. Keep imported Skill provenance visible.
+5. The course copy is portable teaching material; FolderDesk-specific policy remains external unless explicitly included as a case study.
+6. Search GitHub-native capability before proposing custom infrastructure.
+
 ## Operating Rules
 
 1. Preserve useful course and student history.
