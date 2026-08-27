@@ -6,42 +6,110 @@ Prevent the GitHub Professional Operator course from developing a current backen
 
 ## Governing Rule
 
-> **One source of truth; many useful views. Reader-facing views must remain traceable to the canonical source they represent.**
+> **One source of truth; many useful views. Volatile factual views are generated. Stable narrative views are governed.**
 
-## Authority Model
+## Architecture
+
+### Canonical layer
 
 ```text
-canonical repository truth
-├── knowledge-base/                  verified GitHub knowledge
-├── numbered modules                reusable curriculum
-├── students/<id>/progress.md        current learner state
-├── students/<id>/assessments/      dated evidence
-├── exercises/ + sops/              reusable operation
-└── benchmark framework             current executor comparison
-
-        ↓ summarise / link
-
-wiki/*.md                            reader handbook/dashboard
-
-        ↓ route
-
-index.html / GitHub Pages            public front door
+knowledge-base/                         verified GitHub knowledge
+numbered modules                       reusable curriculum
+students/<id>/progress.md               current learner state
+students/<id>/assessments/              dated learner evidence
+exercises/ + sops/                      reusable operation
+knowledge-base/executor-benchmark...    current executor comparison
 ```
 
-Issues and Pull Requests are durable work/evidence/history. Do not use a static Issue body as the live authority when a maintained canonical file exists.
+### Reader layer
 
-## Trigger
+Two different rules apply.
 
-Run this integrity check whenever a PR materially changes any of the following:
+#### A. Volatile factual state — deterministic projection
 
-- module/curriculum state;
-- current student progress or next step;
-- benchmark/integration capability status;
-- public navigation;
-- Wiki/Pages architecture;
-- knowledge authority/source-of-truth location;
-- a major learning breakthrough that changes the reader experience;
-- a new substantial course surface.
+Examples:
+
+- current learner focus/progress;
+- current executor timing/scoring/capability state.
+
+```text
+canonical file
+→ deterministic GitHub Action
+→ generated Wiki view
+```
+
+Current course projections:
+
+```text
+students/david/progress.md
+→ Student-Dashboard-David
+
+knowledge-base/executor-benchmark-framework.md
+→ AI-Executor-Benchmark
+```
+
+Do **not** manually maintain separate current-state copies for these pages.
+
+#### B. Stable narrative — governed authoring
+
+Examples:
+
+- Course Handbook;
+- Course Manual;
+- Course Modules material map;
+- conceptual lessons;
+- SOPs;
+- stable architecture explanations.
+
+These require judgement/synthesis and remain authored through:
+
+```text
+Issue
+→ branch
+→ PR
+→ review
+→ merge
+```
+
+They should link to generated/canonical live state instead of embedding duplicate volatile facts.
+
+### Public Pages layer
+
+```text
+GitHub Pages
+= public front door
+→ stable navigation
+→ generated live Wiki views
+→ canonical repository evidence
+```
+
+Pages should avoid maintaining another independent copy of learner/benchmark current state.
+
+## Issues and PRs
+
+Issues and Pull Requests are durable work/evidence/history.
+
+Do not use a static Issue body as the live authority when a maintained canonical file exists.
+
+## Automation Contract
+
+`.github/workflows/publish-wiki.yml` must trigger when either:
+
+- stable Wiki source changes; or
+- canonical live-state files used by generated Wiki pages change.
+
+The workflow must generate the volatile pages from canonical files before publishing to `.wiki.git`.
+
+Therefore:
+
+```text
+agent updates canonical progress/benchmark
+→ merge
+→ Publish Wiki Action
+→ live generated page changes automatically
+```
+
+The agent does **not** need a second manual Wiki edit for the same facts.
 
 ## Required Review Checklist
 
@@ -52,57 +120,65 @@ Before merge, ask:
 - [ ] Is the correct canonical file updated?
 - [ ] Is factual/current GitHub knowledge verified where required?
 - [ ] Is the immutable baseline preserved?
-- [ ] Is student current progress updated if evidence materially changed?
+- [ ] Is current student progress updated if evidence materially changed?
 - [ ] Is a dated assessment note needed?
 - [ ] Is reusable learning placed in a shared module/knowledge/SOP rather than only student evidence?
 
-### Reader layer
+### Generated live-state layer
 
-- [ ] Does `wiki/Home.md` still describe the current course/student focus correctly?
-- [ ] Does `wiki/Course-Modules.md` reflect material module state?
-- [ ] Does the student Wiki dashboard reflect current canonical progress?
-- [ ] Do Handbook/Manual/Materials need a new link, lesson or correction?
-- [ ] Does `wiki/AI-Control-Plane.md` need a current benchmark/control-plane correction?
-- [ ] Are reader-facing links pointed to canonical maintained sources rather than stale Issue bodies?
+- [ ] If student current state changed, is `students/<id>/progress.md` correct?
+- [ ] If executor state changed, is the canonical benchmark correct?
+- [ ] Does the publisher trigger on those canonical paths?
+- [ ] Are generated reader pages free from independent hand-maintained current-state copies?
+
+### Stable narrative layer
+
+- [ ] Does the curriculum/material map need updating?
+- [ ] Do Handbook/Manual/Materials need a new concept, procedure or link?
+- [ ] Does a stable architecture page need correction?
+- [ ] Are links pointed to generated/canonical live sources rather than stale Issue bodies or copied matrices?
 
 ### Public Pages layer
 
-- [ ] Does `index.html` route to the right live/canonical surfaces?
-- [ ] Is the public copy avoiding volatile duplicated state where a canonical link is safer?
-- [ ] After merge, did Pages deploy successfully if `index.html` changed?
-- [ ] Was the user journey checked conceptually, not only the deployment status?
+- [ ] Does `index.html` route to the right generated/canonical surfaces?
+- [ ] Does it avoid hard-coded current learner/benchmark facts?
+- [ ] After merge, did Pages deploy successfully if the page changed?
+- [ ] Was the real user journey checked, not only deployment status?
 
 ### Wiki publication
 
-- [ ] If `wiki/*.md` changed, did the Publish Wiki workflow succeed after merge?
-- [ ] Is the governed `wiki/` source consistent with the live Wiki?
+- [ ] Did Publish Wiki run when either stable Wiki source **or canonical generated-state source** changed?
+- [ ] Did it complete successfully?
+- [ ] Do generated pages identify their canonical source?
 
 ## Non-Rule
 
-Do **not** update every page for every commit.
+Do **not** auto-generate every document.
 
-The purpose is to review whether a material reader-facing effect exists, not to create busywork.
+Narrative teaching, judgement and architecture synthesis should remain governed authored content. Automation should own repeated factual projection, not replace useful human/agent reasoning.
 
 Use KISSS:
 
 ```text
-material state changed?
-  no  → no reader update required
-  yes → update the minimum affected reader surfaces in the same PR
+volatile fact?
+→ canonical source + deterministic projection
+
+stable narrative?
+→ governed authored page
 ```
 
 ## Staleness Smells
 
 Treat these as warnings:
 
-- Wiki says “pending” for a module that has substantive material/evidence.
-- Student dashboard says an integration is blocked after later evidence proves it operational.
-- Public site links to an Issue body as “current matrix” while a maintained canonical file exists.
-- Handbook/manual are only link lists while detailed reusable knowledge exists elsewhere.
-- A version number displayed in Wiki disagrees with the actual source file.
-- “Current focus” differs between `progress.md`, Wiki Home and Student Dashboard.
-- A workflow/agent status is described from an old failure after later successful runs.
-- A new module or major feature exists but is absent from navigation.
+- a Wiki page contains a manually copied leaderboard;
+- current learner focus appears independently in several source files;
+- public site links to an Issue body as a current matrix;
+- a generated page is manually edited instead of its source;
+- Handbook/manual are only link lists while detailed reusable knowledge exists elsewhere;
+- a static version/status label disagrees with the canonical source;
+- an old failure is described as current capability after later successful evidence;
+- a new major module/surface is absent from stable navigation.
 
 ## Verification Order
 
@@ -110,20 +186,40 @@ When a mismatch is found:
 
 1. identify the canonical source;
 2. verify current repository evidence;
-3. correct canonical state first if it is wrong;
-4. update reader summaries/links;
-5. update public routing where needed;
-6. merge through normal governance;
-7. verify Wiki/Pages publication workflows;
-8. record a learning note if the failure created reusable teaching value.
+3. correct canonical state first;
+4. determine whether the destination should be **generated** or **authored**;
+5. fix the projection/build rule for volatile data rather than patching duplicate copies;
+6. update stable narrative/navigation only where genuinely needed;
+7. merge through normal governance;
+8. verify Wiki/Pages publication;
+9. record reusable learning evidence if the failure revealed a system lesson.
+
+## Reusable Pattern for Other Projects
+
+This is the recommended pattern for projects such as a public directory/community site:
+
+```text
+canonical structured/content source
+→ GitHub workflow/build
+→ public frontend
+```
+
+Examples:
+
+- directory records → directory pages;
+- FAQ Markdown/data → public FAQ;
+- community resources → public resources index;
+- current operational status → generated dashboard.
+
+The frontend should consume/project canonical source, not become another manual database.
 
 ## Course Integrity Principle
 
 ```text
-implementation health
-+ documentation freshness
-+ reader journey
-+ evidence traceability
+canonical truth
++ deterministic projection for volatile state
++ governed narrative
++ verified deployment/user journey
 =
 course integrity
 ```
