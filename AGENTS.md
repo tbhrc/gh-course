@@ -142,6 +142,31 @@ Rules:
 7. Keep student-specific misunderstandings under `students/`; keep reusable platform knowledge under `knowledge-base/`.
 8. Avoid maintaining two independent copies of the same truth.
 
+## Integration and Permission Evidence
+
+GitHub Apps, AI integrations, Actions permissions and deployment integrations must be treated as **permissioned capabilities**, not assumed access.
+
+Use this evidence model:
+
+```text
+installed / authorised
+≠
+permission granted for every operation
+≠
+operation successfully demonstrated
+```
+
+Rules:
+
+1. Do not claim an integration can read, write, review, run Actions or deploy merely because it appears under Settings → Integrations.
+2. Test the exact operation required and record the result.
+3. Distinguish repository/organisation Actions source policy from individual workflow `GITHUB_TOKEN` permissions.
+4. `Allow all actions and reusable workflows` does **not** mean unlimited workflow token access.
+5. Prefer least-privilege permissions and repository-specific access where practical.
+6. Treat permission-change requests as security-relevant; review what changes before accepting.
+7. Do not treat one AI integration's proven capability as proof that another integration has the same capability.
+8. Use `knowledge-base/pages-actions-integrations-control-plane.md` for the current course model.
+
 ## Wiki as the Course Operating Surface
 
 The Wiki is the **reader-facing handbook, dashboard and navigation layer** for this course.

@@ -24,13 +24,14 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 | Find operating procedures | [SOP & Operating Library](SOP-and-Operating-Library) |
 | Look up terminology | [Reference & Glossary](Reference-and-Glossary) |
 | Understand the learning system | [About This Learning System](About-This-Learning-System) |
+| Open the public GitHub Pages site | [Public Course Site](https://tbhrc.github.io/github-course/) |
 
 ---
 
 ## Student #1 — David
 
 **Stage:** Stage 2 — Crash Course  
-**Current focus:** GitHub Knowledge Architecture / Wiki  
+**Current focus:** Wiki / Pages / Integrations operating architecture  
 **Starting position:** Git fundamentals ~6/10; GitHub platform operation ~2/10.
 
 ### Current progress
@@ -41,7 +42,10 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 - Durable knowledge-base architecture established.
 - First GitHub Wiki created and operated hands-on.
 - Wiki recognised independently as a **Git-backed documentation website / lightweight documentation CMS**.
-- That insight is now being applied to make this Wiki the course's actual human interface.
+- That insight was applied to make this Wiki the course's actual human interface.
+- GitHub Pages independently enabled from repository Settings.
+- Actions permissions and workflow approvals explored.
+- Repository Integrations discovered as a major AI-first operating layer.
 
 [Open David's dashboard →](Student-Dashboard-David)
 
@@ -51,11 +55,11 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 
 ## Latest Learning Breakthroughs
 
-### 1. GitHub is not just cloud storage
+### GitHub is not just cloud storage
 
 GitHub is a change-management operating platform built around repositories.
 
-### 2. Work should have a durable control point
+### Work should have a durable control point
 
 ```text
 Issue
@@ -67,21 +71,44 @@ Issue
 → durable history
 ```
 
-### 3. Versions are not decimal counters
+### Versions are not decimal counters
 
 ```text
 MAJOR.MINOR.PATCH
 ```
 
-### 4. Wiki is much bigger than a simple knowledge page
-
-Hands-on use revealed a more useful mental model:
+### Wiki is much bigger than a simple knowledge page
 
 > **GitHub Wiki is a Git-backed documentation website / lightweight documentation CMS.**
 
-A knowledge base is one use case. An SOP library, handbook, onboarding portal or documentation hub are others.
+### GitHub can become an integration control plane
+
+```text
+GitHub
+├── Issues / PRs        → governance
+├── Actions             → automation
+├── Wiki                → handbook / documentation
+├── Pages               → public website
+└── Integrations        → AI agents + external services
+```
+
+The professional rule is to test actual capability rather than assume an installed integration can perform every operation.
 
 [See all epiphanies →](Epiphanies-and-Learning-Breakthroughs)
+
+---
+
+## Two Publishing Surfaces Now in Use
+
+### Wiki
+
+Use this Wiki for the course handbook, navigation, progress and human-readable operating reference.
+
+### GitHub Pages
+
+[Open the public course website →](https://tbhrc.github.io/github-course/)
+
+Pages is the static website publishing layer. It is distinct from Wiki and can later become the polished public-facing course/site experience.
 
 ---
 
@@ -106,6 +133,8 @@ this live Wiki
 That means agents can update this handbook while preserving normal GitHub review and history.
 
 [Read the publishing architecture →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
+
+[Read Pages / Actions / Integrations control-plane note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-actions-integrations-control-plane.md)
 
 ---
 

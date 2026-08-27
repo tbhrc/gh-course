@@ -1,7 +1,7 @@
 ---
 name: github-power-user
-description: Use GitHub as a complete professional operating platform rather than only a Git remote. Use for GitHub architecture, Issues, Projects, Discussions, Wikis, Actions, agents, repository instructions, MCP, Codespaces, rulesets, security, releases, packages, Pages, CLI/API power use, automation, governance and cross-repository planning.
-version: 1.2.0
+description: Use GitHub as a complete professional operating platform rather than only a Git remote. Use for GitHub architecture, Issues, Projects, Discussions, Wikis, Actions, agents, repository instructions, MCP, Codespaces, rulesets, security, releases, packages, Pages, integrations, CLI/API power use, automation, governance and cross-repository planning.
+version: 1.3.0
 status: active
 source: FolderDesk canonical github-power-user v1.0.0
 source_path: 470-skills/github-power-user/
@@ -48,6 +48,7 @@ work request
 | Versioned delivery | **Tags + Releases** |
 | Package distribution | **Packages** |
 | Static website with front-end control | **Pages** |
+| External AI/service connection | **GitHub Apps / Integrations** |
 | AI worker implementing repository work | **Coding/custom agent** |
 | Repository-wide AI conventions | **AGENTS.md / repository instructions** |
 | Repeatable AI task | **Prompt file** |
@@ -88,14 +89,7 @@ Use sub-issues for decomposition, dependencies for blocking relationships, label
 
 ## Projects
 
-Projects is the portfolio layer across Issues and PRs. Prefer Project fields for structured planning metadata such as:
-
-- Status;
-- Priority;
-- Effort;
-- Iteration;
-- Target date;
-- Area/product.
+Projects is the portfolio layer across Issues and PRs. Prefer Project fields for structured planning metadata such as Status, Priority, Effort, Iteration, Target date and Area/product.
 
 Useful views: Board, Table, Roadmap, highest-priority, blocked, and per-area/repository views.
 
@@ -105,17 +99,7 @@ Do not reduce GitHub Wiki to "just a knowledge base." A better power-user mental
 
 > **Wiki = Git-backed documentation website / lightweight documentation CMS.**
 
-Useful Wiki outputs include:
-
-- SOP libraries;
-- internal handbooks;
-- onboarding portals;
-- product documentation;
-- FAQs;
-- training/course companions;
-- architecture and runbook libraries.
-
-The interface exposes pages, Preview, links, images, navigation, custom sidebar/footer and revision history. That makes Wiki a useful native publishing surface for both humans and agents.
+Useful Wiki outputs include SOP libraries, internal handbooks, onboarding portals, product documentation, FAQs, training/course companions, architecture notes and runbooks.
 
 Important boundary:
 
@@ -134,13 +118,11 @@ Before building a custom SOP portal or documentation site, evaluate Wiki first. 
 
 For this course, `knowledge-base/` in the main repository remains authoritative because it participates directly in Issue → branch → PR governance; Wiki is the human-friendly publishing/navigation layer.
 
-Read `knowledge-base/wiki-as-documentation-platform.md` for the verified details and teaching pattern.
+Read `knowledge-base/wiki-as-documentation-platform.md`.
 
 ## Governed Wiki Publishing Pattern
 
 When the Wiki should be a real operating surface **and** Wiki changes need normal repository review, keep Wiki source inside the main repository and publish it after merge.
-
-Example:
 
 ```text
 wiki/*.md                 = governed Wiki source
@@ -161,27 +143,33 @@ Issue
 → live Wiki
 ```
 
-This is especially useful for:
-
-- course handbooks;
-- student dashboards;
-- SOP portals;
-- internal operating manuals;
-- agent-maintained documentation hubs.
-
 Rules:
 
 1. Decide which main-repository files remain canonical factual truth.
 2. Keep Wiki pages reader-facing and link to canonical evidence instead of blindly duplicating it.
 3. Update Wiki navigation when a material new course surface is added.
-4. If a student edits the live Wiki directly for hands-on learning, reconcile any durable change back into governed `wiki/` source afterward.
-5. Verify the first publishing workflow run before claiming automated Wiki publication works.
+4. If a student edits the live Wiki directly for hands-on learning, reconcile durable changes back into governed `wiki/` source afterward.
+5. Verify the publishing workflow run before claiming publication worked.
 
-Read `knowledge-base/wiki-publishing-architecture.md` for the verified architecture and execution status.
+Read `knowledge-base/wiki-publishing-architecture.md`.
 
-## Pull Requests
+## Pages
 
-Treat PRs as the controlled integration boundary, not merely a diff viewer. A professional PR should have a focused change, linked Issue, automated checks where useful, review appropriate to risk, and clear acceptance evidence.
+GitHub Pages is the repository-native static website layer.
+
+Use it when you need a public or internal static site with more front-end control than Wiki.
+
+Publishing can come from a selected branch/folder or a custom GitHub Actions workflow.
+
+Typical uses:
+
+- project website;
+- documentation website;
+- course landing/reference site;
+- generated reports/dashboard snapshots;
+- static product or developer portal.
+
+Do not confuse Pages with Wiki: Wiki optimises for documentation authoring/navigation; Pages optimises for static-site publishing.
 
 ## Actions
 
@@ -195,7 +183,64 @@ workflow_dispatch   -> explicit manual run
 release             -> publish/deploy
 ```
 
+Important distinction:
+
+```text
+Actions source policy
+= which actions/reusable workflows may be used
+
+workflow permissions:
+= what that workflow's GITHUB_TOKEN may do
+```
+
+`Allow all actions and reusable workflows` does **not** mean unlimited workflow token access.
+
 Use least privilege. Never print secrets. Treat untrusted PR/Issue content as untrusted input.
+
+## Integrations as a Control Plane
+
+Repository Integrations / GitHub Apps can connect GitHub to AI agents, deployment platforms and external services.
+
+A useful AI-first mental model is:
+
+```text
+GitHub
+├── repository truth
+├── Issues / PR governance
+├── Actions automation
+├── Wiki documentation
+├── Pages publishing
+└── Integrations
+    ├── AI coding agents
+    ├── review agents
+    ├── deployment platforms
+    └── external services
+```
+
+Do not confuse **installed** with **proven**:
+
+```text
+installed / authorised
+≠
+permission granted for every operation
+≠
+operation successfully demonstrated
+```
+
+For an important integration, test the specific capability required:
+
+- read repository;
+- read/write Issues;
+- create branch;
+- commit;
+- open PR;
+- review/comment;
+- observe/trigger automation where intended;
+- deploy where intended.
+
+Record actual evidence, not assumptions. Prefer repository-specific and least-privilege access where practical.
+
+Read `knowledge-base/pages-actions-integrations-control-plane.md`.
 
 ## Agentic GitHub
 
@@ -229,7 +274,9 @@ For important repositories, consider:
 - protection against force-push/deletion;
 - Dependabot and appropriate security scanning;
 - deliberate merge strategy;
-- merge queue when traffic justifies it.
+- merge queue when traffic justifies it;
+- deliberate App/integration permissions;
+- periodic removal of unused integrations.
 
 ## Releases and Versioning
 
@@ -246,7 +293,7 @@ This course uses Semantic Versioning: `MAJOR.MINOR.PATCH`.
 
 ## Search Before Creating
 
-Search is a power-user capability. Before creating an Issue, workflow, custom agent or custom system, check whether it already exists.
+Search is a power-user capability. Before creating an Issue, workflow, custom agent, integration pattern or custom system, check whether GitHub already provides the capability.
 
 ## Course Use
 
@@ -259,7 +306,8 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 5. preserve student-specific evidence separately from reusable course material;
 6. update shared lessons only when the learning produces reusable value;
 7. preserve high-value discovery moments instead of pre-explaining every conclusion;
-8. keep the reader-facing Wiki useful when course structure, student dashboards or durable breakthroughs materially change.
+8. keep the reader-facing Wiki useful when course structure, student dashboards or durable breakthroughs materially change;
+9. test integrations by actual capability rather than assuming installed access equals operational access.
 
 ## References
 
@@ -268,6 +316,7 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 - `references/agentic-github.md` — AI-agent-first repository operation.
 - `../../knowledge-base/wiki-as-documentation-platform.md` — verified Wiki publishing model and Wiki-vs-Pages boundary.
 - `../../knowledge-base/wiki-publishing-architecture.md` — governed main-repo-to-Wiki publishing model.
+- `../../knowledge-base/pages-actions-integrations-control-plane.md` — Pages, Actions policy and integration capability model.
 
 ## Governing Principle
 

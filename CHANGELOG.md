@@ -27,13 +27,18 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - `.github/workflows/publish-wiki.yml` to publish approved `wiki/*.md` source to the separate Wiki Git repository after merge.
 - Verified `knowledge-base/wiki-publishing-architecture.md` documenting the main-repo → Actions → `.wiki.git` publication model and its execution-verification requirement.
 - First governed Wiki publication verified successfully through `Publish Wiki` run #1 (run ID `33064302639`) after PR #17 merged; the publish job and `.wiki.git` publication step completed successfully.
+- `knowledge-base/pages-actions-integrations-control-plane.md` documenting GitHub Pages, Actions policy layers and GitHub Apps/integrations as an AI-first operating control plane.
+- David's dated Pages / Actions / Integrations learning note preserving his independent Settings exploration and integration-control-plane breakthrough.
+- Expanded Module 09 with integration capability testing, permission boundaries and a Pages hands-on exercise.
 
 ### Changed
 
 - Course `github-power-user` Skill advanced from `1.0.0` to `1.1.0` (MINOR) to add the reusable Wiki publishing-platform and GitHub Pages decision model.
 - Course `github-power-user` Skill advanced from `1.1.0` to `1.2.0` (MINOR) to add the governed Wiki publishing pattern and agent-maintained handbook/dashboard model.
-- `AGENTS.md`, Copilot instructions, README and Module 07 now treat the Wiki as a first-class reader-facing course operating surface while preserving canonical main-repository truth.
-- David's progress now records the applied judgement that the course Wiki should become an operational handbook/dashboard, without misclassifying the coach-built automation as David's technical mastery.
+- Course `github-power-user` Skill advanced from `1.2.0` to `1.3.0` (MINOR) to add GitHub Pages, Actions permission layers and integration-control-plane capability testing.
+- `AGENTS.md` now requires integration capability to be proven by actual operation rather than inferred from installation/authorisation.
+- Wiki Home, David's dashboard and epiphany log now surface the public Pages site and integrations breakthrough.
+- David's progress now records his own Pages/Settings initiative separately from coach-built automation.
 
 The root course version remains `0.1.0` because no new course release has been published.
 

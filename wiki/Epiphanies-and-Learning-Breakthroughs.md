@@ -216,6 +216,78 @@ The principle generalises far beyond this course:
 
 ---
 
+## 7. GitHub Can Be the Integration Control Plane
+
+### Trigger
+
+While independently exploring repository Settings, David moved from Wiki into Actions, Pages and Integrations.
+
+He reported:
+
+- enabling **Allow all actions and reusable workflows**;
+- identifying the first-time-contributor workflow approval setting;
+- enabling GitHub Pages and publishing the course publicly;
+- discovering the repository Integrations area;
+- enabling/updating permissions for ChatGPT/Codex, Claude, Gemini and Vercel.
+
+### Spontaneous breakthrough
+
+The important realisation was not simply that GitHub supports plugins/apps.
+
+It was:
+
+> **GitHub can become the common integration/control plane connecting AI agents, repository governance, automation and deployment.**
+
+```text
+GitHub
+├── source truth
+├── Issues / PRs
+├── Actions
+├── Wiki
+├── Pages
+└── Integrations
+    ├── Codex / ChatGPT
+    ├── Claude
+    ├── Gemini
+    └── deployment services such as Vercel
+```
+
+### Professional refinement
+
+Visibility in Integrations is not proof of operational capability.
+
+```text
+installed / authorised
+≠
+permission for every operation
+≠
+operation proven successfully
+```
+
+Likewise:
+
+```text
+Allow all actions/reusable workflows
+≠
+unlimited GITHUB_TOKEN permissions
+```
+
+The next professional step is to test each important integration through a bounded real workflow and record what actually succeeds.
+
+### Pages breakthrough
+
+GitHub Pages also changed from an abstract feature into a personally operated capability: David independently enabled the public course site at:
+
+`https://tbhrc.github.io/github-course/`
+
+This reinforces the larger mental model that GitHub contains both operating infrastructure and publishing infrastructure.
+
+[Canonical Pages / Integrations learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-integrations.md)
+
+[Verified control-plane note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-actions-integrations-control-plane.md)
+
+---
+
 ## Teaching Rule
 
 Future learners should not always be given these conclusions first.

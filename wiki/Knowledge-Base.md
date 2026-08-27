@@ -21,6 +21,7 @@ The authoritative knowledge files live in the main repository under [`knowledge-
 - [Wiki vs repository Markdown](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-vs-repository-markdown.md)
 - [Wiki as a documentation platform](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-as-documentation-platform.md)
 - [Governed Wiki publishing architecture](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
+- [Pages, Actions & Integrations control plane](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-actions-integrations-control-plane.md)
 - [Knowledge gap register](https://github.com/tbhrc/github-course/blob/main/knowledge-base/gap-register.md)
 
 ## How New Knowledge Enters the Course
