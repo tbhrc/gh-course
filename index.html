@@ -3,333 +3,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GitHub Professional Operator — an AI-first founder course and live GitHub operating environment.">
+  <meta name="description" content="GitHub Professional Operator — an AI-first founder course built and operated in GitHub.">
   <title>GitHub Professional Operator — AI-First Founder Course</title>
+  <!-- GENERATED OUTPUT CONTRACT: index.html is generated from this template. Live facts come from site/public-state.json. -->
   <style>
-    :root {
-      --bg: #f6f8fa;
-      --surface: #ffffff;
-      --text: #1f2328;
-      --muted: #59636e;
-      --border: #d0d7de;
-      --accent: #0969da;
-      --accent-dark: #0550ae;
-      --soft: #ddf4ff;
-      --success: #1a7f37;
-      --shadow: 0 8px 28px rgba(31,35,40,.08);
-      --radius: 16px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      background: var(--bg);
-      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255,255,255,.96);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-    .topbar-inner {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .brand { color: var(--text); font-weight: 750; letter-spacing: -.02em; }
-    .nav { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; }
-    .nav a { color: var(--muted); font-weight: 600; }
-    .hero {
-      padding: 76px 0 50px;
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
-      border-bottom: 1px solid var(--border);
-    }
-    .eyebrow {
-      display: inline-block;
-      padding: 5px 10px;
-      border: 1px solid #b6d7f5;
-      border-radius: 999px;
-      background: var(--soft);
-      color: var(--accent-dark);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-    }
-    h1 {
-      max-width: 920px;
-      margin: 18px 0 16px;
-      font-size: clamp(38px, 6vw, 68px);
-      line-height: 1.02;
-      letter-spacing: -.045em;
-    }
-    .lead { max-width: 800px; margin: 0; color: var(--muted); font-size: clamp(18px, 2.2vw, 23px); }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: var(--surface);
-      color: var(--text);
-      font-weight: 700;
-    }
-    .button:hover { text-decoration: none; border-color: #afb8c1; }
-    .button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .button.primary:hover { background: var(--accent-dark); }
-    .status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 34px; }
-    .status {
-      padding: 15px 16px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: rgba(255,255,255,.8);
-    }
-    .status strong { display: block; margin-bottom: 2px; font-size: 14px; }
-    .status span { color: var(--muted); font-size: 13px; }
-    main { padding: 54px 0 80px; }
-    section { margin-bottom: 64px; }
-    .section-head { max-width: 760px; margin-bottom: 22px; }
-    h2 { margin: 0 0 8px; font-size: clamp(28px, 3vw, 38px); line-height: 1.15; letter-spacing: -.025em; }
-    h3 { margin: 0 0 8px; font-size: 18px; }
-    .section-head p, .muted { color: var(--muted); }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .card {
-      display: block;
-      min-height: 172px;
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface);
-      color: var(--text);
-      box-shadow: 0 1px 0 rgba(31,35,40,.03);
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    }
-    .card:hover {
-      text-decoration: none;
-      transform: translateY(-2px);
-      border-color: #afb8c1;
-      box-shadow: var(--shadow);
-    }
-    .card .icon { display: block; margin-bottom: 18px; font-size: 26px; }
-    .card p { margin: 0; color: var(--muted); font-size: 14px; }
-    .feature {
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-    .feature-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: start; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
-    .chip { padding: 5px 9px; border-radius: 999px; background: #f0f3f6; color: #424a53; font-size: 13px; font-weight: 650; }
-    .flow {
-      margin: 18px 0 0;
-      padding: 18px;
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #f6f8fa;
-      color: #24292f;
-      font: 14px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      white-space: pre;
-    }
-    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .role { padding: 22px; border-left: 4px solid var(--accent); border-radius: 10px; background: var(--surface); }
-    .role p { margin: 0; color: var(--muted); }
-    .live-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .live-link {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 18px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--surface);
-      color: var(--text);
-      font-weight: 700;
-    }
-    .live-link:hover { text-decoration: none; border-color: #afb8c1; }
-    .live-link span:last-child { color: var(--muted); font-weight: 500; }
-    footer { padding: 34px 0; border-top: 1px solid var(--border); background: #fff; color: var(--muted); font-size: 14px; }
-    footer .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    @media (max-width: 900px) {
-      .status-grid, .grid { grid-template-columns: repeat(2, 1fr); }
-      .feature-grid, .role-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 620px) {
-      .topbar-inner { align-items: flex-start; flex-direction: column; padding: 13px 0; }
-      .nav { gap: 11px 15px; }
-      .hero { padding-top: 48px; }
-      .status-grid, .grid, .live-list { grid-template-columns: 1fr; }
-      .card { min-height: 0; }
-    }
+    :root { --bg:#f6f8fa; --surface:#fff; --text:#1f2328; --muted:#59636e; --border:#d0d7de; --accent:#0969da; --accent-dark:#0550ae; --soft:#ddf4ff; --good:#1a7f37; --shadow:0 8px 28px rgba(31,35,40,.08); --radius:16px; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:var(--bg); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+    a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+    .wrap { width:min(1160px,calc(100% - 32px)); margin:0 auto; }
+    .topbar { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); }
+    .topbar-inner { min-height:64px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { color:var(--text); font-weight:760; letter-spacing:-.02em; }
+    .nav { display:flex; flex-wrap:wrap; gap:18px; font-size:14px; } .nav a { color:var(--muted); font-weight:650; }
+    .hero { padding:76px 0 50px; background:linear-gradient(180deg,#fff 0%,var(--bg) 100%); border-bottom:1px solid var(--border); }
+    .eyebrow { display:inline-block; padding:5px 10px; border:1px solid #b6d7f5; border-radius:999px; background:var(--soft); color:var(--accent-dark); font-size:13px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; }
+    h1 { max-width:920px; margin:18px 0 16px; font-size:clamp(38px,6vw,68px); line-height:1.02; letter-spacing:-.045em; }
+    h2 { margin:0 0 8px; font-size:clamp(28px,3vw,38px); line-height:1.15; letter-spacing:-.025em; }
+    h3 { margin:0 0 8px; font-size:18px; }
+    .lead { max-width:820px; margin:0; color:var(--muted); font-size:clamp(18px,2.2vw,23px); }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--text); font-weight:700; }
+    .button:hover { text-decoration:none; border-color:#afb8c1; } .button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .status-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:34px; }
+    .status,.card,.panel { padding:18px; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); }
+    .status strong { display:block; margin-bottom:2px; font-size:14px; } .status span { color:var(--muted); font-size:13px; }
+    #cms-status[data-state="ok"] { color:var(--good); } #cms-status[data-state="error"] { color:#cf222e; }
+    main { padding:54px 0 80px; } section { margin-bottom:64px; }
+    .section-head { max-width:800px; margin-bottom:22px; } .section-head p,.muted { color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { display:block; min-height:154px; color:var(--text); transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease; }
+    .card:hover { text-decoration:none; transform:translateY(-2px); border-color:#afb8c1; box-shadow:var(--shadow); }
+    .card p { margin:0; color:var(--muted); font-size:14px; }
+    .feature-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; } .panel { box-shadow:0 1px 0 rgba(31,35,40,.03); }
+    .fact { margin:16px 0; padding-top:14px; border-top:1px solid var(--border); } .fact:first-of-type { border-top:0; padding-top:0; }
+    .fact small { display:block; color:var(--muted); font-weight:650; text-transform:uppercase; letter-spacing:.04em; } .fact strong { display:block; margin-top:3px; }
+    .flow { margin-top:18px; padding:18px; overflow-x:auto; border:1px solid var(--border); border-radius:12px; background:#f6f8fa; color:#24292f; font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:pre; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:12px; background:#fff; }
+    table { width:100%; border-collapse:collapse; min-width:520px; } th,td { padding:12px 14px; border-bottom:1px solid var(--border); text-align:left; font-size:14px; }
+    th { background:#f6f8fa; color:var(--muted); } tr:last-child td { border-bottom:0; }
+    .live-list { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .live-link { display:flex; justify-content:space-between; gap:16px; padding:16px 18px; border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--text); font-weight:700; }
+    .live-link:hover { text-decoration:none; border-color:#afb8c1; } .live-link span:last-child { color:var(--muted); font-weight:500; }
+    .cms-note { margin-top:18px; padding:14px 16px; border-left:4px solid var(--accent); background:#fff; color:var(--muted); }
+    footer { padding:34px 0; border-top:1px solid var(--border); background:#fff; color:var(--muted); font-size:14px; } .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    @media (max-width:900px) { .status-grid,.grid { grid-template-columns:repeat(2,1fr); } .feature-grid { grid-template-columns:1fr; } }
+    @media (max-width:620px) { .topbar-inner { align-items:flex-start; flex-direction:column; padding:13px 0; } .nav { gap:11px 15px; } .hero { padding-top:48px; } .status-grid,.grid,.live-list { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="https://tbhrc.github.io/github-course/">GitHub Professional Operator</a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#start">Start</a>
-        <a href="#student">Student Dashboard</a>
-        <a href="#library">Course Library</a>
-        <a href="#system">How It Works</a>
-        <a href="#live">Live Operations</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="hero">
-    <div class="wrap">
-      <span class="eyebrow">AI-First Founder Course · Built in Public</span>
-      <h1>Learn GitHub by operating GitHub.</h1>
-      <p class="lead">A practical course for founders, vibe coders and AI-assisted operators. This website is the public front door to the live handbook, student progress, course material, verified knowledge and real GitHub work behind the course.</p>
-      <div class="actions">
-        <a class="button primary" href="https://github.com/tbhrc/github-course/wiki">Open the Live Course Wiki</a>
-        <a class="button" href="https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David">Open David's Dashboard</a>
-        <a class="button" href="https://github.com/tbhrc/github-course">Open Repository</a>
-      </div>
-      <div class="status-grid" aria-label="Course status">
-        <div class="status"><strong>Public Website</strong><span>GitHub Pages front door</span></div>
-        <div class="status"><strong>Live Handbook</strong><span>Git-backed GitHub Wiki</span></div>
-        <div class="status"><strong>Canonical Evidence</strong><span>Main GitHub repository</span></div>
-        <div class="status"><strong>Live Operations</strong><span>Current state via dashboard + canonical evidence</span></div>
-      </div>
-    </div>
-  </div>
-
+  <header class="topbar"><div class="wrap topbar-inner"><a class="brand" href="https://tbhrc.github.io/github-course/">GitHub Professional Operator</a><nav class="nav" aria-label="Primary navigation"><a href="#start">Start</a><a href="#student">Student</a><a href="#benchmark">AI Benchmark</a><a href="#library">Course</a><a href="#live">Operations</a></nav></div></header>
+  <div class="hero"><div class="wrap"><span class="eyebrow">AI-First Founder Course · Built in Public</span><h1>Learn GitHub by operating GitHub.</h1><p class="lead" id="home-intro">Loading canonical course introduction…</p><div class="actions"><a class="button primary" href="https://github.com/tbhrc/github-course/wiki">Open the Live Course Wiki</a><a class="button" href="https://github.com/tbhrc/github-course/wiki/Course-Handbook">Course Handbook</a><a class="button" href="https://github.com/tbhrc/github-course">Repository</a></div><div class="status-grid" aria-label="Course status"><div class="status"><strong>Course version</strong><span id="course-version">Loading…</span></div><div class="status"><strong>Current learner state</strong><span id="course-stage">Loading…</span></div><div class="status"><strong>CMS health</strong><span id="cms-status">Loading canonical state…</span></div><div class="status"><strong>Generated from</strong><span>commit <span id="source-commit">loading…</span></span></div></div></div></div>
   <main class="wrap">
-    <section id="start">
-      <div class="section-head">
-        <h2>Start here</h2>
-        <p>Everything important is reachable from this page. Use the Wiki for the reader experience and the repository when you want the canonical evidence, history and implementation.</p>
-      </div>
-      <div class="grid">
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki">
-          <span class="icon">🏠</span><h3>Wiki Home</h3><p>The live course handbook and main reader-facing navigation surface.</p>
-        </a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David">
-          <span class="icon">📈</span><h3>Student Dashboard</h3><p>David's current learning focus, evidence and next mastery gaps, linked back to canonical progress.</p>
-        </a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/Course-Handbook">
-          <span class="icon">📘</span><h3>Course Handbook</h3><p>The complete operating model: workflow, Projects, Actions, agents, publishing, governance and learning evidence.</p>
-        </a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/Course-Manual">
-          <span class="icon">🛠️</span><h3>Course Manual</h3><p>The practical field guide for Issues, PRs, Projects, Actions, releases, agents and source-of-truth operation.</p>
-        </a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/Course-Modules">
-          <span class="icon">🧭</span><h3>Course Modules</h3><p>The complete learning path and current material/mastery map.</p>
-        </a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/AI-Control-Plane">
-          <span class="icon">🤖</span><h3>AI Control Plane</h3><p>ChatGPT Web → GitHub → specialised executors, with live provenance and benchmark evidence.</p>
-        </a>
-      </div>
-    </section>
+    <section id="start"><div class="section-head"><h2>One source of truth, multiple public views</h2><p>This site does not maintain a second copy of current learner or benchmark facts. GitHub repository files are canonical; deterministic automation generates public state; this frontend consumes it.</p></div><div class="flow">canonical repository truth
+→ deterministic GitHub Action
+→ generated site/public-state.json
+→ GitHub Pages frontend
 
-    <section id="student">
-      <div class="feature feature-grid">
-        <div>
-          <span class="eyebrow">Student #1 · Public Case Study</span>
-          <h2 style="margin-top:14px">Follow the learning journey, including the mistakes.</h2>
-          <p class="muted">The course deliberately preserves the student's starting assumptions, misconceptions, corrections, epiphanies and demonstrated evidence instead of rewriting history after the fact.</p>
-          <div class="chips">
-            <span class="chip">Issue-first workflow</span>
-            <span class="chip">GitHub Projects</span>
-            <span class="chip">Wiki + Pages</span>
-            <span class="chip">Actions</span>
-            <span class="chip">AI executor benchmarks</span>
-          </div>
-          <div class="actions">
-            <a class="button primary" href="https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David">View Live Progress</a>
-            <a class="button" href="https://github.com/tbhrc/github-course/wiki/Epiphanies-and-Learning-Breakthroughs">Read the Epiphanies</a>
-            <a class="button" href="https://github.com/tbhrc/github-course/blob/main/students/david/progress.md">Canonical Progress Evidence</a>
-          </div>
-        </div>
-        <div>
-          <h3>Current learning loop</h3>
-          <div class="flow">operate
-→ notice
-→ articulate
-→ correct / refine
-→ apply architecturally
-→ preserve evidence
-→ teach the next student</div>
-          <p class="muted" style="margin-bottom:0">The live Wiki dashboard is the best place to see the current student state. Repository files remain the canonical evidence.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="library">
-      <div class="section-head">
-        <h2>Course library</h2>
-        <p>Use these as the course's human-readable reference layer. Each page links back to governed repository evidence where appropriate.</p>
-      </div>
-      <div class="grid">
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/Course-Materials"><span class="icon">🗂️</span><h3>Course Materials</h3><p>Guided curriculum, live evidence, exercises, SOPs and student resources.</p></a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/Knowledge-Base"><span class="icon">🧠</span><h3>Knowledge Base</h3><p>Verified GitHub knowledge, freshness rules and the canonical executor benchmark.</p></a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/Exercises-and-Assessments"><span class="icon">✅</span><h3>Exercises & Assessments</h3><p>Hands-on work and durable evidence required for mastery.</p></a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/GitHub-Power-User"><span class="icon">⚡</span><h3>GitHub Power User</h3><p>The strategic native-capability map and professional GitHub accelerator.</p></a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/SOP-and-Operating-Library"><span class="icon">📚</span><h3>SOP & Operating Library</h3><p>Practised workflows, including the course documentation-integrity gate.</p></a>
-        <a class="card" href="https://github.com/tbhrc/github-course/wiki/Reference-and-Glossary"><span class="icon">🔎</span><h3>Reference & Glossary</h3><p>Fast definitions and critical GitHub/AI distinctions.</p></a>
-      </div>
-    </section>
-
-    <section id="system">
-      <div class="section-head">
-        <h2>One system, three surfaces</h2>
-        <p>The website, Wiki and repository have different jobs. Together they form one governed learning environment.</p>
-      </div>
-      <div class="role-grid">
-        <div class="role"><h3>🌐 GitHub Pages</h3><p><strong>Public website/front door.</strong> Routes students and external readers to maintained live/canonical surfaces instead of duplicating volatile truth.</p></div>
-        <div class="role"><h3>📖 GitHub Wiki</h3><p><strong>Reader handbook.</strong> Holds navigable course guidance, dashboards, manuals, epiphanies, SOP navigation and reference material.</p></div>
-        <div class="role"><h3>🧱 GitHub Repository</h3><p><strong>Canonical operating record.</strong> Holds verified knowledge, curriculum, student evidence, Issues, branches, PRs, Actions, releases and history.</p></div>
-      </div>
-      <div class="flow">conversation / idea
-→ GitHub Issue
-→ branch / agent / execution
-→ Pull Request
-→ checks / review
-→ merge
-→ Actions
-→ Wiki / Pages / release
-→ durable evidence</div>
-    </section>
-
-    <section id="live">
-      <div class="section-head">
-        <h2>Live operations</h2>
-        <p>Use maintained canonical sources for current state. Issues and PRs remain the underlying work and audit trail.</p>
-      </div>
-      <div class="live-list">
-        <a class="live-link" href="https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David"><span>Student #1 — Current Focus</span><span>Live dashboard →</span></a>
-        <a class="live-link" href="https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md"><span>AI Executor Benchmark & Leaderboard</span><span>Canonical source →</span></a>
-        <a class="live-link" href="https://github.com/tbhrc/github-course/tree/main/04-projects"><span>GitHub Projects Course Material</span><span>Current module →</span></a>
-        <a class="live-link" href="https://github.com/tbhrc/github-course/issues"><span>Open Course Issues</span><span>Work queue →</span></a>
-        <a class="live-link" href="https://github.com/tbhrc/github-course/pulls"><span>Pull Requests</span><span>Review gate →</span></a>
-        <a class="live-link" href="https://github.com/tbhrc/github-course/actions"><span>GitHub Actions</span><span>Automation evidence →</span></a>
-        <a class="live-link" href="https://github.com/tbhrc/github-course/releases/latest"><span>Latest Formal Release</span><span>Versioned checkpoint →</span></a>
-        <a class="live-link" href="https://github.com/tbhrc/github-course/tree/main/knowledge-base"><span>Canonical Knowledge Base</span><span>Verified notes →</span></a>
-      </div>
-    </section>
+canonical learner / benchmark truth
+→ Publish Wiki Action
+→ generated Wiki live views</div><div class="cms-note">Agents update canonical Markdown. They do not manually synchronise current-state tables into the public website.</div></section>
+    <section id="student"><div class="section-head"><h2>Student #1 — live state</h2><p>These values are loaded from generated state built from <code>students/david/progress.md</code>.</p></div><div class="feature-grid"><div class="panel"><div class="fact"><small>Current learning focus</small><strong id="current-focus">Loading…</strong></div><div class="fact"><small>Next hands-on objective</small><strong id="next-objective">Loading…</strong></div><div class="actions"><a class="button primary" href="https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David">Generated Wiki Dashboard</a><a class="button" href="https://github.com/tbhrc/github-course/blob/main/students/david/progress.md">Canonical Progress</a></div></div><div class="panel"><h3>Evidence rule</h3><div class="flow">course capability proven
+≠
+student personal mastery</div><p class="muted">The baseline remains immutable. Current progress is updated only when durable evidence changes the learner assessment.</p></div></div></section>
+    <section id="benchmark"><div class="section-head"><h2>AI executor benchmark</h2><p>The table below is rendered from the canonical benchmark framework. Last verified: <strong id="benchmark-verified">loading…</strong>.</p></div><div class="table-wrap"><table><thead><tr><th>Executor</th><th>Speed /30</th><th>Total /100</th></tr></thead><tbody id="benchmark-body"><tr><td colspan="3">Loading canonical benchmark…</td></tr></tbody></table></div><div class="panel" style="margin-top:16px"><h3>Full-lifecycle benchmark</h3><p id="full-lifecycle-result" class="muted">Loading…</p><p class="muted">The benchmark is being refined so user-observed wall-clock time, deterministic GitHub overhead and observable agent runtime are measured separately.</p><div class="actions"><a class="button primary" href="https://github.com/tbhrc/github-course/wiki/AI-Executor-Benchmark">Generated Benchmark View</a><a class="button" href="https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md">Canonical Benchmark</a></div></div></section>
+    <section id="library"><div class="section-head"><h2>Course library</h2><p>Stable teaching content is governed in the repository and published through the Wiki. Current operational facts are generated from canonical sources.</p></div><div class="grid"><a class="card" href="https://github.com/tbhrc/github-course/wiki/Course-Handbook"><h3>Course Handbook</h3><p>Complete operating model, governance and learning architecture.</p></a><a class="card" href="https://github.com/tbhrc/github-course/wiki/Course-Manual"><h3>Course Manual</h3><p>Practical field guide for Issues, PRs, Projects, Actions, releases and agents.</p></a><a class="card" href="https://github.com/tbhrc/github-course/wiki/Course-Modules"><h3>Course Modules</h3><p>Full curriculum and learner mastery map.</p></a><a class="card" href="https://github.com/tbhrc/github-course/wiki/Course-Materials"><h3>Course Materials</h3><p>Guided learning resources and exercises.</p></a><a class="card" href="https://github.com/tbhrc/github-course/wiki/Knowledge-Base"><h3>Knowledge Base</h3><p>Verified GitHub knowledge and source authority.</p></a><a class="card" href="https://github.com/tbhrc/github-course/wiki/SOP-and-Operating-Library"><h3>SOP Library</h3><p>Repeatable repository and documentation-integrity procedures.</p></a></div></section>
+    <section id="live"><div class="section-head"><h2>Live operations</h2><p>Operational objects remain evidence/history. Current facts come from canonical files and generated views.</p></div><div class="live-list"><a class="live-link" href="https://github.com/tbhrc/github-course/issues"><span>Issues</span><span>work contracts →</span></a><a class="live-link" href="https://github.com/tbhrc/github-course/pulls"><span>Pull Requests</span><span>review gates →</span></a><a class="live-link" href="https://github.com/tbhrc/github-course/actions"><span>GitHub Actions</span><span>automation evidence →</span></a><a class="live-link" href="https://github.com/tbhrc/github-course/releases"><span>Releases</span><span>versioned checkpoints →</span></a><a class="live-link" href="https://github.com/tbhrc/github-course/tree/main/04-projects"><span>Projects Module</span><span>current learning area →</span></a><a class="live-link" href="https://github.com/tbhrc/github-course/blob/main/sops/course-documentation-integrity.md"><span>Documentation Integrity</span><span>anti-drift contract →</span></a></div></section>
   </main>
-
-  <footer>
-    <div class="wrap footer-inner">
-      <span>GitHub Professional Operator — AI-First Founder Course</span>
-      <span><a href="https://github.com/tbhrc/github-course">Repository</a> · <a href="https://github.com/tbhrc/github-course/wiki">Wiki</a> · <a href="https://github.com/tbhrc/github-course/issues">Issues</a> · <a href="https://github.com/tbhrc/github-course/releases">Releases</a></span>
-    </div>
-  </footer>
+  <footer><div class="wrap footer-inner"><span>GitHub Professional Operator — AI-First Founder Course</span><span><a href="https://github.com/tbhrc/github-course">Repository</a> · <a href="https://github.com/tbhrc/github-course/wiki">Wiki</a> · <a href="https://github.com/tbhrc/github-course/actions">Actions</a></span></div></footer>
+  <script src="site/cms.js"></script>
 </body>
 </html>
