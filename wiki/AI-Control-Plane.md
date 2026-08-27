@@ -1,12 +1,14 @@
 # AI Control Plane — ChatGPT Web → GitHub → Agents
 
-This page explains the course’s current **AI-first founder operating model**.
+This page explains the course's **stable AI-first operating architecture**.
 
-> **ChatGPT Web can be the conversational front door. GitHub becomes the durable control/evidence plane. Specialist executors work downstream through different supported routes.**
+> **Current executor timings, scores and capability status are generated separately from the canonical benchmark.** This page deliberately does not maintain another live matrix.
+
+[Open AI Executor Benchmark & Leaderboard →](AI-Executor-Benchmark)
 
 ---
 
-## 1. The Founder-Facing Model
+## 1. Founder-Facing Model
 
 ```text
 LAYER 1 — TALK / DECIDE
@@ -27,87 +29,74 @@ Issue
 → durable evidence
 ```
 
-The goal is to move recurring setup/complexity into the repository so day-to-day founder operation can stay simple.
+The objective is to move recurring complexity into the repository contract so everyday founder operation stays simple.
 
 ---
 
 ## 2. One Control Plane Does Not Mean One Execution Architecture
 
-The course now has live evidence across several routes.
+Different executors can use different supported routes while GitHub remains the shared governance/evidence plane.
 
 ### ChatGPT Web
 
 ```text
 ChatGPT Web
-→ connected GitHub App operations
+→ connected GitHub operations
 → Issues / branches / commits / PRs / review / merge / Actions inspection
 ```
-
-This is the current control executor and is especially efficient for small GitHub-native work.
 
 ### GitHub Copilot cloud coding agent
 
 ```text
-Issue / agent assignment
+Issue / assignment
 → Copilot cloud session
 → agent branch
 → commit
 → Pull Request
 ```
 
-The course’s early Free-plan assignment attempts returned 403. Later, with the required entitlement available, the operational benchmark produced the governed branch/commit/PR path.
-
 ### OpenAI Codex Partner Agent
 
 ```text
-Issue / deterministic assignment
-→ GitHub Partner Agent policy
+Issue / assignment
+→ Partner Agent policy + authentication
 → Codex session
 → branch / commit / PR
 ```
 
-The course proved a useful configuration distinction: paid Copilot entitlement did not by itself enable Codex. The **Allow Codex coding agent** Partner Agent policy also had to be enabled.
-
 ### Anthropic Claude Partner Agent
 
 ```text
-Issue / deterministic assignment
-→ correct Partner Agent identity + policy
+Issue / assignment
+→ correct Partner Agent identity/policy
 → Claude session
 → branch / commit / PR
 ```
-
-An early stale/older Claude bot identity failed. The corrected current Partner Agent identity succeeded.
 
 ### Google Jules
 
 ```text
 GitHub Issue
-→ `jules` label
-→ Google Labs Jules GitHub App
+→ jules trigger/label
 → Jules cloud task
 → branch / commit / PR
 ```
-
-Jules is a separate executor from Gemini CLI/API and must have its own benchmark/evidence lane.
 
 ### Gemini CLI/API
 
 ```text
 GitHub trigger
 → GitHub Action
-→ Gemini CLI / API
-→ model inference
-→ governed delivery if successful
+→ Gemini CLI / provider API
+→ inference
+→ governed delivery when successful
 ```
 
-Repository secret `GEMINI_API_KEY` is configured and authentication is proven. The current clean run reached Gemini inference and then stopped with HTTP 429 / daily free-tier quota exhaustion before producing a governed branch/commit/PR.
+These routes have different setup, permissions, entitlement and provenance models. Compare them by observed evidence, not by brand name.
 
 ---
 
 ## 3. Deterministic Automation Is Not AI
-
-A core course breakthrough is:
 
 ```text
 automatic
@@ -115,19 +104,9 @@ automatic
 agentic
 ```
 
-A GitHub Action can:
+A GitHub Action can run scripts, call APIs, publish documentation, deploy Pages, publish Releases, assign agents or invoke models.
 
-- run shell commands;
-- call APIs;
-- publish the Wiki;
-- deploy Pages;
-- publish a Release;
-- assign an agent;
-- invoke a model;
-
-without all of those steps being AI reasoning.
-
-Use the four-layer model:
+Use this four-layer model:
 
 ```text
 1. control surface
@@ -175,7 +154,7 @@ Always separate:
 ```text
 installed / authorised
 ≠
-permission available for requested operation
+permission available
 ≠
 request accepted
 ≠
@@ -184,100 +163,62 @@ AI execution proven
 correct output
 ```
 
-This course learned the distinction through real missing-secret, 403, identity/policy, 429 and output-quality failures.
+The course has encountered missing-secret, HTTP 403, stale identity/policy, HTTP 429 and output-quality failures. Each belongs to a different layer.
 
 ---
 
-## 6. Current Executor Benchmark
+## 6. Current Executor State
 
-The current source of truth is **not Issue #23**.
+Do not copy the leaderboard into this page.
 
-Use the maintained canonical file:
+```text
+knowledge-base/executor-benchmark-framework.md
+= canonical benchmark truth
 
-[**AI Executor Benchmark & Leaderboard →**](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+        ↓ deterministic Wiki publisher
 
-Current bounded one-file benchmark:
+AI-Executor-Benchmark
+= generated reader-facing view
+```
 
-| Executor | End-to-end | Score /100 |
-| --- | ---: | ---: |
-| ChatGPT Web | 152s | **95.0** |
-| OpenAI Codex | 202s | **90.6** |
-| Anthropic Claude | 195s | **89.4** |
-| GitHub Copilot | 225s | **87.3** |
-| Google Jules | 307s | **77.9** |
-| Gemini CLI/API | pending | pending |
+[**Open generated AI Executor Benchmark & Leaderboard →**](AI-Executor-Benchmark)
 
-### What this means
-
-For the small benchmark task, ChatGPT Web is currently fastest overall.
-
-Among measured cloud coding agents:
-
-- Claude was fastest by runtime;
-- Codex scored highest overall;
-- Jules was slowest and its first review-ready snapshot contained more factual/governance errors.
-
-Do **not** generalise this ranking to large refactors, builds, debugging or local-runtime work until those task classes are benchmarked.
+The benchmark measures speed, fidelity, output quality, reliability, autonomy, governance, provenance and efficiency. Setup friction is tracked separately from operational runtime.
 
 ---
 
-## 7. Why First-Snapshot Quality Matters
+## 7. First-Snapshot Quality Matters
 
 Agent autonomy is useful only when output remains accurate and governable.
 
-The clean Jules run proved:
+Benchmark scoring therefore uses the **first review-ready snapshot**. Human corrections after review do not retroactively improve the original runtime/quality score.
 
-```text
-Issue #63
-→ Jules task
-→ branch
-→ bot-authored commit
-→ PR #66
-```
-
-but review found errors including:
-
-- wrong governing Issue attribution;
-- unsupported model attribution;
-- incorrect PR-author claim;
-- wrong Gemini workflow filename;
-- unproven check claim;
-- unsafe `Fixes #63` closing keyword.
-
-Therefore benchmark quality is scored from the **first review-ready snapshot**. Human corrections after that do not improve the original benchmark score/time.
+This protects the comparison from rewarding agents that move fast but require substantial factual or governance cleanup.
 
 ---
 
-## 8. The Jules / Gemini Provenance Incident
+## 8. Provenance Discipline
 
-The first Jules activation was accidentally triggered from Gemini Issue #26.
-
-That produced real Jules evidence, but the wrong governing Issue/evidence file contaminated the benchmark.
-
-Correct separation:
+One executor benchmark should have one clear evidence lane:
 
 ```text
-#26 = Gemini CLI/API
-#63 = Google Jules coding agent
+one executor
+→ one governing Issue/run
+→ one evidence file
+→ one branch/PR path
 ```
 
-The accidental PR was preserved as history and not merged. A clean Jules benchmark was then run from #63.
-
-Reusable rule:
-
-> **One executor benchmark = one governing Issue + one evidence lane.**
+The course learned this directly when an early Jules activation was accidentally launched from the Gemini benchmark Issue. The activation evidence was preserved, but the clean benchmark was separated rather than rewriting history.
 
 ---
 
 ## 9. Secrets, Tokens and Provider Boundaries
 
-Different execution routes can require different authentication/entitlement layers.
-
-Example layers:
+Possible authentication/entitlement layers include:
 
 ```text
 repository Actions secret
-user-authorised GitHub PAT/token
+user-authorised GitHub token/PAT
 GitHub App permissions
 Copilot entitlement
 Partner Agent policy
@@ -285,13 +226,9 @@ provider API key
 provider quota/billing
 ```
 
-Course examples:
+A secret name is an interface; the value must be a real credential issued by the relevant service.
 
-- `AGENT_DISPATCH_TOKEN` — stored GitHub credential interface for selected dispatch workflows;
-- `COPILOT_GITHUB_TOKEN` — runtime variable mapping for Copilot CLI;
-- `GEMINI_API_KEY` — Gemini provider credential stored as a GitHub Actions secret.
-
-Secret names are not invented passwords. Their values must be real credentials issued by the authenticating service.
+Stored secret names and runtime environment-variable names may differ.
 
 ---
 
@@ -300,7 +237,7 @@ Secret names are not invented passwords. Their values must be real credentials i
 | Evidence | Likely boundary |
 | --- | --- |
 | no workflow run | trigger/workflow |
-| job/step skipped | conditions/filter |
+| job/step skipped | condition/filter |
 | secret empty | secret setup/scope/name |
 | HTTP 401 | invalid/expired credential |
 | HTTP 403 | authenticated but forbidden by permission/plan/policy/eligibility |
@@ -309,7 +246,7 @@ Secret names are not invented passwords. Their values must be real credentials i
 | PR exists, checks fail | implementation/CI |
 | PR exists, facts wrong | output quality/review |
 
-Find the first broken layer instead of debugging the entire chain at once.
+Find the **first broken layer** instead of debugging the whole chain at once.
 
 ---
 
@@ -317,18 +254,7 @@ Find the first broken layer instead of debugging the entire chain at once.
 
 Root `AGENTS.md` is the shared repository operating contract.
 
-The course discovered an important surface difference:
-
-- supported coding-agent/repository-instruction contexts may automatically load applicable instructions;
-- a generic fresh ChatGPT + GitHub connector conversation should **not** be assumed to automatically load root `AGENTS.md`.
-
-The public/root README therefore exposes this explicit bootstrap:
-
-```text
-Use tbhrc/github-course. Before doing anything else,
-read root AGENTS.md and follow its startup protocol
-and repository workflow.
-```
+A generic fresh ChatGPT + GitHub connector conversation should not be assumed to load it automatically, so the repository README exposes a one-line bootstrap instruction.
 
 Keep one shared contract rather than several competing governance documents.
 
@@ -336,7 +262,7 @@ Keep one shared contract rather than several competing governance documents.
 
 ## 12. Direct Assignment vs Workflow Dispatch
 
-### Prefer direct assignment when native capability is enough
+Prefer direct assignment when native capability is enough:
 
 ```text
 Issue
@@ -344,9 +270,7 @@ Issue
 → branch / PR
 ```
 
-Do not build an Action merely to launch a worker if native assignment already provides the required route.
-
-### Use deterministic dispatch when it solves a real control problem
+Use deterministic dispatch when it solves a real control problem:
 
 ```text
 ChatGPT Web / Issue/event
@@ -355,32 +279,19 @@ ChatGPT Web / Issue/event
 → PR/output
 ```
 
-Useful when:
-
-- the founder needs a simple trigger surface;
-- authentication/policy handling must be centralised;
-- the route needs repeatable safe context/permissions;
-- direct assignment is not the available architecture.
+Do not build automation merely because automation is possible.
 
 ---
 
 ## 13. Executor Routing Principle
 
-Delegation is useful when it provides capability or demonstrated efficiency.
+> **Delegate for capability or demonstrated efficiency — not merely because another agent is available.**
 
-Do not delegate simply because an agent is available.
-
-Current course rule:
-
-> **Fastest capable executor wins only when quality, governance and reliability remain acceptable.**
-
-Use local/specialist agents for tasks requiring capabilities Web does not have (for example local filesystem/build/runtime work) or where repeated benchmarks show a real advantage.
+Use the canonical benchmark to decide which executor is appropriate for a task class. Do not generalise one small-task leaderboard to every workload.
 
 ---
 
 ## 14. GitHub as the Durable Operating Plane
-
-The emerging founder model is:
 
 ```text
 conversation / intent
@@ -394,19 +305,19 @@ conversation / intent
 → searchable durable evidence
 ```
 
-That is more valuable than treating each AI tool as an isolated chat/coding island.
+This is more useful than treating each AI tool as an isolated coding/chat island.
 
 ---
 
 ## References
 
+- [Generated AI Executor Benchmark](AI-Executor-Benchmark)
 - [Canonical executor benchmark](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
 - [ChatGPT Web + GitHub control plane](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-github-control-plane.md)
 - [Deterministic Actions vs agentic AI](https://github.com/tbhrc/github-course/blob/main/knowledge-base/deterministic-actions-vs-agentic-ai.md)
 - [Web-first/local-by-exception routing](https://github.com/tbhrc/github-course/blob/main/knowledge-base/web-first-local-by-exception-executor-policy.md)
 - [Module 09 — AI Agents + GitHub](https://github.com/tbhrc/github-course/tree/main/09-ai-agents-github)
-- [David agent benchmark learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-agent-benchmarks.md)
 
 ## Navigation
 
-[Home](Home) · [Course Handbook](Course-Handbook) · [Course Manual](Course-Manual) · [Student Dashboard — David](Student-Dashboard-David) · [Course Materials](Course-Materials) · [Knowledge Base](Knowledge-Base)
+[Home](Home) · [AI Benchmark](AI-Executor-Benchmark) · [Course Handbook](Course-Handbook) · [Course Manual](Course-Manual) · [Student Dashboard — David](Student-Dashboard-David) · [Course Materials](Course-Materials) · [Knowledge Base](Knowledge-Base)
