@@ -50,6 +50,25 @@ Use to distinguish known/verified knowledge from areas still needing current evi
 
 ---
 
+## GitHub Projects
+
+### Projects operating model
+
+[Open note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/github-projects-operating-model.md)
+
+Covers:
+
+- Issue state vs Project Status;
+- Board/Table/Roadmap and field design;
+- `Backlog / Ready / In progress / Blocked / Review / Done`;
+- why `Review` is the broad mixed-work acceptance gate rather than `Testing`;
+- deterministic Project lifecycle automation;
+- Project credential vs coding-agent dispatch credential;
+- the proven ChatGPT Web → bounded dispatcher → Projects API control route;
+- preserving populated single-select values during an option rename.
+
+---
+
 ## Wiki / Documentation Architecture
 
 ### Wiki vs repository Markdown
