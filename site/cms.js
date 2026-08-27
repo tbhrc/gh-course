@@ -14,11 +14,15 @@ function cell(value) {
 function renderScoreboard(rows) {
   const body = document.getElementById("benchmark-body");
   if (!body) return;
+
+  const speedHeader = document.querySelector("#benchmark thead th:nth-child(2)");
+  if (speedHeader) speedHeader.textContent = "Operator wall-clock /30";
+
   body.replaceChildren();
   for (const row of (rows || []).slice(0, 8)) {
     const tr = document.createElement("tr");
     tr.appendChild(cell(row.Executor));
-    tr.appendChild(cell(row["Speed /30"]));
+    tr.appendChild(cell(row["Operator wall-clock /30"] ?? row["Speed /30"]));
     tr.appendChild(cell(row["Total /100"]));
     body.appendChild(tr);
   }
@@ -42,6 +46,55 @@ function renderFullLifecycle(rows) {
   node.textContent = `${first.Executor}: ${first["Full-lifecycle time"] || "recorded"}`;
 }
 
+function renderTimingComponents(rows) {
+  const benchmark = document.getElementById("benchmark");
+  if (!benchmark || !Array.isArray(rows) || !rows.length) return;
+
+  const existing = document.getElementById("timing-components-live");
+  if (existing) existing.remove();
+
+  const panel = document.createElement("div");
+  panel.id = "timing-components-live";
+  panel.className = "panel";
+  panel.style.marginTop = "16px";
+
+  const title = document.createElement("h3");
+  title.textContent = "Where the time actually went";
+  panel.appendChild(title);
+
+  const intro = document.createElement("p");
+  intro.className = "muted";
+  intro.textContent = "Deterministic GitHub overhead is separated from the observable provider/AI-process interval. Pure model compute remains unknown unless the provider exposes it.";
+  panel.appendChild(intro);
+
+  const wrap = document.createElement("div");
+  wrap.className = "table-wrap";
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+  for (const heading of ["Route", "Deterministic / handoff", "Provider / AI process", "Pure model"] ) {
+    const th = document.createElement("th");
+    th.textContent = heading;
+    headerRow.appendChild(th);
+  }
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  for (const row of rows.slice(0, 7)) {
+    const tr = document.createElement("tr");
+    tr.appendChild(cell(row["Executor / route"]));
+    tr.appendChild(cell(row["Deterministic orchestration / handoff"]));
+    tr.appendChild(cell(row["Observable provider / AI-process interval"]));
+    tr.appendChild(cell(row["Pure model compute"]));
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  panel.appendChild(wrap);
+  benchmark.appendChild(panel);
+}
+
 async function loadCanonicalState() {
   const status = document.getElementById("cms-status");
   try {
@@ -59,6 +112,7 @@ async function loadCanonicalState() {
 
     renderScoreboard(state.benchmark?.review_ready_scoreboard);
     renderFullLifecycle(state.benchmark?.full_lifecycle);
+    renderTimingComponents(state.benchmark?.timing_components);
 
     if (status) {
       status.textContent = "Live from canonical repository state";
