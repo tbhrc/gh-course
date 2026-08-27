@@ -9,10 +9,9 @@
 - [Course Materials](Course-Materials)
 - [Exercises & Assessments](Exercises-and-Assessments)
 
-## Current
+## Live State
 - [David Dashboard](Student-Dashboard-David)
-- [GitHub Projects — Current Focus](https://github.com/tbhrc/github-course/tree/main/04-projects)
-- [AI Executor Benchmark & Leaderboard](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+- [AI Executor Benchmark & Leaderboard](AI-Executor-Benchmark)
 
 ## Knowledge
 - [Knowledge Base](Knowledge-Base)
