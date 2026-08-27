@@ -1,18 +1,29 @@
 # Skills
 
-This directory is reserved for reusable AI-agent Skills that emerge from the course.
+This directory contains reusable AI-agent Skills that emerge from or accelerate the course.
 
-A Skill should be created only when a repeatable workflow is stable enough to justify packaging. Do not turn every lesson into a Skill.
+Course lessons remain curriculum. Skills are reusable operating procedures and strategic playbooks for agents.
 
-Potential future Skills may include:
+## Active Skills
 
-- GitHub repository operator;
-- Issue triage and work planning;
-- Pull Request review coach;
-- GitHub Actions diagnostic coach;
-- release operator;
-- repository security auditor;
-- student GitHub coach.
+### `github-power-user`
+
+Primary strategic GitHub operating Skill for this course.
+
+Use it when an AI coach, student or operator needs to decide which GitHub capability to use, design a professional GitHub workflow, or develop new course material across Issues, Projects, Pull Requests, Actions, agents, governance, security, releases, CLI/API and organisation-level patterns.
+
+Path:
+
+```text
+skills/github-power-user/
+├── SKILL.md
+└── references/
+    ├── power-guide.md
+    ├── cheat-sheet.md
+    └── agentic-github.md
+```
+
+**Provenance:** portable course snapshot adapted from FolderDesk canonical `470-skills/github-power-user/` v1.0.0. The course copy is intentionally public/portable and excludes FolderDesk-only operational policy except where clearly relevant as case-study context.
 
 ## Skill Standard
 
@@ -20,9 +31,19 @@ A reusable Skill should state:
 
 - purpose and trigger;
 - required context;
-- exact workflow;
+- exact workflow or decision model;
 - safety/governance constraints;
 - expected output/evidence;
-- failure and escalation conditions.
+- failure and escalation conditions;
+- source/version provenance when imported or adapted.
 
-Course lessons remain curriculum. Skills are reusable operating procedures for agents.
+Do not turn every lesson into a Skill. Create or import one only when it materially improves repeatability, discoverability or AI-agent operation.
+
+Potential future Skills may include:
+
+- Issue triage and work planning;
+- Pull Request review coach;
+- GitHub Actions diagnostic coach;
+- release operator;
+- repository security auditor;
+- student GitHub coach.
