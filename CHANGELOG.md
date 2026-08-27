@@ -12,6 +12,8 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Root `VERSION` source for the current repository version.
 - Agent-facing release and changelog discipline.
 - Expanded practical course material for releases and versioning.
+- Student learning-evidence rules requiring AI coaches to preserve misconceptions, corrections, partial recall and remaining mastery gaps.
+- David's dated Semantic Versioning learning note documenting his original decimal-counter model, corrected `MAJOR.MINOR.PATCH` understanding and temporary failure to recall `PATCH` unaided.
 
 ## [0.1.0] - 2026-08-27
 

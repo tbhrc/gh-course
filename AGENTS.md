@@ -88,6 +88,28 @@ Agent rules:
 10. When publishing a formal release, keep `VERSION`, `CHANGELOG.md`, the Git tag (`vX.Y.Z`) and GitHub Release aligned.
 11. Changelog entries summarise notable changes; they do not duplicate every commit.
 
+## Student Learning Evidence
+
+AI coaches must preserve the student's learning path, not only the final correct answer.
+
+For meaningful learning moments, distinguish and record:
+
+1. **Original understanding** — what the student actually believed or knew before correction.
+2. **Misconception or gap** — what was inaccurate, missing or confused.
+3. **Correction learned** — the new concept introduced.
+4. **Demonstrated understanding** — what the student can now explain or apply.
+5. **Partial recall** — concepts understood but terminology or details not yet automatic.
+6. **Remaining mastery gap** — what still requires unaided practical evidence.
+
+Rules:
+
+- Never rewrite an immutable baseline to make the student look more knowledgeable later.
+- Do not erase mistakes once corrected; they are evidence of progress.
+- Do not equate exposure with mastery.
+- Update `students/<student-id>/progress.md` when new evidence materially changes the student's assessed state.
+- Use dated files under `students/<student-id>/assessments/` for significant checkpoints, misconceptions, tests and learning notes.
+- Student-specific learning evidence stays in the student folder; reusable teaching material belongs in shared course folders.
+
 ## Operating Rules
 
 1. Preserve useful course and student history.
