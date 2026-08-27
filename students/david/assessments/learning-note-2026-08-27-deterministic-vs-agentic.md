@@ -90,14 +90,55 @@ agent execution proven
 
 The course therefore moved from guessing to a layered evidence model.
 
+## GitHub Copilot cloud-agent benchmark — Issue #38
+
+A separate benchmark was then created specifically for GitHub's own Copilot cloud agent so its evidence would not be mixed with the Codex partner-agent test.
+
+ChatGPT Web created the dispatch branch and marker:
+
+```text
+dispatch/copilot/38
+→ .dispatch/copilot/38.md
+→ push
+→ Dispatch GitHub Copilot from GitHub
+```
+
+The first run proved:
+
+```text
+✅ dispatch target resolved as Issue #38
+✅ user-authorised dispatch credential present
+✅ PAT visible to Actions as ***
+✅ request used copilot-swe-agent[bot]
+✅ request included agent_assignment payload
+✅ authenticated GitHub API request reached the assignment endpoint
+❌ GitHub returned HTTP 403 Forbidden
+```
+
+Exact response:
+
+```json
+{
+  "message": "Forbidden",
+  "documentation_url": "https://docs.github.com/rest/issues/assignees#add-assignees-to-an-issue",
+  "status": "403"
+}
+```
+
+No Copilot agent session, Copilot-authored branch, commit or Pull Request was created.
+
+The evidence therefore proves the deterministic command bus and authentication path, but **does not prove agentic Copilot execution**. The remaining boundary is account/repository plan, policy, entitlement or permission.
+
 ## Current demonstrated understanding
 
 - Deterministic Actions vs agentic AI: **Demonstrated conceptually and applied to live evidence**.
 - Trigger vs worker distinction: **Demonstrated**.
 - GitHub Actions secret vs invented password: **Corrected through hands-on setup**.
 - PAT visible to Actions: **Operationally proven**.
-- Codex partner-agent execution: **Not yet proven; blocked at HTTP 403 plan/policy/permission layer**.
-- GitHub Copilot cloud-agent execution: **Benchmark opened under Issue #38; pending live result**.
+- ChatGPT Web → push → GitHub Action dispatcher: **Operationally proven**.
+- Codex partner-agent execution: **Not proven; blocked at HTTP 403 assignment layer**.
+- GitHub Copilot cloud-agent execution: **Not proven; first independent benchmark also blocked at HTTP 403 assignment layer**.
+- Ability to distinguish dispatcher success from AI-agent success: **Demonstrated through live diagnosis**.
 
 ## Remaining mastery
 
@@ -110,6 +151,8 @@ David should be able to explain, without prompts, the four layers:
 
 He should then interpret a real failed run and identify which layer failed before proposing a fix.
 
+The next technical proof requires changing the relevant GitHub Copilot plan/policy/eligibility condition and rerunning Issue #38 until an actual Copilot agent session and agent-authored PR appear.
+
 ## Reusable principle
 
-> **Automation is not automatically AI. A deterministic GitHub Action can be the dispatcher that hands bounded work to an AI agent.**
+> **Automation is not automatically AI. A deterministic GitHub Action can be the dispatcher that hands bounded work to an AI agent, but agent assignment and agent execution must be proven separately.**
