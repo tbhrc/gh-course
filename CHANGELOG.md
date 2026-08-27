@@ -27,6 +27,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Verified `knowledge-base/copilot-free-ai-in-actions.md` documenting the execution-mode split between Copilot CLI inference and the Copilot cloud coding agent.
 - Dedicated Module 09 Copilot Free AI Actions lab and David's dated Copilot Free learning note.
 - Wiki `Copilot-Free-AI-Actions` proof page with links to live Issues, Actions evidence, knowledge note and student evidence.
+- `knowledge-base/web-first-local-by-exception-executor-policy.md`, a reusable executor-routing policy that keeps ChatGPT Web as the default executor, requires explicit local-handoff reasons, and reserves delegation for capability or demonstrated efficiency advantages.
 
 ### Changed
 
