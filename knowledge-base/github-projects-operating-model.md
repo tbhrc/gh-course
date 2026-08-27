@@ -74,6 +74,17 @@ For the GitHub Course Project the current operating model is:
 Backlog / Ready / In progress / Blocked / Review / Done
 ```
 
+The meanings are intentionally distinct:
+
+- **Backlog** — deliberately parked, deferred, pending a decision/dependency, or otherwise not available to start;
+- **Ready** — valid actionable work available to start; every newly opened repository Issue enters here automatically;
+- **In progress** — execution has actually started;
+- **Blocked** — execution cannot proceed;
+- **Review** — work is ready for checks, validation and acceptance;
+- **Done** — accepted work whose underlying Issue is closed.
+
+`Backlog` is therefore not the default intake state. Moving an item from `Ready` to `Backlog` is an explicit planning decision.
+
 ### Why Review instead of Testing
 
 `Review` is the broader acceptance gate.
@@ -186,8 +197,10 @@ Do not merge those responsibilities merely because both operations happen inside
 The live course workflow uses fixed deterministic transitions:
 
 ```text
-Backlog / Ready
-→ supported coding agent assigned
+Issue opened
+→ add to Project as Ready
+
+issue-linked branch work or supported coding agent assignment
 → In progress
 
 linked non-draft Pull Request
@@ -200,7 +213,9 @@ Issue reopened
 → Ready
 ```
 
-`Blocked` is intentionally not inferred automatically without a deterministic blocker signal.
+`Backlog` is entered deliberately when work should be parked rather than offered for execution. `Blocked` is intentionally not inferred automatically without a deterministic blocker signal.
+
+The workflow uses `add-if-missing: true` for lifecycle transitions so missing Project membership self-heals rather than silently skipping the board.
 
 ## ChatGPT Web Project-control proof
 
@@ -251,8 +266,11 @@ This is preferable to deleting one option and creating another when existing car
 Use deterministic automation when the rule is fixed:
 
 ```text
+Issue opened
+→ Ready
+
 Issue closed
-→ Project Status Done
+→ Done
 ```
 
 Use agentic reasoning only when classification itself requires judgement, for example:
@@ -270,8 +288,9 @@ Do not use AI for a rule that can be expressed safely and predictably as ordinar
 ```text
 conversation / decision
 → GitHub Issue
-→ add Issue to Project
+→ deterministic Project intake as Ready
 → Project fields/views expose priority and flow
+→ deliberate Backlog only when work is parked
 → branch / commits / PR / checks
 → Project moves through workflow
 → merge / acceptance verification
@@ -302,14 +321,17 @@ See `../04-projects/live-example-github-course-execution-mastery.md`.
 ### Do
 
 - keep Issue state and Project Status conceptually separate;
+- treat `Ready` as actionable intake and `Backlog` as deliberate parking;
 - use `Review` as the general acceptance gate for mixed work;
-- automate only deterministic transitions first;
+- automate fixed lifecycle transitions deterministically;
+- self-heal missing Project membership rather than silently skipping lifecycle updates;
 - preserve option IDs when renaming a populated single-select option;
 - keep Project mutation credentials separate from agent-dispatch credentials;
 - record the actor/workflow evidence for automated changes.
 
 ### Don't
 
+- use `Backlog` as a meaningless default bucket for every new Issue;
 - treat a Kanban card drag as proof that an AI agent started;
 - call the Project Status field the Issue status;
 - use `Testing` as a universal acceptance stage when non-code work also flows through the Project;
