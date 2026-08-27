@@ -1,7 +1,7 @@
 # GitHub Projects — Operating Model
 
 **Status:** verified current platform guidance  
-**Last verified:** 27 August 2026
+**Last verified:** 28 August 2026
 
 ## Question
 
@@ -53,18 +53,41 @@ This is especially useful when many Issues are validly open at the same time but
 Example:
 
 ```text
-Issue state: open
+Issue state: Open
 Project Status: Blocked
 ```
 
 or:
 
 ```text
-Issue state: open
+Issue state: Open
 Project Status: Review
 ```
 
 This is not duplication. GitHub Issue state is intentionally simple; Project Status adds workflow detail.
+
+## Recommended mixed-work Status model
+
+For the GitHub Course Project the current operating model is:
+
+```text
+Backlog / Ready / In progress / Blocked / Review / Done
+```
+
+### Why Review instead of Testing
+
+`Review` is the broader acceptance gate.
+
+It can contain:
+
+- automated testing/checks;
+- factual validation;
+- documentation review;
+- security/permission review;
+- human acceptance;
+- merge judgement.
+
+A status named `Testing` is appropriate only when every item genuinely passes through a testing-specific stage. It is too narrow for a mixed Project containing code, documentation, research, governance and learning work.
 
 ## Views
 
@@ -132,11 +155,11 @@ A Project is broader: flexible metadata, multiple layouts, cross-repository item
 
 They can be used together.
 
-## Automation
+## Automation and permission boundary
 
 GitHub supports built-in Project automations plus API/Actions automation.
 
-Current GitHub documentation explicitly notes that repository `GITHUB_TOKEN` cannot access Projects. For user-owned Projects, GitHub recommends a personal access token for Actions-based automation; API examples use `read:project` for reads and `project` for mutations.
+GitHub documentation explicitly notes that repository `GITHUB_TOKEN` cannot access Projects. For user-owned Projects, Actions-based Project mutation therefore requires a separately authorised credential; API examples use Project scopes for Project access.
 
 This creates an important authentication boundary:
 
@@ -146,13 +169,90 @@ repository write access
 Project write access
 ```
 
+For the GitHub Course control plane:
+
+```text
+PROJECT_MANAGEMENT_TOKEN
+= Project read/write credential
+
+AGENT_DISPATCH_TOKEN
+= user-authorised coding-agent assignment credential
+```
+
+Do not merge those responsibilities merely because both operations happen inside GitHub Actions.
+
+## Proven deterministic lifecycle
+
+The live course workflow uses fixed deterministic transitions:
+
+```text
+Backlog / Ready
+→ supported coding agent assigned
+→ In progress
+
+linked non-draft Pull Request
+→ Review
+
+Issue closed
+→ Done
+
+Issue reopened
+→ Ready
+```
+
+`Blocked` is intentionally not inferred automatically without a deterministic blocker signal.
+
+## ChatGPT Web Project-control proof
+
+Issue #107 proved a bounded conversational control route over a user-owned Project:
+
+```text
+ChatGPT Web
+→ repository-native Project dispatcher
+→ PROJECT_MANAGEMENT_TOKEN
+→ GitHub Projects GraphQL API
+→ Project Status mutation
+```
+
+Observed live sequence:
+
+```text
+Issue #107 absent from Project
+→ added to Project
+→ unset → Ready
+→ ChatGPT-controlled Ready → Backlog
+→ Copilot assignment accepted
+→ deterministic lifecycle Backlog → In progress
+→ Copilot creates PR #108
+```
+
+This proves that a chat surface does not need direct Projects connector mutation support if a deliberately bounded GitHub-native control route exists.
+
+## Preserving single-select values during option rename
+
+GitHub's GraphQL `updateProjectV2Field` mutation can update single-select options. Current GitHub schema guidance states that existing option IDs should be supplied when updating options to preserve their identity and prevent item field values from being cleared.
+
+The live Project temporarily had:
+
+```text
+Backlog / Ready / In progress / Blocked / Testing / Done
+```
+
+A bounded reconciliation preserved all existing option IDs and renamed only `Testing` to `Review`, producing:
+
+```text
+Backlog / Ready / In progress / Blocked / Review / Done
+```
+
+This is preferable to deleting one option and creating another when existing cards already use that option.
+
 ## Deterministic vs agentic Project automation
 
 Use deterministic automation when the rule is fixed:
 
 ```text
 Issue closed
-→ archive/move Project item
+→ Project Status Done
 ```
 
 Use agentic reasoning only when classification itself requires judgement, for example:
@@ -183,11 +283,11 @@ Project planning enriches the Issue-first model; it does not replace it.
 
 ## Course example
 
-The first live Project for this repository is designed as:
+The first live Project for this repository is:
 
 **GitHub Course — Execution & Mastery**
 
-with a small starting schema:
+with a small schema:
 
 - Status;
 - Workstream;
@@ -197,6 +297,25 @@ with a small starting schema:
 
 See `../04-projects/live-example-github-course-execution-mastery.md`.
 
+## Do / don't
+
+### Do
+
+- keep Issue state and Project Status conceptually separate;
+- use `Review` as the general acceptance gate for mixed work;
+- automate only deterministic transitions first;
+- preserve option IDs when renaming a populated single-select option;
+- keep Project mutation credentials separate from agent-dispatch credentials;
+- record the actor/workflow evidence for automated changes.
+
+### Don't
+
+- treat a Kanban card drag as proof that an AI agent started;
+- call the Project Status field the Issue status;
+- use `Testing` as a universal acceptance stage when non-code work also flows through the Project;
+- assume repository `GITHUB_TOKEN` can mutate a user-owned Project;
+- delete/recreate populated status options when a safe identity-preserving rename is available.
+
 ## Official sources
 
 - https://docs.github.com/en/issues/planning-and-tracking-with-projects
@@ -205,3 +324,4 @@ See `../04-projects/live-example-github-course-execution-mastery.md`.
 - https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/changing-the-layout-of-a-view
 - https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/using-the-api-to-manage-projects
 - https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/automating-projects-using-actions
+- https://docs.github.com/en/graphql/reference/projects
