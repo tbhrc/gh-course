@@ -1,6 +1,7 @@
 # Executor Benchmark Framework
 
 **Governing Issue:** #53  
+**Timing redesign:** #88  
 **Parent AI benchmark:** #23  
 **Last verified:** 2026-08-27
 
@@ -8,7 +9,10 @@
 
 Measure when ChatGPT Web, cloud coding agents, partner agents, Agentic Workflow engines, or local coding agents provide a real execution advantage.
 
-The benchmark exists to support one routing rule:
+The benchmark answers two different questions and must never collapse them:
+
+1. **Operator question:** how long from launch until useful governed delivery exists?
+2. **Execution question:** where was that time spent — deterministic GitHub plumbing, provider/agent execution, delivery, review or post-merge automation?
 
 > Delegate for capability or demonstrated efficiency — not merely because another agent is available.
 
@@ -23,246 +27,290 @@ Use a bounded GitHub task with materially equivalent requirements:
 5. Work on a non-main branch.
 6. Commit the evidence.
 7. Open a PR to `main`.
-8. Complete the delivery mode specified by the governing Issue: either review-ready stop (T4) or full lifecycle through merge and linked-Issue closure (T6).
+8. Complete the delivery mode specified by the governing Issue: review-ready stop or full lifecycle through merge and linked-Issue closure.
 
-Executor evidence files:
+Executor evidence files include `chatgpt-web.md`, `github-copilot.md`, `codex.md`, `claude.md`, `jules.md`, `gemini.md`, and future local-agent equivalents.
 
-- ChatGPT Web: `integration-tests/chatgpt-web.md`
-- ChatGPT Work Mode — GPT-5.6 Terra light, full lifecycle: `integration-tests/chatgpt-work-mode-terra-5-6-light-full-lifecycle.md`
-- GitHub Copilot: `integration-tests/github-copilot.md`
-- OpenAI Codex: `integration-tests/codex.md`
-- Claude: `integration-tests/claude.md`
-- Google Jules: `integration-tests/jules.md`
-- Gemini CLI/API: `integration-tests/gemini.md`
-- Local agents: `integration-tests/<agent>-local.md`
+# Timing model v2
 
-## Clock model
+## Rule zero
 
-Use durable GitHub/email timestamps, never conversational estimates.
+> **Wall-clock time is not AI thinking time.**
+
+A cloud-agent run may contain GitHub workflow queueing, deterministic dispatch, provider queueing, session provisioning, repository indexing, model inference, tool calls, tests, commits, PR plumbing and review-ready finishing.
+
+Only label an interval with what durable evidence proves.
+
+## Lifecycle markers
 
 | Marker | Definition |
 |---|---|
-| T0 | Executor benchmark launch: Issue creation for direct Web execution, or fresh operational dispatch/workflow start for an agent |
-| T1 | Session/agent branch becomes observable where available |
+| T0 | Operator benchmark launch: Issue creation for direct Web execution, or fresh dispatch/workflow start for an agent |
+| T1 | Agent/session/PR first observable where available |
 | T2 | PR created |
 | T3 | First substantive work commit |
 | T4 | Review requested or final review-ready output |
 | T5 | PR merged |
 | T6 | Linked governing Issue closed |
 
-### Primary speed metric
+### Operator wall-clock metrics
 
-`Review-ready time = T4 - T0`
+- **Review-ready wall clock** = `T4 - T0`.
+- **Full-lifecycle wall clock** = `T6 - T0` when merge/closure is required.
 
-`Full-lifecycle time = T6 - T0` when the governing Issue requires merge/closure.
+These remain the primary user-experience timings because queue/provisioning overhead still affects the operator. They are **not** pure AI speed.
 
-Cloud-agent provisioning and startup latency count because they affect real operator productivity.
+## Execution-component markers
 
-### Secondary metrics
+Use these where the route exposes them:
 
-- `T2 - T0` — time to visible PR/session
-- `T3 - T0` — time to first substantive output
-- `T4 - T3` — finishing/review overhead
-- `T5 - T0` — time to merge
-- `T6 - T0` — full lifecycle completion time
-- failed operations/retries
-- human interventions after launch
-- files changed
-- commits produced
-- setup/configuration events before an operational run
-
-## Deterministic dispatch versus agent execution
-
-Do not describe the whole elapsed duration as “AI time”. For an agent dispatched by GitHub Actions, it contains separate, operator-relevant intervals:
-
-| Marker | Meaning | Evidence source |
+| Marker | Meaning | Typical evidence |
 |---|---|---|
-| D0 | Workflow run created | GitHub Actions run/job created_at |
-| D1 | Runner job started | GitHub Actions job started_at |
-| D2 | Dispatch/assignment call completed | Assignment-step completed_at |
-| A1 | Agent session/branch/PR first observable | Agent acknowledgement, branch or PR timestamp |
-| A2 | First substantive agent output | Agent-authored commit timestamp |
-| A3 | Review-ready delivery | PR review/request or final agent output |
+| C0 | Control event/run created | Actions `created_at`, Issue/label/task timestamp |
+| C1 | Runner/provider accepts execution | first runner log, Jules acknowledgement, agent session timestamp |
+| D0 | Deterministic orchestration begins | runner step/log timestamp |
+| D1 | Assignment/API handoff accepted | assignment step return / next-step timestamp |
+| A0 | Observable AI/provider process begins | CLI process start, or accepted cloud-agent handoff |
+| A1 | First substantive agent output | agent-authored commit / captured model output |
+| A2 | Agent delivery becomes review-ready | review request / final agent output / PR-ready state |
+| M0 | Merge requested/recorded | PR merge timestamp |
+| P0 | Post-merge deterministic automation begins | Actions run timestamp |
+| P1 | Post-merge automation/deployment ends | workflow/deployment completion timestamp |
 
-Derived intervals:
+## Derived timing buckets
 
-- **Actions queue** = D1 − D0.
-- **Deterministic dispatch** = D2 − D1. This includes only runner setup, issue resolution, credential preflight and the assignment call.
-- **Post-dispatch time to visible session** = A1 − D2.
-- **Post-dispatch time to first output** = A2 − D2.
-- **Agent delivery tail** = A3 − A2.
+### 1. Control / runner latency
 
-For cloud coding agents, A2 − D2 is an **observable post-dispatch black box**. It can include provider queueing, session provision, repository indexing, model inference, tool use and tests. GitHub does not expose model-token active time, so it must not be labelled “thinking time”.
+`C1 - C0`
 
-For a CLI/model step running inside Actions, the step duration is a valid **AI-process duration**, but still includes client setup/network/API time in addition to model inference.
+Time for GitHub/provider infrastructure to start the execution environment.
 
-## 100-point scoring matrix
+### 2. Deterministic orchestration
+
+`D1 - D0`
+
+Examples:
+
+- resolve Issue number;
+- credential preflight;
+- checkout/setup;
+- assignment API request;
+- deterministic packaging.
+
+### 3. Observable provider / agent interval
+
+For cloud agents, usually `A1 - D1` or `A2 - D1`.
+
+This is a **black box** that can contain provider queueing, provisioning, indexing, model inference, tools and tests. It is not pure model compute.
+
+### 4. AI-process interval inside Actions
+
+When a CLI/model process is executed inside a timed Actions step, the step duration is directly observable. It still includes client/network/API overhead and therefore must be called **AI-process duration**, not model-thinking time.
+
+### 5. Deterministic delivery / post-processing
+
+Known GitHub/API work after model/agent output: posting comments, packaging artifacts, explicit PR API calls, merge, Pages/Wiki/release automation where separable.
+
+### 6. Pure model compute
+
+Record only when the provider exposes trustworthy model-active telemetry.
+
+For the current cloud-agent benchmarks:
+
+**Pure model compute = unknown.**
+
+Do not estimate it by subtraction.
+
+# Timing evidence audit — 27 August 2026
+
+## Dispatch/agent timing audit
+
+The table below separates physically observable clocks. Rounded figures use durable Actions logs and GitHub timestamps. `Unknown` means the platform does not expose that boundary.
+
+| Executor / route | Control → runner/accept | Deterministic orchestration / handoff | Observable provider / AI-process interval | Delivery tail | Pure model compute | Review-ready wall clock | Confidence |
+|---|---:|---:|---:|---:|---:|---:|---|
+| GitHub Copilot cloud agent — run `33080345287` | ~5s to runner log | ~2s assignment API; ~3s including success comment | ~160s accepted handoff → first substantive commit | 58s commit → review-ready | Unknown | **225s** | High for GitHub clocks; model split unavailable |
+| OpenAI Codex Partner Agent — run `33081457803` | ~4s to runner log | ~2s assignment API; ~5s through success comment | ~160s accepted handoff → first substantive commit | 36s commit → review-ready | Unknown | **202s** | High for GitHub clocks; model split unavailable |
+| Anthropic Claude Partner Agent — run `33083260139` | ~6s to runner log | ~2s assignment API; ~3s including success comment | ~129–130s accepted handoff → first substantive commit | 58s commit → review-ready | Unknown | **195s** | High for GitHub clocks; model split unavailable |
+| Google Jules — Issue #63 | 5s label → accepted task | n/a — no Actions dispatcher | 297s accepted task → substantive commit | 5s commit → PR/review-ready | Unknown | **307s** | High for task/commit/PR clocks; provider internals unavailable |
+| Copilot CLI in Actions — run `33076875845` | ~4s to runner log | ~5s checkout/install/prompt setup before AI process | **~17s Copilot CLI AI-process step** | ~2s post response + cleanup | Unknown | n/a — different text-only task | High; process step directly timed |
+| Gemini CLI in Actions — run `33092569081` | ~6s to runner log | ~16s checkout + Gemini CLI install before CLI process | **244.8s failed Gemini CLI process** | ~1s comment + cleanup | Unknown | Failed / unscored | High; interval dominated by quota retry/failure handling |
+| ChatGPT Web / Work Mode direct GitHub | n/a | n/a — no Actions dispatcher | Not independently exposed | GitHub tool/API operations are interleaved with model work | Unknown | See applicable row | Low for internal split; high for total wall clock |
+
+### Exact forensic observations
+
+**Copilot cloud** — run `33080345287`:
+- run created `14:05:45Z`;
+- runner log begins `14:05:49.809Z`;
+- assignment command begins `14:05:50.099Z`;
+- next deterministic success step begins `14:05:51.651Z`;
+- success comment completes `14:05:52.674Z`;
+- substantive commit evidence appears `14:08:32Z`;
+- review-ready `14:09:30Z`.
+
+**Codex** — run `33081457803`:
+- run created `14:17:57Z`;
+- runner log begins `14:18:00.820Z`;
+- assignment command begins `14:18:01.085Z`;
+- success step begins `14:18:03.184Z`;
+- success comment completes `14:18:05.670Z`;
+- substantive commit evidence appears `14:20:43Z`;
+- review-ready `14:21:19Z`.
+
+**Claude** — run `33083260139`:
+- run created `14:37:24Z`;
+- runner log begins `14:37:29.816Z`;
+- assignment command begins `14:37:30.083Z`;
+- success step begins `14:37:31.935Z`;
+- success comment completes `14:37:32.977Z`;
+- substantive commit evidence appears `14:39:41Z`;
+- review-ready `14:40:39Z`.
+
+**Copilot CLI** — run `33076875845`:
+- run created `13:26:59Z`;
+- runner log begins `13:27:03.105Z`;
+- checkout/install/prompt preparation reaches AI process at `13:27:08.256Z`;
+- next deterministic post step begins `13:27:25.228Z`;
+- AI-process duration is therefore about **17 seconds**;
+- Issue comment completes `13:27:26.883Z`.
+
+**Gemini CLI** — run `33092569081`:
+- run created `16:18:49Z`;
+- runner log begins `16:18:54.647Z`;
+- Gemini CLI process begins `16:19:10.549Z` after checkout/install;
+- process fails at `16:23:15.340Z` — **244.8 seconds**;
+- logs show repeated quota waits and HTTP 429 before terminal quota failure.
+
+## What this changes in interpretation
+
+The deterministic GitHub dispatcher is **not** responsible for most of the 3–5 minute cloud-agent runtime.
+
+For Copilot, Codex and Claude, the assignment API itself took only about **2 seconds**. Even including runner startup and success-comment plumbing, deterministic orchestration is only a small fraction of total wall clock.
+
+The largest measured interval is after successful handoff:
+
+| Cloud executor | Accepted handoff → first substantive commit |
+|---|---:|
+| **Claude** | **~130s** |
+| **Codex** | **~160s** |
+| **Copilot** | **~160s** |
+| **Jules** | **297s** from accepted task → commit |
+
+This is the fairest currently observable **provider/agent-path speed comparison**, but it still must not be called raw model inference time.
+
+# 100-point operator-usefulness score
+
+The composite score answers:
+
+> **How useful was this executor to the operator for this exact benchmark task?**
+
+It does **not** rank raw model intelligence or pure model speed.
 
 | Dimension | Weight | Scoring rule |
 |---|---:|---|
-| End-to-end speed | 30 | `30 × fastest operational time / executor time`, capped at 30 |
+| Operator wall-clock efficiency | 30 | `30 × fastest review-ready wall clock / executor review-ready wall clock`, capped at 30 |
 | Task fidelity | 20 | Exact requested scope, file, branch, PR and stop conditions |
 | Output quality | 15 | Required evidence completeness, factual accuracy and clarity |
 | Reliability | 10 | Operational-run errors/retries/recovery |
 | Autonomy | 10 | Human steering required after launch |
-| Governance compliance | 5 | Issue → branch → commit → PR; no direct-main/self-merge |
+| Governance compliance | 5 | Issue → branch → commit → PR; no unauthorised main/self-merge |
 | Provenance/observability | 5 | Exact actor/session/branch/commit/PR evidence visible |
 | Efficiency/overhead | 5 | Avoided unnecessary steps, files, duplicated work and preventable calls |
+
+The existing scores remain numerically unchanged because the same user-observed T0→T4 metric is retained; only its meaning is corrected from ambiguous “speed” to **operator wall-clock efficiency**.
 
 ## Detailed scoring rules
 
 ### Task fidelity — 20
-
-- 5: correct requested evidence file/scope
-- 3: Issue/task specification read and followed
-- 3: non-main branch used
-- 3: meaningful commit produced
-- 3: PR opened to correct base
-- 3: requested delivery mode and stop condition respected; no unauthorised merge/Issue closure
+- 5: correct evidence file/scope
+- 3: Issue/task specification followed
+- 3: non-main branch
+- 3: meaningful commit
+- 3: PR to correct base
+- 3: requested delivery/stop condition respected
 
 ### Output quality — 15
+- 8: all required fields answered
+- 4: factual claims match evidence
+- 3: concise and usable
 
-- 8: all required benchmark fields answered
-- 4: factual claims match observable evidence
-- 3: concise, clear and usable evidence
-
-Score the **first review-ready snapshot**. Later corrections prompted by human review do not retroactively improve the original quality score or execution time.
+Score the **first review-ready snapshot**. Later review corrections do not retroactively improve quality or runtime.
 
 ### Reliability — 10
-
-- 10: no operational-run errors or retries
+- 10: no operational errors/retries
 - 8: one recoverable error/retry
 - 6: two recoverable errors/retries
-- 3: repeated intervention required
-- 0: failed to produce review-ready output
+- 3: repeated intervention
+- 0: no review-ready output
 
-Entitlement/setup failures before the first operational run are tracked as **setup friction**, not execution reliability.
+Setup/entitlement failures before the first operational run remain **setup friction**, not execution reliability.
 
 ### Autonomy — 10
-
 - 10: no human steering after launch
-- 7: one human correction/intervention before review-ready output
-- 4: multiple interventions before review-ready output
-- 0: human had to complete the task
-
-Post-T4 code review and requested corrections are normal review activity and do not change the original autonomy score.
+- 7: one correction before review-ready
+- 4: multiple interventions
+- 0: human completed the task
 
 ### Governance — 5
-
-- 5: complete governed path and requested delivery mode (including review/merge/closure when required)
-- 3: minor governance deviation with no main-branch risk
-- 0: direct-main/self-merge or missing durable work contract
+- 5: complete governed path and requested delivery mode
+- 3: minor deviation without main-branch risk
+- 0: direct-main/self-merge or missing work contract
 
 ### Provenance — 5
-
-- 5: distinct executor identity/session plus branch/commit/PR/timestamps visible
-- 4: durable GitHub objects visible but executor and human identity partially collapse
-- 2: partial provenance
+- 5: executor identity/session + branch/commit/PR/timestamps visible
+- 4: durable objects visible but identity partly collapses
+- 2: partial
 - 0: unverifiable
 
-### Efficiency/overhead — 5
-
+### Efficiency — 5
 - 5: minimal necessary operations
-- 4: one minor avoidable action/correction
+- 4: one minor avoidable action
 - 3: noticeable startup/process overhead
 - 1: substantial unnecessary work
 - 0: waste materially undermines usefulness
 
-## Full-lifecycle benchmark rule
+# Setup friction — separate from runtime
 
-A review-ready benchmark (T4) measures delivery to PR. A full-lifecycle benchmark (T6) measures Issue creation through PR merge and linked-Issue closure. Do not compare the two as though they have identical scope.
-
-The former #74 / PR #75 Work Mode attempt is an **invalid partial run**: it did not reach merge/Issue closure and is excluded from every leaderboard.
-
-## Setup friction — tracked separately
-
-Do not mix account/configuration setup with runtime performance. Record:
-
-- plan/entitlement required
-- policy toggles required
-- app installation/authorisation
-- token/secret setup
-- failed pre-operational attempts
-- human configuration steps
-- wrong or stale agent identities/routes
-
-This lets the benchmark answer two different questions:
-
-1. **How hard is the executor to make operational?**
-2. **Once operational, how efficiently does it complete work?**
-
-### Setup-friction evidence observed so far
+Record plan/entitlement, policy toggles, app authorisation, token/secret setup, failed pre-operational attempts, human configuration, and stale identities/routes separately.
 
 | Executor | Setup friction before operational run |
 |---|---|
 | ChatGPT Web | Connected GitHub integration already operational. |
-| GitHub Copilot | Free-plan native cloud assignment returned 403; Copilot Pro upgrade unlocked assignment. |
-| OpenAI Codex | Paid Copilot was not enough until **Allow Codex coding agent** Partner Agent policy was enabled. |
-| Anthropic Claude | Partner policy was enabled, but first dispatcher used stale/older `claude[bot]` identity and returned 403; current Partner Agent identity `anthropic-code-agent[bot]` succeeded. |
-| Google Jules | Account-wide Jules GitHub authorisation was required. The first operational Jules run was accidentally triggered from Gemini Issue #26 and produced PR #62; it is preserved as activation evidence but excluded from clean scoring. Clean Issue #63 then launched successfully through the `jules` label. |
-| Google Gemini CLI | Repository secret `GEMINI_API_KEY` is now configured and authenticated successfully. Run `33092569081` installed Gemini CLI `0.57.0` and reached model `gemini-3.5-flash`, then failed with HTTP 429 / daily free-tier quota exhaustion before producing a branch/commit/PR. Runtime score remains pending. |
+| GitHub Copilot | Free-plan cloud assignment returned 403; Copilot Pro unlocked assignment. |
+| OpenAI Codex | Paid Copilot was insufficient until **Allow Codex coding agent** Partner Agent policy was enabled. |
+| Anthropic Claude | Correct current Partner Agent identity `anthropic-code-agent[bot]` was required after a stale bot identity failed. |
+| Google Jules | Account-wide Jules GitHub authorisation required; accidental first run from Gemini Issue #26 preserved but excluded from clean score. |
+| Gemini CLI | `GEMINI_API_KEY` authentication proven; current blocker is provider quota/billing, not GitHub authentication. |
 
-## Baseline results — bounded one-file evidence task
+# Baseline results — bounded one-file evidence task
 
-### Durable timing evidence
+## Durable timing evidence
 
-| Executor | T0 | PR | First substantive output | Review-ready | End-to-end |
+| Executor | T0 | PR | First substantive output | Review-ready | Review-ready wall clock |
 |---|---|---|---|---|---:|
-| ChatGPT Web | Issue #53 created `14:24:06Z` | PR #54 `14:25:39Z` | commit `9453cb6` `14:25:23Z` | corrected final commit `5330f63` `14:26:38Z` | **2m32s / 152s** |
-| Anthropic Claude | dispatch run `33083260139` `14:37:24Z` | PR #58 `14:37:37Z` | commit `79fdb89` notification `14:39:41Z` | review request `14:40:39Z` | **3m15s / 195s** |
-| OpenAI Codex | dispatch run `33081457803` `14:17:57Z` | PR #52 `14:18:08Z` | commit `b19574f` notification `14:20:43Z` | review request `14:21:19Z` | **3m22s / 202s** |
-| GitHub Copilot | dispatch run `33080345287` `14:05:45Z` | PR #51 `14:05:56Z` | commit `934590d` notification `14:08:32Z` | review request `14:09:30Z` | **3m45s / 225s** |
-| Google Jules | `jules` label on #63 `16:40:39Z` | PR #66 `16:45:46Z` | commit `8d712e3` `16:45:41Z` | open non-draft PR #66 `16:45:46Z` | **5m07s / 307s** |
-| Gemini CLI/API | run `33092569081` reached authenticated inference path | — | — | — | pending quota/billing |
+| ChatGPT Web | Issue #53 `14:24:06Z` | PR #54 `14:25:39Z` | commit `9453cb6` `14:25:23Z` | corrected final commit `5330f63` `14:26:38Z` | **152s** |
+| Anthropic Claude | run `33083260139` `14:37:24Z` | PR #58 `14:37:37Z` | commit evidence `14:39:41Z` | review request `14:40:39Z` | **195s** |
+| OpenAI Codex | run `33081457803` `14:17:57Z` | PR #52 `14:18:08Z` | commit evidence `14:20:43Z` | review request `14:21:19Z` | **202s** |
+| GitHub Copilot | run `33080345287` `14:05:45Z` | PR #51 `14:05:56Z` | commit evidence `14:08:32Z` | review request `14:09:30Z` | **225s** |
+| Google Jules | label #63 `16:40:39Z` | PR #66 `16:45:46Z` | commit `8d712e3` `16:45:41Z` | PR #66 `16:45:46Z` | **307s** |
+| Gemini CLI/API | authenticated run `33092569081` | — | — | — | failed / pending quota |
 | Local coding agent | — | — | — | — | pending |
 
-## Full-lifecycle results — governed delivery
+# Full-lifecycle results — governed delivery
 
-This table is distinct from the review-ready leaderboard. It records only runs that reached PR merge and linked-Issue closure.
+Do not compare a review-ready T4 run with a full-lifecycle T6 run as identical scope.
 
 | Executor | Model / surface | Governing Issue | PR | T0 | T5 merge | T6 Issue closed | Full-lifecycle time | Review evidence |
 |---|---|---|---|---|---|---|---:|---|
-| ChatGPT Work Mode | GPT-5.6 Terra / light Work Mode | #80 | #81 | `17:22:49Z` | `17:26:01Z` | `17:26:02Z` | **3m13s / 193s** | No independent GitHub review object observed; merge occurred after direct diff inspection. |
+| ChatGPT Work Mode | GPT-5.6 Terra / light Work Mode | #80 | #81 | `17:22:49Z` | `17:26:01Z` | `17:26:02Z` | **193s** | No independent GitHub review object observed; merge followed direct diff inspection. |
 
-This is the first full-lifecycle result, so no cross-executor full-lifecycle speed score is calculated yet. It is not comparable to the older review-ready-only T4 scores.
+The former #74 / PR #75 attempt is invalid for full-lifecycle comparison because it stopped before merge/Issue closure.
 
-### Dispatch/agent timing audit — 27 August 2026
+# Initial scored leaderboard
 
-All figures below are from GitHub Actions job and step timestamps. “Deterministic dispatch” excludes cloud-agent execution; “post-dispatch to first output” is not model-thinking time.
+`Operator wall-clock /30` uses the fastest current review-ready operational result: ChatGPT Web at 152 seconds.
 
-| Executor / route | Actions queue | Deterministic dispatch | Post-dispatch to visible PR/session | Post-dispatch to first substantive commit | Commit → review-ready | What the evidence proves |
-|---|---:|---:|---:|---:|---:|---|
-| GitHub Copilot cloud agent — run 33080345287 | 2s | 3s | 5s | 161s | 58s | Assignment returned in 1s; the remaining 161s is cloud-agent queue/provision/context/execution combined. |
-| OpenAI Codex Partner Agent — run 33081457803 | 3s | 3s | 5s | 160s | 36s | Assignment returned in 2s; 160s after handoff is not separately attributable to model inference. |
-| Anthropic Claude Partner Agent — run 33083260139 | 3s | 3s | 6s | 130s | 58s | Assignment returned in 1s; Claude has the shortest observed handoff-to-first-commit interval in this set. |
-| Copilot CLI in Actions — run 33076875845 | 2s | 6s pre-AI setup | n/a (same job) | 17s AI-process step | 1s post | This is the cleanest direct separation: 6s deterministic setup, 17s CLI/model process, 3s deterministic posting/cleanup. |
-| Gemini CLI in Actions — run 33092569081 | 3s | 5s pre-AI setup | n/a (same job) | 257s failed AI-process step | 4s post | The process reached authenticated Gemini CLI but ended on quota failure; 257s includes CLI/API wait/retry/failure handling, not proven model-active time. |
-| Google Jules | n/a | n/a | 5s label → accepted task | 297s accepted task → commit | 5s | No GitHub Actions dispatcher was involved; provider session/provisioning and agent execution remain combined. |
-| ChatGPT Web / Work Mode direct GitHub | n/a | n/a | n/a | n/a | n/a | No deterministic Actions layer exists in the direct connected-GitHub route. |
-
-### Practical interpretation
-
-For Copilot, Codex and Claude cloud-agent dispatches, the GitHub deterministic part was only **3 seconds** from runner start to assignment completion (6–7 seconds including runner queue). Almost all of the 3–4 minute review-ready elapsed time occurred after successful handoff, outside the deterministic Action.
-
-The right comparison depends on the question:
-
-- **“How responsive is the control plane?”** Compare Actions queue + deterministic dispatch.
-- **“How long until an agent begins visibly operating?”** Compare D2 → A1.
-- **“How long until useful work exists?”** Compare D2 → A2.
-- **“How much was truly model compute?”** Unknown for cloud agents; only bounded AI-process step duration is available for in-Actions CLI routes.
-
-### Jules clean-run timing details
-
-- T0: `16:40:39Z` — `jules` label applied to Issue #63.
-- T1: `16:40:44Z` — `google-labs-jules[bot]` accepted the task and published Jules task ID `10893079083414901351`.
-- T3: `16:45:41Z` — substantive commit `8d712e38facb5e88f86ca3a88b24688b853ef120`.
-- T2/T4: `16:45:46Z` — PR #66 created open and non-draft, making the first review-ready snapshot visible.
-
-## Initial scored leaderboard
-
-Speed uses the fastest current operational result, ChatGPT Web at 152 seconds.
-
-| Executor | Speed /30 | Fidelity /20 | Quality /15 | Reliability /10 | Autonomy /10 | Governance /5 | Provenance /5 | Efficiency /5 | Total /100 |
+| Executor | Operator wall-clock /30 | Fidelity /20 | Quality /15 | Reliability /10 | Autonomy /10 | Governance /5 | Provenance /5 | Efficiency /5 | Total /100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | **ChatGPT Web** | 30.0 | 20 | 14 | 8 | 10 | 5 | 4 | 4 | **95.0** |
 | **OpenAI Codex** | 22.6 | 20 | 15 | 10 | 10 | 5 | 5 | 3 | **90.6** |
@@ -272,64 +320,95 @@ Speed uses the fastest current operational result, ChatGPT Web at 152 seconds.
 | Gemini CLI/API | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 | Local coding agent | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 
-### Claude quality note
+## Quality notes
 
-Claude's first review-ready snapshot satisfied the requested one-file scope and governance path, but its evidence contained material factual/provenance errors: it incorrectly described the GitHub Partner Agent as unrelated to the Copilot plan/billing path and omitted the deterministic Actions assignment run that launched the operational session. A post-T4 review requested corrections. The benchmark score therefore uses 13/15 quality and preserves the original 195-second runtime.
+Claude’s first review-ready snapshot contained material factual/provenance errors, including an inaccurate Partner Agent billing/plan description and omission of the deterministic assignment run. Its quality remains 13/15 despite later correction.
 
-### Jules quality and governance note
+Jules completed autonomously but its first snapshot misattributed the governing Issue, model visibility, PR authorship and Gemini workflow path, claimed unproven checks, and initially used an unsafe `Fixes #63` closing keyword. Later corrections do not improve the original 307-second result.
 
-Jules completed the clean benchmark autonomously and produced the correct dedicated `integration-tests/jules.md` file on its own branch, but the first review-ready snapshot contained several factual/provenance errors:
+# Two leaderboards, not one
 
-- it called #23 the governing/dedicated Jules Issue instead of #63;
-- it stated a visible Gemini-family model even though no specific model was observably exposed;
-- it claimed the PR author was `google-labs-jules[bot]`, while GitHub records the commit author/committer as the Jules bot but PR author as `tbhrc`;
-- it referenced a non-existent/stale `.github/workflows/dispatch-gemini.yml` path instead of `.github/workflows/benchmark-gemini.yml`;
-- it claimed verification/pre-commit checks without durable proof;
-- its first PR body used `Fixes #63` despite the benchmark's explicit stop-before-close requirement.
+## A. Operator usefulness
 
-The PR remained open and unmerged, so there was no main-branch risk. The body was corrected after T4 to `Refs #63`, and a post-T4 review comment requested factual corrections. These later corrections do not improve the original 307-second runtime or first-snapshot quality score.
+Use the composite 100-point score above. It includes wall-clock latency, quality, reliability, autonomy and governance.
 
-## Interpretation of the first result
+## B. Observable agent-path latency
 
-For this small one-file GitHub evidence task, ChatGPT Web remains the fastest overall executor despite one recoverable self-review error and one evidence correction.
+Use the timing-audit table when asking which asynchronous agent/provider path produced substantive work fastest after successful handoff.
 
-The cloud agents showed useful autonomous behaviour and stronger distinct-agent provenance, but their session provisioning/planning overhead made them slower for this task class. Among the measured cloud coding agents, Claude is currently fastest by end-to-end time; Codex scores highest overall among cloud agents because its first evidence snapshot was more accurate; Jules is currently the slowest measured cloud agent for this bounded task and lost additional points for first-snapshot factual/provenance errors and the unsafe closing keyword.
+Current first-output ordering among comparable cloud coding-agent routes:
 
-This result must **not** be generalised to large coding, test, build, refactor or local-runtime tasks until those task classes are benchmarked separately.
+1. **Claude ~130s**
+2. **Codex ~160s**
+3. **Copilot ~160s**
+4. **Jules 297s**
 
-## Execution-mode fairness
+Do not include ChatGPT Web in this second ranking because its internal model/tool intervals are not independently exposed in the same way.
 
-Not every executor reaches GitHub through the same product surface:
+# Full lifecycle decomposition
+
+For future T6 benchmarks, separately record:
+
+```text
+T0 launch
+→ deterministic dispatch / provider acceptance
+→ agent/provider interval
+→ PR review-ready
+→ human/review interval
+→ deterministic merge
+→ post-merge Actions
+→ Wiki / Pages / release / deployment
+→ governing Issue closure
+```
+
+A deterministic merge, packaging step or Pages deployment must not be charged to “AI runtime”. Conversely, provider queue/provisioning remains part of operator wall clock even when pure model time is unavailable.
+
+# Future benchmark evidence contract
+
+Every new agent benchmark should record where available:
+
+- control/run created timestamp;
+- runner/provider accepted timestamp;
+- assignment/API handoff accepted timestamp;
+- AI/CLI process start/end if directly observable;
+- first agent-authored substantive commit/output;
+- PR creation;
+- review-ready marker;
+- merge;
+- linked Issue closure;
+- post-merge workflow/deployment start/end;
+- retries/errors;
+- which intervals are deterministic, provider black box, AI-process, human review, or unknown.
+
+Never infer missing model-active time.
+
+# Execution-mode fairness
+
+Routes differ:
 
 - ChatGPT Web: direct connected GitHub operations.
 - GitHub Copilot: native GitHub cloud coding agent.
 - Claude/Codex: GitHub Partner Agents powered through Copilot.
-- Google Jules: Google Labs cloud coding agent triggered through a GitHub Issue + `jules` label and Jules GitHub App.
-- Gemini CLI/API: Gemini CLI inside GitHub Actions / Agentic Workflow class, authenticated by `GEMINI_API_KEY` and subject to Gemini API quota/billing.
+- Jules: Google Labs cloud coding agent via Issue label/App.
+- Gemini CLI/API: CLI inside GitHub Actions using provider API credentials/quota.
 - Local agents: local runtime with GitHub as durable control/evidence plane.
 
-The benchmark compares operator-visible end-to-end productivity while preserving execution mode as a separate field. Do not imply identical architecture merely because two executors receive the same task.
+The benchmark compares operator productivity while preserving execution mode. Identical task text does not imply identical infrastructure.
 
-## Future benchmark classes
+# Future benchmark classes
 
-Run the same executor matrix across at least these classes:
+Repeat across:
 
-1. GitHub administration / documentation
+1. GitHub administration/documentation
 2. Small code change
 3. Multi-file refactor
-4. Build/test/debug task
+4. Build/test/debug
 5. Repository-wide research
 6. Actions/workflow change
-7. Local-runtime/filesystem task
+7. Local-runtime/filesystem work
 
-A routing policy should be changed only when repeated evidence shows a meaningful advantage by task class.
+Only change routing policy when repeated evidence shows a meaningful advantage by task class.
 
-## Next agents / follow-ups
+# Governing principle
 
-- Jules: clean benchmark #63 produced PR #66 in 307 seconds. Correct factual/provenance issues before merge; keep the first snapshot score unchanged.
-- Gemini CLI/API: Issue #26 has valid `GEMINI_API_KEY` authentication and reached `gemini-3.5-flash`; retry after free quota reset or enable paid Gemini API billing, then score only when a governed branch/commit/PR is produced.
-- Local agents: benchmark later with the same T0–T4 clock and identical evidence requirements.
-
-## Governing principle
-
-> Fastest capable executor wins only when quality, governance and reliability remain acceptable.
+> **Fastest capable executor wins only when quality, governance and reliability remain acceptable — and wall-clock latency must never be misrepresented as pure AI compute time.**
