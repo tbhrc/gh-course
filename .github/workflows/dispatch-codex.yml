@@ -1,8 +1,19 @@
-name: Dispatch Codex from Issue
+name: Dispatch Codex from GitHub
 
 on:
   issues:
     types: [opened, edited, reopened]
+  push:
+    branches:
+      - 'dispatch/codex/**'
+    paths:
+      - '.dispatch/codex/**'
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: GitHub Issue number to dispatch to Codex
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -10,10 +21,45 @@ permissions:
 
 jobs:
   dispatch:
-    if: startsWith(github.event.issue.title, '[codex]') && github.event.sender.login == 'tbhrc'
+    if: github.actor == 'tbhrc' && (github.event_name != 'issues' || startsWith(github.event.issue.title, '[codex]'))
     runs-on: ubuntu-latest
 
     steps:
+      - name: Resolve target Issue
+        id: target
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          ISSUE_EVENT_NUMBER: ${{ github.event.issue.number }}
+          DISPATCH_INPUT: ${{ inputs.issue_number }}
+          REF_NAME: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          case "$EVENT_NAME" in
+            issues)
+              issue="$ISSUE_EVENT_NUMBER"
+              ;;
+            push)
+              issue="${REF_NAME##*/}"
+              ;;
+            workflow_dispatch)
+              issue="$DISPATCH_INPUT"
+              ;;
+            *)
+              echo "Unsupported event: $EVENT_NAME"
+              exit 1
+              ;;
+          esac
+
+          if ! [[ "$issue" =~ ^[0-9]+$ ]]; then
+            echo "Invalid Issue number resolved from $EVENT_NAME: $issue"
+            exit 1
+          fi
+
+          echo "issue_number=$issue" >> "$GITHUB_OUTPUT"
+          echo "Dispatch target: Issue #$issue via $EVENT_NAME" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Preflight user-authorised dispatch credential
         id: preflight
         env:
@@ -33,11 +79,11 @@ jobs:
         if: steps.preflight.outputs.ready != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
         shell: bash
         run: |
           set -euo pipefail
-          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Codex dispatch is configured but blocked at the one-time authentication boundary: repository secret \`AGENT_DISPATCH_TOKEN\` is missing. Add a user-authorised GitHub token that is permitted to assign coding agents, then make any harmless edit to this \`[codex]\` Issue to retrigger dispatch. No Codex session was started and no fallback AI/API route was used."
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Codex dispatch fired but stopped safely at the one-time authentication boundary: repository secret \`AGENT_DISPATCH_TOKEN\` is missing. Add a user-authorised GitHub token permitted to assign coding agents, then rerun this failed workflow. No Codex session was started and no fallback AI/API route was used."
           exit 1
 
       - name: Assign native OpenAI Codex coding agent
@@ -45,7 +91,7 @@ jobs:
         if: steps.preflight.outputs.ready == 'true'
         env:
           AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
         shell: bash
         run: |
           set -euo pipefail
@@ -71,17 +117,17 @@ jobs:
         if: failure() && steps.preflight.outputs.ready == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
         shell: bash
         run: |
           set -euo pipefail
-          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Codex dispatch fired, but GitHub rejected the native coding-agent assignment. Inspect the **Dispatch Codex from Issue** Actions run for the HTTP response. This usually means the user-context token or Codex/Copilot policy is not yet eligible. No fallback AI/API route was used."
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Codex dispatch fired, but GitHub rejected the native coding-agent assignment. Inspect the **Dispatch Codex from GitHub** Actions run for the HTTP response. This usually means the user-context token or Codex/Copilot policy is not yet eligible. No fallback AI/API route was used."
 
       - name: Record successful dispatch
         if: success()
         env:
           GH_TOKEN: ${{ github.token }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
         shell: bash
         run: |
           set -euo pipefail
