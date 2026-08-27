@@ -14,6 +14,8 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Expanded practical course material for releases and versioning.
 - Student learning-evidence rules requiring AI coaches to preserve misconceptions, corrections, partial recall and remaining mastery gaps.
 - David's dated Semantic Versioning learning note documenting his original decimal-counter model, corrected `MAJOR.MINOR.PATCH` understanding and temporary failure to recall `PATCH` unaided.
+- Portable `github-power-user` Skill snapshot adapted from FolderDesk canonical v1.0.0, including a power guide, cheat sheet and agentic GitHub reference for course development.
+- AI-coach rule to consult the imported `github-power-user` Skill when developing substantial GitHub course material.
 
 ## [0.1.0] - 2026-08-27
 
