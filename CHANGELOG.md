@@ -28,6 +28,8 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Dedicated Module 09 Copilot Free AI Actions lab and David's dated Copilot Free learning note.
 - Wiki `Copilot-Free-AI-Actions` proof page with links to live Issues, Actions evidence, knowledge note and student evidence.
 - `knowledge-base/web-first-local-by-exception-executor-policy.md`, a reusable executor-routing policy that keeps ChatGPT Web as the default executor, requires explicit local-handoff reasons, and reserves delegation for capability or demonstrated efficiency advantages.
+- `integration-tests/README.md` and `integration-tests/agent-benchmark-template.md` as the durable evidence scaffold for Copilot, Codex, Claude, Gemini and other integration benchmarks.
+- `knowledge-base/copilot-pro-agent-benchmark-runbook.md`, the post-upgrade cutover sequence for testing GitHub Copilot cloud agent first and OpenAI Codex second with fresh `main`-based dispatch branches and a mandatory open/draft-PR stop condition.
 
 ### Changed
 
