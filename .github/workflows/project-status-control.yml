@@ -88,6 +88,7 @@ jobs:
           token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           issue-number: ${{ steps.request.outputs.issue }}
           target-status: ${{ steps.request.outputs.target }}
+          add-if-missing: "true"
 
       - name: Report missing Project credential
         if: env.PROJECT_MANAGEMENT_TOKEN == ''
