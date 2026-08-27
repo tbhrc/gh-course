@@ -57,6 +57,7 @@ use it in lesson / exercise / coaching
 
 - [`source-policy.md`](source-policy.md) — evidence, freshness and verification rules.
 - [`wiki-vs-repository-markdown.md`](wiki-vs-repository-markdown.md) — when to use GitHub Wiki versus governed repository Markdown.
+- [`wiki-as-documentation-platform.md`](wiki-as-documentation-platform.md) — Wiki as a Git-backed documentation website/CMS, agentic use cases, and the boundary with GitHub Pages.
 - [`gap-register.md`](gap-register.md) — known knowledge gaps and verification status.
 
 ## Knowledge Note Standard
