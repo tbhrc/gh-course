@@ -1,0 +1,77 @@
+name: Dispatch Codex from Issue
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  dispatch:
+    if: startsWith(github.event.issue.title, '[codex]')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Preflight user-authorised dispatch credential
+        id: preflight
+        env:
+          AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${AGENT_DISPATCH_TOKEN:-}" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "AGENT_DISPATCH_TOKEN is not configured." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "User-authorised dispatch credential is present." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Report missing one-time setup
+        if: steps.preflight.outputs.ready != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Codex dispatch is configured but blocked at the one-time authentication boundary: repository secret \`AGENT_DISPATCH_TOKEN\` is missing. Add a user-authorised GitHub token that is permitted to assign coding agents, then make any harmless edit to this \`[codex]\` Issue to retrigger dispatch. No Codex session was started and no fallback AI/API route was used."
+          exit 1
+
+      - name: Assign native OpenAI Codex coding agent
+        if: steps.preflight.outputs.ready == 'true'
+        env:
+          AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          response_file="$(mktemp)"
+          http_code="$(curl -sS -o "$response_file" -w '%{http_code}' \
+            -X POST \
+            -H 'Accept: application/vnd.github+json' \
+            -H 'X-GitHub-Api-Version: 2022-11-28' \
+            -H "Authorization: Bearer $AGENT_DISPATCH_TOKEN" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/assignees" \
+            -d '{"assignees":["openai-code-agent[bot]"]}')"
+
+          if [ "$http_code" != "201" ]; then
+            echo "Codex assignment failed with HTTP $http_code." >> "$GITHUB_STEP_SUMMARY"
+            cat "$response_file" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+          echo "Native OpenAI Codex coding agent assignment accepted for Issue #${ISSUE_NUMBER}." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Record successful dispatch
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Codex dispatch request was accepted by GitHub. Watch this Issue for an attached agent session and the resulting draft Pull Request. The first benchmark must remain human-reviewed and must not self-merge."
