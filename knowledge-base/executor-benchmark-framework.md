@@ -40,7 +40,7 @@ Use durable GitHub/email timestamps, never conversational estimates.
 
 | Marker | Definition |
 |---|---|
-| T0 | Executor benchmark launch: Issue creation for direct Web execution, or fresh dispatch/workflow start for an agent |
+| T0 | Executor benchmark launch: Issue creation for direct Web execution, or fresh operational dispatch/workflow start for an agent |
 | T1 | Session/agent branch becomes observable where available |
 | T2 | PR created |
 | T3 | First substantive work commit |
@@ -93,6 +93,8 @@ Cloud-agent provisioning and startup latency count because they affect real oper
 - 4: factual claims match observable evidence
 - 3: concise, clear and usable evidence
 
+Score the **first review-ready snapshot**. Later corrections prompted by human review do not retroactively improve the original quality score or execution time.
+
 ### Reliability — 10
 
 - 10: no operational-run errors or retries
@@ -106,9 +108,11 @@ Entitlement/setup failures before the first operational run are tracked as **set
 ### Autonomy — 10
 
 - 10: no human steering after launch
-- 7: one human correction/intervention
-- 4: multiple interventions
+- 7: one human correction/intervention before review-ready output
+- 4: multiple interventions before review-ready output
 - 0: human had to complete the task
+
+Post-T4 code review and requested corrections are normal review activity and do not change the original autonomy score.
 
 ### Governance — 5
 
@@ -141,11 +145,22 @@ Do not mix account/configuration setup with runtime performance. Record:
 - token/secret setup
 - failed pre-operational attempts
 - human configuration steps
+- wrong or stale agent identities/routes
 
 This lets the benchmark answer two different questions:
 
 1. **How hard is the executor to make operational?**
 2. **Once operational, how efficiently does it complete work?**
+
+### Setup-friction evidence observed so far
+
+| Executor | Setup friction before operational run |
+|---|---|
+| ChatGPT Web | Connected GitHub integration already operational. |
+| GitHub Copilot | Free-plan native cloud assignment returned 403; Copilot Pro upgrade unlocked assignment. |
+| OpenAI Codex | Paid Copilot was not enough until **Allow Codex coding agent** Partner Agent policy was enabled. |
+| Anthropic Claude | Partner policy was enabled, but first dispatcher used stale/older `claude[bot]` identity and returned 403; current Partner Agent identity `anthropic-code-agent[bot]` succeeded. |
+| Google Gemini CLI | Workflow route proven, but first preflight stopped before inference because `GEMINI_API_KEY` is not configured. Runtime score remains pending. |
 
 ## Baseline results — bounded one-file evidence task
 
@@ -154,10 +169,10 @@ This lets the benchmark answer two different questions:
 | Executor | T0 | PR | First substantive output | Review-ready | End-to-end |
 |---|---|---|---|---|---:|
 | ChatGPT Web | Issue #53 created `14:24:06Z` | PR #54 `14:25:39Z` | commit `9453cb6` `14:25:23Z` | corrected final commit `5330f63` `14:26:38Z` | **2m32s / 152s** |
+| Anthropic Claude | dispatch run `33083260139` `14:37:24Z` | PR #58 `14:37:37Z` | commit `79fdb89` notification `14:39:41Z` | review request `14:40:39Z` | **3m15s / 195s** |
 | OpenAI Codex | dispatch run `33081457803` `14:17:57Z` | PR #52 `14:18:08Z` | commit `b19574f` notification `14:20:43Z` | review request `14:21:19Z` | **3m22s / 202s** |
 | GitHub Copilot | dispatch run `33080345287` `14:05:45Z` | PR #51 `14:05:56Z` | commit `934590d` notification `14:08:32Z` | review request `14:09:30Z` | **3m45s / 225s** |
-| Claude | — | — | — | — | pending |
-| Gemini | — | — | — | — | pending |
+| Gemini | — | — | — | — | pending credential |
 | Local coding agent | — | — | — | — | pending |
 
 ## Initial scored leaderboard
@@ -168,18 +183,34 @@ Speed uses the fastest current operational result, ChatGPT Web at 152 seconds.
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | **ChatGPT Web** | 30.0 | 20 | 14 | 8 | 10 | 5 | 4 | 4 | **95.0** |
 | **OpenAI Codex** | 22.6 | 20 | 15 | 10 | 10 | 5 | 5 | 3 | **90.6** |
+| **Anthropic Claude** | 23.4 | 20 | 13 | 10 | 10 | 5 | 5 | 3 | **89.4** |
 | **GitHub Copilot** | 20.3 | 20 | 14 | 10 | 10 | 5 | 5 | 3 | **87.3** |
-| Claude | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 | Gemini | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 | Local coding agent | pending | pending | pending | pending | pending | pending | pending | pending | pending |
+
+### Claude quality note
+
+Claude's first review-ready snapshot satisfied the requested one-file scope and governance path, but its evidence contained material factual/provenance errors: it incorrectly described the GitHub Partner Agent as unrelated to the Copilot plan/billing path and omitted the deterministic Actions assignment run that launched the operational session. A post-T4 review requested corrections. The benchmark score therefore uses 13/15 quality and preserves the original 195-second runtime.
 
 ## Interpretation of the first result
 
 For this small one-file GitHub evidence task, ChatGPT Web is currently the fastest overall executor despite one recoverable self-review error and one evidence correction.
 
-The cloud agents showed useful autonomous behaviour and stronger distinct-agent provenance, but their session provisioning/planning overhead made them slower for this task class.
+The cloud agents showed useful autonomous behaviour and stronger distinct-agent provenance, but their session provisioning/planning overhead made them slower for this task class. Among the operational cloud coding agents measured so far, Claude was fastest, Codex scored highest overall because its first evidence snapshot was more accurate, and Copilot was slowest on this bounded task.
 
 This result must **not** be generalised to large coding, test, build, refactor or local-runtime tasks until those task classes are benchmarked separately.
+
+## Execution-mode fairness
+
+Not every executor reaches GitHub through the same product surface:
+
+- ChatGPT Web: direct connected GitHub operations.
+- GitHub Copilot: native GitHub cloud coding agent.
+- Claude/Codex: GitHub Partner Agents powered through Copilot.
+- Gemini: Gemini CLI inside GitHub Actions / Agentic Workflow class, requiring a Gemini credential.
+- Local agents: local runtime with GitHub as durable control/evidence plane.
+
+The benchmark compares operator-visible end-to-end productivity while preserving execution mode as a separate field. Do not imply identical architecture merely because two executors receive the same task.
 
 ## Future benchmark classes
 
@@ -197,8 +228,7 @@ A routing policy should be changed only when repeated evidence shows a meaningfu
 
 ## Next agents
 
-- Claude: use existing benchmark Issue #25 and the same scorecard/task shape.
-- Gemini: use existing benchmark Issue #26; record its actual execution route explicitly because Gemini may run through an Agentic Workflow engine rather than native Issue assignment.
+- Gemini: existing Issue #26 and workflow `Benchmark Gemini CLI Executor`; add repository Actions secret `GEMINI_API_KEY` from Google AI Studio, then rerun from a fresh dispatch branch. Runtime timing starts only when Gemini inference actually runs.
 - Local agents: benchmark later with the same T0–T4 clock and identical evidence requirements.
 
 ## Governing principle
