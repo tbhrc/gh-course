@@ -1,6 +1,6 @@
 # ChatGPT Web → Codex Dispatch
 
-**Status:** implementation pending one-time user authentication  
+**Status:** dispatcher implemented; native Codex assignment pending one-time user authentication  
 **Last verified:** 27 August 2026
 
 ## The operating model
@@ -8,8 +8,9 @@
 ```text
 ChatGPT Web
 → brainstorm / refine work
-→ create or edit a GitHub Issue
-→ `[codex]` Issue-title trigger
+→ create governed GitHub Issue
+→ create issue-linked dispatch branch + marker
+→ push event
 → deterministic GitHub Action
 → native OpenAI Codex coding-agent assignment
 → Codex session
@@ -26,6 +27,23 @@ AI reasoning
 ```
 
 A GitHub Action can be completely deterministic. Its job can simply be to react to an event and hand work to another system. In this architecture the Action is the dispatcher; Codex is the reasoning/execution agent.
+
+## Why a push command bus is used
+
+The first implementation listened for an Issue edit where the title started with `[codex]`. ChatGPT Web successfully edited Issue #24, but no `issues` Actions run was created from that connector-generated event.
+
+The Web GitHub surface is already proven to create branches and commits. A push is therefore the more reliable machine trigger from this surface.
+
+The preferred Web-agent dispatch command is:
+
+```text
+dispatch/codex/<issue-number>
+└── .dispatch/codex/<issue-number>.md
+```
+
+Creating the issue-linked dispatch branch from current `main` and committing the marker produces a normal push event. The workflow extracts the Issue number from the branch name and continues the dispatch.
+
+The workflow also retains an Issue-title trigger and a manual `workflow_dispatch` input for other GitHub surfaces, but the push command bus is the reliable ChatGPT Web route.
 
 ## Why ChatGPT Web cannot directly assign Codex today
 
@@ -73,16 +91,19 @@ Do not commit the token. Store it only as a repository Actions secret named `AGE
 
 ## Per-Issue operation after setup
 
-The operator should not need to open Codex manually.
+The human operator should not need to open Codex manually.
 
 1. Prepare the Issue completely.
-2. Prefix its title with `[codex]`.
-3. The deterministic dispatcher fires.
-4. GitHub attempts native Codex assignment.
-5. Codex should start an agent session and open a draft PR.
-6. Review the PR and evidence before merge.
+2. ChatGPT Web creates `dispatch/codex/<issue-number>` from current `main`.
+3. ChatGPT Web writes `.dispatch/codex/<issue-number>.md` with the Issue URL and dispatch intent.
+4. The push event fires the deterministic dispatcher.
+5. GitHub attempts native Codex assignment.
+6. Codex should start an agent session and open a draft PR.
+7. Review the PR and evidence before merge.
 
-For a public repository, the dispatcher is restricted to events initiated as `tbhrc`, so outside visitors cannot spend AI credits simply by creating `[codex]` Issues.
+The dispatcher only runs when `github.actor == 'tbhrc'`, so outside visitors cannot spend AI credits by creating Issues or branches they cannot push.
+
+If the one-time credential is missing, the Action comments on the target Issue and fails closed. Once the secret is added, ChatGPT Web can rerun the failed job through the connected Actions surface; no new manual Codex session is required.
 
 ## First benchmark
 
@@ -92,7 +113,7 @@ Do not mark Codex as operationally proven until repository evidence shows:
 
 - an attached Codex agent session;
 - Codex-specific identity/provenance;
-- a non-main branch;
+- a non-main work branch;
 - commits;
 - a draft/open Pull Request;
 - permission/failure evidence;
@@ -102,7 +123,7 @@ Do not mark Codex as operationally proven until repository evidence shows:
 
 ```text
 ChatGPT Web = control / trigger surface
-GitHub Actions = deterministic event automation
+GitHub push + Actions = deterministic command bus
 Codex = agentic execution surface
 GitHub = audit trail and governance plane
 ```
