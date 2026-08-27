@@ -56,6 +56,7 @@ Rules:
 6. Merge only when acceptance criteria are satisfied.
 7. Preserve the Issue as the durable record of why the work happened.
 8. Tiny typo-only corrections may be grouped into an existing suitable Issue; do not create bureaucracy for its own sake.
+9. Before merge, apply the documentation-integrity check in `sops/course-documentation-integrity.md` when curriculum, learner state, benchmark state, reader navigation or public surfaces materially change.
 
 ## Version Control and Release Discipline
 
@@ -111,7 +112,7 @@ Rules:
 - Update `students/<student-id>/progress.md` when new evidence materially changes the student's assessed state.
 - Use dated files under `students/<student-id>/assessments/` for significant checkpoints, misconceptions, tests and learning notes.
 - Student-specific learning evidence stays in the student folder; reusable teaching material belongs in shared course folders.
-- When student progress or a durable learning breakthrough materially changes the reader experience, update the relevant governed Wiki source page in the same Issue/PR.
+- Current learner facts should live in the canonical progress file. Do not maintain a separate hand-written current-state copy in the Wiki dashboard.
 
 ## Knowledge Base and Freshness
 
@@ -141,6 +142,7 @@ Rules:
 6. Record verification dates and primary sources in substantial knowledge notes.
 7. Keep student-specific misunderstandings under `students/`; keep reusable platform knowledge under `knowledge-base/`.
 8. Avoid maintaining two independent copies of the same truth.
+9. Fast-changing executor timing/scoring/capability state belongs in `knowledge-base/executor-benchmark-framework.md`; other pages should link to or generate from it rather than copy a live matrix.
 
 ## Integration and Permission Evidence
 
@@ -167,32 +169,71 @@ Rules:
 7. Do not treat one AI integration's proven capability as proof that another integration has the same capability.
 8. Use `knowledge-base/pages-actions-integrations-control-plane.md` for the current course model.
 
-## Wiki as the Course Operating Surface
+## Reader Surfaces and Generated Live State
 
-The Wiki is the **reader-facing handbook, dashboard and navigation layer** for this course.
+The course uses three distinct layers:
 
-Governed Wiki source lives under:
+```text
+main repository
+= canonical truth + governance
+
+Wiki
+= reader handbook + generated live views
+
+GitHub Pages
+= public front door
+```
+
+Stable Wiki narrative source lives under:
 
 ```text
 wiki/
 ```
 
-The live Wiki is published from that source through:
+The live Wiki is published through:
 
 ```text
 .github/workflows/publish-wiki.yml
 ```
 
-Model:
+### Volatile factual state
+
+Do not maintain current learner or executor state manually in several places.
+
+Current projection contracts:
 
 ```text
-canonical evidence / knowledge / curriculum
-        ↓
-reader-facing summaries and navigation in wiki/*.md
+students/david/progress.md
+= canonical learner state
+        ↓ Publish Wiki Action
+Student-Dashboard-David
+= generated live Wiki view
+
+knowledge-base/executor-benchmark-framework.md
+= canonical benchmark truth
+        ↓ Publish Wiki Action
+AI-Executor-Benchmark
+= generated live Wiki view
+```
+
+The repository files `wiki/Student-Dashboard-David.md` and `wiki/AI-Executor-Benchmark.md` are **projection-contract notices**, not current-state sources. Do not put a copied live dashboard/matrix back into those files.
+
+### Stable narrative
+
+Pages such as Handbook, Manual, Course Modules, Home, SOPs and stable architecture explanations remain governed authored content because they require judgement and teaching synthesis.
+
+They should avoid embedding volatile current facts when a generated/canonical live view exists.
+
+### Publication model
+
+```text
+canonical progress / benchmark + stable wiki/*.md
         ↓
 Issue → branch → PR → merge
         ↓
-GitHub Action
+Publish Wiki Action
+        ↓
+generate volatile pages + copy stable pages
         ↓
 repository.wiki.git
         ↓
@@ -202,14 +243,16 @@ live Wiki
 Rules:
 
 1. Use `wiki/Home.md` as the main human navigation dashboard.
-2. Keep the Wiki useful: handbook, manual, course materials, student dashboards, epiphanies, exercises, SOP navigation and glossary should remain easy to reach.
+2. Keep the Wiki useful: handbook, manual, course materials, generated student/benchmark pages, epiphanies, exercises, SOP navigation and glossary should remain easy to reach.
 3. Do not duplicate long canonical facts unnecessarily; link from Wiki pages to `knowledge-base/`, `students/`, modules, `sops/` and Skills.
-4. When a material course surface is added, update Wiki navigation if a reader would reasonably need it.
-5. When a student's public progress materially changes, update their Wiki dashboard summary without rewriting the canonical student evidence.
-6. When a durable epiphany changes the course's reusable teaching value, add it to the Wiki breakthrough page and the appropriate canonical student/knowledge record.
-7. Direct live-Wiki UI edits are acceptable for hands-on learning or urgent correction; reconcile durable changes back into `wiki/` so governed source and published Wiki do not diverge.
-8. Do not claim automated Wiki publishing is healthy unless the relevant GitHub Actions run succeeded.
-9. Read `knowledge-base/wiki-publishing-architecture.md` before changing the publishing mechanism.
+4. When learner state changes, update `students/<student-id>/progress.md`; the generated Wiki dashboard should update automatically after merge.
+5. When executor benchmark state changes, update the canonical benchmark; the generated Wiki benchmark should update automatically after merge.
+6. When a material stable course surface is added or teaching architecture changes, update the relevant stable Wiki navigation/narrative in the same governed PR.
+7. When a durable epiphany changes the course's reusable teaching value, add it to the appropriate canonical student/knowledge record and the stable Wiki breakthrough page when useful.
+8. Direct live-Wiki UI edits are acceptable only for hands-on learning/urgent correction; reconcile durable authored changes back into `wiki/`. Do not manually edit generated live pages as a permanent fix.
+9. Do not claim automated Wiki publishing is healthy unless the relevant GitHub Actions run succeeded.
+10. Read `knowledge-base/wiki-publishing-architecture.md` and `sops/course-documentation-integrity.md` before changing the publishing/source-of-truth mechanism.
+11. GitHub Pages should route users to generated/canonical current-state surfaces instead of carrying another independent current-state copy.
 
 ## Course Development Accelerator
 
@@ -233,6 +276,7 @@ Rules:
 4. Keep imported Skill provenance visible.
 5. The course copy is portable teaching material; FolderDesk-specific policy remains external unless explicitly included as a case study.
 6. Search GitHub-native capability before proposing custom infrastructure.
+7. Keep volatile executor status out of the Skill; route current results to the canonical executor benchmark.
 
 ## Operating Rules
 
@@ -249,6 +293,7 @@ Rules:
 11. Each substantive change should have clear context and a meaningful commit message.
 12. Do not commit credentials, API keys, secrets or sensitive company information.
 13. Do not build duplicate infrastructure before checking whether GitHub already provides the capability.
+14. For volatile factual reader state, update the canonical source and deterministic projection rather than hand-maintaining duplicate frontend copies.
 
 ## Repository Architecture
 
