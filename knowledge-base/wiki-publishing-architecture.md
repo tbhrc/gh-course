@@ -20,7 +20,7 @@ GitHub Actions provides a repository-scoped `GITHUB_TOKEN` for workflow authenti
 
 ## Course Architecture
 
-This course therefore keeps the **governed Wiki source** inside the main repository:
+This course keeps the **governed Wiki source** inside the main repository:
 
 ```text
 wiki/
@@ -43,8 +43,6 @@ Issue
 ```
 
 ## Authority Model
-
-This does not make every Wiki statement canonical.
 
 ```text
 knowledge-base/   = verified GitHub factual authority
@@ -91,22 +89,36 @@ wiki/*.md
 .github/workflows/publish-wiki.yml
 ```
 
-The workflow is configured to run after changes to `wiki/**` are pushed to `main`, plus manual `workflow_dispatch`.
+The workflow runs after changes to `wiki/**` are pushed to `main`, plus manual `workflow_dispatch`.
 
-The workflow requests:
+It requests:
 
 ```yaml
 permissions:
   contents: write
 ```
 
-and uses the repository `GITHUB_TOKEN` to authenticate a Git push to the Wiki repository.
+and uses the repository `GITHUB_TOKEN` to authenticate the Git push to the Wiki repository.
 
-## Verification Status
+## Verification Status — VERIFIED
 
-The architecture and GitHub primitives are verified from official GitHub documentation.
+The first production publication completed successfully on **27 August 2026** after PR #17 merged.
 
-The **specific course publishing workflow remains execution-unverified until its first GitHub Actions run completes successfully**. If GitHub rejects the Wiki push, treat the run as evidence of the remaining permission boundary and adjust deliberately rather than assuming success.
+Evidence:
+
+```text
+Merge commit: 022219392a6e0fe2e51d3633f90d17beb356ee95
+Workflow: Publish Wiki
+Run: #1
+Run ID: 33064302639
+Job: publish
+Step: Publish governed Wiki source
+Conclusion: success
+```
+
+This proves the workflow successfully authenticated and completed the `.wiki.git` publication step for the governed Wiki source.
+
+Future agents must still inspect the relevant workflow run after material Wiki publication rather than assuming a push succeeded.
 
 ## Official Sources
 
