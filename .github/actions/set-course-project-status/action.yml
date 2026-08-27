@@ -14,6 +14,10 @@ inputs:
   allowed-current-statuses:
     description: Optional comma-separated current Status names allowed before the update.
     required: false
+  add-if-missing:
+    description: Add the repository Issue to the Project before setting Status when it is not already an item.
+    required: false
+    default: "false"
   allow-missing:
     description: Treat an Issue that is not on the Project as a successful no-op.
     required: false
@@ -34,12 +38,14 @@ runs:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         TARGET_STATUS: ${{ inputs.target-status }}
         ALLOWED_CURRENT_STATUSES: ${{ inputs.allowed-current-statuses }}
+        ADD_IF_MISSING: ${{ inputs.add-if-missing }}
         ALLOW_MISSING: ${{ inputs.allow-missing }}
       run: |
         set -euo pipefail
 
-        query='query { user(login: "tbhrc") { projectV2(number: 1) { id fields(first: 50) { nodes { ... on ProjectV2SingleSelectField { id name options { id name } } } } items(first: 100) { nodes { id content { ... on Issue { number } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } }'
-        project_json="$(gh api graphql -f query="$query" --jq '.data.user.projectV2')"
+        query='query($number: Int!) { user(login: "tbhrc") { projectV2(number: 1) { id fields(first: 50) { nodes { ... on ProjectV2SingleSelectField { id name options { id name } } } } items(first: 100) { nodes { id content { ... on Issue { number } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } repository(owner: "tbhrc", name: "github-course") { issue(number: $number) { id } } }'
+        data_json="$(gh api graphql -f query="$query" -F number="$ISSUE_NUMBER" --jq '.data')"
+        project_json="$(jq -c '.user.projectV2' <<<"$data_json")"
 
         if [ -z "$project_json" ] || [ "$project_json" = "null" ]; then
           echo "Unable to read user Project #1. Check PROJECT_MANAGEMENT_TOKEN permissions." >&2
@@ -47,6 +53,7 @@ runs:
         fi
 
         project_id="$(jq -r '.id' <<<"$project_json")"
+        issue_node_id="$(jq -r '.repository.issue.id // empty' <<<"$data_json")"
         status_field_id="$(jq -r '.fields.nodes[] | select(.name == "Status") | .id' <<<"$project_json" | head -n1)"
         option_id="$(jq -r --arg target "$TARGET_STATUS" '.fields.nodes[] | select(.name == "Status") | .options[] | select(.name == $target) | .id' <<<"$project_json" | head -n1)"
         item_json="$(jq -c --argjson issue "$ISSUE_NUMBER" '.items.nodes[] | select(.content.number == $issue)' <<<"$project_json" | head -n1)"
@@ -57,16 +64,27 @@ runs:
         fi
 
         if [ -z "$item_json" ]; then
-          if [ "$ALLOW_MISSING" = "true" ]; then
+          if [ "$ADD_IF_MISSING" = "true" ]; then
+            if [ -z "$issue_node_id" ]; then
+              echo "Repository Issue #${ISSUE_NUMBER} was not found." >&2
+              exit 1
+            fi
+            add_mutation='mutation($projectId: ID!, $contentId: ID!) { addProjectV2ItemById(input: {projectId: $projectId, contentId: $contentId}) { item { id } } }'
+            item_id="$(gh api graphql -f query="$add_mutation" -f projectId="$project_id" -f contentId="$issue_node_id" --jq '.data.addProjectV2ItemById.item.id')"
+            previous_status=""
+            echo "Issue #${ISSUE_NUMBER} added to GitHub Course — Execution & Mastery."
+          elif [ "$ALLOW_MISSING" = "true" ]; then
             echo "previous-status=" >> "$GITHUB_OUTPUT"
             exit 0
+          else
+            echo "Issue #${ISSUE_NUMBER} is not an item in GitHub Course — Execution & Mastery." >&2
+            exit 1
           fi
-          echo "Issue #${ISSUE_NUMBER} is not an item in GitHub Course — Execution & Mastery." >&2
-          exit 1
+        else
+          item_id="$(jq -r '.id' <<<"$item_json")"
+          previous_status="$(jq -r '.fieldValueByName.name // ""' <<<"$item_json")"
         fi
 
-        item_id="$(jq -r '.id' <<<"$item_json")"
-        previous_status="$(jq -r '.fieldValueByName.name // ""' <<<"$item_json")"
         echo "previous-status=$previous_status" >> "$GITHUB_OUTPUT"
 
         if [ "$previous_status" = "$TARGET_STATUS" ]; then
