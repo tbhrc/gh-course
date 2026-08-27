@@ -1,10 +1,10 @@
 # GitHub Professional Operator — Course Wiki
 
-Welcome to the **reader-facing operating handbook** for the GitHub Professional Operator course.
+Welcome to the **reader-facing operating handbook** for the GitHub Professional Operator — AI-First Founder Crash Course.
 
-This Wiki is designed to be used, not merely stored. It gives learners and AI-assisted operators one place to navigate the course, knowledge, progress, breakthroughs, exercises and operating references.
+This Wiki is designed to be used as a live course interface. The canonical truth remains in the main repository; this surface summarises and routes readers to it.
 
-> **Canonical rule:** the Wiki is the human-facing navigation and publishing layer. Verified knowledge, curriculum and student evidence remain governed in the main repository and are linked from here.
+> **Source-of-truth rule:** repository knowledge/modules/student evidence are canonical; Wiki is the human-readable handbook/dashboard; GitHub Pages is the public front door.
 
 ---
 
@@ -12,159 +12,272 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 
 | Need | Go to |
 | --- | --- |
-| Understand how the course works | [Course Handbook](Course-Handbook) |
-| Use the practical operating guide | [Course Manual](Course-Manual) |
-| See the full learning path | [Course Modules](Course-Modules) |
-| Browse all reusable course assets | [Course Materials](Course-Materials) |
-| Look up verified GitHub knowledge | [Knowledge Base](Knowledge-Base) |
-| Understand the ChatGPT Web → GitHub → agent architecture | [AI Control Plane](AI-Control-Plane) |
-| See David's current progress | [Student Dashboard — David](Student-Dashboard-David) |
-| Review the biggest learning breakthroughs | [Epiphanies & Learning Breakthroughs](Epiphanies-and-Learning-Breakthroughs) |
+| Understand the course system | [Course Handbook](Course-Handbook) |
+| Need a practical operating recipe | [Course Manual](Course-Manual) |
+| See the full curriculum | [Course Modules](Course-Modules) |
+| Browse guided learning resources | [Course Materials](Course-Materials) |
+| See David’s current state | [Student Dashboard — David](Student-Dashboard-David) |
+| Learn GitHub Projects now | [Module 04 — Projects](https://github.com/tbhrc/github-course/tree/main/04-projects) |
+| See current AI executor results | [Canonical Executor Benchmark](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md) |
+| Understand AI control-plane architecture | [AI Control Plane](AI-Control-Plane) |
 | Do hands-on work | [Exercises & Assessments](Exercises-and-Assessments) |
-| Use the strategic GitHub playbook | [GitHub Power User](GitHub-Power-User) |
-| Find operating procedures | [SOP & Operating Library](SOP-and-Operating-Library) |
+| Look up verified GitHub knowledge | [Knowledge Base](Knowledge-Base) |
+| Use the strategic feature map | [GitHub Power User](GitHub-Power-User) |
+| Use repeatable procedures | [SOP & Operating Library](SOP-and-Operating-Library) |
 | Look up terminology | [Reference & Glossary](Reference-and-Glossary) |
 | Understand the learning system | [About This Learning System](About-This-Learning-System) |
-| Open the public GitHub Pages site | [Public Course Site](https://tbhrc.github.io/github-course/) |
+| Open the public site | [GitHub Pages Course Site](https://tbhrc.github.io/github-course/) |
+
+---
+
+## Current Course State
+
+The backend course is now materially developed across all ten numbered modules.
+
+Important live systems already implemented include:
+
+- Issue-first governance;
+- governed branches/PRs;
+- Semantic Versioning and release automation;
+- verified knowledge-base architecture;
+- governed GitHub Wiki publishing;
+- GitHub Pages public portal;
+- deterministic Actions/agent dispatch;
+- Copilot CLI AI inference;
+- multi-agent benchmark framework;
+- Copilot, Codex, Claude and Jules governed agent branch/PR evidence;
+- Gemini API authentication/inference route with current quota boundary;
+- substantive Projects lesson and live Project blueprint;
+- documentation-integrity governance to keep reader surfaces aligned with canonical truth.
+
+### Canonical live benchmark
+
+Do not use a static Issue body as the current matrix.
+
+[**Open AI Executor Benchmark & Leaderboard →**](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
 
 ---
 
 ## Student #1 — David
 
-**Stage:** Stage 2 — Crash Course  
-**Current focus:** AI integrations / GitHub control-plane benchmark  
-**Starting position:** Git fundamentals ~6/10; GitHub platform operation ~2/10.
+**Stage:** Stage 2 — Crash Course / live operation  
+**Current hands-on focus:** **GitHub Projects**  
+**Baseline:** Git fundamentals ~6/10; GitHub platform operation ~2/10.
 
-### Current progress
+### Major demonstrated progress
 
-- Git/GitHub mental model corrected and expanded.
-- Issue-first repository workflow established.
-- Semantic Versioning introduced and understood conceptually.
-- Durable knowledge-base architecture established.
-- First GitHub Wiki created and operated hands-on.
-- Wiki recognised independently as a **Git-backed documentation website / lightweight documentation CMS**.
-- That insight was applied to make this Wiki the course's actual human interface.
-- GitHub Pages independently enabled from repository Settings.
-- Actions permissions and workflow approvals explored.
-- Repository Integrations discovered as a major AI-first operating layer.
-- New two-layer model articulated: **ChatGPT Web as conversational front door; GitHub as durable execution plane; specialist agents downstream.**
-- Integration benchmark programme opened under [Issue #23](https://github.com/tbhrc/github-course/issues/23).
+- Git/GitHub mental model expanded.
+- Issue-first governance independently recognised and established.
+- Semantic Versioning materially learned.
+- Verified knowledge/source-freshness requirement recognised.
+- GitHub Wiki operated hands-on and recognised as a documentation website/CMS.
+- GitHub Pages independently enabled and later tested as a real user.
+- Pages source vs entry file vs information architecture distinction learned.
+- Integrations recognised as an AI-first control-plane layer.
+- Deterministic Actions vs agentic AI distinguished from live evidence.
+- Real secret/credential model learned.
+- Copilot capability split by execution mode instead of one yes/no product assumption.
+- Multi-agent benchmark/provenance discipline materially improved.
+- Public documentation drift identified independently as a source-of-truth/integrity failure.
 
-[Open David's dashboard →](Student-Dashboard-David)
+### Current mastery gap
 
-[Open canonical progress file →](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md)
+Projects material exists, but David still needs to create and operate the real:
+
+**GitHub Course — Execution & Mastery**
+
+before Projects can be credited as mastered.
+
+[Open David’s dashboard →](Student-Dashboard-David)
+
+[Open canonical progress →](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md)
 
 ---
 
-## Latest Learning Breakthroughs
+## Current Hands-On Exercise — Projects
 
-### GitHub is not just cloud storage
+Core model:
 
-GitHub is a change-management operating platform built around repositories.
+```text
+Issue / PR = work + evidence
+Project    = planning/control surface
+Field      = structured metadata
+View       = saved lens over the same items
+```
 
-### Work should have a durable control point
+Course Project blueprint:
+
+[Open live Project design →](https://github.com/tbhrc/github-course/blob/main/04-projects/live-example-github-course-execution-mastery.md)
+
+Starting views:
+
+- Operating Board;
+- Master Table;
+- AI Benchmarks;
+- David Learning;
+- Roadmap when real target dates exist.
+
+---
+
+## Current AI-First Operating Model
+
+```text
+CHAT / DECISION
+human / ChatGPT Web
+→ research / clarify / decide
+→ create governed GitHub Issue
+
+GITHUB CONTROL PLANE
+Issue
+→ direct agent assignment OR deterministic workflow
+→ specialist executor
+→ branch / commits / PR
+→ checks / review
+→ merge
+→ Actions / Wiki / Pages / deployment / release
+→ durable evidence
+```
+
+Different executors use different routes. One GitHub control plane does **not** mean one execution architecture.
+
+[Open AI Control Plane →](AI-Control-Plane)
+
+---
+
+## Core Learning Breakthroughs
+
+### GitHub is an operating platform
+
+Not merely cloud storage for Git repositories.
+
+### Work needs a durable control point
 
 ```text
 Issue
 → branch
 → commits
-→ Pull Request
+→ PR
 → checks/review
 → merge
-→ durable history
 ```
 
-### Versions are not decimal counters
+### Versions communicate meaning
 
 ```text
 MAJOR.MINOR.PATCH
 ```
 
-### Wiki is much bigger than a simple knowledge page
+### Wiki is a documentation platform
 
-> **GitHub Wiki is a Git-backed documentation website / lightweight documentation CMS.**
+> GitHub Wiki = Git-backed documentation website / lightweight documentation CMS.
 
-### GitHub can become an integration control plane
-
-```text
-GitHub
-├── Issues / PRs        → governance
-├── Actions             → automation
-├── Wiki                → handbook / documentation
-├── Pages               → public website
-└── Integrations        → AI agents + external services
-```
-
-### ChatGPT Web can become the founder's front door
+### Pages is a different publishing layer
 
 ```text
-brainstorm in ChatGPT Web
-→ create governed Issue
-→ GitHub routes/controls execution
-→ specialist agent works
-→ PR / review / merge
-→ publishing / deployment
+Wiki  = documentation-focused publishing
+Pages = static website publishing
 ```
 
-The professional rule remains: test actual capability rather than assume an installed integration can perform every operation.
-
-[Open the AI Control Plane page →](AI-Control-Plane)
-
-[See all epiphanies →](Epiphanies-and-Learning-Breakthroughs)
-
----
-
-## Two Publishing Surfaces Now in Use
-
-### Wiki
-
-Use this Wiki for the course handbook, navigation, progress and human-readable operating reference.
-
-### GitHub Pages
-
-[Open the public course website →](https://tbhrc.github.io/github-course/)
-
-Pages is the static website publishing layer. It is distinct from Wiki and can later become the polished public-facing course/site experience.
-
----
-
-## How This Wiki Is Operated
-
-The Wiki is not maintained as an unmanaged parallel copy.
+### Green deployment is not the user journey
 
 ```text
-canonical repo knowledge / curriculum / student evidence
-        ↓
-reader-facing source under wiki/
-        ↓
-Issue → branch → Pull Request → merge
-        ↓
-GitHub Action
-        ↓
-tbhrc/github-course.wiki.git
-        ↓
-this live Wiki
+green deployment
+≠
+correct entry page
+≠
+good user experience
 ```
 
-That means agents can update this handbook while preserving normal GitHub review and history.
+### Automatic is not automatically AI
 
-[Read the publishing architecture →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
+```text
+GitHub event
+→ deterministic Action
+→ optional downstream AI
+```
 
-[Read Pages / Actions / Integrations control-plane note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-actions-integrations-control-plane.md)
+### Installed is not proven
 
-[Read ChatGPT Web + GitHub two-layer control-plane note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-github-control-plane.md)
+```text
+installed / authorised
+≠
+permission granted
+≠
+operation proven
+```
+
+### One source of truth, many views
+
+The public site/Wiki should route to maintained canonical truth instead of becoming independent stale copies.
+
+[See all learning breakthroughs →](Epiphanies-and-Learning-Breakthroughs)
 
 ---
 
-## Main Repository
+## The Three Course Surfaces
 
-- [Open the course repository](https://github.com/tbhrc/github-course)
-- [Open README](https://github.com/tbhrc/github-course/blob/main/README.md)
-- [Open AGENTS.md](https://github.com/tbhrc/github-course/blob/main/AGENTS.md)
-- [Open verified knowledge base](https://github.com/tbhrc/github-course/tree/main/knowledge-base)
-- [Open integration benchmark #23](https://github.com/tbhrc/github-course/issues/23)
-- [Open Issues](https://github.com/tbhrc/github-course/issues)
+### Main repository — canonical operating record
+
+Contains:
+
+- verified knowledge;
+- modules;
+- student evidence;
+- Issues/PRs;
+- workflows;
+- benchmark evidence;
+- Releases/history.
+
+### Wiki — reader handbook/dashboard
+
+Contains:
+
+- Handbook;
+- Manual;
+- modules/materials navigation;
+- student dashboard;
+- breakthroughs;
+- exercises/SOP/knowledge navigation.
+
+Governed source: `wiki/*.md`.
+
+### GitHub Pages — public front door
+
+Routes external readers into maintained Wiki/repository surfaces.
+
+It should avoid duplicating volatile benchmark/student truth where a canonical link is safer.
 
 ---
 
-**Navigation:** [Handbook](Course-Handbook) · [Manual](Course-Manual) · [AI Control Plane](AI-Control-Plane) · [Student Dashboard](Student-Dashboard-David) · [Knowledge Base](Knowledge-Base) · [Glossary](Reference-and-Glossary)
+## How Reader-Facing Documentation Stays Current
+
+The course now uses a documentation-integrity gate.
+
+```text
+material canonical state changes
+→ review affected student/Wiki/Pages surfaces
+→ update minimum necessary summaries/links in same PR
+→ merge
+→ verify Wiki/Pages publication
+```
+
+[Open Documentation Integrity SOP →](https://github.com/tbhrc/github-course/blob/main/sops/course-documentation-integrity.md)
+
+---
+
+## Main Repository Links
+
+- [Repository](https://github.com/tbhrc/github-course)
+- [README](https://github.com/tbhrc/github-course/blob/main/README.md)
+- [AGENTS.md](https://github.com/tbhrc/github-course/blob/main/AGENTS.md)
+- [Verified Knowledge Base](https://github.com/tbhrc/github-course/tree/main/knowledge-base)
+- [Executor Benchmark](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+- [Modules](https://github.com/tbhrc/github-course#course-structure--material-state)
+- [Issues](https://github.com/tbhrc/github-course/issues)
+- [Pull Requests](https://github.com/tbhrc/github-course/pulls)
+- [Actions](https://github.com/tbhrc/github-course/actions)
+- [Releases](https://github.com/tbhrc/github-course/releases)
+
+---
+
+**Navigation:** [Handbook](Course-Handbook) · [Manual](Course-Manual) · [Modules](Course-Modules) · [Materials](Course-Materials) · [Student Dashboard](Student-Dashboard-David) · [AI Control Plane](AI-Control-Plane) · [Knowledge Base](Knowledge-Base) · [Exercises](Exercises-and-Assessments) · [SOPs](SOP-and-Operating-Library)
