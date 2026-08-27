@@ -1,5 +1,9 @@
 # GitHub Professional Operator — AI-First Founder Crash Course
 
+> **AI Agent Bootstrap:** Before substantive work in this repository, read root [`AGENTS.md`](AGENTS.md) and follow its startup protocol and repository workflow. Fresh ChatGPT/GitHub-connector chats should be explicitly prompted to do this because automatic `AGENTS.md` loading is not guaranteed on generic chat/connector surfaces.
+>
+> Copy/paste for a fresh chat: `Use tbhrc/github-course. Before doing anything else, read root AGENTS.md and follow its startup protocol and repository workflow.`
+
 A practical, AI-agent-friendly GitHub operator course designed to move learners from basic Git usage to professional operation of GitHub as a foundational working platform.
 
 David is Student #1 and the first public case study. His starting knowledge, mistakes, assessments and progress are intentionally preserved so the course can prove improvement over time and later be reused by other founders and learners.
@@ -229,6 +233,7 @@ Each substantial module should evolve toward:
 - `docs/` — architecture and explanatory documentation.
 - `exercises/` — practical GitHub work.
 - `certification/` — final competency requirements and evidence.
+- `resources/` — additional references and supporting materials.
 - `skills/` — reusable AI-agent Skills, including the `github-power-user` course accelerator.
 - `sops/` — concise standard operating procedures produced from practised workflows.
 
