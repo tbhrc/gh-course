@@ -61,26 +61,52 @@ A workflow may do useful work without any AI model. It may also be used only as 
 
 This lets us diagnose failures precisely rather than treating “GitHub AI” as one black box.
 
-## Live Dispatcher Evidence — Issue #24
-
-The ChatGPT Web → GitHub command bus has progressed through these verified stages:
+## Live Dispatcher Evidence — Codex #24
 
 ```text
 ✅ Web agent created dispatch push
 ✅ GitHub Action started automatically
 ✅ Action resolved Issue #24
-✅ missing secret was detected correctly
-✅ real fine-grained GitHub PAT was created
-✅ PAT became visible to Actions as ***
+✅ real fine-grained GitHub PAT became visible to Actions as ***
 ✅ authenticated coding-agent API call was reached
+✅ corrected agent_assignment payload was sent
 ❌ Codex partner-agent assignment returned HTTP 403 Forbidden
 ```
 
-The important conclusion is:
+Conclusion: deterministic dispatch/authentication work; Codex agentic execution remains unproven.
 
-> **The deterministic dispatcher is working. Codex agentic execution remains unproven because GitHub rejects the downstream partner-agent assignment.**
+## Live Dispatcher Evidence — GitHub Copilot #38
 
-That is a downstream eligibility/policy/permission boundary, not evidence that the Action failed to run.
+A separate GitHub Copilot cloud-agent dispatcher was built under PR #40 and fired from ChatGPT Web.
+
+First run:
+
+```text
+Run: 33074951020
+Branch: dispatch/copilot/38
+Commit: be1b80123b15cee4518648cd7d0077bd0e528672
+
+✅ Issue #38 resolved
+✅ AGENT_DISPATCH_TOKEN present as ***
+✅ copilot-swe-agent[bot] request sent
+✅ agent_assignment payload sent
+✅ authenticated GitHub API call reached assignment endpoint
+❌ HTTP 403 Forbidden
+❌ no Copilot agent session
+❌ no Copilot-authored branch / commit / PR
+```
+
+Exact API response:
+
+```json
+{
+  "message": "Forbidden",
+  "documentation_url": "https://docs.github.com/rest/issues/assignees#add-assignees-to-an-issue",
+  "status": "403"
+}
+```
+
+So **GitHub Copilot agentic execution did not start**. The remaining boundary is account/repository plan, policy, entitlement or permission.
 
 [Verified deterministic-vs-agentic note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/deterministic-actions-vs-agentic-ai.md)
 
@@ -112,7 +138,7 @@ Issue
 → Pull Request
 ```
 
-This is a native GitHub coding-agent path. Availability depends on the relevant Copilot plan and policy.
+Availability depends on the relevant Copilot plan and policy.
 
 ### 2. GitHub Agentic Workflow
 
@@ -128,17 +154,15 @@ This is the closer match to a fully automatic **Issue → Action → AI** system
 
 ## Live Capability Benchmark
 
-The course measures each connection independently rather than assuming capability.
-
 | Integration | Test |
 | --- | --- |
 | ChatGPT Web GitHub connector | Control — proven through live course operation |
-| OpenAI Codex partner agent | [Issue #24](https://github.com/tbhrc/github-course/issues/24) — dispatcher/auth proven; partner-agent assignment currently 403 |
+| OpenAI Codex partner agent | [Issue #24](https://github.com/tbhrc/github-course/issues/24) — dispatcher/auth proven; assignment 403 |
 | Anthropic Claude | [Issue #25](https://github.com/tbhrc/github-course/issues/25) |
 | Google Gemini | [Issue #26](https://github.com/tbhrc/github-course/issues/26) |
 | Vercel | [Issue #27](https://github.com/tbhrc/github-course/issues/27) |
 | Fully automatic Issue → agent → PR | [Issue #28](https://github.com/tbhrc/github-course/issues/28) |
-| GitHub Copilot cloud agent | [Issue #38](https://github.com/tbhrc/github-course/issues/38) — independent native-agent benchmark |
+| GitHub Copilot cloud agent | [Issue #38](https://github.com/tbhrc/github-course/issues/38) — dispatcher/auth proven; assignment 403 |
 
 [Master capability matrix →](https://github.com/tbhrc/github-course/issues/23)
 
@@ -170,15 +194,13 @@ trigger
 
 ## Product / Billing Boundary
 
-The two-layer architecture does **not** automatically mean one subscription pays for every downstream agent.
-
 Current GitHub documentation distinguishes:
 
-- **Copilot cloud agent** — available on paid Copilot plans;
-- **third-party coding agents** such as Codex/Claude — available on paid Copilot plans and subject to partner-agent policies;
+- **Copilot cloud agent** — paid Copilot capability;
+- **third-party coding agents** such as Codex/Claude — paid Copilot capability plus partner-agent policy/eligibility;
 - **Copilot Free** — limited AI features/credits but not the same agent entitlement set.
 
-The course verifies the actual route before making commercial claims.
+The live 403 responses are repository evidence of a boundary. They do not, by themselves, prove which exact account-level setting caused the refusal.
 
 ## Founder Principle
 
@@ -189,7 +211,6 @@ The course verifies the actual route before making commercial claims.
 - [Verified control-plane note](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-github-control-plane.md)
 - [Deterministic Actions vs agentic AI](https://github.com/tbhrc/github-course/blob/main/knowledge-base/deterministic-actions-vs-agentic-ai.md)
 - [Codex dispatch architecture](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-codex-dispatch.md)
-- [Pages / Actions / Integrations control plane](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-actions-integrations-control-plane.md)
 - [David's latest learning evidence](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-deterministic-vs-agentic.md)
 
 ## Navigation
