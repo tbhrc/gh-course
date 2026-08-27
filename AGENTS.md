@@ -16,13 +16,15 @@ Before coaching a student:
 4. Read that student's latest baseline.
 5. Read `students/<student-id>/progress.md`.
 6. Read the current module.
-7. Continue from demonstrated knowledge; do not restart generic GitHub training.
+7. Use the Wiki as the reader-facing course dashboard when useful.
+8. Continue from demonstrated knowledge; do not restart generic GitHub training.
 
 For David, begin with:
 
 - `students/david/profile.md`
 - `students/david/baseline-2026-08-27.md`
 - `students/david/progress.md`
+- Wiki page `Student-Dashboard-David` for the reader-facing summary.
 
 ## Mandatory Repository Change Workflow
 
@@ -109,6 +111,7 @@ Rules:
 - Update `students/<student-id>/progress.md` when new evidence materially changes the student's assessed state.
 - Use dated files under `students/<student-id>/assessments/` for significant checkpoints, misconceptions, tests and learning notes.
 - Student-specific learning evidence stays in the student folder; reusable teaching material belongs in shared course folders.
+- When student progress or a durable learning breakthrough materially changes the reader experience, update the relevant governed Wiki source page in the same Issue/PR.
 
 ## Knowledge Base and Freshness
 
@@ -137,8 +140,51 @@ Rules:
 5. When a verified finding fills a reusable gap, add/update a concise knowledge note through the normal Issue → branch → PR workflow.
 6. Record verification dates and primary sources in substantial knowledge notes.
 7. Keep student-specific misunderstandings under `students/`; keep reusable platform knowledge under `knowledge-base/`.
-8. GitHub Wiki may be used as a reader-friendly documentation surface, but `knowledge-base/` remains canonical for this AI-first course unless a future governed decision changes that.
-9. Avoid maintaining two independent copies of the same truth.
+8. Avoid maintaining two independent copies of the same truth.
+
+## Wiki as the Course Operating Surface
+
+The Wiki is the **reader-facing handbook, dashboard and navigation layer** for this course.
+
+Governed Wiki source lives under:
+
+```text
+wiki/
+```
+
+The live Wiki is published from that source through:
+
+```text
+.github/workflows/publish-wiki.yml
+```
+
+Model:
+
+```text
+canonical evidence / knowledge / curriculum
+        ↓
+reader-facing summaries and navigation in wiki/*.md
+        ↓
+Issue → branch → PR → merge
+        ↓
+GitHub Action
+        ↓
+repository.wiki.git
+        ↓
+live Wiki
+```
+
+Rules:
+
+1. Use `wiki/Home.md` as the main human navigation dashboard.
+2. Keep the Wiki useful: handbook, manual, course materials, student dashboards, epiphanies, exercises, SOP navigation and glossary should remain easy to reach.
+3. Do not duplicate long canonical facts unnecessarily; link from Wiki pages to `knowledge-base/`, `students/`, modules, `sops/` and Skills.
+4. When a material course surface is added, update Wiki navigation if a reader would reasonably need it.
+5. When a student's public progress materially changes, update their Wiki dashboard summary without rewriting the canonical student evidence.
+6. When a durable epiphany changes the course's reusable teaching value, add it to the Wiki breakthrough page and the appropriate canonical student/knowledge record.
+7. Direct live-Wiki UI edits are acceptable for hands-on learning or urgent correction; reconcile durable changes back into `wiki/` so governed source and published Wiki do not diverge.
+8. Do not claim automated Wiki publishing is healthy unless the relevant GitHub Actions run succeeded.
+9. Read `knowledge-base/wiki-publishing-architecture.md` before changing the publishing mechanism.
 
 ## Course Development Accelerator
 
@@ -184,6 +230,7 @@ Rules:
 ```text
 .github/
 knowledge-base/
+wiki/
 00-start-here/
 01-github-mental-model/
 02-issues/
@@ -237,7 +284,7 @@ Each substantial module should progressively include:
 
 Teach by doing. Avoid unnecessary theory. Introduce terminology when operationally relevant.
 
-The course should become shareable with founders and other AI-assisted operators. Personalisation belongs in student folders; reusable curriculum belongs in shared course folders.
+The course should become shareable with founders and other AI-assisted operators. Personalisation belongs in student folders; reusable curriculum belongs in shared course folders; the Wiki makes the system easy for humans to navigate.
 
 ## Governing Principle
 
