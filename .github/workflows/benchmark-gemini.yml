@@ -1,0 +1,119 @@
+name: Benchmark Gemini CLI Executor
+
+on:
+  push:
+    branches:
+      - 'dispatch/gemini/**'
+    paths:
+      - '.dispatch/gemini/**'
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: GitHub Issue number to benchmark with Gemini
+        required: true
+        default: '26'
+        type: string
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  benchmark:
+    if: github.actor == 'tbhrc'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Resolve target Issue
+        id: target
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DISPATCH_INPUT: ${{ inputs.issue_number }}
+          REF_NAME: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$EVENT_NAME" in
+            push) issue="${REF_NAME##*/}" ;;
+            workflow_dispatch) issue="$DISPATCH_INPUT" ;;
+            *) echo "Unsupported event: $EVENT_NAME"; exit 1 ;;
+          esac
+          if ! [[ "$issue" =~ ^[0-9]+$ ]]; then
+            echo "Invalid Issue number: $issue"
+            exit 1
+          fi
+          echo "issue_number=$issue" >> "$GITHUB_OUTPUT"
+
+      - name: Preflight Gemini credential
+        id: preflight
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${GEMINI_API_KEY:-}" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "GEMINI_API_KEY is not configured." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "Gemini credential is present." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Report missing Gemini setup
+        if: steps.preflight.outputs.ready != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Gemini benchmark reached the credential boundary but stopped safely because Actions secret \`GEMINI_API_KEY\` is missing. GitHub's supported Gemini CLI / Agentic Workflow route requires a Google AI Studio Gemini API key. No Gemini inference ran, so this is setup friction and no runtime score has started."
+          exit 1
+
+      - name: Checkout current main
+        if: steps.preflight.outputs.ready == 'true'
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Run Gemini benchmark task
+        if: steps.preflight.outputs.ready == 'true'
+        id: gemini
+        uses: google-github-actions/run-gemini-cli@v0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GEMINI_CLI_TRUST_WORKSPACE: 'true'
+          BENCHMARK_ISSUE: ${{ steps.target.outputs.issue_number }}
+        with:
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          prompt: |
+            You are the Google Gemini CLI executor being benchmarked in repository ${{ github.repository }}.
+
+            Treat GitHub Issue #${{ steps.target.outputs.issue_number }} as the complete task specification and read it with the GitHub CLI. Read root AGENTS.md first and comply with it. Also read VERSION and enough repository context to identify the course.
+
+            Perform the benchmark end to end yourself using repository files plus shell/git/GitHub CLI tools available in this GitHub Actions workspace:
+
+            1. Create and switch to a non-main branch named `gemini/gemini-integration-benchmark` from current main.
+            2. Create exactly one evidence file: `integration-tests/gemini.md`.
+            3. In that file record your Gemini product/model if visible; this execution route; direct Issue access; repository context accessed; branch/write/commit/PR/comment/check capabilities; limitations/errors; and exact GitHub provenance you can observe.
+            4. State clearly that this is Gemini CLI running inside GitHub Actions rather than a native GitHub Partner Agent.
+            5. Commit the file with a meaningful message.
+            6. Push the branch.
+            7. Open a draft Pull Request to `main` linked to Issue #${{ steps.target.outputs.issue_number }} using `gh pr create`.
+            8. Request review from `tbhrc` if GitHub permits it.
+            9. Do not merge and do not close the Issue.
+
+            Do not modify any other repository file. Do not expose secrets. If an operation is unavailable, record the exact limitation in `integration-tests/gemini.md` and still complete as much of the governed path as safely possible.
+
+      - name: Record Gemini workflow completion
+        if: steps.preflight.outputs.ready == 'true' && always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Gemini CLI benchmark workflow completed its agent step. Inspect this Actions run plus any Gemini-created branch/commit/PR before assigning a runtime score. The benchmark remains stop-before-merge."
