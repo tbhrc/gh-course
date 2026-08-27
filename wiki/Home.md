@@ -1,6 +1,6 @@
 # GitHub Professional Operator — Course Wiki
 
-Welcome to the **reader-facing operating handbook** for the GitHub Professional Operator — AI-First Founder Crash Course.
+Welcome to the **live GitHub Professional Operator course** — a governed, AI-first learning system built by operating this repository.
 
 This Wiki is designed to be used as a course interface, not as an independent source of changing operational truth.
 
