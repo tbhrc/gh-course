@@ -1,293 +1,323 @@
 # AI Control Plane — ChatGPT Web → GitHub → Agents
 
-This page tracks the course's emerging **AI-first founder operating model**.
+This page explains the course's **stable AI-first operating architecture**.
 
-> **ChatGPT Web can be the conversational front door. GitHub becomes the durable control and execution layer. Specialist agents become downstream workers.**
+> **Current executor timings, scores and capability status are generated separately from the canonical benchmark.** This page deliberately does not maintain another live matrix.
 
-## Two-Layer Model
+[Open AI Executor Benchmark & Leaderboard →](AI-Executor-Benchmark)
+
+---
+
+## 1. Founder-Facing Model
 
 ```text
-LAYER 1 — CHAT / DECISION
-ChatGPT Web
-→ brainstorm
-→ research
-→ clarify
+LAYER 1 — TALK / DECIDE
+human + ChatGPT Web
+→ brainstorm / research / clarify
 → decide
-→ create GitHub Issue
+→ create/refine governed GitHub Issue
 
-LAYER 2 — EXECUTION / EVIDENCE
-GitHub Issue
-→ deterministic trigger / dispatcher
-→ coding agent / integration / AI inference
-→ branch / output
-→ commits / Pull Request when authorised
+LAYER 2 — GITHUB CONTROL / EXECUTION
+Issue
+→ direct assignment OR deterministic trigger/workflow
+→ specialist executor
+→ branch / commits / bounded output
+→ Pull Request
 → checks / review
 → merge
-→ Actions
 → Wiki / Pages / deployment / release
+→ durable evidence
 ```
 
-The key is repository setup. Once the repository contains durable rules, agents do not need the operating model re-explained in every chat.
+The objective is to move recurring complexity into the repository contract so everyday founder operation stays simple.
 
-## Deterministic Automation Is Not Agentic AI
+---
 
-This distinction is now physically demonstrated in the course.
+## 2. One Control Plane Does Not Mean One Execution Architecture
+
+Different executors can use different supported routes while GitHub remains the shared governance/evidence plane.
+
+### ChatGPT Web
 
 ```text
-ChatGPT Web / human
-        ↓
-GitHub trigger
-        ↓
-GitHub Action
-        ↓
-deterministic script / API request
-        ↓
-optional AI inference / agent hand-off
-        ↓
-agentic reasoning + output
+ChatGPT Web
+→ connected GitHub operations
+→ Issues / branches / commits / PRs / review / merge / Actions inspection
 ```
 
-A workflow may do useful work without any AI model. It may also invoke an AI model directly or act only as a deterministic dispatcher that starts a separate AI agent.
-
-### Four observable layers
+### GitHub Copilot cloud coding agent
 
 ```text
-1. Control surface
-2. Trigger + deterministic automation
-3. Agentic inference/execution
-4. Delivery + evidence
-```
-
-This lets us diagnose failures precisely rather than treating “GitHub AI” as one black box.
-
-## Live Dispatcher Evidence — Codex #24
-
-```text
-✅ Web agent created dispatch push
-✅ GitHub Action started automatically
-✅ Action resolved Issue #24
-✅ real fine-grained GitHub PAT became visible to Actions as ***
-✅ authenticated coding-agent API call was reached
-✅ corrected agent_assignment payload was sent
-❌ Codex partner-agent assignment returned HTTP 403 Forbidden
-```
-
-Conclusion: deterministic dispatch/authentication work; Codex partner-agent execution remains unproven.
-
-## Live Dispatcher Evidence — GitHub Copilot Cloud Agent #38
-
-A separate GitHub Copilot cloud-agent dispatcher was built under PR #40 and fired from ChatGPT Web.
-
-```text
-Run: 33074951020
-Branch: dispatch/copilot/38
-
-✅ Issue #38 resolved
-✅ AGENT_DISPATCH_TOKEN present as ***
-✅ copilot-swe-agent[bot] request sent
-✅ agent_assignment payload sent
-✅ authenticated GitHub API call reached assignment endpoint
-❌ HTTP 403 Forbidden
-❌ no Copilot cloud-agent session
-❌ no Copilot-authored branch / commit / PR
-```
-
-This is a plan/policy/entitlement boundary for the cloud-agent execution mode, not proof that all Copilot AI automation is unavailable.
-
-## Proven Free-Plan AI Inference — Issue #45
-
-The course then changed **execution mode** instead of repeating the blocked cloud-agent assignment.
-
-```text
-Issue #45 opened
-→ GitHub Actions
-→ install GitHub Copilot CLI
-→ build bounded repository + Issue context
-→ Copilot AI inference
-→ capture generated text
-→ deterministic Issue comment
-```
-
-Actions run `33076875845` completed successfully, including:
-
-```text
-✅ Check out repository
-✅ Install GitHub Copilot CLI
-✅ Build bounded prompt
-✅ Run Copilot AI inference
-✅ Post AI response to Issue
-```
-
-Copilot generated original repository-aware analysis. The prose was not embedded in the workflow; deterministic steps only assembled context, launched Copilot CLI, captured the response and posted it.
-
-Therefore the current verified capability matrix is:
-
-```text
-COPILOT FREE
-
-✅ Issue-triggered AI inference inside GitHub Actions via Copilot CLI
-✅ AI-generated safe text output
-
-❌ autonomous Copilot cloud-agent Issue assignment
-❌ cloud-agent-authored branch / commit / PR
-```
-
-[Copilot Free proof →](Copilot-Free-AI-Actions)
-
-[Verified knowledge note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/copilot-free-ai-in-actions.md)
-
-## Secret Interface
-
-The repository keeps the durable secret name:
-
-```text
-AGENT_DISPATCH_TOKEN
-```
-
-The Copilot CLI workflow maps that secret to its expected runtime variable:
-
-```yaml
-env:
-  COPILOT_GITHUB_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
-```
-
-So:
-
-```text
-stored secret name
-≠
-runtime environment-variable name
-```
-
-## Repository Contract
-
-Useful setup surfaces include:
-
-- `AGENTS.md`
-- repository AI instructions
-- Issue-first governance
-- branch / Pull Request rules
-- Actions workflows
-- Wiki / Pages publishing
-- release automation
-- permissions and rulesets
-- connected agents and services
-- verified knowledge base
-
-## Distinct AI Execution Modes
-
-Do not ask only whether “Copilot is available.” Evaluate the execution mode.
-
-### Direct cloud coding-agent assignment
-
-```text
-Issue
-→ assign Copilot / Codex / Claude where eligible
-→ autonomous agent works
+Issue / assignment
+→ Copilot cloud session
+→ agent branch
+→ commit
 → Pull Request
 ```
 
-Availability depends on plan and policy.
-
-### Copilot CLI inside Actions
+### OpenAI Codex Partner Agent
 
 ```text
-Issue / event
+Issue / assignment
+→ Partner Agent policy + authentication
+→ Codex session
+→ branch / commit / PR
+```
+
+### Anthropic Claude Partner Agent
+
+```text
+Issue / assignment
+→ correct Partner Agent identity/policy
+→ Claude session
+→ branch / commit / PR
+```
+
+### Google Jules
+
+```text
+GitHub Issue
+→ jules trigger/label
+→ Jules cloud task
+→ branch / commit / PR
+```
+
+### Gemini CLI/API
+
+```text
+GitHub trigger
 → GitHub Action
-→ Copilot CLI
-→ AI inference
-→ bounded output
+→ Gemini CLI / provider API
+→ inference
+→ governed delivery when successful
 ```
 
-This route is now proven on Copilot Free in this repository.
+These routes have different setup, permissions, entitlement and provenance models. Compare them by observed evidence, not by brand name.
 
-### GitHub Agentic Workflow
+---
+
+## 3. Deterministic Automation Is Not AI
 
 ```text
-Issue / event
-→ GitHub Agentic Workflow
-→ supported AI engine
-→ declared safe output
+automatic
+≠
+agentic
 ```
 
-This remains a distinct GitHub-native workflow system and can be benchmarked separately if needed.
+A GitHub Action can run scripts, call APIs, publish documentation, deploy Pages, publish Releases, assign agents or invoke models.
 
-## Live Capability Benchmark
+Use this four-layer model:
 
-| Integration / mode | Test |
-| --- | --- |
-| ChatGPT Web GitHub connector | Control — proven through live course operation |
-| OpenAI Codex partner agent | [Issue #24](https://github.com/tbhrc/github-course/issues/24) — dispatcher/auth proven; assignment 403 |
-| Anthropic Claude | [Issue #25](https://github.com/tbhrc/github-course/issues/25) |
-| Google Gemini | [Issue #26](https://github.com/tbhrc/github-course/issues/26) |
-| Vercel | [Issue #27](https://github.com/tbhrc/github-course/issues/27) |
-| Fully automatic Issue → agent → PR | [Issue #28](https://github.com/tbhrc/github-course/issues/28) |
-| GitHub Copilot cloud agent | [Issue #38](https://github.com/tbhrc/github-course/issues/38) — dispatcher/auth proven; assignment 403 |
-| Copilot Free AI in Actions | [Issue #45](https://github.com/tbhrc/github-course/issues/45) — **AI inference proven** |
+```text
+1. control surface
+2. deterministic trigger / automation
+3. optional AI inference / agent execution
+4. delivery + durable evidence
+```
 
-[Master capability matrix →](https://github.com/tbhrc/github-course/issues/23)
+---
 
-## Evidence Rule
+## 4. Proof Ladders
+
+### Coding agent
+
+```text
+trigger / assignment requested
+→ authentication accepted
+→ agent task/session visible
+→ repository/Issue read
+→ branch visible
+→ substantive commit visible
+→ PR visible
+→ review/checks
+```
+
+### Model inference inside Actions
+
+```text
+trigger
+→ workflow run
+→ credential accepted
+→ inference step reached
+→ generated output
+→ bounded delivery
+```
+
+Do not claim one proof ladder from evidence belonging to another.
+
+---
+
+## 5. Installed Is Not Proven
+
+Always separate:
 
 ```text
 installed / authorised
 ≠
 permission available
 ≠
-AI request accepted
+request accepted
 ≠
-AI inference proven
+AI execution proven
 ≠
-autonomous agent execution proven
+correct output
 ```
 
-Use the proof ladder that matches the execution mode.
+The course has encountered missing-secret, HTTP 403, stale identity/policy, HTTP 429 and output-quality failures. Each belongs to a different layer.
 
-For cloud agents:
+---
+
+## 6. Current Executor State
+
+Do not copy the leaderboard into this page.
 
 ```text
-trigger
-→ workflow/API
-→ authentication
-→ agent assignment
-→ agent session
-→ branch/commit
+knowledge-base/executor-benchmark-framework.md
+= canonical benchmark truth
+
+        ↓ deterministic Wiki publisher
+
+AI-Executor-Benchmark
+= generated reader-facing view
+```
+
+[**Open generated AI Executor Benchmark & Leaderboard →**](AI-Executor-Benchmark)
+
+The benchmark measures speed, fidelity, output quality, reliability, autonomy, governance, provenance and efficiency. Setup friction is tracked separately from operational runtime.
+
+---
+
+## 7. First-Snapshot Quality Matters
+
+Agent autonomy is useful only when output remains accurate and governable.
+
+Benchmark scoring therefore uses the **first review-ready snapshot**. Human corrections after review do not retroactively improve the original runtime/quality score.
+
+This protects the comparison from rewarding agents that move fast but require substantial factual or governance cleanup.
+
+---
+
+## 8. Provenance Discipline
+
+One executor benchmark should have one clear evidence lane:
+
+```text
+one executor
+→ one governing Issue/run
+→ one evidence file
+→ one branch/PR path
+```
+
+The course learned this directly when an early Jules activation was accidentally launched from the Gemini benchmark Issue. The activation evidence was preserved, but the clean benchmark was separated rather than rewriting history.
+
+---
+
+## 9. Secrets, Tokens and Provider Boundaries
+
+Possible authentication/entitlement layers include:
+
+```text
+repository Actions secret
+user-authorised GitHub token/PAT
+GitHub App permissions
+Copilot entitlement
+Partner Agent policy
+provider API key
+provider quota/billing
+```
+
+A secret name is an interface; the value must be a real credential issued by the relevant service.
+
+Stored secret names and runtime environment-variable names may differ.
+
+---
+
+## 10. Failure Diagnosis
+
+| Evidence | Likely boundary |
+| --- | --- |
+| no workflow run | trigger/workflow |
+| job/step skipped | condition/filter |
+| secret empty | secret setup/scope/name |
+| HTTP 401 | invalid/expired credential |
+| HTTP 403 | authenticated but forbidden by permission/plan/policy/eligibility |
+| task accepted but no branch/PR | agent session/runtime |
+| HTTP 429 | quota/rate/billing |
+| PR exists, checks fail | implementation/CI |
+| PR exists, facts wrong | output quality/review |
+
+Find the **first broken layer** instead of debugging the whole chain at once.
+
+---
+
+## 11. Repository Instructions
+
+Root `AGENTS.md` is the shared repository operating contract.
+
+A generic fresh ChatGPT + GitHub connector conversation should not be assumed to load it automatically, so the repository README exposes a one-line bootstrap instruction.
+
+Keep one shared contract rather than several competing governance documents.
+
+---
+
+## 12. Direct Assignment vs Workflow Dispatch
+
+Prefer direct assignment when native capability is enough:
+
+```text
+Issue
+→ supported coding agent
+→ branch / PR
+```
+
+Use deterministic dispatch when it solves a real control problem:
+
+```text
+ChatGPT Web / Issue/event
+→ GitHub Action/API dispatcher
+→ specialist worker
+→ PR/output
+```
+
+Do not build automation merely because automation is possible.
+
+---
+
+## 13. Executor Routing Principle
+
+> **Delegate for capability or demonstrated efficiency — not merely because another agent is available.**
+
+Use the canonical benchmark to decide which executor is appropriate for a task class. Do not generalise one small-task leaderboard to every workload.
+
+---
+
+## 14. GitHub as the Durable Operating Plane
+
+```text
+conversation / intent
+→ Issue
+→ Project visibility where useful
+→ executor
 → PR
+→ checks/review
+→ merge
+→ automation/publishing/release
+→ searchable durable evidence
 ```
 
-For inference inside Actions:
+This is more useful than treating each AI tool as an isolated coding/chat island.
 
-```text
-trigger
-→ workflow
-→ authentication
-→ Copilot inference step
-→ context-aware generated output
-→ safe delivery
-```
-
-## Product / Billing Boundary
-
-The course now has live evidence that plan capability is not binary:
-
-- **Copilot Free** can perform limited AI inference through Copilot CLI inside Actions using the user's Copilot entitlement/AI credits;
-- **Copilot cloud agent** remains unavailable on the current Free plan;
-- **third-party coding agents** such as Codex/Claude are separate partner-agent capabilities with their own paid-plan/policy boundaries.
-
-Therefore compare plans by **execution mode**, not just by the word “Copilot.”
-
-## Founder Principle
-
-> **Move recurring complexity into the repository contract so the founder's front door can stay simple: talk → decide → Issue → trigger → governed AI output.**
+---
 
 ## References
 
-- [Verified control-plane note](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-github-control-plane.md)
+- [Generated AI Executor Benchmark](AI-Executor-Benchmark)
+- [Canonical executor benchmark](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+- [ChatGPT Web + GitHub control plane](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-github-control-plane.md)
 - [Deterministic Actions vs agentic AI](https://github.com/tbhrc/github-course/blob/main/knowledge-base/deterministic-actions-vs-agentic-ai.md)
-- [Copilot Free AI in Actions](https://github.com/tbhrc/github-course/blob/main/knowledge-base/copilot-free-ai-in-actions.md)
-- [Codex dispatch architecture](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-codex-dispatch.md)
-- [David's Copilot Free learning evidence](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-copilot-free-actions.md)
+- [Web-first/local-by-exception routing](https://github.com/tbhrc/github-course/blob/main/knowledge-base/web-first-local-by-exception-executor-policy.md)
+- [Module 09 — AI Agents + GitHub](https://github.com/tbhrc/github-course/tree/main/09-ai-agents-github)
 
 ## Navigation
 
-[Home](Home) · [Copilot Free AI Actions](Copilot-Free-AI-Actions) · [Epiphanies](Epiphanies-and-Learning-Breakthroughs) · [Student Dashboard — David](Student-Dashboard-David) · [Knowledge Base](Knowledge-Base)
+[Home](Home) · [AI Benchmark](AI-Executor-Benchmark) · [Course Handbook](Course-Handbook) · [Course Manual](Course-Manual) · [Student Dashboard — David](Student-Dashboard-David) · [Course Materials](Course-Materials) · [Knowledge Base](Knowledge-Base)

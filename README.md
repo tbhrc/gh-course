@@ -4,79 +4,103 @@
 >
 > Copy/paste for a fresh chat: `Use tbhrc/github-course. Before doing anything else, read root AGENTS.md and follow its startup protocol and repository workflow.`
 
-A practical, AI-agent-friendly GitHub operator course designed to move learners from basic Git usage to professional operation of GitHub as a foundational working platform.
+A practical GitHub operator course for founders and AI-assisted operators who need to use GitHub as a professional working platform rather than only a remote Git repository.
 
-David is Student #1 and the first public case study. His starting knowledge, mistakes, assessments and progress are intentionally preserved so the course can prove improvement over time and later be reused by other founders and learners.
+This repository is both the **course** and the **live training environment**.
 
-## Course Wiki — Human Interface
+Student #1 is David. His baseline, mistakes, corrections, breakthroughs and current progress are deliberately preserved so improvement can be measured and the learning system can later be reused.
 
-The course now has a **reader-facing Wiki operating handbook**:
+## Start Here
 
-**https://github.com/tbhrc/github-course/wiki**
+| Need | Open |
+| --- | --- |
+| Public course front door | https://tbhrc.github.io/github-course/ |
+| Reader-facing course Wiki | https://github.com/tbhrc/github-course/wiki |
+| Current David dashboard | https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David |
+| Current AI executor benchmark | [`knowledge-base/executor-benchmark-framework.md`](knowledge-base/executor-benchmark-framework.md) |
+| Verified GitHub knowledge | [`knowledge-base/`](knowledge-base/) |
+| Current David canonical progress | [`students/david/progress.md`](students/david/progress.md) |
+| Course modules | numbered module folders below |
+| Repository operating contract | [`AGENTS.md`](AGENTS.md) |
 
-Use it for:
+## Course Goal
 
-- Home dashboard;
-- course handbook and manual;
-- course materials and module navigation;
-- David's progress dashboard;
-- epiphanies and learning breakthroughs;
-- knowledge-base navigation;
-- exercises and assessments;
-- SOP library;
-- reference/glossary.
+A graduate should be able to confidently design, operate, audit and improve a professional GitHub environment and answer:
 
-The governed source for the published Wiki lives under `wiki/` in this repository and is published by `.github/workflows/publish-wiki.yml` after approved changes merge.
-
-> The Wiki is the reader-facing interface. Canonical verified knowledge, curriculum and student evidence remain in the main repository.
-
-## Objective
-
-Become capable of confidently designing, operating, auditing and improving a professional GitHub environment, with particular emphasis on AI-agent workflows, traceability, automation and governance.
-
-The target is not simply to understand GitHub features. A professional operator should be able to answer:
-
-- What is changing?
-- Why is it changing?
+- What work exists and why?
+- What is currently changing?
+- Which branch contains the proposal?
 - Who or which agent changed it?
-- What work is outstanding?
-- What passed or failed?
-- What is safe to merge?
-- What version is deployed?
-- What should happen next?
+- What does the diff prove?
+- What checks/reviews passed or failed?
+- Is the change safe to merge?
+- What version contains it?
+- What automation/agent executed?
+- What should GitHub own, what should another system own, and what should integrate?
 
-## Two Things Are Being Built
-
-This repository is simultaneously:
-
-1. **a course** — David learns and improves by operating GitHub; and
-2. **a reusable learning system** — lessons, question banks, SOPs, Skills, templates, knowledge base, Wiki and assessment model can later be used by other people and their AI coaches.
-
-The repository itself is part of the training environment.
-
-## AI-Agent-Friendly Learning Model
-
-Any compatible AI coach should be able to attach this repository, read the durable student state and continue coaching without depending on hidden chat history.
+## Core Operating Model
 
 ```text
-student profile
-→ baseline diagnostic
-→ personalised path
-→ lesson
-→ hands-on GitHub work
-→ assessment
-→ evidence
-→ progress update
-→ Wiki dashboard update when material
-→ next lesson
-→ final comparison against baseline
+Issue
+→ issue-linked branch
+→ logical commits
+→ Pull Request
+→ checks / review
+→ merge
+→ release / deployment when appropriate
+→ durable history
 ```
 
-Shared agent instructions live in `AGENTS.md`. GitHub Copilot repository-wide instructions live in `.github/copilot-instructions.md`.
+Portfolio view:
+
+```text
+Issues + PRs
+→ GitHub Project
+→ Table / Board / Roadmap / filtered views
+```
+
+AI-first execution:
+
+```text
+human / ChatGPT Web
+→ governed Issue
+→ direct assignment or deterministic dispatch
+→ specialist executor
+→ branch / commit / PR
+→ checks / review
+→ merge
+```
+
+## One Source of Truth, Several Surfaces
+
+The course now explicitly separates canonical truth from reader/publishing surfaces.
+
+```text
+CANONICAL
+knowledge-base/                verified GitHub facts
+numbered modules               reusable curriculum
+students/                      learner evidence/current progress
+exercises/ + sops/             practical operating material
+benchmark framework            current executor results
+
+      ↓ summarise / link
+
+WIKI
+reader handbook / dashboard
+
+      ↓ route
+
+PAGES
+public front door
+```
+
+Issues and Pull Requests remain durable work/evidence/history. They should not be used as a static “current dashboard” when a maintained canonical file exists.
+
+See [`sops/course-documentation-integrity.md`](sops/course-documentation-integrity.md).
 
 ## Knowledge Authority
 
-The course does not treat model memory as the final authority for material GitHub behaviour.
+For material GitHub facts:
 
 ```text
 current official/live evidence
@@ -86,94 +110,99 @@ current official/live evidence
 → model memory / older chat
 ```
 
-- `knowledge-base/` is the authoritative verified GitHub best-practices layer.
-- `skills/github-power-user/` is the strategic accelerator and feature map.
-- course modules convert that knowledge into teaching and hands-on operation.
-- `students/` preserves individual evidence, mistakes and progress.
-- `wiki/` is the governed source for the human-facing course Wiki.
+The course deliberately avoids teaching volatile GitHub behaviour from AI memory alone.
 
-See `knowledge-base/README.md` and the live Wiki.
+## Course Structure — Material State
+
+This table describes **curriculum/material availability**, not David’s personal mastery.
+
+| Module | Topic | Material state |
+| --- | --- | --- |
+| 00 | Start Here | **Substantive** |
+| 01 | GitHub Mental Model | **Substantive** |
+| 02 | Issues — GitHub’s Work Engine | **Substantive** |
+| 03 | Pull Requests — The Control Gate | **Substantive** |
+| 04 | GitHub Projects | **Substantive + live course example** |
+| 05 | Actions & Automation | **Substantive + live workflow evidence** |
+| 06 | Releases & Professional Versioning | **Substantive + release automation** |
+| 07 | GitHub Knowledge Architecture | **Substantive + Wiki/Pages implementation** |
+| 08 | Security & Governance | **Substantive** |
+| 09 | AI Agents + GitHub | **Substantive + live multi-agent benchmarks** |
+| 10 | GitHub × FolderDesk Architecture | **Substantive decision framework** |
 
 ## Student #1 — David
 
-David's durable learner state lives under `students/david/`.
+David’s immutable baseline is:
 
-His baseline on **27 August 2026** shows:
+[`students/david/baseline-2026-08-27.md`](students/david/baseline-2026-08-27.md)
 
-| Area | Starting level |
-| --- | --- |
-| Git concepts | Intermediate |
-| Repositories and files | Intermediate |
-| Commits, history and diffs | Intermediate |
-| Branching | Basic–Intermediate |
-| Pull Requests | Beginner |
-| Issues | Beginner |
-| Projects | New |
-| Actions | New |
-| Wikis / knowledge architecture | New |
-| Releases and versioning | Beginner |
-| Security and governance | Basic–New |
-| GitHub automation | New |
-| AI-agent GitHub workflows | New |
-| GitHub as an operating platform | New |
+Starting position:
 
-Approximate starting position: **Git fundamentals ~6/10; GitHub platform operation ~2/10.**
+- Git fundamentals: approximately **6/10**;
+- GitHub platform operation: approximately **2/10**;
+- Pull Requests / Issues: beginner;
+- Projects / Actions / Wiki / AI-agent-native GitHub workflows: new operationally.
 
-The complete historical baseline is preserved in `students/david/baseline-2026-08-27.md`. It must not be rewritten later.
+Current progress belongs in:
 
-Reader-facing progress: **https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David**
+[`students/david/progress.md`](students/david/progress.md)
 
-## Core Mental Model
+### Current learning focus
 
-GitHub is not merely cloud storage for Git repositories.
+**Module 04 — GitHub Projects**
 
-> **GitHub is a change-management operating platform built around repositories.**
+The course material and live Project blueprint are built. David still needs the hands-on evidence of creating/using the real **GitHub Course — Execution & Mastery** Project before Projects is credited as mastered.
 
-A professional change increasingly follows this chain:
+### Major progress already demonstrated
 
-```text
-WHY
-Issue
-  ↓
-WHO / WHAT IS WORKING
-Assignee or agent
-  ↓
-WHERE THE CHANGE IS ISOLATED
-Branch
-  ↓
-WHAT CHANGED
-Commits
-  ↓
-PROVE THE CHANGE
-Pull Request + Diff + Checks
-  ↓
-ACCEPT THE CHANGE
-Merge
-  ↓
-WHAT VERSION CONTAINS IT
-Release
-  ↓
-PERMANENT HISTORY
-GitHub
-```
+- Issue-first governance recognised and established.
+- Semantic Versioning model materially learned.
+- Verified knowledge-base requirement recognised.
+- GitHub Wiki operated hands-on and re-framed as a documentation website/CMS.
+- GitHub Pages independently enabled and later evaluated as a real public user.
+- Pages source vs entry file vs information architecture distinction learned.
+- Integrations recognised as an AI-first control-plane layer.
+- Deterministic Actions vs agentic AI distinguished from live evidence.
+- Real secret/credential model learned.
+- Copilot execution modes separated rather than treated as one yes/no capability.
+- GitHub Copilot cloud agent, OpenAI Codex, Anthropic Claude and Google Jules now have bounded governed benchmark evidence.
+- Gemini API authentication/inference route is proven; the current blocker is free-tier quota.
+- Public documentation drift was independently identified as a system integrity failure, leading to a source-of-truth/documentation-sync governance fix.
 
-## Course Structure
+## Current AI Executor Benchmark
 
-| Module | Topic | Status |
-| --- | --- | --- |
-| 00 | Start Here | In progress |
-| 01 | GitHub Mental Model | In progress |
-| 02 | Issues — GitHub's Work Engine | Pending hands-on mastery |
-| 03 | Pull Requests — The Control Gate | Pending |
-| 04 | GitHub Projects | Pending |
-| 05 | Actions & Automation | Pending |
-| 06 | Releases & Professional Versioning | In progress |
-| 07 | GitHub Knowledge Architecture | Active hands-on |
-| 08 | Security & Governance | Pending |
-| 09 | AI Agents + GitHub | Pending |
-| 10 | GitHub × FolderDesk Architecture | Pending |
+Canonical source:
 
-## Repository Structure
+[`knowledge-base/executor-benchmark-framework.md`](knowledge-base/executor-benchmark-framework.md)
+
+Current bounded one-file benchmark scores:
+
+| Executor | Score /100 |
+| --- | ---: |
+| ChatGPT Web | **95.0** |
+| OpenAI Codex | **90.6** |
+| Anthropic Claude | **89.4** |
+| GitHub Copilot | **87.3** |
+| Google Jules | **77.9** |
+| Gemini CLI/API | pending governed completion |
+
+These results apply only to the current benchmark task class. Do not generalise them to large builds/refactors until additional benchmark classes are run.
+
+## Learn by Operating
+
+Each substantial module should include:
+
+1. concept;
+2. operator value;
+3. practical repository example;
+4. hands-on GitHub task;
+5. checkpoint/test;
+6. evidence required for mastery;
+7. relevant authoritative references.
+
+Reading does not equal mastery.
+
+## Repository Architecture
 
 ```text
 github-course/
@@ -181,11 +210,11 @@ github-course/
 ├── AGENTS.md
 ├── VERSION
 ├── CHANGELOG.md
+├── index.html                  # public Pages front door
 ├── .github/
 │   ├── copilot-instructions.md
 │   └── workflows/
-│       └── publish-wiki.yml
-├── knowledge-base/
+├── knowledge-base/             # verified GitHub knowledge
 ├── wiki/                       # governed source for live Wiki
 ├── 00-start-here/
 ├── 01-github-mental-model/
@@ -198,59 +227,58 @@ github-course/
 ├── 08-security-governance/
 ├── 09-ai-agents-github/
 ├── 10-github-folderdesk-architecture/
+├── integration-tests/          # executor evidence
 ├── students/
+├── exercises/
+├── sops/
+├── skills/
 ├── question-bank/
 ├── templates/
 ├── docs/
-├── exercises/
 ├── certification/
-├── resources/
-├── skills/
-└── sops/
+└── resources/
 ```
 
-## Learning Method
+## Publishing Surfaces
 
-This is a **learn by operating** course.
+### GitHub Wiki
 
-Each substantial module should evolve toward:
+Use for:
 
-1. **Concept** — what the capability is.
-2. **Operator value** — why it matters.
-3. **Example** — how it fits a real workflow.
-4. **Hands-on task** — use GitHub itself.
-5. **Operator test** — demonstrate understanding.
-6. **Evidence** — preserve proof of capability.
-7. **Applied judgement** — decide where and when the feature should be used.
+- Handbook;
+- Manual;
+- module navigation;
+- student dashboard;
+- learning breakthroughs;
+- knowledge/SOP/exercise navigation.
+
+Governed source lives under `wiki/` and is published by `.github/workflows/publish-wiki.yml`.
+
+### GitHub Pages
+
+Use as the public front door. It should route readers to maintained sources rather than duplicate volatile benchmark/student state unnecessarily.
 
 ## Reusable Course Assets
 
-- `knowledge-base/` — verified, current GitHub best-practices knowledge and gap tracking.
-- `wiki/` — governed source for the reader-facing course Wiki.
-- `students/` — learner-specific truth and assessments.
-- `question-bank/` — reusable diagnostics, checkpoints, scenario tests and answer guides.
-- `templates/` — reusable student/course templates.
-- `docs/` — architecture and explanatory documentation.
-- `exercises/` — practical GitHub work.
-- `certification/` — final competency requirements and evidence.
-- `resources/` — additional references and supporting materials.
-- `skills/` — reusable AI-agent Skills, including the `github-power-user` course accelerator.
-- `sops/` — concise standard operating procedures produced from practised workflows.
+- `knowledge-base/` — current verified knowledge and architecture notes;
+- `skills/github-power-user/` — strategic GitHub feature/operating map;
+- `integration-tests/` — durable AI executor evidence;
+- `students/` — student-specific truth;
+- `exercises/` — practical mastery work;
+- `sops/` — repeatable operating procedures;
+- `wiki/` — human-readable course interface;
+- `index.html` — public course portal.
 
-## Operator Principle #1
+## Core Principles
 
 > **Every meaningful change should have context, history and evidence.**
 
-## Knowledge Principle
-
 > **Verify what matters. Preserve what was verified. Teach from evidence.**
 
-## Publishing Principle
+> **One source of truth; many useful views.**
 
-> **Keep source governed; make knowledge easy to navigate.**
+> **Search GitHub-native capability before building duplicate infrastructure.**
 
-## Course Rule
+## Current Version
 
-Do not rebuild infrastructure merely because we have not yet learned that GitHub already provides it. Understand GitHub's native capability first, then decide whether to use, integrate or replace existing systems.
-
-For David's companies, the course will explicitly test where GitHub should become foundational across **Talent Bridge**, **iMPLEMENTAi** and **FolderDesk**, and where existing systems should remain separate.
+The released version source is [`VERSION`](VERSION). Notable unreleased work belongs under [`CHANGELOG.md`](CHANGELOG.md) → `[Unreleased]` until a deliberate release is published.

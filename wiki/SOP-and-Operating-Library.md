@@ -2,15 +2,17 @@
 
 This is the reader-facing index for repeatable operating procedures used by the course.
 
-The canonical SOP source files live in the main repository under [`sops/`](https://github.com/tbhrc/github-course/tree/main/sops).
+Canonical SOP source lives under [`sops/`](https://github.com/tbhrc/github-course/tree/main/sops).
 
-## Current SOPs
+The Wiki summarises and routes to those procedures; it is not a second independent SOP store.
 
-### Repository Change Workflow
+---
 
-[Open canonical SOP →](https://github.com/tbhrc/github-course/blob/main/sops/repository-change-workflow.md)
+## 1. Repository Change Workflow
 
-Core pattern:
+[**Open canonical SOP →**](https://github.com/tbhrc/github-course/blob/main/sops/repository-change-workflow.md)
+
+Current standard path:
 
 ```text
 Issue
@@ -18,49 +20,175 @@ Issue
 → focused commits
 → Pull Request
 → review/checks
+→ documentation-integrity check
 → merge
+→ downstream publication/deployment verification where relevant
 → Issue closes
 ```
 
-## Wiki Publishing SOP
+Key rules:
 
-The Wiki itself now follows a governed publishing model:
+- substantive work begins with a governing Issue;
+- work does not go directly to `main`;
+- PRs link the Issue and use closing keywords only when merge should genuinely close it;
+- acceptance criteria and diff/check evidence are reviewed before merge;
+- student/course reader surfaces are checked when material state changes;
+- Wiki/Pages/release/workflow publication is verified after merge where relevant.
+
+---
+
+## 2. Course Documentation Integrity
+
+[**Open canonical SOP →**](https://github.com/tbhrc/github-course/blob/main/sops/course-documentation-integrity.md)
+
+This procedure was added after the public course exposed a structural mismatch:
+
+```text
+backend repository = current and increasingly comprehensive
+Wiki/public reader surfaces = stale/shallow
+```
+
+Core model:
+
+```text
+canonical repository truth
+├── knowledge-base/
+├── numbered modules
+├── students/
+├── exercises/sops
+└── benchmark framework
+
+        ↓ summarise / link
+
+Wiki handbook/dashboard
+
+        ↓ route
+
+GitHub Pages public front door
+```
+
+### When to run the integrity check
+
+Review downstream reader surfaces whenever a PR materially changes:
+
+- module/curriculum state;
+- student current progress;
+- benchmark/integration capability status;
+- knowledge authority;
+- public/Wiki navigation;
+- a major learning breakthrough;
+- a substantial new course surface.
+
+### KISSS rule
+
+Do not update every page after every commit.
+
+```text
+material reader meaning changed?
+  no  → no downstream edit needed
+  yes → update the minimum affected surfaces in the same PR
+```
+
+---
+
+## Wiki Publishing Procedure
+
+The Wiki follows a governed publishing model:
 
 ```text
 Issue
-→ edit wiki/*.md in main repository
+→ edit wiki/*.md on branch
 → Pull Request
 → merge to main
-→ GitHub Action
-→ publish to .wiki.git
+→ Publish Wiki Action
+→ .wiki.git
 → live Wiki
 ```
 
-This means agents can maintain a reader-friendly Wiki without bypassing the main repository's governance.
+After changing Wiki source, the work is not fully verified until the publishing workflow succeeds.
 
-## Agentic Use Case
+[Open publishing architecture →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
 
-An AI agent can be given an instruction such as:
+---
 
-> Build or update the SOP library. Keep governed SOP truth in `sops/`, update the relevant reader-facing `wiki/` pages, link rather than duplicate where possible, and publish through the normal Issue/PR workflow.
+## Pages Verification Pattern
 
-## Design Rule
+The course preserves this reusable failure lesson:
 
-Use the Wiki for **navigation and readable presentation**.
+```text
+green deployment
+≠
+correct entry page
+≠
+good user experience
+```
 
-Use the main repository for **governed source truth**.
+When changing the public site:
 
-## Future SOP Categories
+1. verify source/entry assumptions;
+2. review `index.html`/reader routing;
+3. merge through normal governance;
+4. verify Pages deployment;
+5. validate the reader journey, not only the green Action.
+
+[Open Pages failure/fix note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-entry-file-readme-trap.md)
+
+---
+
+## AI / Agent Operating Pattern
+
+For new executor routes:
+
+```text
+dedicated Issue
+→ read AGENTS.md
+→ bounded task / stop condition
+→ assignment or deterministic dispatch
+→ agent/session evidence
+→ branch / commit / PR
+→ human/authorised review
+→ merge only when acceptable
+```
+
+Use the canonical benchmark framework for comparative testing rather than inventing a new scoring method each time.
+
+[Open executor benchmark →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+
+---
+
+## Agentic SOP Maintenance
+
+An AI agent updating this operating library should be told to:
+
+1. read root `AGENTS.md`;
+2. use a governing Issue;
+3. keep canonical procedures under `sops/`;
+4. update this Wiki index only when reader meaning changes;
+5. link rather than duplicate detailed procedures;
+6. publish through the normal Wiki workflow;
+7. verify the downstream run.
+
+---
+
+## Future SOP Candidates
+
+Create a new SOP only after a workflow is practised enough to be reusable.
+
+Likely future candidates:
 
 - Issue triage;
 - Pull Request review;
+- Project backlog triage;
+- Actions diagnosis;
 - release management;
-- GitHub Actions diagnosis;
-- security review;
-- agent task execution;
-- knowledge verification;
-- Wiki publishing.
+- security/integration review;
+- AI executor launch/review;
+- knowledge freshness review.
+
+Avoid writing speculative SOPs for workflows the course has not actually practised.
+
+---
 
 ## Navigation
 
-[Course Handbook](Course-Handbook) · [GitHub Power User](GitHub-Power-User) · [Home](Home)
+[Course Handbook](Course-Handbook) · [Course Manual](Course-Manual) · [Exercises & Assessments](Exercises-and-Assessments) · [Knowledge Base](Knowledge-Base) · [Home](Home)

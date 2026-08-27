@@ -2,329 +2,407 @@
 
 ## Current Status
 
-**Course stage:** Stage 2 — Crash Course  
-**Current module:** 09 — AI Agents + GitHub, using live dispatch benchmarks  
-**Baseline:** `baseline-2026-08-27.md`
+**Course stage:** Stage 2 — Crash Course / live operation  
+**Current learning focus:** **Module 04 — GitHub Projects**  
+**Next hands-on objective:** create and operate the real **GitHub Course — Execution & Mastery** Project using existing Issues/PRs.  
+**Baseline:** `baseline-2026-08-27.md` — immutable historical starting point.
 
-## Completed
+## Current Assessment Summary
 
-- Stage 1 diagnostic completed.
-- Core Git mental model assessed.
-- GitHub platform knowledge gaps identified.
-- Key corrections taught:
-  - Git vs local repository;
-  - commit vs push;
-  - Pull Request vs `git pull`;
-  - `.gitignore` vs actual secret protection;
-  - introductory revert vs reset;
-  - introductory `git blame`;
-  - introductory merge-conflict concept.
-- Course repository created and converted into the live learning environment.
-- David explicitly established the repository operating rule that substantive repo changes must begin with a GitHub Issue and then be completed from that Issue.
-- Issue #1 became the first live implementation of the course workflow.
-- Semantic Versioning introduced and documented as a mandatory companion standard to professional Git/GitHub operation.
-- Authoritative GitHub knowledge-base architecture introduced under Issue #9.
-- First GitHub Wiki Home page created and edited hands-on under Issue #11.
-- Wiki redesigned and physically published as a functional course handbook/dashboard under Issues #13/#14.
-- David independently explored repository Settings beyond the guided lesson and enabled GitHub Pages.
-- David independently inspected Actions permissions, workflow approval settings and repository Integrations.
-- David reported authorising/updating access for ChatGPT/Codex, Claude, Gemini and Vercel.
-- David tested the public Pages site as an actual student/user, identified that a green deployment was still an unusable README-style entry experience, and required a functional portal into the Wiki/dashboard/course surfaces.
-- Pages portal fix completed under Issue #30 / PR #31 while keeping the existing `main / (root)` Pages source.
-- David independently recognised from live repository behaviour that GitHub Actions can be deterministic automation and do not automatically imply that an AI model executed.
-- A real ChatGPT Web → push → GitHub Actions command bus was built and exercised under Issue #34.
-- David generated a real fine-grained GitHub PAT after learning that an Actions secret stores a genuine credential rather than an invented password.
-- Live workflow evidence proved the PAT became visible to Actions and the dispatcher reached GitHub's coding-agent assignment API.
-- The Codex benchmark currently stops at an authenticated HTTP `403 Forbidden`, isolating the remaining failure to partner-agent permission/plan/policy eligibility rather than the deterministic Action.
-- Independent GitHub Copilot cloud-agent benchmark executed under Issue #38.
-- The Copilot dispatcher resolved Issue #38, saw the PAT as `***`, sent the documented `copilot-swe-agent[bot]` + `agent_assignment` request, and received HTTP `403 Forbidden` before any Copilot agent session started.
-- David challenged the overly broad conclusion that Copilot Free therefore could not demonstrate genuine AI automation at all.
-- David added user-level Copilot request permission to the existing fine-grained PAT and clarified that the repository secret must remain officially named `AGENT_DISPATCH_TOKEN`.
-- Issue #43 / PR #44 added a bounded Copilot Free AI smoke-test workflow using GitHub Copilot CLI inside Actions.
-- Fresh Issue #45 triggered Actions run `33076875845`; the Copilot AI inference step and post-back step both completed successfully.
-- Copilot generated original repository-aware analysis on the Free plan, physically proving genuine AI inference inside GitHub Actions while cloud-agent assignment remains unavailable.
+David has moved materially beyond his starting model of GitHub as mainly remote repository storage.
 
-## Demonstrated Strengths
-
-- Repository mental model.
-- Branching concept.
-- Commit history and rollback motivation.
-- Clone / pull / push basics.
-- Diff inspection.
-- AI-assisted development familiarity.
-- Strong preference for traceability, history and durable operating evidence.
-- **Issue-first insight:** David independently recognised that repository work should not be changed ad hoc from chat; he corrected the coach and required an Issue-first workflow before further repo development.
-- **Versioning insight:** David identified that his agents were not consistently logging or applying version control and explicitly raised versioning as an operational gap that must be standardised.
-- **SemVer progress:** David now understands that professional release versions use `MAJOR.MINOR.PATCH`, that the components communicate change significance rather than acting as decimal counters, and that Semantic Versioning should be taught alongside GitHub operation.
-- **Knowledge-architecture insight:** David explicitly rejected assumed GitHub knowledge as an operating basis and required a durable, reusable best-practices knowledge base that AI coaches can consult.
-- **Wiki publishing insight:** While using GitHub Wiki hands-on, David independently recognised the interface as a Git-backed documentation website/CMS rather than merely a database-like knowledge store, and immediately generalised it to agent-built SOP libraries, handbooks and documentation portals.
-- **Applied Wiki architecture judgement:** David then required the Wiki to become operational inside the course itself: Home dashboard, student progress, epiphanies, handbook/manual, course materials, SOP navigation and cross-links to canonical repository evidence.
-- **Pages initiative:** David independently found GitHub Pages in Settings and published the course as a public site rather than waiting for it to become a formal lesson.
-- **Integration-control-plane insight:** David independently recognised repository Integrations as a potentially major AI-first capability layer connecting GitHub to coding agents and deployment services.
-- **User-journey validation insight:** David did not accept a successful Pages deployment as proof that the website worked. He used the public site, identified the missing navigation/portal layer, questioned whether the publishing source was wrong, and required the architecture to be fixed and preserved as reusable learning.
-- **Deterministic-vs-agentic insight:** David independently reframed GitHub Actions as a trigger/automation layer that can run ordinary deterministic scripts or dispatch a separate AI worker. He explicitly recognised that the Web agent should fire the trigger while the downstream agent performs execution.
-- **Failure-layer reasoning:** David followed the live progression from missing secret → real PAT → authenticated API call → HTTP 403, reinforcing the habit of locating the exact failing layer instead of treating the whole system as one black box.
-- **Independent-agent benchmark discipline:** Codex and GitHub Copilot were tested separately, preventing one integration's evidence from being incorrectly attributed to another.
-- **Execution-mode reasoning:** David challenged the assumption that a blocked cloud agent meant all Copilot AI automation was unavailable. He pushed for another supported route and helped prove Copilot Free inference inside Actions.
-- **Secret-interface precision:** David noticed that `AGENT_DISPATCH_TOKEN` was the durable repository secret name and challenged an apparent rename to `COPILOT_GITHUB_TOKEN`; the correction became a reusable stored-secret-vs-runtime-variable lesson.
-
-## Current Priority Gaps
-
-1. Complete hands-on Issue operation personally: create, classify and close an Issue with linked implementation evidence.
-2. Pull Requests as the control gate.
-3. Projects.
-4. Actions and automation beyond configuration-level understanding.
-5. Complete hands-on release/tag/version workflow.
-6. Security, permission scoping and governance.
-7. Extend proven AI inference into one end-to-end AI execution benchmark that produces an AI-authored branch/commit/PR under safe governance.
-8. Explain deterministic Actions vs agentic AI and diagnose a failed run unaided.
-9. Explain Wiki vs Pages vs canonical repository Markdown unaided.
-10. Diagnose Pages source vs entry-file problems unaided and choose an appropriate entry file for a new site.
-11. Compare installed integrations and Copilot execution modes by actual proven capability rather than assuming equivalence.
-12. GitHub × FolderDesk boundary and integration architecture.
-
-## Current Evidence — Issue #1
-
-David demonstrated the **reasoning** behind Issue-first operation by requiring:
+He now understands GitHub as a professional operating/control platform combining:
 
 ```text
-Issue → task execution → repository change
+Issues
+→ branches
+→ commits
+→ Pull Requests
+→ checks/review
+→ merge
+→ Releases/deployment
+→ durable history
 ```
 
-The coach then implemented the fuller workflow under Issue #1:
+with additional layers for:
 
 ```text
-Issue #1
-→ issue-linked branch
+Projects      → portfolio/control views
+Actions       → deterministic automation
+Wiki          → documentation handbook/CMS
+Pages         → public static website/front door
+Integrations  → AI/service connections
+Agents        → bounded downstream execution
+```
+
+His strongest demonstrated progress is in **architectural judgement, source-of-truth thinking, failure-layer diagnosis and AI-first GitHub operating design**.
+
+He still requires personal hands-on evidence for several operator tasks, especially Projects, full PR operation, deeper Actions authoring, security/rulesets and final GitHub × FolderDesk boundary decisions.
+
+## Baseline vs Current Direction
+
+| Area | Baseline | Current evidence |
+| --- | --- | --- |
+| Git fundamentals | Intermediate | Stable working foundation |
+| Issues | Beginner | Strong conceptual/governance understanding; full unaided lifecycle still to prove |
+| Pull Requests | Beginner/misconception | Understands PR as proposal/review gate; hands-on operator mastery still pending |
+| Projects | New | Concept/material introduced; real live Project operation now current exercise |
+| Actions | New | Strong conceptual/live diagnostic exposure; deeper authoring mastery pending |
+| Wiki | New | Hands-on use + major documentation-platform insight demonstrated |
+| Pages | New | Independently enabled and user-journey failure diagnosed |
+| Releases/SemVer | Beginner | SemVer concept materially improved; full unaided release workflow still pending |
+| Security/governance | Basic–New | Permission/evidence/secret distinctions improved; formal ruleset design pending |
+| AI-agent GitHub workflows | New | Major architectural understanding + extensive live benchmark evidence |
+| GitHub as operating platform | New | Major demonstrated shift in mental model |
+
+## Major Demonstrated Learning
+
+### 1. Git and GitHub mental model
+
+Corrections materially learned include:
+
+- Git is the version-control system, not “the local repository” itself;
+- commit records history; push sends commits to a remote;
+- a Pull Request is not `git pull`;
+- `.gitignore` is not a security-remediation mechanism;
+- one commit should represent one logical change, not necessarily one whole feature.
+
+### 2. Issue-first governance
+
+David independently challenged ad-hoc repository editing and required a durable workflow:
+
+```text
+Issue
+→ branch
 → commits
 → Pull Request
+→ review/checks
 → merge
-→ close
+→ Issue closes
 ```
 
-This is evidence of conceptual progress, but it is **not yet evidence that David can personally operate the entire workflow unaided**.
+This became a repository-wide rule in `AGENTS.md`.
 
-## Current Evidence — Versioning Discussion
+**Evidence level:** strong conceptual judgement. Full unaided end-to-end personal execution is still required for mastery credit.
 
-David's starting intuitive version-number model was approximately:
+### 3. Semantic Versioning
 
-```text
-0.1 → ... → 0.99 → 1.0 → ... → 1.99 → 2.0
-```
-
-This remains recorded as a learning checkpoint, not as mastery.
-
-The correction being learned is Semantic Versioning:
+David moved from an intuitive decimal-counter model toward:
 
 ```text
 MAJOR.MINOR.PATCH
 ```
 
-where the components describe the type of change rather than acting as a decimal counter. In particular, `1.10.0` validly follows `1.9.0`; there is no requirement to reach `.99`.
+He understands that version components communicate release meaning and that `1.10.0` can validly follow `1.9.0`.
 
-David now understands the distinction conceptually and explicitly recognised Semantic Versioning as mandatory knowledge for serious GitHub operators.
+Detailed evidence: `assessments/learning-note-2026-08-27-semver.md`.
 
-### Partial recall evidence — 27 August 2026
+### 4. Knowledge authority and freshness
 
-David recalled **MAJOR** and **MINOR** but temporarily forgot the third term, **PATCH**.
+David explicitly rejected relying on model memory as the course's knowledge authority and required a reusable verified knowledge layer.
 
-This is recorded as useful evidence rather than treated as failure: the model has been learned, but terminology is not yet automatic.
-
-Detailed learning evidence: `assessments/learning-note-2026-08-27-semver.md`.
-
-## Current Evidence — Wiki and Knowledge Architecture
-
-David's starting Wiki model was database/memory-oriented. Hands-on use materially changed that model.
-
-Under Issue #11 David personally:
-
-- created the Wiki Home page;
-- received and recognised the separate `.wiki.git` clone URL;
-- inspected revision `505b272...`;
-- found the optional Edit message field;
-- used Preview;
-- added a working link;
-- observed image, sidebar and footer capability.
-
-He then independently articulated the key mental-model breakthrough:
+Resulting hierarchy:
 
 ```text
-Wiki
-= Git-backed documentation website / lightweight documentation CMS
-
-knowledge base
-= one possible use case built with that surface
+current official/live evidence
+→ knowledge-base/
+→ github-power-user Skill
+→ modules
+→ model memory / old chat
 ```
 
-He immediately identified a practical agentic application: instructing agents to build and maintain structured SOP libraries or handbooks in GitHub Wiki rather than building equivalent documentation infrastructure manually.
+### 5. GitHub Wiki breakthrough
 
-Professional refinement introduced:
+David began with a database/memory-oriented Wiki model, then independently recognised through hands-on use that:
+
+> **GitHub Wiki is a Git-backed documentation website / lightweight documentation CMS.**
+
+He immediately connected this to SOP libraries, handbooks and agent-maintained documentation.
+
+The course then implemented governed Wiki source under `wiki/` with automated publication to `.wiki.git`.
+
+Detailed evidence: `assessments/learning-note-2026-08-27-wiki.md`.
+
+### 6. GitHub Pages and user-journey validation
+
+David independently found and enabled GitHub Pages.
+
+He then used the public site as a real user and identified:
 
 ```text
-Wiki  = documentation-focused publishing
-Pages = fuller static website publishing with HTML/CSS/JavaScript
+deployment succeeded
+≠
+correct entry page
+≠
+good user experience
 ```
 
-He subsequently applied the insight architecturally by asking for the course Wiki itself to become a working human interface with progress dashboards, epiphany history, handbook/manual navigation, course materials and interlinked references.
+The correct diagnosis was that `main / (root)` was already the right publishing source; the missing layer was a deliberate `index.html` front door.
 
-The coach implemented the governed Wiki publishing architecture under Issues #13/#14. That automation is operationally verified, but **coach-built automation is not credited as David's unaided technical mastery**.
+Detailed evidence: `assessments/learning-note-2026-08-27-pages-portal-fix.md`.
 
-Detailed learning evidence: `assessments/learning-note-2026-08-27-wiki.md`.
+### 7. Integrations as an AI control plane
 
-## Current Evidence — Pages, Actions and Integrations
+David recognised repository Integrations as a major GitHub capability layer connecting AI agents, deployment/services, repository governance and automation.
 
-While independently exploring GitHub Settings, David reported that he:
-
-- changed Actions source policy to **Allow all actions and reusable workflows**;
-- identified the first-time-contributor workflow approval setting;
-- enabled GitHub Pages and published `https://tbhrc.github.io/github-course/`;
-- inspected Integrations;
-- authorised or updated permissions for ChatGPT/Codex, Claude, Gemini and Vercel.
-
-His spontaneous operating insight was that **Integrations may be one of the most powerful GitHub layers for AI-first work**, because GitHub can become the common control point connecting agents, repository governance, automation and deployment.
-
-Professional correction being introduced:
+Professional correction:
 
 ```text
 installed / authorised
 ≠
-permission granted for every operation
+permission for every operation
 ≠
 operation proven end to end
 ```
 
-And:
+### 8. Deterministic Actions vs agentic AI
 
-```text
-Allow all actions/reusable workflows
-≠
-unlimited workflow token permissions
-```
+David independently recognised from live evidence that GitHub Actions can be a deterministic event/automation layer and that **automatic work does not prove a model executed**.
 
-Each integration still needs a bounded capability test and least-privilege review.
-
-Detailed learning evidence: `assessments/learning-note-2026-08-27-pages-integrations.md`.
-
-## Current Evidence — Pages Portal Failure and Fix
-
-David then used the public Pages site from the perspective of a student/external reader and identified a second-level problem:
-
-```text
-Pages deployment = successful
-public site       = technically live
-student journey   = poor
-```
-
-The site effectively behaved like a README entry page and did not provide a useful route into the Wiki, dashboard, handbook, manual, modules, knowledge base and other course surfaces.
-
-David explicitly questioned whether the Pages source should move away from `main`, but the diagnosis showed that the source was already correct. The missing layer was a deliberate root entry page.
-
-Professional model introduced:
-
-```text
-Pages source
-≠
-Pages entry file
-≠
-website information architecture
-```
-
-Issue #30 / PR #31 added root `index.html` as the portal while keeping `main / (root)` as the publishing source. The subsequent Pages build, status and deployment all succeeded.
-
-Student outcome:
-
-- David demonstrated user-journey validation rather than relying on infrastructure status;
-- he identified an information-architecture defect from real use;
-- he challenged the current source architecture as a hypothesis rather than guessing;
-- he required the exact problem/fix to become reusable Skill, knowledge-base and course material.
-
-Detailed learning evidence: `assessments/learning-note-2026-08-27-pages-portal-fix.md`.
-
-## Current Evidence — Deterministic Dispatch vs Agentic AI
-
-David noticed that GitHub work continued after the Web agent triggered repository events and asked whether connected AI agents might already be doing the work.
-
-The audit separated the layers:
+He articulated the founder-facing architecture:
 
 ```text
 ChatGPT Web
-→ GitHub object / push
-→ GitHub Actions
-→ deterministic script/API work
-→ optional downstream AI-agent assignment
+→ decide / create Issue
+→ GitHub trigger
+→ deterministic automation / assignment
+→ downstream specialist agent
+→ PR / evidence
 ```
 
-David independently articulated the deterministic factor: a Python/shell/API workflow does not need AI; it only needs a trigger. He then required the Web agent to become the recurring trigger surface so the human should not have to manually open each coding agent.
+Detailed evidence: `assessments/learning-note-2026-08-27-deterministic-vs-agentic.md`.
 
-Issue #34 implemented and exercised that architecture. Live evidence progressed through:
+### 9. Secret and credential model
+
+Live workflow setup corrected the assumption that a repository secret could simply contain an invented password.
+
+David now understands:
 
 ```text
-push trigger works
-→ Action starts
-→ Issue resolved
-→ secret missing
-→ real GitHub PAT created
-→ PAT visible as ***
-→ coding-agent assignment API reached
-→ Codex partner-agent request returns HTTP 403
+secret name
+= lookup interface
+
+secret value
+= real credential generated by the authenticating service
 ```
 
-A separate GitHub Copilot cloud-agent benchmark was then run under Issue #38:
+He also correctly protected the durable secret interface:
 
 ```text
-push trigger works
-→ Copilot dispatcher starts
-→ PAT visible as ***
-→ copilot-swe-agent[bot] + agent_assignment sent
-→ GitHub returns HTTP 403 Forbidden
-→ no Copilot session / branch / PR
+stored secret: AGENT_DISPATCH_TOKEN
+runtime variable: COPILOT_GITHUB_TOKEN
 ```
 
-This proved deterministic dispatch and user-authenticated API access for both test paths, while cloud-agent execution remained blocked.
+### 10. Copilot execution-mode distinction
 
-Detailed learning evidence: `assessments/learning-note-2026-08-27-deterministic-vs-agentic.md`.
+David challenged the conclusion that a blocked Copilot cloud-agent assignment meant Copilot Free could not demonstrate real AI automation.
 
-## Current Evidence — Copilot Free AI Inside Actions
+The course then proved genuine Copilot CLI inference inside GitHub Actions on Issue #45.
 
-David then challenged the assumption that the cloud-agent `403` meant Copilot Free could not perform genuine AI work through GitHub automation.
+Reusable lesson:
 
-The benchmark changed execution mode:
+> **AI capability must be classified by execution mode, not a single yes/no product label.**
+
+Detailed evidence: `assessments/learning-note-2026-08-27-copilot-free-actions.md`.
+
+### 11. Multi-agent benchmark programme
+
+The course progressed from setup/authentication boundaries into genuine downstream executor evidence across multiple architectures.
+
+David materially improved his understanding of:
+
+- direct connected Web execution;
+- GitHub-native cloud coding agents;
+- Partner Agents;
+- Jules GitHub App tasks;
+- provider API/CLI routes;
+- setup friction vs runtime performance;
+- first-snapshot output quality;
+- provenance and closure semantics.
+
+**Current executor timings/scores are deliberately not copied into this learner record.**
+
+Canonical current benchmark:
+
+`knowledge-base/executor-benchmark-framework.md`
+
+Dated learner checkpoint:
+
+`assessments/learning-note-2026-08-27-agent-benchmarks.md`
+
+This keeps current benchmark truth in one place while preserving what David learned from the benchmark programme separately.
+
+Important evidence rule: agent execution proves the **course/executor capability**; it does not automatically prove David can personally perform every underlying step unaided.
+
+### 12. Provenance discipline
+
+The benchmark work strengthened David's understanding that identities must be verified from durable GitHub evidence.
+
+Possible identities include:
+
+- triggering user;
+- GitHub App;
+- workflow bot;
+- agent session;
+- commit author;
+- committer;
+- PR author.
+
+Reusable lesson:
 
 ```text
-Issue #45 opened
-→ Copilot Free AI Smoke Test Action
-→ checkout / install / prompt assembly
-→ GitHub Copilot CLI
-→ genuine AI inference
-→ captured output
-→ deterministic Issue comment
+performed through an App
+≠
+AI coding agent executed
 ```
 
-Actions run `33076875845` completed successfully, including the **Run Copilot AI inference** step.
+### 13. Projects — current learning thread
 
-The resulting Issue #45 comment contained original repository-aware prose generated by Copilot, not text embedded in the workflow.
+David noticed that substantial real work had accumulated without a GitHub Project and selected Projects as the next hands-on learning area.
 
-This physically proves:
+Key model:
 
 ```text
-Copilot Free
-✅ AI inference inside GitHub Actions via Copilot CLI
-✅ automatic Issue-triggered AI output
-
-Copilot Free
-❌ autonomous Copilot cloud-agent Issue assignment
+Issue / PR = actual work + evidence
+Project    = planning/control surface over work
+Field      = structured planning metadata
+View       = saved lens over the same items
 ```
 
-The repository keeps the secret name `AGENT_DISPATCH_TOKEN`; the workflow maps it at runtime to `COPILOT_GITHUB_TOKEN`. Stored secret name and runtime environment-variable name are separate interfaces.
+Module 04 and the live example are substantive.
 
-Detailed learning evidence: `assessments/learning-note-2026-08-27-copilot-free-actions.md`.
+Designed live Project:
+
+**GitHub Course — Execution & Mastery**
+
+Starting fields:
+
+- Status;
+- Workstream;
+- Priority;
+- Type;
+- Target date only when real.
+
+Starting views:
+
+- Operating Board;
+- Master Table;
+- AI Benchmarks;
+- David Learning;
+- Roadmap only when useful dates exist.
+
+**Evidence level:** concept introduced and course material implemented. David still needs to create/use the real Project personally before mastery is credited.
+
+Detailed evidence: `assessments/learning-note-2026-08-27-projects.md`.
+
+### 14. Documentation/source-of-truth architecture
+
+David used the public course surface and discovered that reader-facing documentation had drifted behind canonical repository work.
+
+This exposed a system-level lesson:
+
+```text
+current backend truth
++ independently maintained current frontend copy
+=
+staleness risk
+```
+
+The corrected architecture is:
+
+```text
+volatile factual state
+→ one canonical file
+→ deterministic GitHub Action projection
+→ reader-facing generated page
+
+stable narrative
+→ governed authored document
+```
+
+For this course:
+
+```text
+students/david/progress.md
+→ generated Student Dashboard Wiki page
+
+knowledge-base/executor-benchmark-framework.md
+→ generated AI Executor Benchmark Wiki page
+```
+
+The public Pages site acts as a front door to these generated/canonical surfaces instead of carrying its own changing learner/benchmark truth.
+
+Detailed evidence: `assessments/learning-note-2026-08-27-documentation-integrity.md`.
+
+## Demonstrated Strengths
+
+- Strong practical repository/diff intuition.
+- Founder/operator focus rather than developer-theory focus.
+- Repeatedly challenges abstractions that do not match live behaviour.
+- Strong source-of-truth instinct.
+- Strong preference for durable history and evidence.
+- Identifies duplicated infrastructure and asks whether GitHub already solves it natively.
+- Uses public/user-facing validation rather than accepting green infrastructure signals.
+- Separates deterministic automation from agentic reasoning.
+- Diagnoses failures by layer rather than treating systems as a black box.
+- Notices naming/interface drift such as secret-name mappings.
+- Pushes the course from passive explanation into real implementation.
+
+## Current Priority Gaps
+
+1. **Projects hands-on:** create and operate the real course Project; fields, views, status movement and backlog triage.
+2. **Pull Requests hands-on:** personally operate a complete PR review/merge gate and explain head/base/diff/check/close semantics.
+3. **Issue workflow mastery:** personally run a full Issue → branch → commit → PR → merge → closure cycle without coach execution doing the key steps.
+4. **Actions authoring:** read and create a bounded workflow, justify permissions and diagnose a run unaided.
+5. **Release workflow:** personally decide SemVer impact, tag/publish a Release and verify alignment.
+6. **Security/governance:** design and inspect rulesets/branch protections/least-privilege integration policy.
+7. **AI-agent operations:** personally compare executor routes and review an AI-authored PR using provenance, diff and check evidence.
+8. **GitHub × FolderDesk architecture:** produce a clear ownership/integration/retire matrix rather than duplicating systems.
+9. **Course/public integrity:** explain canonical truth vs generated views vs authored narrative vs Issue/PR evidence.
+
+## Current Next Step — Projects
+
+Use Module 04 and `04-projects/live-example-github-course-execution-mastery.md` to create the first real Project.
+
+The exercise should prove David can explain and operate:
+
+```text
+Issue vs Project item
+field vs view
+Issue state vs Project Status
+label vs Project field
+Table vs Board vs Roadmap
+```
+
+Do not mark Projects mastered until the live Project has been used for real backlog decisions.
+
+## Evidence Index
+
+Key detailed learning notes include:
+
+- `assessments/diagnostic-001.md`
+- `assessments/learning-note-2026-08-27-semver.md`
+- `assessments/learning-note-2026-08-27-wiki.md`
+- `assessments/learning-note-2026-08-27-pages-integrations.md`
+- `assessments/learning-note-2026-08-27-pages-portal-fix.md`
+- `assessments/learning-note-2026-08-27-chatgpt-web-control-plane.md`
+- `assessments/learning-note-2026-08-27-deterministic-vs-agentic.md`
+- `assessments/learning-note-2026-08-27-copilot-free-actions.md`
+- `assessments/learning-note-2026-08-27-projects.md`
+- `assessments/learning-note-2026-08-27-agent-benchmarks.md`
+- `assessments/learning-note-2026-08-27-documentation-integrity.md`
 
 ## Evidence Rule
 
-Do not mark a capability complete merely because David has read a lesson or watched the coach perform it. Mark it complete only when he can explain it accurately and/or perform the relevant operation in GitHub.
+Do not mark a capability complete because David read a page or watched an agent perform it.
 
-Mistakes, misconceptions, corrections, partial recall, initiative and spontaneous insight are valuable learning evidence. Preserve them so later assessments can show the actual path from baseline to mastery.
+Record separately:
 
-## Next Recommended Step
+```text
+conceptual understanding
+hands-on assisted performance
+unaided performance
+professional diagnosis / architecture judgement
+```
 
-Use the now-proven Free-plan inference route to design one **safely bounded AI execution workflow** that can produce a proposed repository change on an isolated branch and open a PR, while preserving human review and without pretending that this is the unavailable Copilot cloud-agent assignee feature.
+The course exists to prove improvement against the original baseline, not to make the progress record look complete.
