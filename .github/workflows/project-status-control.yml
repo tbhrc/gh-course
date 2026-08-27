@@ -1,0 +1,97 @@
+name: Control Course Project Status
+
+on:
+  push:
+    branches:
+      - 'dispatch/project-status/**'
+    paths:
+      - '.dispatch/project-status/**'
+
+permissions:
+  contents: read
+
+jobs:
+  list-ready:
+    if: github.actor == 'tbhrc' && github.ref_name == 'dispatch/project-status/list-ready'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
+    steps:
+      - name: List Ready Project Issues
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "PROJECT_MANAGEMENT_TOKEN is not configured." >&2
+            exit 1
+          fi
+
+          query='query { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100) { nodes { content { ... on Issue { number title state url } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } }'
+          ready="$(gh api graphql -f query="$query" --jq '.data.user.projectV2.items.nodes[] | select(.fieldValueByName.name == "Ready") | select(.content.state == "OPEN") | [.content.number, .content.title, .content.url] | @tsv')"
+
+          {
+            echo '## Ready Project Issues'
+            if [ -z "$ready" ]; then
+              echo 'No open Project Issues are currently Ready.'
+            else
+              while IFS=$'\t' read -r number title url; do
+                printf -- '- #%s — [%s](%s)\n' "$number" "$title" "$url"
+              done <<< "$ready"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          printf '%s\n' "$ready"
+
+  set-status:
+    if: github.actor == 'tbhrc' && github.ref_name != 'dispatch/project-status/list-ready'
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse bounded Project Status request
+        id: request
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          request="${REF_NAME#dispatch/project-status/}"
+          issue="${request%%/*}"
+          status_slug="${request#*/}"
+
+          if ! [[ "$issue" =~ ^[0-9]+$ ]] || [ "$status_slug" = "$request" ]; then
+            echo "Expected branch dispatch/project-status/<issue>/<status>." >&2
+            exit 1
+          fi
+
+          case "$status_slug" in
+            backlog) target='Backlog' ;;
+            ready) target='Ready' ;;
+            in-progress) target='In progress' ;;
+            review) target='Review' ;;
+            done) target='Done' ;;
+            *)
+              echo "Unsupported Project Status: $status_slug" >&2
+              exit 1
+              ;;
+          esac
+
+          echo "issue=$issue" >> "$GITHUB_OUTPUT"
+          echo "target=$target" >> "$GITHUB_OUTPUT"
+
+      - name: Set Project Status
+        if: env.PROJECT_MANAGEMENT_TOKEN != ''
+        uses: ./.github/actions/set-course-project-status
+        with:
+          token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
+          issue-number: ${{ steps.request.outputs.issue }}
+          target-status: ${{ steps.request.outputs.target }}
+
+      - name: Report missing Project credential
+        if: env.PROJECT_MANAGEMENT_TOKEN == ''
+        shell: bash
+        run: |
+          echo "PROJECT_MANAGEMENT_TOKEN is not configured." >&2
+          exit 1
