@@ -61,6 +61,7 @@ use it in lesson / exercise / coaching
 - [`wiki-as-documentation-platform.md`](wiki-as-documentation-platform.md) — Wiki as a Git-backed documentation website/CMS, agentic use cases, and the boundary with GitHub Pages.
 - [`wiki-publishing-architecture.md`](wiki-publishing-architecture.md) — governed `wiki/` source in the main repository published to the separate Wiki Git repository with GitHub Actions.
 - [`pages-actions-integrations-control-plane.md`](pages-actions-integrations-control-plane.md) — Pages, Actions permissions and GitHub Apps/integrations as a governed AI-first control plane.
+- [`vercel-integration-benchmark.md`](vercel-integration-benchmark.md) — verified account-authorised-only Vercel state and the deliberate decision to keep GitHub Pages as this course's sole deployment surface.
 - [`pages-entry-file-readme-trap.md`](pages-entry-file-readme-trap.md) — the verified Pages failure pattern where deployment succeeds but `README.md` becomes an unhelpful entry experience; covers entry-file diagnosis, portal fix and user-journey verification.
 - [`chatgpt-web-github-control-plane.md`](chatgpt-web-github-control-plane.md) — ChatGPT Web as the conversational front door and GitHub as the durable execution/control plane, including direct coding-agent assignment vs Agentic Workflows.
 - [`chatgpt-web-codex-dispatch.md`](chatgpt-web-codex-dispatch.md) — the deterministic ChatGPT Web → Issue trigger → native Codex assignment architecture, authentication boundary and one-time setup.
