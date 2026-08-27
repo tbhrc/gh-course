@@ -8,6 +8,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Added
 
+- Proven ChatGPT Web → bounded Project dispatcher → Project Status control under Issue #107, including `unset → Ready`, deliberate `Ready → Backlog`, Copilot assignment and deterministic `Backlog → In progress` lifecycle evidence; Project mutation and coding-agent dispatch use separate credentials.
 - Native-agent Project lifecycle pilot under Issue #92: GitHub Issue assignment synchronises Project Status, PR-to-Review and Issue-close-to-Done hooks, with no automatic merge or deployment.
 - Comprehensive course-integrity rebuild under Issue #71, expanding previously shallow canonical modules for Start Here, Pull Requests, Actions, Security/Governance and GitHub × FolderDesk into full operator lessons with live examples, hands-on tasks, mastery checks and evidence requirements.
 - Substantive GitHub Projects module and live `GitHub Course — Execution & Mastery` Project blueprint, including minimal fields/views and David's dated Projects learning evidence.
@@ -45,6 +46,10 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Changed
 
+- Project acceptance-stage terminology standardised on **Review**, not Testing, for mixed code/documentation/governance/research/learning work; the live Project was reconciled from `Testing` back to `Review` with existing single-select option IDs preserved.
+- Course `github-power-user` Skill advanced from `1.7.0` to `1.8.0` (MINOR) to add the verified Projects control model, Review gate, deterministic lifecycle automation, credential separation, bounded ChatGPT Web Project control and safe populated-option rename guidance.
+- Project automation documentation now separates `AGENT_DISPATCH_TOKEN` (coding-agent assignment) from `PROJECT_MANAGEMENT_TOKEN` (user-owned Project read/write) instead of conflating those authorities.
+- David's Projects progress now records strong conceptual understanding and assisted live Project control evidence while keeping unaided Project operation as the remaining mastery requirement.
 - Course root README now distinguishes curriculum/material state from learner mastery, points to the canonical executor benchmark and records Projects as David's current hands-on focus.
 - David's canonical `students/david/progress.md` now records multi-agent learning without duplicating the live leaderboard; current executor timings/scores remain solely in the canonical benchmark.
 - Wiki Course Handbook and Course Manual rebuilt from short navigation stubs into substantive professional operating documents covering the complete GitHub workflow, Projects, Actions, releases, publishing, agents, provenance, security and source-of-truth governance.

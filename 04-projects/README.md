@@ -54,6 +54,21 @@ For this course the starting fields are:
 
 Add another field only when it changes an actual planning decision.
 
+### Why the gate is called Review, not Testing
+
+`Review` is the broader acceptance stage for this mixed-work Project.
+
+It can include:
+
+- automated tests/checks;
+- factual validation;
+- documentation review;
+- security/permission review;
+- human acceptance;
+- final merge judgement.
+
+`Testing` would be too narrow because many course changes are documentation, governance, research or learning work rather than executable software.
+
 ## Views for the live course Project
 
 Project name:
@@ -66,7 +81,7 @@ Board grouped by `Status`.
 
 Use it for the daily question:
 
-> What is waiting, moving, blocked or ready for review?
+> What is waiting, ready, moving, blocked or ready for review?
 
 ### 2. Master Table
 
@@ -88,21 +103,21 @@ Filtered view for the parent AI benchmark and executor/integration tests.
 
 Filtered view for hands-on mastery tasks such as Wiki, Projects and future personal exercises.
 
-## Important distinction: Issue status vs Project Status
+## Important distinction: Issue state vs Project Status
 
-An Issue has GitHub state such as `open` or `closed`.
+An Issue has native GitHub state such as `Open` or `Closed`.
 
 A Project can carry richer workflow state while the Issue remains open:
 
 ```text
-Issue = open
+Issue state = Open
 Project Status = Blocked
 ```
 
 or:
 
 ```text
-Issue = open
+Issue state = Open
 Project Status = Review
 ```
 
@@ -143,7 +158,53 @@ Do not build automation merely to avoid one useful manual learning exercise.
 
 ### Agent execution command
 
-For the live course Project, moving an Issue card to `Ready` is a planning decision. It is not itself an AI command. To start a configured coding agent, use GitHub's **Assign agent to issue** control on the underlying Issue. The Project workflow then synchronises the native assignment, linked Pull Request and Issue closure into `In progress`, `Review` and `Done`.
+Moving an Issue card to `Ready` is a planning decision. It is not itself an AI execution command.
+
+To start a configured coding agent, assign the agent to the underlying Issue or use a governed deterministic dispatcher that performs that assignment.
+
+The live course lifecycle is:
+
+```text
+Backlog / Ready
+→ supported coding agent assigned
+→ deterministic Action sets In progress
+→ linked non-draft PR reaches Review
+→ Issue closes
+→ deterministic Action sets Done
+```
+
+`Blocked` remains a deliberate planning state. It is not inferred automatically unless a deterministic blocker signal exists.
+
+### Live ChatGPT Web control proof — Issue #107
+
+The course proved that ChatGPT Web can control the user-owned Project even though the GitHub connector itself does not expose a direct Projects mutation action.
+
+Observed sequence:
+
+```text
+Issue #107 not on Project
+→ ChatGPT-controlled dispatcher adds it
+→ unset → Ready
+→ ChatGPT-controlled dispatcher: Ready → Backlog
+→ Copilot assignment accepted
+→ deterministic lifecycle Action: Backlog → In progress
+→ Copilot creates PR #108
+```
+
+This proves two separate control layers:
+
+```text
+ChatGPT Web request
+→ deterministic Project dispatcher
+→ PROJECT_MANAGEMENT_TOKEN mutates Project Status
+
+ChatGPT Web request
+→ deterministic agent dispatcher
+→ AGENT_DISPATCH_TOKEN assigns coding agent
+→ agent performs implementation work
+```
+
+Do not collapse those layers into “the agent changed the board”.
 
 ## Live exercise — Issue #60
 
@@ -155,16 +216,28 @@ We are using this repository itself as the exercise.
 4. Build Operating Board and Master Table first.
 5. Add AI Benchmarks and David Learning filtered views.
 6. Add Roadmap only after useful Target dates exist.
-7. Move Issue #60 to `In progress` while this lesson is being implemented.
+7. Move active work through the real Status field as evidence changes.
 8. Review the board and identify what is genuinely blocked vs merely waiting.
 
-See `live-example-github-course-execution-mastery.md` for the seed backlog.
+See `live-example-github-course-execution-mastery.md` for the seed backlog and live control proof.
 
 ## Authentication/API lesson discovered during this exercise
 
-The current ChatGPT GitHub connector can manage repository Issues, branches, commits and PRs but does not expose user-owned GitHub Project mutations.
+The current ChatGPT GitHub connector can manage repository Issues, branches, commits and PRs but does not expose direct user-owned GitHub Project mutations.
 
-GitHub's current documentation states that repository `GITHUB_TOKEN` cannot access Projects. User Project automation requires separate Project-authorised credentials; the documented GraphQL route uses a token with `project` scope for mutations.
+GitHub documents that repository `GITHUB_TOKEN` cannot access Projects. User Project automation therefore requires a separately authorised Project credential.
+
+For this course:
+
+```text
+PROJECT_MANAGEMENT_TOKEN
+= Project read/write credential
+
+AGENT_DISPATCH_TOKEN
+= user-authorised coding-agent assignment credential
+```
+
+The Project control workflow uses GraphQL with `PROJECT_MANAGEMENT_TOKEN` to mutate the Status field. The agent dispatcher uses `AGENT_DISPATCH_TOKEN` to assign the worker.
 
 This is another example of:
 
@@ -184,7 +257,9 @@ You should be able to answer without prompts:
 4. Why can one Issue appear on several views without duplication?
 5. When would you use a label instead of a Project field?
 6. Why can an open Issue legitimately have Project Status `Blocked` or `Review`?
-7. Why should we not create dozens of fields on day one?
+7. Why is `Review` broader and more reusable than `Testing` for this Project?
+8. What is the difference between `AGENT_DISPATCH_TOKEN` and `PROJECT_MANAGEMENT_TOKEN`?
+9. Why should we not create dozens of fields on day one?
 
 ## Official references
 
@@ -195,4 +270,4 @@ You should be able to answer without prompts:
 - GitHub Docs — Using the API to manage Projects
 - GitHub Docs — Automating Projects using Actions
 
-Last verified: **27 August 2026**.
+Last verified: **28 August 2026**.

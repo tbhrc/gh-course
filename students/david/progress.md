@@ -4,7 +4,7 @@
 
 **Course stage:** Stage 2 — Crash Course / live operation  
 **Current learning focus:** **Module 04 — GitHub Projects**  
-**Next hands-on objective:** create and operate the real **GitHub Course — Execution & Mastery** Project using existing Issues/PRs.  
+**Next hands-on objective:** personally operate **GitHub Course — Execution & Mastery** through backlog triage, Project fields/views and a full Review → Done decision without the coach performing the key Project mutations.  
 **Baseline:** `baseline-2026-08-27.md` — immutable historical starting point.
 
 ## Current Assessment Summary
@@ -37,7 +37,9 @@ Agents        → bounded downstream execution
 
 His strongest demonstrated progress is in **architectural judgement, source-of-truth thinking, failure-layer diagnosis and AI-first GitHub operating design**.
 
-He still requires personal hands-on evidence for several operator tasks, especially Projects, full PR operation, deeper Actions authoring, security/rulesets and final GitHub × FolderDesk boundary decisions.
+He now also has assisted live Projects evidence: he used the real Kanban as an operational control surface, distinguished Issue state from Project Status, directed a controlled Ready → Backlog → agent-assignment test, and evaluated Review vs Testing as the acceptance-stage design. Unaided Project operation is still required before mastery credit.
+
+He still requires personal hands-on evidence for several operator tasks, especially full unaided Projects operation, full PR operation, deeper Actions authoring, security/rulesets and final GitHub × FolderDesk boundary decisions.
 
 ## Baseline vs Current Direction
 
@@ -46,8 +48,8 @@ He still requires personal hands-on evidence for several operator tasks, especia
 | Git fundamentals | Intermediate | Stable working foundation |
 | Issues | Beginner | Strong conceptual/governance understanding; full unaided lifecycle still to prove |
 | Pull Requests | Beginner/misconception | Understands PR as proposal/review gate; hands-on operator mastery still pending |
-| Projects | New | Concept/material introduced; real live Project operation now current exercise |
-| Actions | New | Strong conceptual/live diagnostic exposure; deeper authoring mastery pending |
+| Projects | New | Strong conceptual model + assisted live Project control/automation evidence; unaided operation still pending |
+| Actions | New | Strong conceptual/live diagnostic exposure; deterministic Project lifecycle observed; deeper authoring mastery pending |
 | Wiki | New | Hands-on use + major documentation-platform insight demonstrated |
 | Pages | New | Independently enabled and user-journey failure diagnosed |
 | Releases/SemVer | Beginner | SemVer concept materially improved; full unaided release workflow still pending |
@@ -193,6 +195,16 @@ stored secret: AGENT_DISPATCH_TOKEN
 runtime variable: COPILOT_GITHUB_TOKEN
 ```
 
+The Project-control exercise added a second important boundary:
+
+```text
+AGENT_DISPATCH_TOKEN
+= coding-agent assignment
+
+PROJECT_MANAGEMENT_TOKEN
+= user-owned Project read/write
+```
+
 ### 10. Copilot execution-mode distinction
 
 David challenged the conclusion that a blocked Copilot cloud-agent assignment meant Copilot Free could not demonstrate real AI automation.
@@ -256,7 +268,7 @@ performed through an App
 AI coding agent executed
 ```
 
-### 13. Projects — current learning thread
+### 13. Projects — live assisted operation
 
 David noticed that substantial real work had accumulated without a GitHub Project and selected Projects as the next hands-on learning area.
 
@@ -269,31 +281,50 @@ Field      = structured planning metadata
 View       = saved lens over the same items
 ```
 
-Module 04 and the live example are substantive.
-
-Designed live Project:
+The live Project is:
 
 **GitHub Course — Execution & Mastery**
 
-Starting fields:
+Current Status field:
 
-- Status;
-- Workstream;
-- Priority;
-- Type;
-- Target date only when real.
+```text
+Backlog / Ready / In progress / Blocked / Review / Done
+```
 
-Starting views:
+David now understands the terminology distinction:
 
-- Operating Board;
-- Master Table;
-- AI Benchmarks;
-- David Learning;
-- Roadmap only when useful dates exist.
+```text
+Issue state = Open / Closed
+Project Status = Kanban workflow field
+```
 
-**Evidence level:** concept introduced and course material implemented. David still needs to create/use the real Project personally before mastery is credited.
+He directed a clean control test using Issue #107. The assisted live sequence proved:
 
-Detailed evidence: `assessments/learning-note-2026-08-27-projects.md`.
+```text
+Issue absent from Project
+→ added
+→ unset → Ready
+→ ChatGPT-controlled Ready → Backlog
+→ Copilot assigned
+→ deterministic lifecycle Backlog → In progress
+→ Copilot created PR #108
+```
+
+He also challenged whether the acceptance gate should be called `Testing` or `Review`. The professional decision is `Review`: testing/checks are part of Review, but the Project also contains documentation, governance, research and learning work.
+
+A live schema reconciliation changed:
+
+```text
+... / Testing / Done
+→
+... / Review / Done
+```
+
+while preserving the existing single-select option IDs.
+
+**Evidence level:** strong conceptual understanding + assisted live operation + strong architecture judgement. Unaided Project operation remains required before mastery is credited.
+
+Detailed evidence: `assessments/learning-note-2026-08-28-project-control-plane.md`.
 
 ### 14. Documentation/source-of-truth architecture
 
@@ -347,10 +378,11 @@ Detailed evidence: `assessments/learning-note-2026-08-27-documentation-integrity
 - Diagnoses failures by layer rather than treating systems as a black box.
 - Notices naming/interface drift such as secret-name mappings.
 - Pushes the course from passive explanation into real implementation.
+- Uses the live Project board to challenge whether automation and lifecycle state match the intended operating model.
 
 ## Current Priority Gaps
 
-1. **Projects hands-on:** create and operate the real course Project; fields, views, status movement and backlog triage.
+1. **Projects unaided operation:** personally triage the live backlog, edit Project fields/views, move work deliberately and complete a Review → Done decision without the coach performing the key Project mutations.
 2. **Pull Requests hands-on:** personally operate a complete PR review/merge gate and explain head/base/diff/check/close semantics.
 3. **Issue workflow mastery:** personally run a full Issue → branch → commit → PR → merge → closure cycle without coach execution doing the key steps.
 4. **Actions authoring:** read and create a bounded workflow, justify permissions and diagnose a run unaided.
@@ -362,19 +394,20 @@ Detailed evidence: `assessments/learning-note-2026-08-27-documentation-integrity
 
 ## Current Next Step — Projects
 
-Use Module 04 and `04-projects/live-example-github-course-execution-mastery.md` to create the first real Project.
+Use Module 04 and `04-projects/live-example-github-course-execution-mastery.md` to operate the real Project personally.
 
-The exercise should prove David can explain and operate:
+The next exercise should prove David can independently:
 
 ```text
-Issue vs Project item
-field vs view
-Issue state vs Project Status
-label vs Project field
-Table vs Board vs Roadmap
+triage Backlog vs Ready
+identify Blocked work
+use Board and Table views
+explain Issue state vs Project Status
+explain Review as the acceptance gate
+move/validate a real item through Review → Done
 ```
 
-Do not mark Projects mastered until the live Project has been used for real backlog decisions.
+Do not mark Projects mastered until the live Project has been operated unaided for real backlog decisions.
 
 ## Evidence Index
 
@@ -389,6 +422,7 @@ Key detailed learning notes include:
 - `assessments/learning-note-2026-08-27-deterministic-vs-agentic.md`
 - `assessments/learning-note-2026-08-27-copilot-free-actions.md`
 - `assessments/learning-note-2026-08-27-projects.md`
+- `assessments/learning-note-2026-08-28-project-control-plane.md`
 - `assessments/learning-note-2026-08-27-agent-benchmarks.md`
 - `assessments/learning-note-2026-08-27-documentation-integrity.md`
 

@@ -8,7 +8,7 @@ The `github-power-user` Skill helps an AI coach or operator answer:
 
 > **Which native GitHub capability should own this workflow before we build custom infrastructure?**
 
-Current course Skill version: **1.7.0**
+Current course Skill version: **1.8.0**
 
 [Open the canonical course Skill →](https://github.com/tbhrc/github-course/blob/main/skills/github-power-user/SKILL.md)
 
@@ -28,6 +28,7 @@ Current course Skill version: **1.7.0**
 | Proposed repository change | Pull Request |
 | Event/scheduled automation | Actions |
 | Deterministic AI-worker hand-off | Actions/API dispatcher where needed |
+| Deterministic Project lifecycle/control | Projects API + Actions where needed |
 | Repository policy | Rulesets / branch protection |
 | Ownership-based review | CODEOWNERS |
 | Versioned delivery | Tags + Releases |
@@ -124,6 +125,18 @@ View       = saved lens
 
 Use Project fields for portfolio metadata such as Status/Priority/Workstream. Use labels for repository-native classification that should travel with the Issue.
 
+For a mixed-work Project, use **Review** as the broad acceptance gate; testing/checks can happen inside Review, alongside documentation, factual, security and human acceptance.
+
+The GitHub Course Project uses:
+
+```text
+Backlog / Ready / In progress / Blocked / Review / Done
+```
+
+The course has also proven a bounded ChatGPT Web → GitHub Actions/API → Project Status control route, with Project mutation authority kept separate from coding-agent dispatch authority.
+
+[Open the verified Projects operating model →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/github-projects-operating-model.md)
+
 [Open the Projects module →](https://github.com/tbhrc/github-course/tree/main/04-projects)
 
 ---
@@ -202,7 +215,7 @@ control surface
 → branch / PR / output
 ```
 
-A workflow can publish, validate or dispatch without invoking a model.
+A workflow can publish, validate, mutate Project fields or dispatch without invoking a model.
 
 Never infer AI execution merely because an Action ran.
 
@@ -245,7 +258,9 @@ Therefore:
 - use modules for teaching;
 - use exercises for mastery evidence.
 
-Version 1.7.0 also adds an explicit anti-staleness rule: temporary agent failures/plan boundaries remain historical lessons, while current executor status resolves to the canonical benchmark.
+Version **1.8.0** adds the reusable Projects control model: Issue state vs Project Status, Review as the mixed-work acceptance gate, deterministic lifecycle automation, bounded conversational Project control, credential separation and safe single-select option renaming.
+
+The earlier 1.7.0 anti-staleness rule remains: temporary agent failures/plan boundaries are historical lessons, while current executor status resolves to the canonical benchmark.
 
 [Open Knowledge Base →](Knowledge-Base)
 

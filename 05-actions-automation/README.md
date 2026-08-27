@@ -40,6 +40,7 @@ Useful categories include:
 - scheduled audits;
 - Issue/PR triage;
 - deterministic dispatch to coding agents;
+- deterministic Project lifecycle synchronisation;
 - bounded AI inference;
 - deployment orchestration.
 
@@ -83,6 +84,7 @@ Course examples include:
 - release publishing;
 - Copilot CLI inference from an Issue;
 - Codex/Claude/Copilot deterministic dispatch workflows;
+- Project Status control and lifecycle synchronisation;
 - Gemini CLI/API benchmark workflow.
 
 ## Jobs, Steps and Runners
@@ -161,17 +163,19 @@ secret value
 
 Do not invent a password and assume it becomes an API credential.
 
-### Course example
+### Course credentials
 
-The repository uses:
+The repository deliberately separates two user-authorised credentials:
 
 ```text
 AGENT_DISPATCH_TOKEN
+= coding-agent assignment / dispatch credential
+
+PROJECT_MANAGEMENT_TOKEN
+= user-owned GitHub Project read/write credential
 ```
 
-for a real user-authorised GitHub credential used by selected dispatch workflows.
-
-A workflow can map the stored secret to a runtime variable expected by another tool:
+A workflow can map a stored secret to a runtime variable expected by another tool. For example:
 
 ```yaml
 env:
@@ -184,6 +188,14 @@ Therefore:
 stored secret name
 ≠
 runtime environment-variable name
+```
+
+and:
+
+```text
+agent-dispatch authority
+≠
+Project-mutation authority
 ```
 
 Never print secrets. Treat logs, PRs and Issue bodies as public/untrusted surfaces unless the repository is deliberately private and access-controlled.
@@ -282,6 +294,32 @@ Issue
 
 The course built deterministic dispatchers that separately tested GitHub Copilot cloud agent, OpenAI Codex and Anthropic Claude. Later operational runs produced agent sessions/branches/PRs for those supported routes.
 
+### Project Status control — Issue #107
+
+Issue #107 proved the Project and agent layers separately:
+
+```text
+ChatGPT Web request
+→ Project dispatcher
+→ PROJECT_MANAGEMENT_TOKEN
+→ Issue #107: unset → Ready
+→ Issue #107: Ready → Backlog
+```
+
+Then:
+
+```text
+ChatGPT Web request
+→ Copilot dispatcher
+→ AGENT_DISPATCH_TOKEN
+→ Copilot assigned
+→ deterministic Project lifecycle Action
+→ Issue #107: Backlog → In progress
+→ Copilot creates PR #108
+```
+
+The deterministic status transition is not proof that Copilot performed the status mutation. It is proof that the lifecycle Action reacted to the assignment event.
+
 ### Gemini API/CLI
 
 The Gemini workflow passed credential authentication and reached Gemini inference. The current boundary is free-tier quota, not missing configuration.
@@ -298,28 +336,63 @@ ChatGPT Web / human
 → worker produces governed output
 ```
 
-This lets the human keep a simple front door while preserving a durable GitHub execution trail.
+A second pattern controls non-agentic GitHub state:
+
+```text
+ChatGPT Web / human
+→ bounded dispatch request
+→ deterministic Action/API call
+→ Project field mutation
+```
 
 Do not add an Action if native direct assignment already solves the problem cleanly. Automation should remove repeated friction, not create orchestration for its own sake.
 
-## Agent-ready Project command
+## Agent-ready Project lifecycle
 
-The live course Project uses GitHub's native agent-assignment model:
+The live course Project uses the following Status field:
 
 ```text
-Issue created in Backlog
-+ agent selected through GitHub's Assign agent control
-→ native agent session
-→ Project Status = In progress
-→ linked PR = Review
-→ closed Issue = Done
+Backlog / Ready / In progress / Blocked / Review / Done
 ```
+
+`Review` is the general acceptance gate. It includes testing/checks where relevant, but also documentation validation, security review and human acceptance. `Testing` is therefore too narrow as the universal column name for this mixed-work Project.
+
+The lifecycle is:
+
+```text
+Issue in Backlog / Ready
++ supported coding agent assigned
+→ Project Status = In progress
+
+linked non-draft PR
+→ Project Status = Review
+
+Issue closed
+→ Project Status = Done
+
+Issue reopened
+→ Project Status = Ready
+```
+
+`Blocked` remains a deliberate planning state unless a deterministic blocker signal is available.
 
 The selected agent belongs in the Issue **Assignee** field, not inside a label. `agent-ready` remains an optional planning label that records human intent, but it does not choose or launch an agent.
 
-Do not treat a card drag as an execution command. The course Project is user-owned, and GitHub Actions does not receive a direct Project-item status-change trigger for this surface. Native assignment is the execution command; the workflow only synchronises the Project lifecycle after that action.
+Do not treat a card drag as an execution command. Native assignment or the bounded agent dispatcher is the execution command; the Project workflow synchronises mechanical lifecycle state after GitHub events.
 
-The dispatcher requires `AGENT_DISPATCH_TOKEN` to have both the existing supported coding-agent assignment permission and the classic `project` scope. A missing/insufficient token is a visible setup boundary, not proof that an agent ran.
+### Credential boundary
+
+The course uses two credentials rather than one overpowered token:
+
+```text
+AGENT_DISPATCH_TOKEN
+→ agent assignment
+
+PROJECT_MANAGEMENT_TOKEN
+→ Project GraphQL reads/mutations
+```
+
+A missing/insufficient credential is a visible setup boundary, not proof that the agent or Project mutation ran.
 
 ## Safe Workflow Design
 
@@ -393,7 +466,8 @@ A learner should be able to explain:
 5. deterministic automation vs agentic AI;
 6. why a green workflow does not prove the intended downstream outcome;
 7. how to find the first failing layer;
-8. when Actions is useful and when it is unnecessary orchestration.
+8. why agent dispatch and Project mutation use separate credentials in this course;
+9. when Actions is useful and when it is unnecessary orchestration.
 
 ## Evidence Required for Mastery
 
@@ -407,6 +481,7 @@ At least one learner-operated workflow where the learner can:
 
 ## References
 
+- `knowledge-base/github-projects-operating-model.md`
 - `knowledge-base/deterministic-actions-vs-agentic-ai.md`
 - `knowledge-base/copilot-free-ai-in-actions.md`
 - `knowledge-base/pages-entry-file-readme-trap.md`

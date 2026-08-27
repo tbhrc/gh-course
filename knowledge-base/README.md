@@ -56,6 +56,7 @@ use it in lesson / exercise / coaching
 ## Current Index
 
 - [`source-policy.md`](source-policy.md) — evidence, freshness and verification rules.
+- [`github-projects-operating-model.md`](github-projects-operating-model.md) — Projects as the planning/control layer, Issue-state vs Project-Status distinction, Review-gate design, Project credential boundary and the proven ChatGPT Web Project-control lifecycle.
 - [`wiki-vs-repository-markdown.md`](wiki-vs-repository-markdown.md) — when to use GitHub Wiki versus governed repository Markdown.
 - [`wiki-as-documentation-platform.md`](wiki-as-documentation-platform.md) — Wiki as a Git-backed documentation website/CMS, agentic use cases, and the boundary with GitHub Pages.
 - [`wiki-publishing-architecture.md`](wiki-publishing-architecture.md) — governed `wiki/` source in the main repository published to the separate Wiki Git repository with GitHub Actions.
