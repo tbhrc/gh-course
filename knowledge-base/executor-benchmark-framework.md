@@ -28,6 +28,7 @@ Use a bounded GitHub task with materially equivalent requirements:
 Executor evidence files:
 
 - ChatGPT Web: `integration-tests/chatgpt-web.md`
+- ChatGPT Work Mode — GPT-5.6 Terra (light surface): `integration-tests/chatgpt-work-mode-terra-5-6-light.md`
 - GitHub Copilot: `integration-tests/github-copilot.md`
 - OpenAI Codex: `integration-tests/codex.md`
 - Claude: `integration-tests/claude.md`
@@ -158,6 +159,7 @@ This lets the benchmark answer two different questions:
 | Executor | Setup friction before operational run |
 |---|---|
 | ChatGPT Web | Connected GitHub integration already operational. |
+| ChatGPT Work Mode — GPT-5.6 Terra light surface | Connected GitHub integration already operational; no extra setup observed for this run. |
 | GitHub Copilot | Free-plan native cloud assignment returned 403; Copilot Pro upgrade unlocked assignment. |
 | OpenAI Codex | Paid Copilot was not enough until **Allow Codex coding agent** Partner Agent policy was enabled. |
 | Anthropic Claude | Partner policy was enabled, but first dispatcher used stale/older `claude[bot]` identity and returned 403; current Partner Agent identity `anthropic-code-agent[bot]` succeeded. |
@@ -168,15 +170,16 @@ This lets the benchmark answer two different questions:
 
 ### Durable timing evidence
 
-| Executor | T0 | PR | First substantive output | Review-ready | End-to-end |
-|---|---|---|---|---|---:|
-| ChatGPT Web | Issue #53 created `14:24:06Z` | PR #54 `14:25:39Z` | commit `9453cb6` `14:25:23Z` | corrected final commit `5330f63` `14:26:38Z` | **2m32s / 152s** |
-| Anthropic Claude | dispatch run `33083260139` `14:37:24Z` | PR #58 `14:37:37Z` | commit `79fdb89` notification `14:39:41Z` | review request `14:40:39Z` | **3m15s / 195s** |
-| OpenAI Codex | dispatch run `33081457803` `14:17:57Z` | PR #52 `14:18:08Z` | commit `b19574f` notification `14:20:43Z` | review request `14:21:19Z` | **3m22s / 202s** |
-| GitHub Copilot | dispatch run `33080345287` `14:05:45Z` | PR #51 `14:05:56Z` | commit `934590d` notification `14:08:32Z` | review request `14:09:30Z` | **3m45s / 225s** |
-| Google Jules | `jules` label on #63 `16:40:39Z` | PR #66 `16:45:46Z` | commit `8d712e3` `16:45:41Z` | open non-draft PR #66 `16:45:46Z` | **5m07s / 307s** |
-| Gemini CLI/API | run `33092569081` reached authenticated inference path | — | — | — | pending quota/billing |
-| Local coding agent | — | — | — | — | pending |
+| Executor | Model / surface | Execution mode | T0 | PR | First substantive output | Review-ready | End-to-end |
+|---|---|---|---|---|---|---|---:|
+| ChatGPT Work Mode | GPT-5.6 Terra / light Work Mode | direct connected GitHub operations | Issue #74 `17:10:21Z` | PR #75 `17:11:48Z` | commit `81f0c0c` `17:11:31Z` | PR #75 `17:11:48Z` | **1m27s / 87s** |
+| ChatGPT Web | not independently recorded in earlier run | direct connected GitHub operations | Issue #53 created `14:24:06Z` | PR #54 `14:25:39Z` | commit `9453cb6` `14:25:23Z` | corrected final commit `5330f63` `14:26:38Z` | **2m32s / 152s** |
+| Anthropic Claude | not independently recorded in earlier run | GitHub Partner Agent via Copilot | dispatch run `33083260139` `14:37:24Z` | PR #58 `14:37:37Z` | commit `79fdb89` notification `14:39:41Z` | review request `14:40:39Z` | **3m15s / 195s** |
+| OpenAI Codex | not independently recorded in earlier run | GitHub Partner Agent via Copilot | dispatch run `33081457803` `14:17:57Z` | PR #52 `14:18:08Z` | commit `b19574f` notification `14:20:43Z` | review request `14:21:19Z` | **3m22s / 202s** |
+| GitHub Copilot | not independently recorded in earlier run | native GitHub cloud coding agent | dispatch run `33080345287` `14:05:45Z` | PR #51 `14:05:56Z` | commit `934590d` notification `14:08:32Z` | review request `14:09:30Z` | **3m45s / 225s** |
+| Google Jules | not independently recorded in earlier run | Jules GitHub App cloud agent | `jules` label on #63 `16:40:39Z` | PR #66 `16:45:46Z` | commit `8d712e3` `16:45:41Z` | open non-draft PR #66 `16:45:46Z` | **5m07s / 307s** |
+| Gemini CLI/API | gemini-3.5-flash observed | Gemini CLI in GitHub Actions | run `33092569081` reached authenticated inference path | — | — | — | pending quota/billing |
+| Local coding agent | — | local runtime | — | — | — | — | pending |
 
 ### Jules clean-run timing details
 
@@ -187,15 +190,16 @@ This lets the benchmark answer two different questions:
 
 ## Initial scored leaderboard
 
-Speed uses the fastest current operational result, ChatGPT Web at 152 seconds.
+Speed uses the fastest current operational result, ChatGPT Work Mode — GPT-5.6 Terra light surface at 87 seconds.
 
 | Executor | Speed /30 | Fidelity /20 | Quality /15 | Reliability /10 | Autonomy /10 | Governance /5 | Provenance /5 | Efficiency /5 | Total /100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **ChatGPT Web** | 30.0 | 20 | 14 | 8 | 10 | 5 | 4 | 4 | **95.0** |
-| **OpenAI Codex** | 22.6 | 20 | 15 | 10 | 10 | 5 | 5 | 3 | **90.6** |
-| **Anthropic Claude** | 23.4 | 20 | 13 | 10 | 10 | 5 | 5 | 3 | **89.4** |
-| **GitHub Copilot** | 20.3 | 20 | 14 | 10 | 10 | 5 | 5 | 3 | **87.3** |
-| **Google Jules** | 14.9 | 20 | 12 | 10 | 10 | 3 | 4 | 4 | **77.9** |
+| **ChatGPT Work Mode — GPT-5.6 Terra light** | 30.0 | 20 | 14 | 10 | 10 | 5 | 4 | 4 | **97.0** |
+| **ChatGPT Web** | 17.2 | 20 | 14 | 8 | 10 | 5 | 4 | 4 | **82.2** |
+| **OpenAI Codex** | 12.9 | 20 | 15 | 10 | 10 | 5 | 5 | 3 | **80.9** |
+| **Anthropic Claude** | 13.4 | 20 | 13 | 10 | 10 | 5 | 5 | 3 | **79.4** |
+| **GitHub Copilot** | 11.6 | 20 | 14 | 10 | 10 | 5 | 5 | 3 | **78.6** |
+| **Google Jules** | 8.5 | 20 | 12 | 10 | 10 | 3 | 4 | 4 | **71.5** |
 | Gemini CLI/API | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 | Local coding agent | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 
@@ -218,7 +222,7 @@ The PR remained open and unmerged, so there was no main-branch risk. The body wa
 
 ## Interpretation of the first result
 
-For this small one-file GitHub evidence task, ChatGPT Web remains the fastest overall executor despite one recoverable self-review error and one evidence correction.
+For this small one-file GitHub evidence task, the measured **ChatGPT Work Mode — GPT-5.6 Terra light surface** is currently fastest at 87 seconds. Its connected GitHub path is direct and has partial model-level provenance: GitHub verifies the authenticated actor and objects, but not the model identity.
 
 The cloud agents showed useful autonomous behaviour and stronger distinct-agent provenance, but their session provisioning/planning overhead made them slower for this task class. Among the measured cloud coding agents, Claude is currently fastest by end-to-end time; Codex scores highest overall among cloud agents because its first evidence snapshot was more accurate; Jules is currently the slowest measured cloud agent for this bounded task and lost additional points for first-snapshot factual/provenance errors and the unsafe closing keyword.
 
