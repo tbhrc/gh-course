@@ -67,6 +67,7 @@ use it in lesson / exercise / coaching
 - [`copilot-free-ai-in-actions.md`](copilot-free-ai-in-actions.md) — operational proof that Copilot Free can perform genuine AI inference inside GitHub Actions via Copilot CLI while the paid cloud-agent Issue assignee remains unavailable.
 - [`copilot-pro-agent-benchmark-runbook.md`](copilot-pro-agent-benchmark-runbook.md) — post-upgrade cutover runbook for testing GitHub Copilot cloud agent first and OpenAI Codex second, with fresh dispatch branches, evidence gates and first-run PR stop conditions.
 - [`web-first-local-by-exception-executor-policy.md`](web-first-local-by-exception-executor-policy.md) — executor-routing policy that keeps ChatGPT Web as the default executor and permits local-agent delegation only for explicit capability or demonstrated efficiency reasons.
+- [`executor-benchmark-framework.md`](executor-benchmark-framework.md) — repeatable T0–T4 timing model, 100-point scoring matrix and cross-agent leaderboard for Web, Copilot, Codex, Claude, Gemini and local executors.
 - [`gap-register.md`](gap-register.md) — known knowledge gaps and verification status.
 
 ## Knowledge Note Standard
