@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Ensure every substantive repository change has durable context, isolated implementation, review evidence and traceable closure.
+Ensure every substantive repository change has durable context, isolated implementation, review evidence, reader-surface integrity and traceable closure.
 
 ## Governing Rule
 
@@ -16,7 +16,9 @@ Issue
 → commits
 → Pull Request
 → review/checks
+→ documentation-integrity check
 → merge
+→ publication/deployment verification where relevant
 → Issue closes
 ```
 
@@ -54,10 +56,12 @@ The PR must:
 
 - summarise the implementation;
 - link the governing Issue;
-- include `Closes #<issue>` when merge will fully satisfy the Issue;
+- include `Closes #<issue>` only when merge will fully satisfy the Issue;
 - identify any remaining risks or incomplete work.
 
-### 5. Verify
+Closing keywords are workflow commands. Use `Refs #<issue>` when the Issue must remain open after merge.
+
+### 5. Verify implementation
 
 Before merge confirm:
 
@@ -65,19 +69,58 @@ Before merge confirm:
 - changed files are expected;
 - diff is understood;
 - checks have passed where checks exist;
-- no credentials or sensitive information were introduced.
+- no credentials or sensitive information were introduced;
+- agent/human provenance is understood where relevant.
 
-### 6. Merge
+### 6. Run the documentation-integrity gate
 
-Merge the approved PR into the target branch.
+If the change materially affects any of these:
 
-### 7. Verify closure
+- module/curriculum state;
+- student current progress;
+- benchmark/integration capability status;
+- knowledge authority;
+- Wiki/Pages navigation;
+- a major learning breakthrough;
+- a substantial new course surface;
+
+review the minimum affected downstream surfaces in the **same PR**.
+
+Use:
+
+[`course-documentation-integrity.md`](course-documentation-integrity.md)
+
+Typical checks:
+
+```text
+canonical module/knowledge/student state
+→ Wiki Home / Handbook / Manual / Modules / Student Dashboard as relevant
+→ public Pages routing if relevant
+```
+
+Do not update every page mechanically. Update only reader surfaces whose meaning changed.
+
+### 7. Merge
+
+Merge the approved PR into the target branch only after implementation and integrity checks are satisfied.
+
+### 8. Verify downstream publication
+
+When relevant:
+
+- `wiki/*.md` changed → verify **Publish Wiki** succeeded;
+- `index.html` / Pages source changed → verify **Pages build and deployment** succeeded;
+- `VERSION`/release flow changed → verify tag/Release alignment;
+- workflow changes → inspect the relevant Actions run/checks.
+
+### 9. Verify closure
 
 Confirm:
 
 - change is on the target branch;
 - PR is merged;
-- governing Issue is closed when complete;
+- governing Issue is closed only when acceptance criteria are actually complete;
+- reader-facing surfaces are current where affected;
 - Issue and PR provide enough history for another human or AI agent to understand why the change happened.
 
 ## KISSS Exception
@@ -90,6 +133,10 @@ If no relevant Issue exists and the change is substantive enough to matter later
 
 An AI agent entering this repository must inspect the governing Issue before implementation. Chat context alone is not sufficient durable authority for repository work.
 
+For substantial course changes it must also inspect whether the change affects canonical student/course state and downstream Wiki/Pages reader surfaces.
+
 ## First Live Example
 
-Issue #1 established this workflow and was used to develop Module 01, Module 02, this SOP and the first reusable Issue exercise.
+Issue #1 established the original workflow.
+
+Issue #71 later added the documentation-integrity gate after the public course exposed a mismatch between comprehensive backend evidence and stale/shallow reader-facing documentation.
