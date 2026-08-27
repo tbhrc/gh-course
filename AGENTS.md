@@ -2,24 +2,46 @@
 
 ## Purpose
 
-This repository is the live learning environment for the **GitHub Professional Operator — AI-First Founder Crash Course**.
+This repository is the live learning environment for the **GitHub Professional Operator — AI-First Founder Crash Course** and a reusable AI-agent coaching system.
 
-Agents working in this repository must treat the course itself as both curriculum and practice environment.
+David is Student #1 and the first public case study. The system must also remain reusable for future students.
+
+## AI Coach Startup Protocol
+
+Before coaching a student:
+
+1. Read this file.
+2. Identify the active student.
+3. Read `students/<student-id>/profile.md`.
+4. Read that student's latest baseline.
+5. Read `students/<student-id>/progress.md`.
+6. Read the current module.
+7. Continue from demonstrated knowledge; do not restart generic GitHub training.
+
+For David, begin with:
+
+- `students/david/profile.md`
+- `students/david/baseline-2026-08-27.md`
+- `students/david/progress.md`
 
 ## Operating Rules
 
-1. Preserve the existing course structure unless a clear improvement is required.
-2. Prefer the smallest safe change.
-3. Keep lessons concise, practical and operator-focused.
-4. Do not turn the course into generic developer training.
-5. Prioritise GitHub platform operation, AI-agent workflows, governance, traceability and automation.
-6. Use this repository for hands-on learning whenever practical.
-7. Each substantive change should have clear context and a meaningful commit message.
-8. Do not commit credentials, API keys, secrets or sensitive company information.
-9. Prefer branches and Pull Requests for meaningful course changes once the Pull Request module begins.
-10. Preserve useful history; do not rewrite or destroy prior learning material without explicit reason.
+1. Preserve useful course and student history.
+2. Baselines are immutable historical evidence. Never rewrite them to reflect later improvement.
+3. Progress records may be updated as new evidence is produced.
+4. Distinguish student answers, assessment evidence and coach judgement.
+5. Record only what the student actually demonstrated; exposure does not equal mastery.
+6. Prefer the smallest safe change.
+7. Keep lessons concise, practical and operator-focused.
+8. Do not turn the course into generic developer training.
+9. Prioritise GitHub platform operation, AI-agent workflows, governance, traceability and automation.
+10. Use this repository itself for hands-on learning whenever practical.
+11. Each substantive change should have clear context and a meaningful commit message.
+12. Do not commit credentials, API keys, secrets or sensitive company information.
+13. Prefer branches and Pull Requests for meaningful course changes once the Pull Request module begins.
+14. Do not build duplicate infrastructure before checking whether GitHub already provides the capability.
 
-## Course Architecture
+## Repository Architecture
 
 ```text
 00-start-here/
@@ -33,27 +55,49 @@ Agents working in this repository must treat the course itself as both curriculu
 08-security-governance/
 09-ai-agents-github/
 10-github-folderdesk-architecture/
+
+students/
+question-bank/
+templates/
+docs/
 exercises/
 certification/
 resources/
+skills/
+sops/
 ```
+
+## Student Model
+
+Each learner should have:
+
+```text
+students/<student-id>/
+├── profile.md
+├── baseline-YYYY-MM-DD.md
+├── progress.md
+└── assessments/
+```
+
+Student answers belong under their own `assessments/` folder. Reusable questions and answer guides belong under `question-bank/`.
 
 ## Lesson Standard
 
-Each module should progressively include:
+Each substantial module should progressively include:
 
-- `README.md` — module overview and lesson content
-- practical exercises where useful
-- operator checkpoints or tests
-- real examples tied to Talent Bridge, iMPLEMENTAi or FolderDesk where appropriate
+1. concept;
+2. why it matters to an operator;
+3. practical example;
+4. hands-on GitHub task;
+5. checkpoint/test;
+6. evidence required for mastery;
+7. relevant official GitHub references.
 
-## Learning Philosophy
+## Course Philosophy
 
-The learner already has an intermediate conceptual understanding of Git basics but limited operational experience with GitHub features such as Issues, Pull Requests, Projects, Actions, Releases, Wikis, governance and AI-agent workflows.
+Teach by doing. Avoid unnecessary theory. Introduce terminology when operationally relevant.
 
-Teach by doing.
-
-Avoid unnecessary theory. Introduce terminology when it becomes operationally relevant.
+The course should become shareable with founders and other AI-assisted operators. Personalisation belongs in student folders; reusable curriculum belongs in shared course folders.
 
 ## Governing Principle
 
@@ -61,4 +105,4 @@ Avoid unnecessary theory. Introduce terminology when it becomes operationally re
 
 ## End State
 
-The learner should be able to confidently design, operate, audit and improve a professional GitHub-based environment and understand what should live in GitHub, what should remain elsewhere, and how AI agents should interact with GitHub safely.
+A graduate should be able to confidently design, operate, audit and improve a professional GitHub-based environment; use GitHub safely with AI agents; and judge what belongs in GitHub, what belongs elsewhere, and what should integrate rather than be duplicated.
