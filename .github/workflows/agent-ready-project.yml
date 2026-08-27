@@ -1,16 +1,64 @@
-name: Synchronise native agent work with Project
+name: Synchronise Issue lifecycle with Project
 
 on:
   issues:
-    types: [assigned, closed, reopened]
+    types: [opened, assigned, closed, reopened]
   pull_request:
     types: [opened, reopened, ready_for_review]
+  push:
+    branches:
+      - 'issue-*'
 
 permissions:
   contents: read
   pull-requests: read
 
 jobs:
+  intake:
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add new Issue to Project Backlog
+        if: env.PROJECT_MANAGEMENT_TOKEN != ''
+        uses: ./.github/actions/set-course-project-status
+        with:
+          token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          target-status: Backlog
+          add-if-missing: "true"
+
+  web-direct-start:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve Issue number from issue-linked branch
+        id: linked
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$REF_NAME" =~ ^issue-([0-9]+)(-|$) ]]; then
+            echo "issue=${BASH_REMATCH[1]}" >> "$GITHUB_OUTPUT"
+          else
+            echo "issue=" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Mark Web-direct work In progress
+        if: env.PROJECT_MANAGEMENT_TOKEN != '' && steps.linked.outputs.issue != ''
+        uses: ./.github/actions/set-course-project-status
+        with:
+          token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
+          issue-number: ${{ steps.linked.outputs.issue }}
+          target-status: In progress
+          allowed-current-statuses: Backlog,Ready
+          add-if-missing: "true"
+
   agent-assigned:
     if: github.event_name == 'issues' && github.event.action == 'assigned' && (github.event.assignee.login == 'Copilot' || github.event.assignee.login == 'Codex' || github.event.assignee.login == 'Claude')
     runs-on: ubuntu-latest
@@ -26,6 +74,7 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           target-status: In progress
           allowed-current-statuses: Ready,Backlog
+          add-if-missing: "true"
 
   review:
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
@@ -51,8 +100,8 @@ jobs:
           token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           issue-number: ${{ steps.linked.outputs.issue }}
           target-status: Review
-          allowed-current-statuses: In progress,Ready
-          allow-missing: "true"
+          allowed-current-statuses: In progress,Ready,Backlog
+          add-if-missing: "true"
 
   done:
     if: github.event_name == 'issues' && github.event.action == 'closed'
@@ -68,7 +117,7 @@ jobs:
           token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           target-status: Done
-          allow-missing: "true"
+          add-if-missing: "true"
 
   reopened:
     if: github.event_name == 'issues' && github.event.action == 'reopened'
@@ -84,4 +133,4 @@ jobs:
           token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           target-status: Ready
-          allow-missing: "true"
+          add-if-missing: "true"
