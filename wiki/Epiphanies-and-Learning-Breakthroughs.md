@@ -163,6 +163,59 @@ inside GitHub Wiki rather than rebuilding equivalent infrastructure manually.
 
 ---
 
+## 6. Don't Merely Have a Wiki — Operate Through It
+
+### Trigger
+
+After recognising Wiki as a publishing surface, David rejected the idea of leaving it as a standalone demonstration.
+
+### Breakthrough
+
+The Wiki should become the **actual human interface of the course**:
+
+- Home dashboard;
+- course handbook;
+- practical manual;
+- course materials;
+- student progress;
+- epiphany history;
+- exercises;
+- SOP library;
+- glossary and reference;
+- links into canonical repository evidence.
+
+### Governance problem discovered
+
+Direct Wiki editing is convenient, but the main repository has stronger Issue/branch/PR governance.
+
+### Applied architecture
+
+```text
+canonical repo truth
+        ↓
+reader-facing wiki/*.md source
+        ↓
+Issue → branch → PR → merge
+        ↓
+GitHub Action
+        ↓
+.wiki.git
+        ↓
+live Wiki
+```
+
+This turns Wiki from an isolated feature into a governed publishing layer that agents can maintain as part of normal repository work.
+
+### Why this matters
+
+The principle generalises far beyond this course:
+
+> **Do not merely discover a powerful GitHub feature. Integrate it into the operating model so the feature replaces manual work.**
+
+[Verified publishing architecture →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
+
+---
+
 ## Teaching Rule
 
 Future learners should not always be given these conclusions first.
@@ -174,6 +227,7 @@ operate
 → notice
 → articulate
 → correct/refine
+→ apply architecturally
 → preserve evidence
 ```
 
