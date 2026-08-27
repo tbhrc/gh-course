@@ -3,7 +3,7 @@
 ## Current Status
 
 **Course stage:** Stage 2 — Crash Course  
-**Current module:** 01 — GitHub Mental Model, transitioning into 02 — Issues  
+**Current module:** 07 — GitHub Knowledge Architecture (hands-on Wiki lab active)  
 **Baseline:** `baseline-2026-08-27.md`
 
 ## Completed
@@ -24,6 +24,7 @@
 - Issue #1 became the first live implementation of the course workflow.
 - Semantic Versioning introduced and documented as a mandatory companion standard to professional Git/GitHub operation.
 - Authoritative GitHub knowledge-base architecture introduced under Issue #9.
+- First GitHub Wiki Home page created and edited hands-on under Issue #11.
 
 ## Demonstrated Strengths
 
@@ -34,10 +35,11 @@
 - Diff inspection.
 - AI-assisted development familiarity.
 - Strong preference for traceability, history and durable operating evidence.
-- **New evidence:** David independently recognised that repository work should not be changed ad hoc from chat; he corrected the coach and required an Issue-first workflow before further repo development.
-- **New versioning insight:** David identified that his agents were not consistently logging or applying version control and explicitly raised versioning as an operational gap that must be standardised.
-- **New SemVer progress:** David now understands that professional release versions use `MAJOR.MINOR.PATCH`, that the components communicate change significance rather than acting as decimal counters, and that Semantic Versioning should be taught alongside GitHub operation.
-- **New knowledge-architecture insight:** David explicitly rejected assumed GitHub knowledge as an operating basis and required a durable, reusable best-practices knowledge base that AI coaches can consult.
+- **Issue-first insight:** David independently recognised that repository work should not be changed ad hoc from chat; he corrected the coach and required an Issue-first workflow before further repo development.
+- **Versioning insight:** David identified that his agents were not consistently logging or applying version control and explicitly raised versioning as an operational gap that must be standardised.
+- **SemVer progress:** David now understands that professional release versions use `MAJOR.MINOR.PATCH`, that the components communicate change significance rather than acting as decimal counters, and that Semantic Versioning should be taught alongside GitHub operation.
+- **Knowledge-architecture insight:** David explicitly rejected assumed GitHub knowledge as an operating basis and required a durable, reusable best-practices knowledge base that AI coaches can consult.
+- **Wiki publishing insight:** While using GitHub Wiki hands-on, David independently recognised the interface as a Git-backed documentation website/CMS rather than merely a database-like knowledge store, and immediately generalised it to agent-built SOP libraries, handbooks and documentation portals.
 
 ## Current Priority Gaps
 
@@ -48,7 +50,7 @@
 5. Complete hands-on release/tag/version workflow.
 6. Security and governance.
 7. GitHub-native AI-agent workflows.
-8. Complete hands-on Wiki/knowledge-architecture exercise and explain the source-of-truth model unaided.
+8. Finish Module 07 Wiki navigation exercise and explain Wiki vs Pages vs canonical repository Markdown unaided.
 9. GitHub × FolderDesk boundary and integration architecture.
 
 ## Current Evidence — Issue #1
@@ -100,22 +102,40 @@ This is recorded as useful evidence rather than treated as failure: the model ha
 
 Detailed learning evidence: `assessments/learning-note-2026-08-27-semver.md`.
 
-David also correctly identified the broader operating problem: agents need explicit rules for both **change history** and **release versioning**, rather than relying on ad hoc chat execution.
-
 ## Current Evidence — Wiki and Knowledge Architecture
 
-David had not previously operated GitHub Wiki and initially described it as potentially turning repository folders/code into linked or machine-readable material and as a possible database-like memory layer.
+David's starting Wiki model was database/memory-oriented. Hands-on use materially changed that model.
 
-The useful instinct was the need for a durable knowledge source. The correction introduced is:
+Under Issue #11 David personally:
+
+- created the Wiki Home page;
+- received and recognised the separate `.wiki.git` clone URL;
+- inspected revision `505b272...`;
+- found the optional Edit message field;
+- used Preview;
+- added a working link;
+- observed image, sidebar and footer capability.
+
+He then independently articulated the key mental-model breakthrough:
 
 ```text
-GitHub Wiki = long-form linked documentation
-knowledge-base/ = canonical verified course knowledge
+Wiki
+= Git-backed documentation website / lightweight documentation CMS
+
+knowledge base
+= one possible use case built with that surface
 ```
 
-Wiki can be a reader-friendly handbook/navigation layer, but it is not automatically a database, semantic memory system or knowledge graph.
+He immediately identified a practical agentic application: instructing agents to build and maintain structured SOP libraries or handbooks in GitHub Wiki rather than building equivalent documentation infrastructure manually.
 
-David explicitly required the AI coach to avoid assumed GitHub knowledge and instead build a verified best-practices knowledge base that can be reused by any attached agent.
+Professional refinement introduced:
+
+```text
+Wiki  = documentation-focused publishing
+Pages = fuller static website publishing with HTML/CSS/JavaScript
+```
+
+This is strong conceptual progress and direct hands-on evidence, but final Module 07 mastery still requires an unaided explanation of Wiki vs Pages vs `knowledge-base/` and completion of multi-page Wiki navigation.
 
 Detailed learning evidence: `assessments/learning-note-2026-08-27-wiki.md`.
 
@@ -123,8 +143,8 @@ Detailed learning evidence: `assessments/learning-note-2026-08-27-wiki.md`.
 
 Do not mark a capability complete merely because David has read a lesson or watched the coach perform it. Mark it complete only when he can explain it accurately and/or perform the relevant operation in GitHub.
 
-Mistakes, misconceptions, corrections and partial recall are valuable learning evidence. Preserve them so later assessments can show the actual path from baseline to mastery.
+Mistakes, misconceptions, corrections, partial recall and spontaneous insight are valuable learning evidence. Preserve them so later assessments can show the actual path from baseline to mastery.
 
 ## Next Recommended Step
 
-David should complete `exercises/first-issue-workflow.md` on a small real improvement. He should also complete the Module 07 Wiki lab when we reach knowledge architecture. A later release exercise should require him to choose a SemVer bump, update the changelog, create a tag and publish a GitHub Release without being given the answer first.
+Complete the remaining Issue #11 Wiki exercise: create a second Wiki page, link both directions, inspect the new revisions, then explain Wiki vs Pages vs canonical repository Markdown unaided. After that, return to the first full Issue → branch → PR exercise.
