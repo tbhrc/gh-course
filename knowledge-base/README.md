@@ -65,6 +65,7 @@ use it in lesson / exercise / coaching
 - [`chatgpt-web-codex-dispatch.md`](chatgpt-web-codex-dispatch.md) — the deterministic ChatGPT Web → Issue trigger → native Codex assignment architecture, authentication boundary and one-time setup.
 - [`deterministic-actions-vs-agentic-ai.md`](deterministic-actions-vs-agentic-ai.md) — verified distinction between deterministic GitHub Actions, agent dispatch, downstream AI reasoning and delivery evidence, including the live Issue #24 failure ladder.
 - [`copilot-free-ai-in-actions.md`](copilot-free-ai-in-actions.md) — operational proof that Copilot Free can perform genuine AI inference inside GitHub Actions via Copilot CLI while the paid cloud-agent Issue assignee remains unavailable.
+- [`copilot-pro-agent-benchmark-runbook.md`](copilot-pro-agent-benchmark-runbook.md) — post-upgrade cutover runbook for testing GitHub Copilot cloud agent first and OpenAI Codex second, with fresh dispatch branches, evidence gates and first-run PR stop conditions.
 - [`web-first-local-by-exception-executor-policy.md`](web-first-local-by-exception-executor-policy.md) — executor-routing policy that keeps ChatGPT Web as the default executor and permits local-agent delegation only for explicit capability or demonstrated efficiency reasons.
 - [`gap-register.md`](gap-register.md) — known knowledge gaps and verification status.
 
