@@ -165,6 +165,14 @@ open Settings
 - https://help.openai.com/en/articles/11390924
 - https://openai.com/index/introducing-upgrades-to-codex/
 
+## Vercel Integration — Benchmark Finding
+
+**Benchmark:** `knowledge-base/vercel-integration-benchmark.md` (Issue #27, 2026-08-27)
+
+**Finding:** Vercel is account-authorised for `tbhrc/github-course` but no project has been imported into Vercel. Without a project import, Vercel creates no webhooks, no check runs, no deployment environments and no PR comments.
+
+**Architecture decision:** Keep GitHub Pages as the sole deployment surface for this course repository. Vercel's preview-deployment model adds no clear value for a static documentation/governance site. Revisit only if server-side functions or a separate marketing site are required.
+
 ## Operator Rule
 
 > **Treat GitHub integrations as governed capabilities, not badges in Settings: authorise deliberately, test the exact operation, and record what is actually proven.**
