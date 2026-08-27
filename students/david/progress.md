@@ -59,12 +59,12 @@ He still requires personal hands-on evidence for several operator tasks, especia
 
 ### 1. Git and GitHub mental model
 
-David’s baseline model was useful but incomplete. Corrections now learned include:
+Corrections materially learned include:
 
 - Git is the version-control system, not “the local repository” itself;
 - commit records history; push sends commits to a remote;
 - a Pull Request is not `git pull`;
-- `.gitignore` is not a security remediation mechanism;
+- `.gitignore` is not a security-remediation mechanism;
 - one commit should represent one logical change, not necessarily one whole feature.
 
 ### 2. Issue-first governance
@@ -99,7 +99,7 @@ Detailed evidence: `assessments/learning-note-2026-08-27-semver.md`.
 
 ### 4. Knowledge authority and freshness
 
-David explicitly rejected relying on model memory as the course’s knowledge authority and required a reusable verified knowledge layer.
+David explicitly rejected relying on model memory as the course's knowledge authority and required a reusable verified knowledge layer.
 
 Resulting hierarchy:
 
@@ -110,8 +110,6 @@ current official/live evidence
 → modules
 → model memory / old chat
 ```
-
-This became a major course architecture principle.
 
 ### 5. GitHub Wiki breakthrough
 
@@ -129,7 +127,7 @@ Detailed evidence: `assessments/learning-note-2026-08-27-wiki.md`.
 
 David independently found and enabled GitHub Pages.
 
-He then used the public site as a real user and identified a deeper failure:
+He then used the public site as a real user and identified:
 
 ```text
 deployment succeeded
@@ -145,14 +143,7 @@ Detailed evidence: `assessments/learning-note-2026-08-27-pages-portal-fix.md`.
 
 ### 7. Integrations as an AI control plane
 
-David recognised repository Integrations as a major GitHub capability layer connecting:
-
-- GitHub Copilot;
-- Codex;
-- Claude;
-- Gemini/Jules routes;
-- deployment/services;
-- repository governance and automation.
+David recognised repository Integrations as a major GitHub capability layer connecting AI agents, deployment/services, repository governance and automation.
 
 Professional correction:
 
@@ -214,32 +205,40 @@ Reusable lesson:
 
 Detailed evidence: `assessments/learning-note-2026-08-27-copilot-free-actions.md`.
 
-### 11. Cloud/partner-agent benchmark programme
+### 11. Multi-agent benchmark programme
 
-The course subsequently moved beyond the original 403 setup boundaries.
+The course progressed from setup/authentication boundaries into genuine downstream executor evidence across multiple architectures.
 
-Current bounded executor benchmark evidence records:
+David materially improved his understanding of:
 
-| Executor | End-to-end | Score | Proven outcome |
-| --- | ---: | ---: | --- |
-| ChatGPT Web | 152s | **95.0** | governed GitHub-native execution |
-| OpenAI Codex | 202s | **90.6** | Partner Agent branch/commit/PR |
-| Anthropic Claude | 195s | **89.4** | Partner Agent branch/commit/PR |
-| GitHub Copilot | 225s | **87.3** | cloud-agent branch/commit/PR |
-| Google Jules | 307s | **77.9** | Jules task/branch/commit/PR, with first-snapshot quality issues |
-| Gemini CLI/API | pending | pending | authenticated inference reached; HTTP 429 free-tier quota boundary |
+- direct connected Web execution;
+- GitHub-native cloud coding agents;
+- Partner Agents;
+- Jules GitHub App tasks;
+- provider API/CLI routes;
+- setup friction vs runtime performance;
+- first-snapshot output quality;
+- provenance and closure semantics.
 
-Canonical benchmark: `knowledge-base/executor-benchmark-framework.md`.
+**Current executor timings/scores are deliberately not copied into this learner record.**
 
-Important student-evidence rule: these runs are valuable architectural/diagnostic learning for David, but **agent execution does not automatically prove David can personally operate every underlying GitHub step unaided**.
+Canonical current benchmark:
 
-Detailed checkpoint: `assessments/learning-note-2026-08-27-agent-benchmarks.md`.
+`knowledge-base/executor-benchmark-framework.md`
+
+Dated learner checkpoint:
+
+`assessments/learning-note-2026-08-27-agent-benchmarks.md`
+
+This keeps current benchmark truth in one place while preserving what David learned from the benchmark programme separately.
+
+Important evidence rule: agent execution proves the **course/executor capability**; it does not automatically prove David can personally perform every underlying step unaided.
 
 ### 12. Provenance discipline
 
-The benchmark work materially strengthened David’s understanding that identities must be verified from durable GitHub evidence.
+The benchmark work strengthened David's understanding that identities must be verified from durable GitHub evidence.
 
-Examples can involve different:
+Possible identities include:
 
 - triggering user;
 - GitHub App;
@@ -261,7 +260,7 @@ AI coding agent executed
 
 David noticed that substantial real work had accumulated without a GitHub Project and selected Projects as the next hands-on learning area.
 
-Key mental model introduced:
+Key model:
 
 ```text
 Issue / PR = actual work + evidence
@@ -270,7 +269,7 @@ Field      = structured planning metadata
 View       = saved lens over the same items
 ```
 
-Module 04 and the live example are now substantive.
+Module 04 and the live example are substantive.
 
 Designed live Project:
 
@@ -296,20 +295,42 @@ Starting views:
 
 Detailed evidence: `assessments/learning-note-2026-08-27-projects.md`.
 
-### 14. Public documentation/source-of-truth insight
+### 14. Documentation/source-of-truth architecture
 
-David used the public course surface and discovered that reader-facing documentation had drifted behind the backend repository.
+David used the public course surface and discovered that reader-facing documentation had drifted behind canonical repository work.
 
 This exposed a system-level lesson:
 
 ```text
-backend evidence updated
-+ stale dashboard / handbook
+current backend truth
++ independently maintained current frontend copy
 =
-course integrity failure
+staleness risk
 ```
 
-The course now treats public Pages/Wiki as downstream reader surfaces that must route to maintained canonical sources and must be reviewed whenever material student/course state changes.
+The corrected architecture is:
+
+```text
+volatile factual state
+→ one canonical file
+→ deterministic GitHub Action projection
+→ reader-facing generated page
+
+stable narrative
+→ governed authored document
+```
+
+For this course:
+
+```text
+students/david/progress.md
+→ generated Student Dashboard Wiki page
+
+knowledge-base/executor-benchmark-framework.md
+→ generated AI Executor Benchmark Wiki page
+```
+
+The public Pages site acts as a front door to these generated/canonical surfaces instead of carrying its own changing learner/benchmark truth.
 
 Detailed evidence: `assessments/learning-note-2026-08-27-documentation-integrity.md`.
 
@@ -337,13 +358,13 @@ Detailed evidence: `assessments/learning-note-2026-08-27-documentation-integrity
 6. **Security/governance:** design and inspect rulesets/branch protections/least-privilege integration policy.
 7. **AI-agent operations:** personally compare executor routes and review an AI-authored PR using provenance, diff and check evidence.
 8. **GitHub × FolderDesk architecture:** produce a clear ownership/integration/retire matrix rather than duplicating systems.
-9. **Course/public integrity:** explain canonical repository truth vs Wiki vs Pages vs Issue/PR evidence and identify stale-copy risk.
+9. **Course/public integrity:** explain canonical truth vs generated views vs authored narrative vs Issue/PR evidence.
 
 ## Current Next Step — Projects
 
 Use Module 04 and `04-projects/live-example-github-course-execution-mastery.md` to create the first real Project.
 
-The hands-on exercise should prove David can explain and operate:
+The exercise should prove David can explain and operate:
 
 ```text
 Issue vs Project item
