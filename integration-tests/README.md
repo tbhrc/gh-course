@@ -13,6 +13,7 @@ It is **not** a place to record assumed capabilities. A provider is marked opera
 | GitHub Copilot cloud agent | #38 | `copilot.md` |
 | OpenAI Codex coding agent | #24 | `codex.md` |
 | Anthropic Claude | #25 | `claude.md` |
+| Claude Code (Claude Desktop / Code surface) | #72 | `claude-code-desktop.md` |
 | Google Gemini | #26 | `gemini.md` |
 | Vercel | #27 | `vercel.md` |
 

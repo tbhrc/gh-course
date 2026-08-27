@@ -8,6 +8,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Added
 
+- `integration-tests/claude-code-desktop.md`, the first executor benchmark evidence for Claude Code operating as its own first-party surface (direct GitHub MCP tool access, no Actions dispatcher or Copilot partner-agent assignment layer), tracked under Issue #72 / PR #73 with an end-to-end time of 91 seconds, flagged as a warm-session result pending a cold-start re-run.
 - Verified `knowledge-base/chatgpt-web-github-control-plane.md` documenting ChatGPT Web as the conversational front door, GitHub as the durable execution plane, and the distinction between direct coding-agent assignment and GitHub Agentic Workflows.
 - Integration benchmark programme under Issue #23 with separate test Issues for Codex, Claude, Gemini, Vercel and fully automated Issue → agent → PR routing.
 - David's dated learning note preserving the two-layer AI-first founder operating-model breakthrough.

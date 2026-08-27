@@ -37,8 +37,8 @@ This flow has **no separate dispatch/assignment layer** to observe: the session 
 | Assignment accepted | n/a | No assignment step exists in this execution mode |
 | Agent session created | done | Claude Code session `session_019SGKMrEMzLajtGSTX7hY2G`, started `2026-08-27T17:03:53Z` (pre-existing) |
 | Branch created | done | `claude/agent-file-review-cqm8ic`, observable at session start `17:03:53Z` |
-| Commit(s) created | done | This evidence-file commit |
-| PR opened | done | See PR URL below (filled after push) |
+| Commit(s) created | done | Commit `5b5f874`, `2026-08-27T17:09:48Z` |
+| PR opened | done | PR #73, `2026-08-27T17:10:09Z` |
 | Checks/statuses observed | pending | To be recorded once PR checks run |
 | Human review completed | pending | Stop condition — not requested by this agent |
 
@@ -52,7 +52,7 @@ This flow has **no separate dispatch/assignment layer** to observe: the session 
 - Commit author(s): `Claude <noreply@anthropic.com>`.
 - Committer(s): `Claude <noreply@anthropic.com>`.
 - PR author: `tbhrc` (PR opened via the GitHub MCP `create_pull_request` tool, which acts as the authenticated account, not a distinct bot).
-- PR URL: filled in immediately after the PR is opened.
+- PR URL: https://github.com/tbhrc/github-course/pull/73
 - Checks: pending.
 - Comments/reviews: none yet — human review has not been requested by this agent (stop-before-merge condition).
 
@@ -62,9 +62,16 @@ This flow has **no separate dispatch/assignment layer** to observe: the session 
 |---|---|---|
 | T0 | `2026-08-27T17:08:48Z` | Issue #72 created |
 | T1 | `2026-08-27T17:03:53Z` | Branch/session already observable (session predates T0 — see note below) |
-| T2 | pending | PR created |
-| T3 | pending | First substantive work commit (this file) |
-| T4 | pending | Review-ready / review requested |
+| T2 | `2026-08-27T17:10:09Z` | PR #73 created |
+| T3 | `2026-08-27T17:09:48Z` | First substantive work commit `5b5f874` (this file) |
+| T4 | `2026-08-27T17:10:19Z` | PR #73 marked ready for review (non-draft) |
+
+### Timing summary
+
+- T3 − T0 = 60s (first substantive commit)
+- T2 − T0 = 81s (PR visible)
+- **T4 − T0 = 91s (end-to-end)**
+- T4 − T3 = 31s (finishing/review overhead: PR body, push, undraft)
 
 **Timing note:** unlike the dispatch-based executors, this session's branch and repository access already existed before the benchmark Issue was created (T1 < T0). The benchmark clock therefore measures **task execution time from a warm, already-authenticated session**, not cold-start provisioning. This is a materially different execution mode and must not be blended into a single "Claude" row without the surface distinction below.
 

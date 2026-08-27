@@ -31,6 +31,7 @@ Executor evidence files:
 - GitHub Copilot: `integration-tests/github-copilot.md`
 - OpenAI Codex: `integration-tests/codex.md`
 - Claude: `integration-tests/claude.md`
+- Claude Code (Claude Desktop / Code surface): `integration-tests/claude-code-desktop.md`
 - Google Jules: `integration-tests/jules.md`
 - Gemini CLI/API: `integration-tests/gemini.md`
 - Local agents: `integration-tests/<agent>-local.md`
@@ -163,6 +164,7 @@ This lets the benchmark answer two different questions:
 | Anthropic Claude | Partner policy was enabled, but first dispatcher used stale/older `claude[bot]` identity and returned 403; current Partner Agent identity `anthropic-code-agent[bot]` succeeded. |
 | Google Jules | Account-wide Jules GitHub authorisation was required. The first operational Jules run was accidentally triggered from Gemini Issue #26 and produced PR #62; it is preserved as activation evidence but excluded from clean scoring. Clean Issue #63 then launched successfully through the `jules` label. |
 | Google Gemini CLI | Repository secret `GEMINI_API_KEY` is now configured and authenticated successfully. Run `33092569081` installed Gemini CLI `0.57.0` and reached model `gemini-3.5-flash`, then failed with HTTP 429 / daily free-tier quota exhaustion before producing a branch/commit/PR. Runtime score remains pending. |
+| Claude Code (Claude Desktop / Code surface) | No setup friction observed for this run: the session already held direct GitHub MCP access (git credentials + GitHub tools scoped to `tbhrc/github-course`) before the benchmark Issue was created — no plan upgrade, policy toggle, app install or token step occurred as part of it. This also means T1 (branch/session observable) predates T0 (Issue created); see the warm-session caveat below. |
 
 ## Baseline results — bounded one-file evidence task
 
@@ -175,6 +177,7 @@ This lets the benchmark answer two different questions:
 | OpenAI Codex | dispatch run `33081457803` `14:17:57Z` | PR #52 `14:18:08Z` | commit `b19574f` notification `14:20:43Z` | review request `14:21:19Z` | **3m22s / 202s** |
 | GitHub Copilot | dispatch run `33080345287` `14:05:45Z` | PR #51 `14:05:56Z` | commit `934590d` notification `14:08:32Z` | review request `14:09:30Z` | **3m45s / 225s** |
 | Google Jules | `jules` label on #63 `16:40:39Z` | PR #66 `16:45:46Z` | commit `8d712e3` `16:45:41Z` | open non-draft PR #66 `16:45:46Z` | **5m07s / 307s** |
+| Claude Code (Claude Desktop / Code surface) | Issue #72 created `17:08:48Z` | PR #73 `17:10:09Z` | commit `5b5f874` `17:09:48Z` | open non-draft PR #73 `17:10:19Z` | **1m31s / 91s** ⚠ warm session, see caveat |
 | Gemini CLI/API | run `33092569081` reached authenticated inference path | — | — | — | pending quota/billing |
 | Local coding agent | — | — | — | — | pending |
 
@@ -187,17 +190,32 @@ This lets the benchmark answer two different questions:
 
 ## Initial scored leaderboard
 
-Speed uses the fastest current operational result, ChatGPT Web at 152 seconds.
+Speed uses the fastest current operational result. This is now **Claude Code (Claude Desktop / Code surface) at 91 seconds**, which is flagged with a warm-session caveat below — see "Claude Code timing caveat" before treating this ranking as final. All other executors' Speed/Total scores are recalculated against this new fastest figure per the framework's own scoring rule (`30 × fastest / executor time`); their Fidelity/Quality/Reliability/Autonomy/Governance/Provenance/Efficiency sub-scores are unchanged from the original assessment.
 
 | Executor | Speed /30 | Fidelity /20 | Quality /15 | Reliability /10 | Autonomy /10 | Governance /5 | Provenance /5 | Efficiency /5 | Total /100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **ChatGPT Web** | 30.0 | 20 | 14 | 8 | 10 | 5 | 4 | 4 | **95.0** |
-| **OpenAI Codex** | 22.6 | 20 | 15 | 10 | 10 | 5 | 5 | 3 | **90.6** |
-| **Anthropic Claude** | 23.4 | 20 | 13 | 10 | 10 | 5 | 5 | 3 | **89.4** |
-| **GitHub Copilot** | 20.3 | 20 | 14 | 10 | 10 | 5 | 5 | 3 | **87.3** |
-| **Google Jules** | 14.9 | 20 | 12 | 10 | 10 | 3 | 4 | 4 | **77.9** |
+| **Claude Code (Claude Desktop / Code surface)** | 30.0 | 20 | 14 | 10 | 10 | 5 | 4 | 5 | **98.0** ⚠ |
+| **ChatGPT Web** | 18.0 | 20 | 14 | 8 | 10 | 5 | 4 | 4 | **83.0** |
+| **OpenAI Codex** | 13.5 | 20 | 15 | 10 | 10 | 5 | 5 | 3 | **81.5** |
+| **Anthropic Claude** | 14.0 | 20 | 13 | 10 | 10 | 5 | 5 | 3 | **80.0** |
+| **GitHub Copilot** | 12.1 | 20 | 14 | 10 | 10 | 5 | 5 | 3 | **79.1** |
+| **Google Jules** | 8.9 | 20 | 12 | 10 | 10 | 3 | 4 | 4 | **71.9** |
 | Gemini CLI/API | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 | Local coding agent | pending | pending | pending | pending | pending | pending | pending | pending | pending |
+
+### Claude Code scoring notes
+
+- **Provenance scored 4/5, not 5/5.** This run's Issue/PR actor is the authenticated human account `tbhrc`, not a distinct bot identity — matching the rubric's "durable GitHub objects visible but executor and human identity partially collapse" tier. Commit author/committer (`Claude <noreply@anthropic.com>`) remains distinct.
+- **Reliability 10/10, Autonomy 10/10, Efficiency 5/5**: no errors/retries, no human steering after launch, no wasted steps observed.
+- **Quality scored 14/15**, docking one point for length/conciseness relative to the rubric's "concise, clear and usable" criterion — not for any factual error.
+
+### ⚠ Claude Code timing caveat — read before using this ranking
+
+Unlike every other row in this table, this run's **T1 (branch/session observable) predates T0 (Issue created)**: `17:03:53Z` vs `17:08:48Z`. The Claude Code session already had an open branch and authenticated GitHub access before the benchmark task began, because the same session had just finished an unrelated prior task in this repository.
+
+Every other executor's T0 corresponds to a genuinely cold trigger (a fresh Issue that caused a dispatch, assignment, or first Web action). Claude Code's 91-second result therefore measures **warm-session task execution**, not cold-start time-to-first-productive-action, and is **not directly comparable** to the other rows without qualification. It should be read as "how fast can this surface execute a small, well-specified task once it is already open and authenticated," which is a real and useful number for an operator already working in a live Claude Code session — but it overstates Claude Code's advantage if generalised to "fastest executor to spin up and complete this task from nothing."
+
+**Do not** use this single warm-session result alone to change routing policy in favour of Claude Code over the dispatch-based executors. A cold-start re-run (fresh session, no pre-existing branch) is required before this row can be treated as comparable to the others — see "Next agents / follow-ups."
 
 ### Claude quality note
 
@@ -218,9 +236,11 @@ The PR remained open and unmerged, so there was no main-branch risk. The body wa
 
 ## Interpretation of the first result
 
-For this small one-file GitHub evidence task, ChatGPT Web remains the fastest overall executor despite one recoverable self-review error and one evidence correction.
+For this small one-file GitHub evidence task, ChatGPT Web remains the fastest **cold-start** executor despite one recoverable self-review error and one evidence correction.
 
-The cloud agents showed useful autonomous behaviour and stronger distinct-agent provenance, but their session provisioning/planning overhead made them slower for this task class. Among the measured cloud coding agents, Claude is currently fastest by end-to-end time; Codex scores highest overall among cloud agents because its first evidence snapshot was more accurate; Jules is currently the slowest measured cloud agent for this bounded task and lost additional points for first-snapshot factual/provenance errors and the unsafe closing keyword.
+The cloud agents showed useful autonomous behaviour and stronger distinct-agent provenance, but their session provisioning/planning overhead made them slower for this task class. Among the measured cloud coding agents, Claude (Partner Agent) is currently fastest by end-to-end time; Codex scores highest overall among cloud agents because its first evidence snapshot was more accurate; Jules is currently the slowest measured cloud agent for this bounded task and lost additional points for first-snapshot factual/provenance errors and the unsafe closing keyword.
+
+Claude Code (Claude Desktop / Code surface) produced the fastest raw end-to-end number of any executor measured so far (91s), but that run started from an already-open, already-authenticated session — see the warm-session caveat above. It is not yet a fair like-for-like comparison against the cold-start numbers and should be treated as a distinct, provisional data point pending a cold-start re-run.
 
 This result must **not** be generalised to large coding, test, build, refactor or local-runtime tasks until those task classes are benchmarked separately.
 
@@ -256,6 +276,7 @@ A routing policy should be changed only when repeated evidence shows a meaningfu
 - Jules: clean benchmark #63 produced PR #66 in 307 seconds. Correct factual/provenance issues before merge; keep the first snapshot score unchanged.
 - Gemini CLI/API: Issue #26 has valid `GEMINI_API_KEY` authentication and reached `gemini-3.5-flash`; retry after free quota reset or enable paid Gemini API billing, then score only when a governed branch/commit/PR is produced.
 - Local agents: benchmark later with the same T0–T4 clock and identical evidence requirements.
+- Claude Code (Claude Desktop / Code surface): re-run the benchmark from a cold-start session (no pre-existing branch, no prior task in the same session) so T1 follows T0 like every other row, and record that figure alongside the existing warm-session 91s result rather than replacing it.
 
 ## Governing principle
 
