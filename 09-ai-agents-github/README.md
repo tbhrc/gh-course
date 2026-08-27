@@ -2,261 +2,362 @@
 
 ## Objective
 
-Use GitHub as the durable **control and integration layer** between human decisions, AI agents, automation and deployment services.
+Use GitHub as the durable **control, governance and evidence plane** between human decisions, deterministic automation, AI agents and deployment/publishing systems.
+
+This module is based on live execution in this repository, not only product descriptions.
 
 ## Core Mental Model
 
 ```text
-Human intent
-→ Issue / PR
-→ GitHub repository
-→ connected AI agent / integration
-→ isolated branch + changes
+human intent / ChatGPT Web
+→ governed GitHub Issue
+→ direct agent assignment OR deterministic dispatch/workflow
+→ isolated agent/work branch
+→ commits / bounded output
 → Pull Request
 → checks / review
 → merge
-→ Actions
-→ Pages / deployment / release
+→ Actions / deployment / Wiki / Pages / release
 → durable evidence
 ```
 
-GitHub is not only where an agent finds code. It can be the shared operating surface where different agents and external services receive bounded access to the same governed repository.
+GitHub is not simply a place an agent reads code. It can be the common operating layer where different agents receive bounded work while Issues, branches, commits, PRs, checks and history remain inspectable by humans.
 
-## Learn
+## One Control Plane, Several Execution Architectures
 
-- Issue-driven agent work
-- Branch isolation
-- Agent commits
-- Pull Request creation
-- Automated checks
-- Human and AI review
-- Merge controls
-- GitHub Apps / repository integrations
-- Agent permission boundaries
-- `GITHUB_TOKEN` workflow permissions
-- Actions source policy vs workflow token scope
-- deterministic automation vs agentic AI execution
-- capability verification
-- audit trails
-- deployment integrations
+Do not assume every AI executor works through the same route.
 
-## Deterministic Automation vs Agentic AI
-
-Do not treat every automatic GitHub event as AI.
+### ChatGPT Web connected GitHub operations
 
 ```text
-trigger
-→ deterministic workflow
-→ optional AI-agent hand-off
-→ agentic reasoning/execution
-→ PR / comment / artifact
+ChatGPT Web
+→ GitHub connector
+→ Issue / branch / commit / PR / review / merge / Actions inspection
 ```
 
-A GitHub Action can run ordinary scripts and API calls with no model involved. It can also act as a dispatcher that hands a governed Issue to a separate AI coding agent.
+Useful for founder/operator control and small GitHub-native work.
+
+### GitHub Copilot cloud coding agent
+
+```text
+Issue / assignment
+→ Copilot cloud agent
+→ agent branch / commits / PR
+```
+
+The course initially hit a Free-plan/eligibility boundary, then later proved the operational cloud-agent route after the required entitlement became available.
+
+### OpenAI Codex partner agent
+
+```text
+Issue / deterministic assignment route
+→ GitHub Partner Agent policy
+→ Codex session
+→ branch / commits / PR
+```
+
+The course proved that paid Copilot entitlement alone was not enough: the Codex Partner Agent policy also had to be enabled before the assignment route succeeded.
+
+### Anthropic Claude partner agent
+
+```text
+Issue / deterministic assignment route
+→ correct Partner Agent identity + policy
+→ Claude session
+→ branch / commits / PR
+```
+
+The first route used a stale/incorrect bot identity and failed. The corrected current Partner Agent identity succeeded.
+
+### Google Jules
+
+```text
+GitHub Issue
+→ `jules` label
+→ Google Labs Jules GitHub App
+→ Jules cloud task
+→ agent branch / commit / PR
+```
+
+Jules is a distinct Google cloud coding-agent surface. Do not record Jules evidence as Gemini API/CLI evidence.
+
+### Gemini CLI/API workflow
+
+```text
+GitHub trigger
+→ GitHub Action
+→ Gemini CLI / API
+→ model inference
+→ governed output
+```
+
+Authentication using repository secret `GEMINI_API_KEY` is proven. The current clean benchmark reached Gemini inference and then stopped on HTTP 429 / daily free-tier quota before producing a governed branch/commit/PR.
+
+## Deterministic Automation Is Not Agentic AI
 
 Use this four-layer model:
 
 ```text
 1. CONTROL SURFACE
-   ChatGPT Web / human / GitHub UI
+   human / ChatGPT Web / GitHub UI
 
 2. TRIGGER + DETERMINISTIC AUTOMATION
    Issue / push / workflow_dispatch
-   → GitHub Actions
+   → GitHub Actions / API dispatcher
 
 3. AGENTIC EXECUTION
-   Copilot / Codex / Claude / Gemini
+   Copilot / Codex / Claude / Jules / Gemini / other executor
 
 4. DELIVERY + EVIDENCE
-   branch / commits / PR / checks / deployment
+   branch / commit / PR / comment / check / deployment
 ```
 
-Professional debugging follows the same layers. Verify the trigger before debugging the Action; verify authentication before blaming the agent; verify agent assignment before expecting a PR.
-
-### Live course evidence
-
-Issue #24 produced a real layered diagnostic:
+A successful Action proves only the layer it actually executed.
 
 ```text
-ChatGPT Web push
-→ Dispatch Codex Action started
-→ Issue #24 resolved
-→ AGENT_DISPATCH_TOKEN checked
-→ missing secret detected
-→ real GitHub PAT added
-→ secret visible as ***
-→ coding-agent API reached
-→ HTTP 403 Forbidden
+workflow run succeeded
+≠
+AI model definitely ran
+≠
+agent created code
+≠
+PR is correct
 ```
 
-That means the deterministic command bus and authentication were progressively proven even though Codex itself had not yet executed.
+## Capability Proof Ladder
 
-The next independent benchmark is Issue #38 for GitHub's own Copilot cloud agent.
+For coding agents:
 
-## Integrations Are Capabilities, Not Badges
+```text
+trigger / assignment requested
+→ authentication accepted
+→ agent session visible
+→ agent reads task/repo
+→ agent branch visible
+→ substantive commit visible
+→ PR visible
+→ checks/review visible
+→ merge decision
+```
 
-Finding an integration under repository Settings is only the start.
+For model inference inside Actions:
+
+```text
+trigger
+→ workflow
+→ credential accepted
+→ inference step reached
+→ model response generated
+→ bounded output delivered
+```
+
+Keep these evidence ladders separate.
+
+## Installed Is Not Proven
+
+Always use:
 
 ```text
 installed / authorised
 ≠
 permission granted for every operation
 ≠
-operation proven successfully
+operation successfully demonstrated
 ```
 
-For every important agent or service, test the actual capability you need.
+Useful capability questions:
 
-Useful test matrix:
-
-| Capability | Test |
+| Capability | Evidence question |
 | --- | --- |
-| Read | Can it inspect repository files and Issues? |
-| Work | Can it create or use an issue-linked branch? |
-| Write | Can it commit changes? |
-| Deliver | Can it open a Pull Request? |
-| Review | Can it review/comment on PRs? |
-| Automate | Can it trigger or observe Actions where intended? |
-| Deploy | Can it publish/deploy where intended? |
+| Read repository | Did the executor reference actual repository content? |
+| Read Issue | Did it act on the governing task specification? |
+| Branch | Is an isolated executor branch visible? |
+| Commit | Is a substantive commit visible and attributable? |
+| PR | Was a PR created to the correct base? |
+| Comments/review | Can the executor participate in review where supported? |
+| Actions | Can it inspect/trigger the intended automation? |
+| Merge | Is merge capability intentionally allowed and proven? |
+| Deploy | Is deployment evidence visible? |
 
-Do not mark a capability available merely because an integration is installed.
+## Current Reusable Executor Benchmark
 
-## Actions Permission Layers
+The canonical current benchmark lives at:
 
-Repository/organisation policy controls **which actions and reusable workflows may be used**.
+[`knowledge-base/executor-benchmark-framework.md`](../knowledge-base/executor-benchmark-framework.md)
 
-Individual workflow `permissions:` controls **what the workflow token may do**.
+First bounded one-file benchmark results currently recorded there:
 
-Therefore:
+| Executor | End-to-end | Score /100 | Interpretation |
+| --- | ---: | ---: | --- |
+| ChatGPT Web | 152s | **95.0** | fastest overall for this small GitHub-native task |
+| OpenAI Codex | 202s | **90.6** | strongest cloud-agent score in first snapshot |
+| Anthropic Claude | 195s | **89.4** | fastest measured cloud coding agent in this task class |
+| GitHub Copilot | 225s | **87.3** | fully autonomous but slower on this bounded task |
+| Google Jules | 307s | **77.9** | autonomous, but slowest measured and first snapshot contained factual/governance errors |
+| Gemini CLI/API | pending | pending | authentication/inference route proven; quota blocks governed completion |
 
-```text
-Allow all actions and reusable workflows
-≠
-unlimited GITHUB_TOKEN access
-```
+Do not generalise this ranking to large coding/refactor/build tasks. The benchmark itself explicitly requires multiple future task classes.
 
-Use least privilege even when broad Actions sources are allowed.
+## Why Jules Needed a Separate Issue
 
-## Secrets Are Credential Containers
+The first Jules activation was accidentally launched from Gemini Issue #26 and wrote Gemini evidence. That run proved Jules activation but contaminated executor provenance.
 
-A GitHub Actions secret is not a password invented by the operator.
-
-```text
-secret name
-= lookup key used by the workflow
-
-secret value
-= real credential generated by the authenticating service
-```
-
-For the live dispatcher, `AGENT_DISPATCH_TOKEN` had to contain a genuine GitHub fine-grained personal access token. The course observed the difference directly in workflow logs:
+Correction:
 
 ```text
-not configured → empty environment value
-real PAT stored → masked as ***
+#26 = Gemini CLI/API benchmark
+#63 = Google Jules coding-agent benchmark
 ```
 
-Actions secrets and GitHub **Agents** secrets are separate scopes. A normal Actions workflow reading `${{ secrets.NAME }}` requires the secret to be available to Actions.
+The contaminated PR was preserved as historical evidence and not merged. A clean Jules run then produced PR #66.
 
-## Reference Flow
+Lesson:
+
+> **One executor benchmark = one governing Issue + one evidence lane.**
+
+## Review Is Part of AI Governance
+
+Autonomous completion is not the same as accurate completion.
+
+Jules’s first clean benchmark snapshot completed branch/commit/PR work autonomously, but review identified issues including:
+
+- wrong governing Issue attribution;
+- unsupported model attribution;
+- incorrect PR-author attribution;
+- wrong Gemini workflow filename;
+- unproven check claims;
+- unsafe `Fixes #63` close semantics.
+
+Therefore AI benchmark scoring uses the **first review-ready snapshot**, and later human-requested corrections do not retroactively improve original quality or runtime scores.
+
+## Agent Instructions and Fresh-Chat Discovery
+
+Root `AGENTS.md` is the repository operating contract.
+
+Codex-supported repository instruction loading and GitHub Copilot repository instructions can automatically surface relevant guidance in their supported contexts, but generic fresh ChatGPT/GitHub-connector chats should not be assumed to auto-load root `AGENTS.md`.
+
+The repository README therefore exposes this bootstrap prominently:
 
 ```text
-Issue
-→ deterministic dispatch
-→ agent
-→ branch
-→ implementation
-→ tests
-→ Pull Request
-→ review
-→ merge
-→ Actions
-→ deployment / Pages
-→ Issue closes
+Use tbhrc/github-course. Before doing anything else,
+read root AGENTS.md and follow its startup protocol
+and repository workflow.
 ```
 
-## Hands-On Exercise — Integration Capability Test
+Do not create several competing instruction files containing divergent governance. Keep `AGENTS.md` as the shared contract and use surface-specific bootstraps to point to it.
 
-Choose one connected AI integration and one very small real Issue.
+## Actions Permission and Credential Layers
 
-1. Record the integration and expected capability.
-2. Delegate/read the Issue through that agent.
-3. Require an issue-linked branch.
-4. Make one bounded change.
-5. Open a Pull Request.
-6. Inspect author, diff, checks and permissions used.
-7. Merge only if safe.
-8. Record exactly which capabilities succeeded and which did not.
+Separate:
 
-Do not test several integrations at once. Prove one path first.
+```text
+Actions source policy
+= which Actions/reusable workflows may run
 
-## Hands-On Exercise — Failure-Layer Diagnosis
+workflow `permissions:`
+= what GITHUB_TOKEN may do
 
-Given a failed AI workflow, classify the failure before proposing a fix:
+user/app/API credential
+= what an external assignment/request can do
 
-| Evidence | Likely layer |
+provider entitlement/policy
+= whether the requested agent mode is available
+```
+
+The course’s 401/403/policy/identity failures were useful because they made these layers visible.
+
+## Failure Classification
+
+| Evidence | Likely boundary |
 | --- | --- |
 | no workflow run | trigger/workflow |
-| secret empty | secret setup/scope |
-| HTTP 401 | invalid credential |
-| HTTP 403 | permission/plan/policy boundary |
-| assignment accepted, no work | agent/session/runtime |
+| secret empty | secret name/scope/setup |
+| HTTP 401 | invalid/expired credential |
+| HTTP 403 | authenticated but forbidden by permission/plan/policy/eligibility |
+| assignment accepted, no branch/PR | agent session/runtime |
+| model HTTP 429 | provider quota/rate/billing boundary |
 | PR exists, checks fail | implementation/CI |
+| PR exists, facts wrong | output quality/review |
 
-The learner should be able to explain why **automation working** does not prove **AI execution working**.
+Diagnose the first broken layer. Do not treat the entire chain as one black box.
 
-## Hands-On Exercise — Pages
+## Founder Operating Pattern
 
-Publish a simple repository site with GitHub Pages and identify whether it is using:
-
-- branch publishing; or
-- a custom GitHub Actions deployment workflow.
-
-Explain when you would choose Wiki versus Pages.
-
-## David Case Study
-
-During the Wiki lesson, David independently explored Settings and:
-
-- enabled GitHub Pages;
-- changed Actions source policy to allow all actions and reusable workflows;
-- inspected workflow approval settings;
-- discovered repository Integrations;
-- reported authorising/updating ChatGPT/Codex, Claude, Gemini and Vercel permissions.
-
-He later recognised from live Actions/email evidence that **automatic work does not necessarily mean an AI agent ran**. He correctly reframed GitHub Actions as a deterministic event/automation layer that can either perform work itself or dispatch a separate AI worker.
-
-He then required the founder-facing workflow to become:
+A high-value course insight is:
 
 ```text
-talk to ChatGPT Web
-→ create/refine Issue
-→ fire deterministic GitHub trigger
-→ downstream specialist agent executes
+Talk / decide in ChatGPT Web
+→ create governed Issue
+→ GitHub routes or dispatches
+→ specialist executor works
+→ PR appears
+→ checks / review
+→ merge
+→ publish / deploy / release
 ```
 
-His key insight was that **Integrations can turn GitHub into the common AI operating/control plane**, not merely a repository connected to one coding assistant.
+The recurring complexity belongs in repository setup and automation so daily operation can remain simple.
 
-The remaining professional task is to prove each downstream agent independently rather than assume equivalent capability.
+## When Not to Delegate
+
+Agent delegation has startup/provisioning overhead.
+
+For small GitHub-native documentation/admin tasks, the benchmark currently shows ChatGPT Web can be faster than launching a cloud coding agent.
+
+Use another executor when it provides:
+
+- required local/runtime capability;
+- code execution/build/test access;
+- useful autonomy for larger work;
+- a demonstrated speed/quality advantage for that task class.
+
+Do not delegate merely because an agent exists.
+
+## Hands-On Exercise — Executor Benchmark
+
+Using the fixed contract in `knowledge-base/executor-benchmark-framework.md`:
+
+1. create a dedicated Issue for the executor;
+2. require root `AGENTS.md` to be read;
+3. require one dedicated `integration-tests/<executor>.md` file;
+4. stop at open/draft PR;
+5. capture T0–T4 using durable GitHub timestamps;
+6. inspect actor/session/branch/commit/PR provenance;
+7. score the first review-ready snapshot;
+8. preserve setup friction separately from runtime;
+9. do not merge until review is complete.
+
+## Hands-On Exercise — Diagnose a Failed Agent Route
+
+Given a failed run:
+
+1. identify the control surface;
+2. find the trigger/workflow/session;
+3. determine whether authentication succeeded;
+4. identify the exact provider/agent identity;
+5. identify the first failed boundary;
+6. propose the smallest justified correction;
+7. preserve the failed run as evidence rather than erasing it.
 
 ## Mastery Evidence
 
 A learner demonstrates this module when they can:
 
-- explain GitHub Apps/integrations as permissioned connections;
-- distinguish installation from operational proof;
-- explain Actions source policy vs workflow token permissions;
-- distinguish deterministic Actions from agentic AI execution;
-- explain a secret as a container for a real credential rather than an invented password;
-- diagnose which layer failed from workflow evidence;
-- run at least one agent through Issue → branch → PR safely;
-- inspect the resulting audit trail;
-- choose least-privilege access appropriate to the integration;
-- explain how Pages/deployment fits after merge.
+- explain direct agent assignment vs Actions/agentic workflow vs model inference;
+- distinguish deterministic automation from AI reasoning;
+- use installed/authorised/proven as separate states;
+- identify the actor/session/branch/commit/PR chain;
+- safely review an AI-authored PR;
+- diagnose 401/403/429/runtime/check failures by layer;
+- choose an executor based on capability and measured overhead;
+- explain why one control plane can contain several execution architectures.
 
 ## References
 
-- `knowledge-base/pages-actions-integrations-control-plane.md`
-- `knowledge-base/chatgpt-web-codex-dispatch.md`
+- `knowledge-base/executor-benchmark-framework.md`
+- `knowledge-base/chatgpt-web-github-control-plane.md`
 - `knowledge-base/deterministic-actions-vs-agentic-ai.md`
-- `skills/github-power-user/SKILL.md`
+- `knowledge-base/copilot-free-ai-in-actions.md`
+- `knowledge-base/web-first-local-by-exception-executor-policy.md`
+- `integration-tests/`
+- `AGENTS.md`
