@@ -24,6 +24,37 @@ For David, begin with:
 - `students/david/baseline-2026-08-27.md`
 - `students/david/progress.md`
 
+## Mandatory Repository Change Workflow
+
+For every substantive repository change:
+
+```text
+Issue
+  ↓
+issue-linked branch
+  ↓
+changes + commits
+  ↓
+Pull Request
+  ↓
+review / checks
+  ↓
+merge
+  ↓
+Issue closes
+```
+
+Rules:
+
+1. Create or identify the governing Issue **before editing repository files**.
+2. The Issue must state the objective, scope and acceptance criteria.
+3. Work on a branch linked by name or context to that Issue.
+4. Do not make substantive course changes directly on `main`.
+5. The Pull Request must link the Issue and use a closing keyword when the PR fully completes it, for example `Closes #123`.
+6. Merge only when acceptance criteria are satisfied.
+7. Preserve the Issue as the durable record of why the work happened.
+8. Tiny typo-only corrections may be grouped into an existing suitable Issue; do not create bureaucracy for its own sake.
+
 ## Operating Rules
 
 1. Preserve useful course and student history.
@@ -38,8 +69,7 @@ For David, begin with:
 10. Use this repository itself for hands-on learning whenever practical.
 11. Each substantive change should have clear context and a meaningful commit message.
 12. Do not commit credentials, API keys, secrets or sensitive company information.
-13. Prefer branches and Pull Requests for meaningful course changes once the Pull Request module begins.
-14. Do not build duplicate infrastructure before checking whether GitHub already provides the capability.
+13. Do not build duplicate infrastructure before checking whether GitHub already provides the capability.
 
 ## Repository Architecture
 
