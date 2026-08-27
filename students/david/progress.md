@@ -33,6 +33,7 @@
 - AI-assisted development familiarity.
 - Strong preference for traceability, history and durable operating evidence.
 - **New evidence:** David independently recognised that repository work should not be changed ad hoc from chat; he corrected the coach and required an Issue-first workflow before further repo development.
+- **New versioning insight:** David identified that his agents were not consistently logging or applying version control and explicitly raised versioning as an operational gap that must be standardised.
 
 ## Current Priority Gaps
 
@@ -40,7 +41,7 @@
 2. Pull Requests as the control gate.
 3. Projects.
 4. Actions and automation.
-5. Releases and tags.
+5. Complete hands-on release/tag/version workflow.
 6. Security and governance.
 7. GitHub-native AI-agent workflows.
 8. Knowledge architecture: repo files vs docs vs Wiki vs Discussions.
@@ -67,10 +68,30 @@ Issue #1
 
 This is evidence of conceptual progress, but it is **not yet evidence that David can personally operate the entire workflow unaided**.
 
+## Current Evidence — Versioning Discussion
+
+David's starting intuitive version-number model was approximately:
+
+```text
+0.1 → ... → 0.99 → 1.0 → ... → 1.99 → 2.0
+```
+
+This is now recorded as a learning checkpoint, not as mastery.
+
+The correction being taught is Semantic Versioning:
+
+```text
+MAJOR.MINOR.PATCH
+```
+
+where the components describe the type of change rather than acting as a decimal counter. In particular, `1.10.0` validly follows `1.9.0`; there is no requirement to reach `.99`.
+
+David also correctly identified the broader operating problem: agents need explicit rules for both **change history** and **release versioning**, rather than relying on ad hoc chat execution.
+
 ## Evidence Rule
 
 Do not mark a capability complete merely because David has read a lesson or watched the coach perform it. Mark it complete only when he can explain it accurately and/or perform the relevant operation in GitHub.
 
 ## Next Recommended Step
 
-After Issue #1 is merged, David should complete `exercises/first-issue-workflow.md` on a small real improvement. That becomes his first hands-on Module 02 mastery evidence.
+David should complete `exercises/first-issue-workflow.md` on a small real improvement. A later release exercise should require him to choose a SemVer bump, update the changelog, create a tag and publish a GitHub Release.

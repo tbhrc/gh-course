@@ -55,6 +55,39 @@ Rules:
 7. Preserve the Issue as the durable record of why the work happened.
 8. Tiny typo-only corrections may be grouped into an existing suitable Issue; do not create bureaucracy for its own sake.
 
+## Version Control and Release Discipline
+
+This repository uses Semantic Versioning: `MAJOR.MINOR.PATCH`.
+
+Current version source:
+
+```text
+VERSION
+```
+
+Notable change history:
+
+```text
+CHANGELOG.md
+```
+
+Agent rules:
+
+1. Every substantive repository change must remain traceable through Issue → branch → commits → Pull Request.
+2. Use meaningful commit messages that describe the logical change.
+3. Do not treat a version number as a commit counter.
+4. Do not silently bump `VERSION`.
+5. Record notable unreleased changes under `CHANGELOG.md` → `[Unreleased]`.
+6. Propose SemVer impact when a change is release-relevant:
+   - PATCH = backwards-compatible fix;
+   - MINOR = backwards-compatible new capability;
+   - MAJOR = incompatible/breaking change after `1.0.0`.
+7. `0.y.z` means active initial development; `1.0.0` is the first deliberately stable public contract.
+8. Version components increase numerically. There is no `.99` threshold: `1.9.0 → 1.10.0` is valid.
+9. Once a version is formally released, do not modify that released snapshot; make a new version.
+10. When publishing a formal release, keep `VERSION`, `CHANGELOG.md`, the Git tag (`vX.Y.Z`) and GitHub Release aligned.
+11. Changelog entries summarise notable changes; they do not duplicate every commit.
+
 ## Operating Rules
 
 1. Preserve useful course and student history.
