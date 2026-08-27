@@ -9,6 +9,7 @@ This repository is an AI-agent-friendly GitHub Professional Operator course and 
 3. For substantial GitHub teaching/course development, start with `skills/github-power-user/SKILL.md`.
 4. Read `knowledge-base/README.md` and the relevant verified knowledge note before relying on model memory for a material GitHub claim.
 5. If the behaviour is current, volatile, plan-dependent or uncertain, verify an authoritative source—prefer official GitHub Docs—and update the knowledge base when the finding is reusable.
+6. Use the live Wiki as the reader-facing handbook/dashboard and `wiki/` as its governed source.
 
 ## Repository change workflow
 
@@ -30,6 +31,26 @@ Issue
 - Never rewrite historical baselines to make later knowledge appear earlier.
 - Student evidence belongs under `students/<student-id>/`.
 - Reusable teaching knowledge belongs in shared course folders.
+- When public learner progress or a durable epiphany materially changes, update the relevant `wiki/` dashboard/breakthrough page in the same governed change.
+
+## Wiki operating surface
+
+```text
+canonical repo evidence
+→ wiki/*.md reader-facing source
+→ Issue / branch / PR / merge
+→ .github/workflows/publish-wiki.yml
+→ repository.wiki.git
+→ live Wiki
+```
+
+Rules:
+
+- `wiki/Home.md` is the main human navigation dashboard.
+- Keep handbook, manual, course materials, student progress, breakthroughs, exercises, SOPs and reference easy to reach.
+- Link to canonical files instead of maintaining conflicting factual copies.
+- Direct Wiki UI edits are acceptable for learner exercises; reconcile durable edits back into `wiki/`.
+- Do not claim Wiki publication succeeded until the publishing workflow run succeeded.
 
 ## Versioning
 
