@@ -1,21 +1,23 @@
-# Agent Integration Benchmark — Anthropic Claude (Claude Code / claude-sonnet-4.6)
+# Agent Integration Benchmark — Anthropic Claude Partner Agent (claude-sonnet-4.6)
 
 ## Identity
 
-- Provider / agent: Anthropic Claude — Claude Code CLI (claude-sonnet-4.6)
+- Provider / agent: Anthropic Claude — GitHub Partner Agent (claude-sonnet-4.6 underlying model)
 - Governing Issue: tbhrc/github-course#25
 - Benchmark date: 2026-08-27
-- GitHub plan / Copilot plan at test time: not applicable (Claude Code is an Anthropic product, not a GitHub Copilot plan feature)
-- Triggered by: @tbhrc assigned this Issue to the Claude Code agent via the GitHub Claude integration; session delivered as a structured task specification with the Issue body pre-loaded into context
-- Dispatch workflow / run: Claude Code agent SDK; no GitHub Actions workflow dispatched for agent assignment — the session was started directly by the integration
+- GitHub plan / Copilot plan at test time: GitHub Copilot paid plan (Anthropic Claude is a GitHub Copilot Partner Agent, available through paid GitHub Copilot plans)
+- Triggered by: @tbhrc assigned this Issue to `anthropic-code-agent[bot]` via the GitHub Partner Agent integration; after GitHub Actions run `33083260139` successfully completed the assignment workflow, the session was delivered as a structured task specification with the Issue body pre-loaded into context
+- Dispatch workflow / run: GitHub Actions run `33083260139` assigned `anthropic-code-agent[bot]` to Issue #25; the Claude Agent SDK/runtime then handled task execution
 
 ## Session start
 
-The session was initiated with the full Issue body (#25) injected into the agent context as a `<problem_statement>`. The agent did not need to fetch the Issue independently; it was supplied at session start. The current branch (`claude/tbhrc-claude-integration-benchmark`) was pre-created and checked out before the session began.
+GitHub Actions run `33083260139` deterministically assigned `anthropic-code-agent[bot]` to Issue #25, triggering the operational session. The full Issue body (#25) was injected into the agent context as a `<problem_statement>`. The agent did not need to fetch the Issue independently; it was supplied at session start. The current branch (`claude/tbhrc-claude-integration-benchmark`) was pre-created and checked out before the session began.
+
+Note on product surface vs runtime: this session operates through the **GitHub Partner Agent** product surface (Anthropic Claude, available on paid Copilot plans). The underlying execution uses the Claude Agent SDK/runtime. These are distinct layers; the exact CLI or runtime version identity is not directly proven beyond what is visible in GitHub commit provenance.
 
 ## Objective
 
-Prove exactly what the enabled Anthropic Claude GitHub integration can do in this repository: read context, create a branch, write and commit a file, and open a PR — recording every layer as factual evidence rather than assumed capability.
+Prove exactly what the enabled Anthropic Claude GitHub Partner Agent integration can do in this repository: read context, create a branch, write and commit a file, and open a PR — recording every layer as factual evidence rather than assumed capability.
 
 ## Repository context accessed
 
@@ -39,7 +41,7 @@ This repository is the live learning environment for the **GitHub Professional O
 | Layer | Result | Evidence |
 | --- | --- | --- |
 | Trigger created | PROVEN | Issue #25 existed and was pre-loaded into agent context |
-| Workflow / request ran | PROVEN | Claude Code agent session started and received full task specification |
+| Workflow / request ran | PROVEN | GitHub Actions run `33083260139` assigned `anthropic-code-agent[bot]`; Claude Agent SDK session started and received full task specification |
 | Credential present | PROVEN | Agent can read repository files and has push access to branch |
 | Assignment accepted | PROVEN | Agent received and processed the full issue specification |
 | Agent session created | PROVEN | This file is being authored during an active agent session |
@@ -52,8 +54,9 @@ This repository is the live learning environment for the **GitHub Professional O
 ## Provenance
 
 - Triggering GitHub identity: @tbhrc (repository owner)
-- Assignment/API actor: Anthropic Claude Code agent SDK
-- Agent/bot identity: claude-sonnet-4.6 (model ID); running as Claude Code CLI
+- Assignment workflow: GitHub Actions run `33083260139`
+- Assignment/API actor: `anthropic-code-agent[bot]` (GitHub Partner Agent for Anthropic Claude); execution via Claude Agent SDK
+- Agent/bot identity: claude-sonnet-4.6 (underlying model); GitHub Partner Agent product surface
 - Session ID/link: not exposed to agent
 - Branch: `claude/tbhrc-claude-integration-benchmark`
 - Commit author(s): `anthropic-code-agent[bot]` — GitHub identity `242468646+Claude@users.noreply.github.com`
@@ -65,8 +68,8 @@ This repository is the live learning environment for the **GitHub Professional O
 
 ## Permissions / billing / policy evidence
 
-- Plan/entitlement evidence: Claude Code integration enabled for this repository; Anthropic API credentials held by the integration
-- AI-credit evidence: Anthropic billing; not surfaced in GitHub UI
+- Plan/entitlement evidence: Anthropic Claude GitHub Partner Agent enabled for this repository; available through paid GitHub Copilot plan
+- AI-credit evidence: usage billed through GitHub Copilot / AI-credit execution model (not directly to Anthropic billing); exact credit consumption not surfaced to agent
 - Permission/policy evidence: agent has read access to all repository files; push access to the issue-linked branch; PR creation access; no branch protection blocks observed on this branch
 - Quota/rate-limit evidence: none encountered
 
@@ -81,7 +84,7 @@ This repository is the live learning environment for the **GitHub Professional O
 | Open a PR | PROVEN |
 | Comment on Issue/PR | NOT ATTEMPTED — capability exists via GitHub MCP tools but was not exercised |
 | Inspect Actions/checks | PROVEN — GitHub MCP `actions_list` tool available and usable |
-| GitHub identity for commits | Commits appear under the identity assigned to the Claude Code integration token; exact display name visible in the repository commit history after push |
+| GitHub identity for commits | `anthropic-code-agent[bot]`, `242468646+Claude@users.noreply.github.com` (confirmed from commit output) |
 
 ## Permission prompts, failures, unavailable capabilities
 
