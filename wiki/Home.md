@@ -4,7 +4,7 @@ Welcome to the **reader-facing operating handbook** for the GitHub Professional 
 
 This Wiki is designed to be used, not merely stored. It gives learners and AI-assisted operators one place to navigate the course, knowledge, progress, breakthroughs, exercises and operating references.
 
-> **Canonical rule:** the Wiki is the human-facing navigation and publishing layer. Verified knowledge and student evidence remain governed in the main repository and are linked from here.
+> **Canonical rule:** the Wiki is the human-facing navigation and publishing layer. Verified knowledge, curriculum and student evidence remain governed in the main repository and are linked from here.
 
 ---
 
@@ -13,7 +13,9 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 | Need | Go to |
 | --- | --- |
 | Understand how the course works | [Course Handbook](Course-Handbook) |
+| Use the practical operating guide | [Course Manual](Course-Manual) |
 | See the full learning path | [Course Modules](Course-Modules) |
+| Browse all reusable course assets | [Course Materials](Course-Materials) |
 | Look up verified GitHub knowledge | [Knowledge Base](Knowledge-Base) |
 | See David's current progress | [Student Dashboard — David](Student-Dashboard-David) |
 | Review the biggest learning breakthroughs | [Epiphanies & Learning Breakthroughs](Epiphanies-and-Learning-Breakthroughs) |
@@ -39,6 +41,7 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 - Durable knowledge-base architecture established.
 - First GitHub Wiki created and operated hands-on.
 - Wiki recognised independently as a **Git-backed documentation website / lightweight documentation CMS**.
+- That insight is now being applied to make this Wiki the course's actual human interface.
 
 [Open David's dashboard →](Student-Dashboard-David)
 
@@ -82,23 +85,27 @@ A knowledge base is one use case. An SOP library, handbook, onboarding portal or
 
 ---
 
-## Course Operating Model
+## How This Wiki Is Operated
+
+The Wiki is not maintained as an unmanaged parallel copy.
 
 ```text
-verified GitHub evidence
+canonical repo knowledge / curriculum / student evidence
         ↓
-knowledge-base/ in main repo
+reader-facing source under wiki/
         ↓
-github-power-user Skill
+Issue → branch → Pull Request → merge
         ↓
-course modules + exercises
+GitHub Action
         ↓
-student practice + evidence
+tbhrc/github-course.wiki.git
         ↓
-Wiki dashboard / handbook
+this live Wiki
 ```
 
-The Wiki helps humans navigate the system. The main repository preserves governed truth.
+That means agents can update this handbook while preserving normal GitHub review and history.
+
+[Read the publishing architecture →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
 
 ---
 
@@ -112,4 +119,4 @@ The Wiki helps humans navigate the system. The main repository preserves governe
 
 ---
 
-**Navigation:** [Course Handbook](Course-Handbook) · [Student Dashboard](Student-Dashboard-David) · [Knowledge Base](Knowledge-Base) · [Glossary](Reference-and-Glossary)
+**Navigation:** [Handbook](Course-Handbook) · [Manual](Course-Manual) · [Materials](Course-Materials) · [Student Dashboard](Student-Dashboard-David) · [Knowledge Base](Knowledge-Base) · [Glossary](Reference-and-Glossary)
