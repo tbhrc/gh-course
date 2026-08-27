@@ -1,7 +1,7 @@
 ---
 name: github-power-user
 description: Use GitHub as a complete professional operating platform rather than only a Git remote. Use for GitHub architecture, Issues, Projects, Discussions, Wikis, Actions, agents, repository instructions, MCP, Codespaces, rulesets, security, releases, packages, Pages, integrations, CLI/API power use, automation, governance and cross-repository planning.
-version: 1.5.0
+version: 1.6.0
 status: active
 source: FolderDesk canonical github-power-user v1.0.0
 source_path: 470-skills/github-power-user/
@@ -43,6 +43,7 @@ work request
 | Proposed repository change | **Pull Request** |
 | Event/scheduled automation | **Actions** |
 | Deterministic hand-off to an AI worker | **Actions dispatcher + agent assignment/API** |
+| Free-plan bounded AI inference | **Actions + GitHub Copilot CLI** |
 | Repository policy | **Rulesets / branch protection** |
 | Ownership-based review | **CODEOWNERS** |
 | Repeatable cloud development | **Codespaces + devcontainer** |
@@ -319,6 +320,86 @@ Course live evidence under Issues #24/#34 proved:
 
 Read `../../knowledge-base/deterministic-actions-vs-agentic-ai.md` and `../../knowledge-base/chatgpt-web-codex-dispatch.md`.
 
+## Copilot Free: AI Inference Without Cloud-Agent Assignment
+
+Do not collapse all Copilot capabilities into a single yes/no plan feature.
+
+Live course evidence proves:
+
+```text
+Copilot Free
+
+✅ Issue-triggered GitHub Actions
+✅ GitHub Copilot CLI authentication with user Copilot entitlement
+✅ genuine context-aware AI inference
+✅ captured AI text output
+
+❌ autonomous Copilot cloud-agent Issue assignment
+❌ cloud-agent-authored branch / PR
+```
+
+The proven Free-plan pattern is:
+
+```text
+Issue
+→ deterministic GitHub Action
+→ bounded context assembly
+→ GitHub Copilot CLI
+→ AI inference
+→ captured stdout
+→ deterministic safe output
+```
+
+For the first smoke test, keep AI permissions minimal. Let deterministic workflow steps own repository writes and posting while Copilot only reasons over bounded context.
+
+### Secret-name mapping
+
+Keep durable repository secret names stable when possible.
+
+The course stores:
+
+```text
+AGENT_DISPATCH_TOKEN
+```
+
+Copilot CLI expects a runtime authentication variable such as:
+
+```text
+COPILOT_GITHUB_TOKEN
+```
+
+Map rather than duplicate:
+
+```yaml
+env:
+  COPILOT_GITHUB_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+```
+
+Therefore:
+
+```text
+stored secret name
+≠
+runtime environment-variable name
+```
+
+### Capability-by-execution-mode rule
+
+When comparing GitHub AI plans, evaluate separately:
+
+1. interactive Copilot/agent mode;
+2. Copilot CLI;
+3. Copilot CLI inside Actions;
+4. GitHub Agentic Workflows;
+5. Copilot cloud coding agent;
+6. third-party partner agents such as Codex/Claude.
+
+A plan can permit one execution mode and deny another.
+
+Course evidence: Issue #45 and Actions run `33076875845` proved genuine Copilot Free inference inside Actions after Issue #38 had already proven cloud-agent assignment was blocked with HTTP 403.
+
+Read `../../knowledge-base/copilot-free-ai-in-actions.md`.
+
 ## Integrations as a Control Plane
 
 Repository Integrations / GitHub Apps can connect GitHub to AI agents, deployment platforms and external services.
@@ -431,7 +512,8 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 8. keep the reader-facing Wiki useful when course structure, student dashboards or durable breakthroughs materially change;
 9. test integrations by actual capability rather than assuming installed access equals operational access;
 10. for Pages, verify deployment health, entry-file correctness and the real user journey as three separate checks;
-11. for AI workflows, separate trigger, deterministic Action, authentication, agent assignment, agent execution and delivery evidence before diagnosing failure.
+11. for AI workflows, separate trigger, deterministic Action, authentication, agent assignment, agent execution and delivery evidence before diagnosing failure;
+12. classify Copilot capability by execution mode: test bounded Copilot CLI inference in Actions independently from cloud-agent or partner-agent assignment.
 
 ## References
 
@@ -444,6 +526,7 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 - `../../knowledge-base/pages-entry-file-readme-trap.md` — Pages entry-file diagnosis, README trap and portal fix.
 - `../../knowledge-base/deterministic-actions-vs-agentic-ai.md` — deterministic dispatcher vs AI-agent execution, secret/authentication and failure-layer proof model.
 - `../../knowledge-base/chatgpt-web-codex-dispatch.md` — live ChatGPT Web → GitHub → Codex dispatcher architecture and current partner-agent boundary.
+- `../../knowledge-base/copilot-free-ai-in-actions.md` — proven Copilot Free AI inference inside GitHub Actions and cloud-agent boundary.
 
 ## Governing Principle
 
