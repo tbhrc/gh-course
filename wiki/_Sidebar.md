@@ -12,6 +12,7 @@
 ## Knowledge
 - [Knowledge Base](Knowledge-Base)
 - [GitHub Power User](GitHub-Power-User)
+- [AI Control Plane](AI-Control-Plane)
 - [SOP & Operating Library](SOP-and-Operating-Library)
 - [Reference & Glossary](Reference-and-Glossary)
 
@@ -22,4 +23,5 @@
 ## System
 - [About This Learning System](About-This-Learning-System)
 - [Main Repository](https://github.com/tbhrc/github-course)
+- [Integration Benchmark #23](https://github.com/tbhrc/github-course/issues/23)
 - [Issues](https://github.com/tbhrc/github-course/issues)

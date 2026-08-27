@@ -17,6 +17,7 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 | See the full learning path | [Course Modules](Course-Modules) |
 | Browse all reusable course assets | [Course Materials](Course-Materials) |
 | Look up verified GitHub knowledge | [Knowledge Base](Knowledge-Base) |
+| Understand the ChatGPT Web → GitHub → agent architecture | [AI Control Plane](AI-Control-Plane) |
 | See David's current progress | [Student Dashboard — David](Student-Dashboard-David) |
 | Review the biggest learning breakthroughs | [Epiphanies & Learning Breakthroughs](Epiphanies-and-Learning-Breakthroughs) |
 | Do hands-on work | [Exercises & Assessments](Exercises-and-Assessments) |
@@ -31,7 +32,7 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 ## Student #1 — David
 
 **Stage:** Stage 2 — Crash Course  
-**Current focus:** Wiki / Pages / Integrations operating architecture  
+**Current focus:** AI integrations / GitHub control-plane benchmark  
 **Starting position:** Git fundamentals ~6/10; GitHub platform operation ~2/10.
 
 ### Current progress
@@ -46,6 +47,8 @@ This Wiki is designed to be used, not merely stored. It gives learners and AI-as
 - GitHub Pages independently enabled from repository Settings.
 - Actions permissions and workflow approvals explored.
 - Repository Integrations discovered as a major AI-first operating layer.
+- New two-layer model articulated: **ChatGPT Web as conversational front door; GitHub as durable execution plane; specialist agents downstream.**
+- Integration benchmark programme opened under [Issue #23](https://github.com/tbhrc/github-course/issues/23).
 
 [Open David's dashboard →](Student-Dashboard-David)
 
@@ -92,7 +95,20 @@ GitHub
 └── Integrations        → AI agents + external services
 ```
 
-The professional rule is to test actual capability rather than assume an installed integration can perform every operation.
+### ChatGPT Web can become the founder's front door
+
+```text
+brainstorm in ChatGPT Web
+→ create governed Issue
+→ GitHub routes/controls execution
+→ specialist agent works
+→ PR / review / merge
+→ publishing / deployment
+```
+
+The professional rule remains: test actual capability rather than assume an installed integration can perform every operation.
+
+[Open the AI Control Plane page →](AI-Control-Plane)
 
 [See all epiphanies →](Epiphanies-and-Learning-Breakthroughs)
 
@@ -136,6 +152,8 @@ That means agents can update this handbook while preserving normal GitHub review
 
 [Read Pages / Actions / Integrations control-plane note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-actions-integrations-control-plane.md)
 
+[Read ChatGPT Web + GitHub two-layer control-plane note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-github-control-plane.md)
+
 ---
 
 ## Main Repository
@@ -144,8 +162,9 @@ That means agents can update this handbook while preserving normal GitHub review
 - [Open README](https://github.com/tbhrc/github-course/blob/main/README.md)
 - [Open AGENTS.md](https://github.com/tbhrc/github-course/blob/main/AGENTS.md)
 - [Open verified knowledge base](https://github.com/tbhrc/github-course/tree/main/knowledge-base)
+- [Open integration benchmark #23](https://github.com/tbhrc/github-course/issues/23)
 - [Open Issues](https://github.com/tbhrc/github-course/issues)
 
 ---
 
-**Navigation:** [Handbook](Course-Handbook) · [Manual](Course-Manual) · [Materials](Course-Materials) · [Student Dashboard](Student-Dashboard-David) · [Knowledge Base](Knowledge-Base) · [Glossary](Reference-and-Glossary)
+**Navigation:** [Handbook](Course-Handbook) · [Manual](Course-Manual) · [AI Control Plane](AI-Control-Plane) · [Student Dashboard](Student-Dashboard-David) · [Knowledge Base](Knowledge-Base) · [Glossary](Reference-and-Glossary)
