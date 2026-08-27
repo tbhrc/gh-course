@@ -92,7 +92,9 @@ runs:
           exit 0
         fi
 
-        if [ -n "$ALLOWED_CURRENT_STATUSES" ]; then
+        # A freshly added Project item has no previous Status yet. In that case,
+        # allow the requested lifecycle state to become its first Status.
+        if [ -n "$ALLOWED_CURRENT_STATUSES" ] && [ -n "$previous_status" ]; then
           allowed=false
           IFS=',' read -ra statuses <<< "$ALLOWED_CURRENT_STATUSES"
           for status in "${statuses[@]}"; do
