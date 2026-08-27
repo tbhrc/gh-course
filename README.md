@@ -1,12 +1,14 @@
 # GitHub Professional Operator — AI-First Founder Crash Course
 
-A practical GitHub operator course designed to move from basic Git usage to professional operation of GitHub as a foundational platform for **Talent Bridge**, **iMPLEMENTAi** and **FolderDesk**.
+A practical, AI-agent-friendly GitHub operator course designed to move learners from basic Git usage to professional operation of GitHub as a foundational working platform.
+
+David is Student #1 and the first public case study. His starting knowledge, mistakes, assessments and progress are intentionally preserved so the course can prove improvement over time and later be reused by other founders and learners.
 
 ## Objective
 
 Become capable of confidently designing, operating, auditing and improving a professional GitHub environment, with particular emphasis on AI-agent workflows, traceability, automation and governance.
 
-The target is not simply to understand GitHub features. The target is to be able to answer:
+The target is not simply to understand GitHub features. A professional operator should be able to answer:
 
 - What is changing?
 - Why is it changing?
@@ -17,9 +19,39 @@ The target is not simply to understand GitHub features. The target is to be able
 - What version is deployed?
 - What should happen next?
 
-## Starting Point
+## Two Things Are Being Built
 
-Current diagnostic baseline:
+This repository is simultaneously:
+
+1. **a course** — David learns and improves by operating GitHub; and
+2. **a reusable learning system** — the lessons, question banks, SOPs, Skills, templates and assessment model can later be used by other people and their AI coaches.
+
+The repository itself is part of the training environment.
+
+## AI-Agent-Friendly Learning Model
+
+Any compatible AI coach should be able to attach this repository, read the durable student state and continue coaching without depending on hidden chat history.
+
+```text
+student profile
+→ baseline diagnostic
+→ personalised path
+→ lesson
+→ hands-on GitHub work
+→ assessment
+→ evidence
+→ progress update
+→ next lesson
+→ final comparison against baseline
+```
+
+Agent instructions live in `AGENTS.md`.
+
+## Student #1 — David
+
+David's durable learner state lives under `students/david/`.
+
+His baseline on **27 August 2026** shows:
 
 | Area | Starting level |
 | --- | --- |
@@ -33,10 +65,14 @@ Current diagnostic baseline:
 | Actions | New |
 | Wikis / knowledge architecture | New |
 | Releases and versioning | Beginner |
-| Security and governance | New |
+| Security and governance | Basic–New |
 | GitHub automation | New |
 | AI-agent GitHub workflows | New |
 | GitHub as an operating platform | New |
+
+Approximate starting position: **Git fundamentals ~6/10; GitHub platform operation ~2/10.**
+
+The complete historical baseline is preserved in `students/david/baseline-2026-08-27.md`. It must not be rewritten later.
 
 ## Core Mental Model
 
@@ -44,7 +80,7 @@ GitHub is not merely cloud storage for Git repositories.
 
 > **GitHub is a change-management operating platform built around repositories.**
 
-A professional change should increasingly follow this chain:
+A professional change increasingly follows this chain:
 
 ```text
 WHY
@@ -105,24 +141,46 @@ github-course/
 ├── 08-security-governance/
 ├── 09-ai-agents-github/
 ├── 10-github-folderdesk-architecture/
+├── students/
+│   └── david/
+│       ├── profile.md
+│       ├── baseline-2026-08-27.md
+│       ├── progress.md
+│       └── assessments/
+├── question-bank/
+├── templates/
+├── docs/
 ├── exercises/
 ├── certification/
-└── resources/
+├── resources/
+├── skills/
+└── sops/
 ```
 
 ## Learning Method
 
 This is a **learn by operating** course.
 
-Each module should contain:
+Each substantial module should evolve toward:
 
-1. **Concept** — what the feature is.
-2. **Why it matters** — operator value.
-3. **Hands-on task** — use the feature in this repository.
-4. **Operator test** — demonstrate understanding without copying instructions.
-5. **Applied lesson** — connect the capability to real Talent Bridge, iMPLEMENTAi or FolderDesk operations.
+1. **Concept** — what the capability is.
+2. **Operator value** — why it matters.
+3. **Example** — how it fits a real workflow.
+4. **Hands-on task** — use GitHub itself.
+5. **Operator test** — demonstrate understanding.
+6. **Evidence** — preserve proof of capability.
+7. **Applied judgement** — decide where and when the feature should be used.
 
-The course should remain concise. Detailed material belongs only where a real knowledge gap exists.
+## Reusable Course Assets
+
+- `students/` — learner-specific truth and assessments.
+- `question-bank/` — reusable diagnostics, checkpoints, scenario tests and answer guides.
+- `templates/` — reusable student/course templates.
+- `docs/` — architecture and explanatory documentation.
+- `exercises/` — practical GitHub work.
+- `certification/` — final competency requirements and evidence.
+- `skills/` — reusable AI-agent Skills developed once workflows become stable.
+- `sops/` — concise standard operating procedures produced from practised workflows.
 
 ## Operator Principle #1
 
@@ -131,3 +189,5 @@ The course should remain concise. Detailed material belongs only where a real kn
 ## Course Rule
 
 Do not rebuild infrastructure merely because we have not yet learned that GitHub already provides it. Understand GitHub's native capability first, then decide whether to use, integrate or replace existing systems.
+
+For David's companies, the course will explicitly test where GitHub should become foundational across **Talent Bridge**, **iMPLEMENTAi** and **FolderDesk**, and where existing systems should remain separate.
