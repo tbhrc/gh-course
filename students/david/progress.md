@@ -29,6 +29,8 @@
 - David independently explored repository Settings beyond the guided lesson and enabled GitHub Pages.
 - David independently inspected Actions permissions, workflow approval settings and repository Integrations.
 - David reported authorising/updating access for ChatGPT/Codex, Claude, Gemini and Vercel.
+- David tested the public Pages site as an actual student/user, identified that a green deployment was still an unusable README-style entry experience, and required a functional portal into the Wiki/dashboard/course surfaces.
+- Pages portal fix completed under Issue #30 / PR #31 while keeping the existing `main / (root)` Pages source.
 
 ## Demonstrated Strengths
 
@@ -47,6 +49,7 @@
 - **Applied Wiki architecture judgement:** David then required the Wiki to become operational inside the course itself: Home dashboard, student progress, epiphanies, handbook/manual, course materials, SOP navigation and cross-links to canonical repository evidence.
 - **Pages initiative:** David independently found GitHub Pages in Settings and published the course as a public site rather than waiting for it to become a formal lesson.
 - **Integration-control-plane insight:** David independently recognised repository Integrations as a potentially major AI-first capability layer connecting GitHub to coding agents and deployment services.
+- **User-journey validation insight:** David did not accept a successful Pages deployment as proof that the website worked. He used the public site, identified the missing navigation/portal layer, questioned whether the publishing source was wrong, and required the architecture to be fixed and preserved as reusable learning.
 
 ## Current Priority Gaps
 
@@ -58,8 +61,9 @@
 6. Security, permission scoping and governance.
 7. GitHub-native AI-agent workflows, including one end-to-end integration test.
 8. Explain Wiki vs Pages vs canonical repository Markdown unaided.
-9. Compare installed integrations by actual proven capability rather than assuming equivalence.
-10. GitHub × FolderDesk boundary and integration architecture.
+9. Diagnose Pages source vs entry-file problems unaided and choose an appropriate entry file for a new site.
+10. Compare installed integrations by actual proven capability rather than assuming equivalence.
+11. GitHub × FolderDesk boundary and integration architecture.
 
 ## Current Evidence — Issue #1
 
@@ -182,6 +186,41 @@ unlimited workflow token permissions
 Each integration still needs a bounded capability test and least-privilege review.
 
 Detailed learning evidence: `assessments/learning-note-2026-08-27-pages-integrations.md`.
+
+## Current Evidence — Pages Portal Failure and Fix
+
+David then used the public Pages site from the perspective of a student/external reader and identified a second-level problem:
+
+```text
+Pages deployment = successful
+public site       = technically live
+student journey   = poor
+```
+
+The site effectively behaved like a README entry page and did not provide a useful route into the Wiki, dashboard, handbook, manual, modules, knowledge base and other course surfaces.
+
+David explicitly questioned whether the Pages source should move away from `main`, but the diagnosis showed that the source was already correct. The missing layer was a deliberate root entry page.
+
+Professional model introduced:
+
+```text
+Pages source
+≠
+Pages entry file
+≠
+website information architecture
+```
+
+Issue #30 / PR #31 added root `index.html` as the portal while keeping `main / (root)` as the publishing source. The subsequent Pages build, status and deployment all succeeded.
+
+Student outcome:
+
+- David demonstrated user-journey validation rather than relying on infrastructure status;
+- he identified an information-architecture defect from real use;
+- he challenged the current source architecture as a hypothesis rather than guessing;
+- he required the exact problem/fix to become reusable Skill, knowledge-base and course material.
+
+Detailed learning evidence: `assessments/learning-note-2026-08-27-pages-portal-fix.md`.
 
 ## Evidence Rule
 
