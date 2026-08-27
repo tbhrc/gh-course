@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_from_commit": "9f0cbce3e18a4d73abb6e2ab113cffcb8964bf5b",
+  "generated_from_commit": "117a918c46a294461812592dfb95452200d6e822",
   "source_contract": {
     "course_home": "wiki/Home.md",
     "student_state": "students/david/progress.md",
@@ -14,7 +14,7 @@
   "student": {
     "course_stage": "Stage 2 — Crash Course / live operation",
     "current_focus": "Module 04 — GitHub Projects",
-    "next_objective": "create and operate the real GitHub Course — Execution & Mastery Project using existing Issues/PRs."
+    "next_objective": "personally operate GitHub Course — Execution & Mastery through backlog triage, Project fields/views and a full Review → Done decision without the coach performing the key Project mutations."
   },
   "benchmark": {
     "last_verified": "2026-08-27",
