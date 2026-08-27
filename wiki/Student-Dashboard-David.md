@@ -44,6 +44,8 @@ This is the **reader-facing progress dashboard** for Student #1.
 - Repository Integrations explored independently.
 - ChatGPT/Codex, Claude, Gemini and Vercel permissions reportedly authorised/updated from the GitHub UI.
 - Integrations recognised independently as a major AI-first operating layer.
+- Public Pages site tested as a real student/user; David identified that a successful deployment was still an unusable README-style website entry experience.
+- Pages source vs entry-file distinction introduced from the real failure: `main / (root)` stayed in place and a deliberate root `index.html` became the public course portal.
 
 ### Applied Architecture
 
@@ -53,13 +55,14 @@ GitHub
 ├── Issues / PR governance
 ├── Wiki handbook
 ├── Pages public website
+│   └── index.html = deliberate public front door
 ├── Actions automation
 └── Integrations
     ├── AI coding/review agents
     └── deployment/services
 ```
 
-The professional correction now being learned is:
+Two professional corrections now being learned are:
 
 ```text
 installed / authorised
@@ -67,6 +70,16 @@ installed / authorised
 permission for every operation
 ≠
 operation proven end to end
+```
+
+and:
+
+```text
+green Pages deployment
+≠
+correct entry page
+≠
+good user experience
 ```
 
 ### Still Requires Hands-On Mastery
@@ -79,7 +92,8 @@ operation proven end to end
 - security/governance and least-privilege permission design;
 - one end-to-end AI integration test;
 - compare connected agents by proven capability rather than assumed equivalence;
-- final Wiki vs Pages vs canonical Markdown explanation.
+- final Wiki vs Pages vs canonical Markdown explanation;
+- diagnose Pages source vs entry-file problems unaided.
 
 ## Learning Evidence
 
@@ -87,6 +101,7 @@ operation proven end to end
 - [Semantic Versioning learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-semver.md)
 - [Wiki / knowledge architecture learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-wiki.md)
 - [Pages / Actions / Integrations learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-integrations.md)
+- [Pages portal failure and fix learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-portal-fix.md)
 
 ## Major Epiphanies
 
@@ -98,12 +113,15 @@ operation proven end to end
 6. A powerful feature should be integrated into the operating model, not merely discovered.
 7. GitHub Pages turns the repository into a public website publishing source.
 8. Integrations can make GitHub the shared control plane connecting AI agents, automation and deployment services.
+9. A green deployment is not the same as a usable website: the publishing source, entry file and user journey must be evaluated separately.
 
 [Open the full epiphany log →](Epiphanies-and-Learning-Breakthroughs)
 
 ## Public Course Site
 
 [Open GitHub Pages site →](https://tbhrc.github.io/github-course/)
+
+The public site now uses a deliberate root `index.html` portal rather than relying on the README as the effective entry experience.
 
 ## Current Next Step
 
