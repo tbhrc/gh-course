@@ -6,7 +6,12 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ## [Unreleased]
 
-No notable unreleased changes yet.
+### Added
+
+- Verified `knowledge-base/chatgpt-web-github-control-plane.md` documenting ChatGPT Web as the conversational front door, GitHub as the durable execution plane, and the distinction between direct coding-agent assignment and GitHub Agentic Workflows.
+- Integration benchmark programme under Issue #23 with separate test Issues for Codex, Claude, Gemini, Vercel and fully automated Issue → agent → PR routing.
+- David's dated learning note preserving the two-layer AI-first founder operating-model breakthrough.
+- Wiki `AI-Control-Plane` page and navigation links to the live benchmark.
 
 ## [0.2.0] - 2026-08-27
 
