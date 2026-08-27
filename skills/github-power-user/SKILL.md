@@ -1,7 +1,7 @@
 ---
 name: github-power-user
 description: Use GitHub as a complete professional operating platform rather than only a Git remote. Use for GitHub architecture, Issues, Projects, Discussions, Wikis, Actions, agents, repository instructions, MCP, Codespaces, rulesets, security, releases, packages, Pages, CLI/API power use, automation, governance and cross-repository planning.
-version: 1.0.0
+version: 1.1.0
 status: active
 source: FolderDesk canonical github-power-user v1.0.0
 source_path: 470-skills/github-power-user/
@@ -39,7 +39,7 @@ work request
 | Portfolio / cross-repo planning | **Projects** |
 | Conversation before commitment | **Discussion** |
 | Governed durable documentation | **Repository Markdown** |
-| Lightweight collaborative documentation | **Wiki** |
+| Browsable documentation / handbook / SOP portal | **Wiki** |
 | Proposed repository change | **Pull Request** |
 | Event/scheduled automation | **Actions** |
 | Repository policy | **Rulesets / branch protection** |
@@ -47,7 +47,7 @@ work request
 | Repeatable cloud development | **Codespaces + devcontainer** |
 | Versioned delivery | **Tags + Releases** |
 | Package distribution | **Packages** |
-| Static public documentation/site | **Pages** |
+| Static website with front-end control | **Pages** |
 | AI worker implementing repository work | **Coding/custom agent** |
 | Repository-wide AI conventions | **AGENTS.md / repository instructions** |
 | Repeatable AI task | **Prompt file** |
@@ -98,6 +98,43 @@ Projects is the portfolio layer across Issues and PRs. Prefer Project fields for
 - Area/product.
 
 Useful views: Board, Table, Roadmap, highest-priority, blocked, and per-area/repository views.
+
+## Wiki and Publishing Surfaces
+
+Do not reduce GitHub Wiki to "just a knowledge base." A better power-user mental model is:
+
+> **Wiki = Git-backed documentation website / lightweight documentation CMS.**
+
+Useful Wiki outputs include:
+
+- SOP libraries;
+- internal handbooks;
+- onboarding portals;
+- product documentation;
+- FAQs;
+- training/course companions;
+- architecture and runbook libraries.
+
+The interface exposes pages, Preview, links, images, navigation, custom sidebar/footer and revision history. That makes Wiki a useful native publishing surface for both humans and agents.
+
+Important boundary:
+
+```text
+Wiki
+= documentation-focused publishing
+= rendered markup + navigation + Git history
+
+Pages
+= static website publishing
+= HTML + CSS + JavaScript
+= optional build process
+```
+
+Before building a custom SOP portal or documentation site, evaluate Wiki first. Before building a custom static public website, evaluate GitHub Pages.
+
+For this course, `knowledge-base/` in the main repository remains authoritative because it participates directly in Issue → branch → PR governance; Wiki is the human-friendly publishing/navigation layer.
+
+Read `knowledge-base/wiki-as-documentation-platform.md` for the verified details and teaching pattern.
 
 ## Pull Requests
 
@@ -173,17 +210,19 @@ Search is a power-user capability. Before creating an Issue, workflow, custom ag
 AI coaches should use this Skill as a **curriculum accelerator**:
 
 1. identify the GitHub capability being taught;
-2. read only the relevant reference;
+2. read only the relevant reference or verified knowledge note;
 3. teach the concept through the live course repository where practical;
 4. create or reuse a GitHub Issue before substantive repository changes;
 5. preserve student-specific evidence separately from reusable course material;
-6. update shared lessons only when the learning produces reusable value.
+6. update shared lessons only when the learning produces reusable value;
+7. preserve high-value discovery moments instead of pre-explaining every conclusion.
 
 ## References
 
 - `references/power-guide.md` — feature-selection and professional patterns.
 - `references/cheat-sheet.md` — commands, search and quick decisions.
 - `references/agentic-github.md` — AI-agent-first repository operation.
+- `../../knowledge-base/wiki-as-documentation-platform.md` — verified Wiki publishing model and Wiki-vs-Pages boundary.
 
 ## Governing Principle
 

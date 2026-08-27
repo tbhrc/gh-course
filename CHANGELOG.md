@@ -20,6 +20,13 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Repository-wide `.github/copilot-instructions.md` aligned with the shared `AGENTS.md` operating contract.
 - Expanded Module 07 Wiki/knowledge-architecture lesson and practical Wiki lab.
 - David's dated Wiki/knowledge-architecture learning note preserving his starting database/memory-layer assumption and the corrected model.
+- Verified Wiki-as-documentation-platform knowledge note covering SOP/handbook use cases and the Wiki-vs-GitHub-Pages boundary.
+- Discovery-first Module 07 teaching pattern designed to let future learners independently recognise Wiki as a documentation website/CMS before revealing the answer.
+- David's hands-on Wiki evidence and spontaneous documentation-platform epiphany under Issue #11.
+
+### Changed
+
+- Course `github-power-user` Skill advanced from `1.0.0` to `1.1.0` (MINOR) to add the reusable Wiki publishing-platform and GitHub Pages decision model. The root course version remains `0.1.0` because no new course release has been published.
 
 ## [0.1.0] - 2026-08-27
 
