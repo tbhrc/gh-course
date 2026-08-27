@@ -191,6 +191,16 @@ This lets the benchmark answer two different questions:
 | Gemini CLI/API | run `33092569081` reached authenticated inference path | — | — | — | pending quota/billing |
 | Local coding agent | — | — | — | — | pending |
 
+## Full-lifecycle results — governed delivery
+
+This table is distinct from the review-ready leaderboard. It records only runs that reached PR merge and linked-Issue closure.
+
+| Executor | Model / surface | Governing Issue | PR | T0 | T5 merge | T6 Issue closed | Full-lifecycle time | Review evidence |
+|---|---|---|---|---|---|---|---:|---|
+| ChatGPT Work Mode | GPT-5.6 Terra / light Work Mode | #80 | #81 | `17:22:49Z` | `17:26:01Z` | `17:26:02Z` | **3m13s / 193s** | No independent GitHub review object observed; merge occurred after direct diff inspection. |
+
+This is the first full-lifecycle result, so no cross-executor full-lifecycle speed score is calculated yet. It is not comparable to the older review-ready-only T4 scores.
+
 ### Jules clean-run timing details
 
 - T0: `16:40:39Z` — `jules` label applied to Issue #63.
