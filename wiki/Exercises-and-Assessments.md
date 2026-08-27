@@ -1,30 +1,59 @@
 # Exercises & Assessments
 
-This page helps learners find the practical work that turns GitHub knowledge into demonstrated ability.
+This page turns course knowledge into **demonstrated GitHub ability**.
 
-## Current Exercise — Wiki / Knowledge Architecture
+> **Evidence rule:** reading a lesson, watching an agent or seeing a workflow succeed does not automatically equal learner mastery.
 
-**Governing Issue:** [#11 — Wiki hands-on](https://github.com/tbhrc/github-course/issues/11)
+Use:
 
-Current evidence includes:
+```text
+concept understood
+→ performed with help
+→ performed unaided
+→ can diagnose / improve professionally
+```
 
-- created Wiki Home page;
-- inspected revision history;
-- found optional Edit message;
-- used Preview;
-- added a working link;
-- recognised Wiki as a documentation publishing surface.
+---
 
-Remaining mastery evidence:
+## Current Exercise — GitHub Projects
 
-- multi-page navigation;
-- explain Wiki vs GitHub Pages vs canonical repository Markdown without prompts.
+**Student:** David  
+**Canonical module:** [04 — GitHub Projects](https://github.com/tbhrc/github-course/tree/main/04-projects)
 
-## Next Core Exercise — Full Issue Workflow
+The course material is already built. The mastery exercise is to create/use the real Project:
 
-[Open `exercises/first-issue-workflow.md`](https://github.com/tbhrc/github-course/blob/main/exercises/first-issue-workflow.md)
+**GitHub Course — Execution & Mastery**
 
-The learner must personally complete:
+[Open live Project blueprint →](https://github.com/tbhrc/github-course/blob/main/04-projects/live-example-github-course-execution-mastery.md)
+
+### Required evidence
+
+- Project physically exists;
+- real Issues/PRs added rather than dummy cards;
+- Status / Workstream / Priority / Type fields used;
+- Operating Board created;
+- Master Table created;
+- AI Benchmarks view created;
+- David Learning view created;
+- at least five real work items classified or moved;
+- David can explain the design without copying instructions.
+
+### Mastery questions
+
+1. Issue vs Project item?
+2. Field vs view?
+3. Issue state vs Project Status?
+4. Label vs Project field?
+5. Board vs Table vs Roadmap?
+6. Why keep the initial field model small?
+
+---
+
+## Core Exercise — Full Issue Workflow
+
+[Open canonical exercise →](https://github.com/tbhrc/github-course/blob/main/exercises/first-issue-workflow.md)
+
+David has already established the Issue-first rule conceptually, but still needs clear personal evidence of operating the entire path:
 
 ```text
 Issue
@@ -34,33 +63,234 @@ Issue
 → Pull Request
 → inspect diff/checks
 → merge
-→ verify Issue closes
+→ verify Issue closure
 ```
 
-## Future Assessment Areas
+Coach/agent execution is not silently credited as David’s unaided mastery.
 
-- Pull Request review and merge judgement;
-- Project creation and portfolio planning;
-- Actions workflow creation and diagnosis;
-- SemVer bump decision;
-- Git tag + GitHub Release;
-- rulesets / branch protection;
-- security and secrets handling;
-- AI-agent repository operation;
-- GitHub × external-system architecture.
+---
 
-## Evidence Standard
+## Pull Request Control-Gate Exercise
 
-Do not mark a topic complete because the learner read it.
+[Open Module 03 →](https://github.com/tbhrc/github-course/tree/main/03-pull-requests)
 
-Evidence should show that the learner can accurately explain and/or perform the operation.
+Choose one real PR and personally identify:
+
+- governing Issue;
+- base/head;
+- changed files;
+- diff meaning;
+- checks/statuses;
+- actor/provenance;
+- unresolved risks;
+- `Refs` vs closing keyword;
+- merge recommendation.
+
+The learner should be able to explain why:
+
+```text
+mergeable
+≠
+approved / safe
+```
+
+---
+
+## Actions Read / Diagnose Exercise
+
+[Open Module 05 →](https://github.com/tbhrc/github-course/tree/main/05-actions-automation)
+
+Choose an existing workflow such as:
+
+- Publish Wiki;
+- Publish Release;
+- Dispatch Codex;
+- Dispatch Claude;
+- Dispatch Copilot;
+- Benchmark Gemini CLI Executor.
+
+Explain:
+
+```text
+trigger
+permissions
+jobs
+runner
+steps
+secrets/credentials
+expected output
+```
+
+Then inspect a real run and identify the first relevant success/failure boundary.
+
+Required diagnostic vocabulary includes:
+
+- no run / trigger;
+- skipped condition;
+- missing secret;
+- 401;
+- 403;
+- 429 quota;
+- agent runtime;
+- implementation/check failure.
+
+---
+
+## Release / SemVer Exercise
+
+[Open Module 06 →](https://github.com/tbhrc/github-course/tree/main/06-releases-versioning)
+
+Given a real change:
+
+1. decide whether it is release-worthy;
+2. classify PATCH / MINOR / MAJOR meaning;
+3. explain current `0.y.z` status;
+4. keep `VERSION`, changelog, tag and Release aligned;
+5. verify the release object after publication.
+
+David’s original decimal-counter model remains preserved in the historical learning note.
+
+---
+
+## AI Executor Review Exercise
+
+[Open canonical benchmark →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+
+The repository has real AI-authored PR evidence from Copilot, Codex, Claude and Jules.
+
+Pick one PR and record:
+
+- governing Issue;
+- executor task/session;
+- branch;
+- commit author/committer;
+- PR author;
+- task fidelity;
+- unsupported factual claims;
+- checks/reviews;
+- governance/closing semantics;
+- whether you would merge.
+
+The Jules benchmark is particularly useful because it completed autonomously but review found several factual/provenance errors.
+
+---
+
+## Security / Governance Exercise
+
+[Open Module 08 →](https://github.com/tbhrc/github-course/tree/main/08-security-governance)
+
+Design a minimum-safe AI-assisted production repository policy covering:
+
+- rulesets/default branch;
+- PR requirement;
+- required checks;
+- review requirement;
+- CODEOWNERS where justified;
+- Actions permissions;
+- secret handling;
+- agent write/merge authority;
+- integration least privilege;
+- dependency/security scanning.
+
+Do not merely list features. Explain the risk each control manages.
+
+---
+
+## GitHub × FolderDesk Architecture Exercise
+
+[Open Module 10 →](https://github.com/tbhrc/github-course/tree/main/10-github-folderdesk-architecture)
+
+Classify at least 15 current responsibilities:
+
+```text
+GitHub owns
+FolderDesk owns
+Integrate
+Retire / replace duplication
+```
+
+For each one record the canonical system of record and why dual-write should or should not exist.
+
+---
+
+## Executor Benchmark Exercise Framework
+
+When benchmarking a new executor, use the same contract rather than inventing a test each time.
+
+[Open `executor-benchmark-framework.md` →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+
+The framework fixes:
+
+- task scope;
+- T0–T4 timing;
+- 100-point scoring;
+- first-review-ready quality rule;
+- setup friction vs runtime;
+- stop-before-merge condition;
+- provenance requirements.
+
+---
+
+## David — Current Assessment State
+
+### Strong conceptual/architectural progress
+
+- GitHub as operating platform;
+- Issue-first governance;
+- knowledge authority;
+- Wiki/Pages architecture;
+- deterministic Actions vs AI;
+- integration/provenance discipline;
+- executor routing/benchmark thinking;
+- source-of-truth/documentation integrity.
+
+### Still needs personal hands-on evidence
+
+1. Projects;
+2. complete Issue lifecycle;
+3. PR review/merge gate;
+4. Actions authoring/diagnosis;
+5. Release/tag workflow;
+6. security/ruleset design;
+7. AI-authored PR review;
+8. GitHub × FolderDesk ownership matrix.
+
+[Open current David progress →](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md)
+
+---
 
 ## Student Evidence
 
-[Open David's assessments folder](https://github.com/tbhrc/github-course/tree/main/students/david/assessments)
+[Open David’s assessments folder →](https://github.com/tbhrc/github-course/tree/main/students/david/assessments)
 
-[Open David's current progress](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md)
+Important dated notes currently include:
+
+- diagnostic;
+- SemVer;
+- Wiki/knowledge architecture;
+- Pages/Integrations;
+- Pages portal failure/fix;
+- ChatGPT Web control plane;
+- deterministic vs agentic automation;
+- Copilot Free Actions inference;
+- Projects;
+- multi-agent benchmarks;
+- documentation integrity.
+
+---
+
+## Assessment Integrity Rules
+
+1. Do not rewrite the immutable baseline.
+2. Preserve misconceptions/corrections.
+3. Do not credit agent execution as learner execution.
+4. Record partial recall honestly.
+5. Prefer GitHub evidence over conversational claims.
+6. Update current `progress.md` when evidence materially changes the learner state.
+7. Update the reader-facing dashboard when the current learning focus materially changes.
+
+---
 
 ## Navigation
 
-[Student Dashboard — David](Student-Dashboard-David) · [Course Modules](Course-Modules) · [Home](Home)
+[Home](Home) · [Course Handbook](Course-Handbook) · [Course Manual](Course-Manual) · [Course Modules](Course-Modules) · [Student Dashboard — David](Student-Dashboard-David) · [Course Materials](Course-Materials)
