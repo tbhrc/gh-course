@@ -60,6 +60,7 @@ use it in lesson / exercise / coaching
 - [`wiki-as-documentation-platform.md`](wiki-as-documentation-platform.md) — Wiki as a Git-backed documentation website/CMS, agentic use cases, and the boundary with GitHub Pages.
 - [`wiki-publishing-architecture.md`](wiki-publishing-architecture.md) — governed `wiki/` source in the main repository published to the separate Wiki Git repository with GitHub Actions.
 - [`pages-actions-integrations-control-plane.md`](pages-actions-integrations-control-plane.md) — Pages, Actions permissions and GitHub Apps/integrations as a governed AI-first control plane.
+- [`chatgpt-web-github-control-plane.md`](chatgpt-web-github-control-plane.md) — ChatGPT Web as the conversational front door and GitHub as the durable execution/control plane, including direct coding-agent assignment vs Agentic Workflows.
 - [`gap-register.md`](gap-register.md) — known knowledge gaps and verification status.
 
 ## Knowledge Note Standard
