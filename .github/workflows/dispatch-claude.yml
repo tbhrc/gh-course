@@ -93,7 +93,7 @@ jobs:
           response_file="$(mktemp)"
           payload="$(cat <<JSON
           {
-            "assignees": ["claude[bot]"],
+            "assignees": ["anthropic-code-agent[bot]"],
             "agent_assignment": {
               "target_repo": "${GITHUB_REPOSITORY}",
               "base_branch": "main",
