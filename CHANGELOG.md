@@ -16,6 +16,10 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - David's dated Semantic Versioning learning note documenting his original decimal-counter model, corrected `MAJOR.MINOR.PATCH` understanding and temporary failure to recall `PATCH` unaided.
 - Portable `github-power-user` Skill snapshot adapted from FolderDesk canonical v1.0.0, including a power guide, cheat sheet and agentic GitHub reference for course development.
 - AI-coach rule to consult the imported `github-power-user` Skill when developing substantial GitHub course material.
+- Authoritative `knowledge-base/` layer with source/freshness policy, Wiki-vs-repository guidance and reusable knowledge-gap register.
+- Repository-wide `.github/copilot-instructions.md` aligned with the shared `AGENTS.md` operating contract.
+- Expanded Module 07 Wiki/knowledge-architecture lesson and practical Wiki lab.
+- David's dated Wiki/knowledge-architecture learning note preserving his starting database/memory-layer assumption and the corrected model.
 
 ## [0.1.0] - 2026-08-27
 
