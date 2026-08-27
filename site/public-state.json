@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_from_commit": "117a918c46a294461812592dfb95452200d6e822",
+  "generated_from_commit": "5f728f05b9630f2a3f3fc67a967d00356f55ce9d",
   "source_contract": {
     "course_home": "wiki/Home.md",
     "student_state": "students/david/progress.md",
@@ -8,7 +8,7 @@
     "version": "VERSION"
   },
   "course": {
-    "version": "0.2.0",
+    "version": "0.3.0",
     "home_intro": "Welcome to the live GitHub Professional Operator course — a governed, AI-first learning system built by operating this repository."
   },
   "student": {
