@@ -16,11 +16,18 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Verified `knowledge-base/pages-entry-file-readme-trap.md` preserving the exact Pages failure where deployment succeeded but the README became an unhelpful public entry experience, including diagnosis, fix and prevention rules.
 - David's dated Pages portal learning note preserving the real user-journey problem, the source-vs-entry-file correction and the verified portal fix.
 - Module 07 practical failure lab teaching `green deployment ≠ correct entry page ≠ good user experience`.
+- Verified `knowledge-base/deterministic-actions-vs-agentic-ai.md` distinguishing event-driven deterministic Actions from downstream AI-agent reasoning and preserving the live trigger → secret → PAT → API → 403 proof ladder.
+- David's dated deterministic-vs-agentic learning note preserving the trigger/worker breakthrough, Actions-secret credential correction and live Codex dispatcher evidence.
+- Independent GitHub Copilot cloud-agent benchmark under Issue #38 so GitHub's native agent can be tested separately from Codex partner-agent eligibility.
+- Module 09 deterministic-dispatch lesson, secret/credential model and failure-layer diagnostic exercise.
 
 ### Changed
 
 - Course `github-power-user` Skill advanced from `1.3.0` to `1.4.0` (MINOR) to add the Pages entry-file diagnostic, README trap and post-deployment user-journey verification.
+- Course `github-power-user` Skill advanced from `1.4.0` to `1.5.0` (MINOR) to add deterministic dispatcher architecture, agent proof ladders, secret/authentication diagnostics and failure-layer classification.
 - Wiki Knowledge Base, Student Dashboard and Epiphanies pages now expose the Pages portal problem/fix as reusable course knowledge and student evidence.
+- Wiki AI Control Plane, Student Dashboard and Epiphanies now expose the deterministic-vs-agentic breakthrough, the proven ChatGPT Web → Actions command bus, current Codex HTTP 403 boundary and Copilot benchmark #38.
+- `knowledge-base/chatgpt-web-codex-dispatch.md` now records that the user PAT, corrected agent-assignment payload and authenticated API call are proven while native Codex partner-agent assignment remains rejected with HTTP 403.
 
 ## [0.2.0] - 2026-08-27
 
