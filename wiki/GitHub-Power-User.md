@@ -6,7 +6,7 @@ This page is the reader-facing entry point to the course's strategic GitHub oper
 
 The `github-power-user` Skill helps an AI coach or operator decide **which GitHub capability should own a workflow** before custom infrastructure is built.
 
-Current course Skill version: **1.1.0**
+Current course Skill version: **1.4.0**
 
 [Open the canonical course Skill →](https://github.com/tbhrc/github-course/blob/main/skills/github-power-user/SKILL.md)
 
@@ -31,9 +31,37 @@ Current course Skill version: **1.1.0**
 | Repeatable AI task | Prompt file |
 | External agent tools/context | MCP |
 
+## Pages Power-User Diagnostic
+
+A Pages site being live is not enough.
+
+```text
+green deployment
+≠
+correct entry page
+≠
+good user experience
+```
+
+If the public site looks like an unhelpful README page, first separate:
+
+```text
+publishing source
+entry file
+information architecture
+```
+
+For this course the Pages source `main / (root)` was already correct. The fix was a deliberate root `index.html` portal, not a new branch or folder.
+
+[Read the verified Pages entry-file failure pattern →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-entry-file-readme-trap.md)
+
 ## Power Principle
 
 > **Before building custom infrastructure, check whether GitHub already provides the capability natively.**
+
+And after publishing:
+
+> **Verify the real user journey, not only the deployment status.**
 
 ## Reference Files
 
