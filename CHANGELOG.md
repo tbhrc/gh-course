@@ -6,6 +6,19 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ## [Unreleased]
 
+No notable unreleased changes yet.
+
+## [0.2.0] - 2026-08-27
+
+### Highlights
+
+- Converted GitHub Wiki into the course's governed reader-facing handbook, dashboard and knowledge-navigation surface.
+- Added automated Wiki publication from main-repository `wiki/` source to the separate `.wiki.git` repository.
+- Published and verified the public GitHub Pages course site.
+- Added the portable `github-power-user` course Skill and expanded it through Wiki, Pages, Actions and integrations/control-plane capability.
+- Added an evidence-backed GitHub knowledge base and stronger AI-coach governance.
+- Preserved David's student learning path, misconceptions, partial recall and major learning breakthroughs as reusable course evidence.
+
 ### Added
 
 - Professional versioning policy under Issue #3.
@@ -30,6 +43,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - `knowledge-base/pages-actions-integrations-control-plane.md` documenting GitHub Pages, Actions policy layers and GitHub Apps/integrations as an AI-first operating control plane.
 - David's dated Pages / Actions / Integrations learning note preserving his independent Settings exploration and integration-control-plane breakthrough.
 - Expanded Module 09 with integration capability testing, permission boundaries and a Pages hands-on exercise.
+- Automated release publisher under `.github/workflows/publish-release.yml` so a deliberate `VERSION` change on `main` creates the matching Git tag and GitHub Release.
 
 ### Changed
 
@@ -39,8 +53,6 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - `AGENTS.md` now requires integration capability to be proven by actual operation rather than inferred from installation/authorisation.
 - Wiki Home, David's dashboard and epiphany log now surface the public Pages site and integrations breakthrough.
 - David's progress now records his own Pages/Settings initiative separately from coach-built automation.
-
-The root course version remains `0.1.0` because no new course release has been published.
 
 ## [0.1.0] - 2026-08-27
 
@@ -54,4 +66,4 @@ The root course version remains `0.1.0` because no new course release has been p
 - Issue-first repository change workflow.
 - Reusable exercises, question-bank, templates, SOP, Skills and certification structure.
 
-> `0.1.0` is the first documented development baseline. A formal Git tag/GitHub Release has not yet been published because the currently connected GitHub action surface does not expose release creation.
+> `0.1.0` was the first documented development baseline. It was not published as a formal Git tag/GitHub Release.
