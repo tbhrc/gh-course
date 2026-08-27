@@ -22,16 +22,22 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Module 09 deterministic-dispatch lesson, secret/credential model and failure-layer diagnostic exercise.
 - `.github/workflows/dispatch-copilot.yml`, a deterministic ChatGPT Web → push → GitHub Copilot cloud-agent dispatcher using the user-authorised `AGENT_DISPATCH_TOKEN`.
 - First Copilot cloud-agent benchmark run `33074951020`, which proved trigger, PAT visibility and authenticated assignment request before GitHub returned HTTP `403 Forbidden`.
+- `.github/workflows/copilot-free-ai-smoke.yml`, an Issue-triggered Copilot CLI smoke test that maps `AGENT_DISPATCH_TOKEN` to runtime `COPILOT_GITHUB_TOKEN` and keeps AI output text-only.
+- Successful Copilot Free inference benchmark on Issue #45 / Actions run `33076875845`, proving genuine repository-aware AI inference inside GitHub Actions while the cloud-agent Issue assignee remains unavailable.
+- Verified `knowledge-base/copilot-free-ai-in-actions.md` documenting the execution-mode split between Copilot CLI inference and the Copilot cloud coding agent.
+- Dedicated Module 09 Copilot Free AI Actions lab and David's dated Copilot Free learning note.
+- Wiki `Copilot-Free-AI-Actions` proof page with links to live Issues, Actions evidence, knowledge note and student evidence.
 
 ### Changed
 
 - Course `github-power-user` Skill advanced from `1.3.0` to `1.4.0` (MINOR) to add the Pages entry-file diagnostic, README trap and post-deployment user-journey verification.
 - Course `github-power-user` Skill advanced from `1.4.0` to `1.5.0` (MINOR) to add deterministic dispatcher architecture, agent proof ladders, secret/authentication diagnostics and failure-layer classification.
+- Course `github-power-user` Skill advanced from `1.5.0` to `1.6.0` (MINOR) to add Copilot Free inference inside Actions, execution-mode capability classification and stored-secret vs runtime-variable mapping.
 - Wiki Knowledge Base, Student Dashboard and Epiphanies pages now expose the Pages portal problem/fix as reusable course knowledge and student evidence.
-- Wiki AI Control Plane and Student Dashboard now record both Codex and GitHub Copilot as dispatcher/authentication-proven but agent-assignment-blocked at HTTP `403`; neither is marked as agentically executed.
+- Wiki AI Control Plane and Student Dashboard now record both Codex and GitHub Copilot as dispatcher/authentication-proven but cloud/partner-agent assignment-blocked at HTTP `403`, while separately recording Copilot Free AI inference inside Actions as operationally proven.
 - `knowledge-base/chatgpt-web-codex-dispatch.md` now records that the user PAT, corrected agent-assignment payload and authenticated API call are proven while native Codex partner-agent assignment remains rejected with HTTP 403.
 - `knowledge-base/deterministic-actions-vs-agentic-ai.md` now includes the independent GitHub Copilot Issue #38 benchmark and exact `copilot-swe-agent[bot]` 403 result.
-- David's progress and dated learning evidence now distinguish deterministic dispatcher success from actual AI-agent session/PR proof.
+- David's progress now distinguishes cloud-agent capability from Copilot CLI inference and records the successful Issue #45 Free-plan AI proof.
 
 ## [0.2.0] - 2026-08-27
 
