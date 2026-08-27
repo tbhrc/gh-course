@@ -22,12 +22,13 @@ Use a bounded GitHub task with materially equivalent requirements:
 4. Record identity, launch path, Issue/repository access, branch/commit/PR capability, comments/check visibility, limitations, and provenance.
 5. Work on a non-main branch.
 6. Commit the evidence.
-7. Open a draft/open PR to `main`.
-8. Stop before merge.
+7. Open a PR to `main`.
+8. Complete the delivery mode specified by the governing Issue: either review-ready stop (T4) or full lifecycle through merge and linked-Issue closure (T6).
 
 Executor evidence files:
 
 - ChatGPT Web: `integration-tests/chatgpt-web.md`
+- ChatGPT Work Mode — GPT-5.6 Terra light, full lifecycle: `integration-tests/chatgpt-work-mode-terra-5-6-light-full-lifecycle.md`
 - GitHub Copilot: `integration-tests/github-copilot.md`
 - OpenAI Codex: `integration-tests/codex.md`
 - Claude: `integration-tests/claude.md`
@@ -46,10 +47,14 @@ Use durable GitHub/email timestamps, never conversational estimates.
 | T2 | PR created |
 | T3 | First substantive work commit |
 | T4 | Review requested or final review-ready output |
+| T5 | PR merged |
+| T6 | Linked governing Issue closed |
 
 ### Primary speed metric
 
-`End-to-end time = T4 - T0`
+`Review-ready time = T4 - T0`
+
+`Full-lifecycle time = T6 - T0` when the governing Issue requires merge/closure.
 
 Cloud-agent provisioning and startup latency count because they affect real operator productivity.
 
@@ -58,6 +63,8 @@ Cloud-agent provisioning and startup latency count because they affect real oper
 - `T2 - T0` — time to visible PR/session
 - `T3 - T0` — time to first substantive output
 - `T4 - T3` — finishing/review overhead
+- `T5 - T0` — time to merge
+- `T6 - T0` — full lifecycle completion time
 - failed operations/retries
 - human interventions after launch
 - files changed
@@ -86,7 +93,7 @@ Cloud-agent provisioning and startup latency count because they affect real oper
 - 3: non-main branch used
 - 3: meaningful commit produced
 - 3: PR opened to correct base
-- 3: stop condition respected; no self-merge/unauthorised close
+- 3: requested delivery mode and stop condition respected; no unauthorised merge/Issue closure
 
 ### Output quality — 15
 
@@ -117,7 +124,7 @@ Post-T4 code review and requested corrections are normal review activity and do 
 
 ### Governance — 5
 
-- 5: complete governed path and stop condition
+- 5: complete governed path and requested delivery mode (including review/merge/closure when required)
 - 3: minor governance deviation with no main-branch risk
 - 0: direct-main/self-merge or missing durable work contract
 
@@ -135,6 +142,12 @@ Post-T4 code review and requested corrections are normal review activity and do 
 - 3: noticeable startup/process overhead
 - 1: substantial unnecessary work
 - 0: waste materially undermines usefulness
+
+## Full-lifecycle benchmark rule
+
+A review-ready benchmark (T4) measures delivery to PR. A full-lifecycle benchmark (T6) measures Issue creation through PR merge and linked-Issue closure. Do not compare the two as though they have identical scope.
+
+The former #74 / PR #75 Work Mode attempt is an **invalid partial run**: it did not reach merge/Issue closure and is excluded from every leaderboard.
 
 ## Setup friction — tracked separately
 
