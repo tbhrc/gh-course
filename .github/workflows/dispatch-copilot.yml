@@ -1,0 +1,146 @@
+name: Dispatch GitHub Copilot from GitHub
+
+on:
+  push:
+    branches:
+      - 'dispatch/copilot/**'
+    paths:
+      - '.dispatch/copilot/**'
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: GitHub Issue number to dispatch to Copilot
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  dispatch:
+    if: github.actor == 'tbhrc'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Resolve target Issue
+        id: target
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DISPATCH_INPUT: ${{ inputs.issue_number }}
+          REF_NAME: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          case "$EVENT_NAME" in
+            push)
+              issue="${REF_NAME##*/}"
+              ;;
+            workflow_dispatch)
+              issue="$DISPATCH_INPUT"
+              ;;
+            *)
+              echo "Unsupported event: $EVENT_NAME"
+              exit 1
+              ;;
+          esac
+
+          if ! [[ "$issue" =~ ^[0-9]+$ ]]; then
+            echo "Invalid Issue number: $issue"
+            exit 1
+          fi
+
+          echo "issue_number=$issue" >> "$GITHUB_OUTPUT"
+          echo "Dispatch target: Issue #$issue via $EVENT_NAME" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Preflight user-authorised dispatch credential
+        id: preflight
+        env:
+          AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${AGENT_DISPATCH_TOKEN:-}" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "AGENT_DISPATCH_TOKEN is not configured for Actions." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "User-authorised dispatch credential is present." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Report missing setup
+        if: steps.preflight.outputs.ready != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "GitHub Copilot dispatch fired but stopped safely because the Actions secret \`AGENT_DISPATCH_TOKEN\` is unavailable. No Copilot agent session was started."
+          exit 1
+
+      - name: Assign GitHub Copilot cloud agent
+        id: assign
+        if: steps.preflight.outputs.ready == 'true'
+        env:
+          AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          response_file="$(mktemp)"
+          payload="$(cat <<JSON
+          {
+            "assignees": ["copilot-swe-agent[bot]"],
+            "agent_assignment": {
+              "target_repo": "${GITHUB_REPOSITORY}",
+              "base_branch": "main",
+              "custom_instructions": "Treat the assigned Issue as the complete task specification. Read AGENTS.md first. Create only the requested benchmark evidence. Do not self-merge and do not close the Issue.",
+              "custom_agent": "",
+              "model": ""
+            }
+          }
+          JSON
+          )"
+
+          http_code="$(curl -sS -o "$response_file" -w '%{http_code}' \
+            -X POST \
+            -H 'Accept: application/vnd.github+json' \
+            -H 'X-GitHub-Api-Version: 2022-11-28' \
+            -H "Authorization: Bearer $AGENT_DISPATCH_TOKEN" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/assignees" \
+            -d "$payload")"
+
+          echo "GitHub Copilot agent-assignment HTTP status: $http_code" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$http_code" != "201" ]; then
+            echo "Copilot assignment rejected. Response:" >> "$GITHUB_STEP_SUMMARY"
+            cat "$response_file" >> "$GITHUB_STEP_SUMMARY"
+            echo "GitHub Copilot agent-assignment HTTP status: $http_code"
+            cat "$response_file"
+            exit 1
+          fi
+
+          echo "GitHub Copilot cloud-agent assignment accepted for Issue #${ISSUE_NUMBER}." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Report failed Copilot assignment
+        if: failure() && steps.preflight.outputs.ready == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "GitHub Copilot dispatch reached the cloud-agent assignment API but GitHub rejected the request. Inspect the **Dispatch GitHub Copilot from GitHub** Actions run for the exact HTTP response. No fallback agent/API route was used."
+
+      - name: Record successful dispatch
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ steps.target.outputs.issue_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "GitHub Copilot cloud-agent assignment was accepted. Watch this Issue and the repository for the Copilot agent session and resulting Pull Request. The benchmark must remain human-reviewed and must not self-merge."
