@@ -34,20 +34,18 @@ jobs:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set Review on each linked Issue
+      - name: Find linked Issue
+        id: linked
         if: env.PROJECT_MANAGEMENT_TOKEN != ''
         env:
           GH_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -euo pipefail
-          gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json closingIssuesReferences --jq '.closingIssuesReferences[].number' | while read -r issue; do
-            [ -z "$issue" ] && continue
-            echo "issue=$issue" >> "$GITHUB_OUTPUT"
-          done
+          issue="$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json closingIssuesReferences --jq '.closingIssuesReferences[0].number // empty')"
+          echo "issue=$issue" >> "$GITHUB_OUTPUT"
       - name: Mark linked Issue Review
         if: env.PROJECT_MANAGEMENT_TOKEN != '' && steps.linked.outputs.issue != ''
-        id: linked-review
         uses: ./.github/actions/set-course-project-status
         with:
           token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
