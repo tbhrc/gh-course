@@ -357,6 +357,108 @@ It also prevents unnecessary architecture changes. A poor homepage does not auto
 
 ---
 
+## 9. Automation Is Not Automatically AI
+
+### Trigger
+
+David noticed that after ChatGPT Web performed repository operations, GitHub continued doing work automatically. Because Codex, Claude and Gemini were connected, he questioned whether those agents might already be executing behind the scenes.
+
+The audit showed something subtler and more useful.
+
+### Evidence
+
+The repository already contained deterministic GitHub automation:
+
+```text
+merge / push
+→ GitHub Action
+→ shell / API work
+→ Wiki / Pages / release result
+```
+
+No AI reasoning was required for those steps.
+
+David then articulated the core insight himself:
+
+> **A deterministic script only needs a trigger. The Web agent can be the trigger, and the Action can either do the work itself or fire another AI agent.**
+
+### New mental model
+
+```text
+CONTROL
+ChatGPT Web / human
+        ↓
+TRIGGER + DETERMINISTIC AUTOMATION
+GitHub event → Action
+        ↓
+AGENTIC EXECUTION
+Copilot / Codex / Claude / Gemini
+        ↓
+DELIVERY + EVIDENCE
+branch → commit → PR → checks → merge
+```
+
+### Live Codex dispatcher learning
+
+Issue #34 and Issue #24 produced a real failure ladder:
+
+```text
+✅ Web agent created push trigger
+✅ GitHub Action started
+✅ Issue #24 resolved
+❌ AGENT_DISPATCH_TOKEN initially missing
+✅ real fine-grained GitHub PAT created
+✅ Actions received it as ***
+✅ coding-agent API reached
+❌ Codex partner-agent assignment returned HTTP 403
+```
+
+This demonstrated another professional rule:
+
+```text
+automation working
+≠
+authentication working
+≠
+agent entitlement working
+≠
+agent execution proven
+```
+
+### Secret correction
+
+A GitHub secret is a secure container for a real credential. It is not an arbitrary password the operator invents.
+
+That correction was learned hands-on when the dispatcher moved from an empty secret to a real GitHub-generated PAT.
+
+### Applied founder architecture
+
+David's target daily workflow is now:
+
+```text
+talk to ChatGPT Web
+→ decide work
+→ create/refine Issue
+→ Web agent fires GitHub trigger
+→ deterministic dispatcher
+→ specialist AI worker
+→ governed PR
+```
+
+The founder should not need to manually open each downstream coding agent once the repository is correctly configured.
+
+### Next proof
+
+A clean independent benchmark now exists for GitHub's own Copilot cloud agent:
+
+[Issue #38 — GitHub Copilot cloud-agent benchmark](https://github.com/tbhrc/github-course/issues/38)
+
+[Canonical learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-deterministic-vs-agentic.md)
+
+[Verified deterministic-vs-agentic knowledge note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/deterministic-actions-vs-agentic-ai.md)
+
+---
+
 ## Teaching Rule
 
 Future learners should not always be given these conclusions first.
@@ -376,4 +478,4 @@ That is often more powerful than passive explanation.
 
 ## Navigation
 
-[Student Dashboard — David](Student-Dashboard-David) · [Course Handbook](Course-Handbook) · [Home](Home)
+[Student Dashboard — David](Student-Dashboard-David) · [AI Control Plane](AI-Control-Plane) · [Course Handbook](Course-Handbook) · [Home](Home)
