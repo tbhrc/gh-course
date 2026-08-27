@@ -3,21 +3,17 @@ description: Update the linked GitHub Course Project item for one repository Iss
 
 inputs:
   token:
-    description: Classic token with the project scope.
+    description: Token with Projects write access.
     required: true
   issue-number:
     description: Repository Issue number represented by the Project item.
     required: true
-  status-option-id:
-    description: ID of the target Status single-select option.
+  target-status:
+    description: Target Status option name, for example In progress, Review, Done or Ready.
     required: true
-  expected-status:
-    description: Optional current Status required before the update.
+  allowed-current-statuses:
+    description: Optional comma-separated current Status names allowed before the update.
     required: false
-  update:
-    description: Set false to validate the Project item without changing its Status.
-    required: false
-    default: "true"
   allow-missing:
     description: Treat an Issue that is not on the Project as a successful no-op.
     required: false
@@ -36,17 +32,29 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.token }}
         ISSUE_NUMBER: ${{ inputs.issue-number }}
-        STATUS_OPTION_ID: ${{ inputs.status-option-id }}
-        EXPECTED_STATUS: ${{ inputs.expected-status }}
-        UPDATE: ${{ inputs.update }}
+        TARGET_STATUS: ${{ inputs.target-status }}
+        ALLOWED_CURRENT_STATUSES: ${{ inputs.allowed-current-statuses }}
         ALLOW_MISSING: ${{ inputs.allow-missing }}
-        PROJECT_ID: PVT_kwHODk17yc4BhrMc
-        STATUS_FIELD_ID: PVTSSF_lAHODk17yc4BhrMczhgmEFA
       run: |
         set -euo pipefail
 
-        query='query { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100) { nodes { id content { ... on Issue { number } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } }'
-        item_json="$(gh api graphql -f query="$query" --jq ".data.user.projectV2.items.nodes[] | select(.content.number == (${ISSUE_NUMBER} | tonumber))")"
+        query='query { user(login: "tbhrc") { projectV2(number: 1) { id fields(first: 50) { nodes { ... on ProjectV2SingleSelectField { id name options { id name } } } } items(first: 100) { nodes { id content { ... on Issue { number } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } }'
+        project_json="$(gh api graphql -f query="$query" --jq '.data.user.projectV2')"
+
+        if [ -z "$project_json" ] || [ "$project_json" = "null" ]; then
+          echo "Unable to read user Project #1. Check PROJECT_MANAGEMENT_TOKEN permissions." >&2
+          exit 1
+        fi
+
+        project_id="$(jq -r '.id' <<<"$project_json")"
+        status_field_id="$(jq -r '.fields.nodes[] | select(.name == "Status") | .id' <<<"$project_json" | head -n1)"
+        option_id="$(jq -r --arg target "$TARGET_STATUS" '.fields.nodes[] | select(.name == "Status") | .options[] | select(.name == $target) | .id' <<<"$project_json" | head -n1)"
+        item_json="$(jq -c --argjson issue "$ISSUE_NUMBER" '.items.nodes[] | select(.content.number == $issue)' <<<"$project_json" | head -n1)"
+
+        if [ -z "$status_field_id" ] || [ -z "$option_id" ]; then
+          echo "Project Status field or target option '${TARGET_STATUS}' was not found." >&2
+          exit 1
+        fi
 
         if [ -z "$item_json" ]; then
           if [ "$ALLOW_MISSING" = "true" ]; then
@@ -61,14 +69,28 @@ runs:
         previous_status="$(jq -r '.fieldValueByName.name // ""' <<<"$item_json")"
         echo "previous-status=$previous_status" >> "$GITHUB_OUTPUT"
 
-        if [ -n "$EXPECTED_STATUS" ] && [ "$previous_status" != "$EXPECTED_STATUS" ]; then
-          echo "Issue #${ISSUE_NUMBER} must be ${EXPECTED_STATUS}; current Project Status is ${previous_status:-unset}." >&2
-          exit 1
-        fi
-
-        if [ "$UPDATE" != "true" ]; then
+        if [ "$previous_status" = "$TARGET_STATUS" ]; then
+          echo "Issue #${ISSUE_NUMBER} is already ${TARGET_STATUS}."
           exit 0
         fi
 
+        if [ -n "$ALLOWED_CURRENT_STATUSES" ]; then
+          allowed=false
+          IFS=',' read -ra statuses <<< "$ALLOWED_CURRENT_STATUSES"
+          for status in "${statuses[@]}"; do
+            status="${status#${status%%[![:space:]]*}}"
+            status="${status%${status##*[![:space:]]}}"
+            if [ "$previous_status" = "$status" ]; then
+              allowed=true
+              break
+            fi
+          done
+          if [ "$allowed" != "true" ]; then
+            echo "Issue #${ISSUE_NUMBER} current Project Status '${previous_status:-unset}' is not allowed for transition to '${TARGET_STATUS}'." >&2
+            exit 1
+          fi
+        fi
+
         mutation='mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) { updateProjectV2ItemFieldValue(input: {projectId: $projectId, itemId: $itemId, fieldId: $fieldId, value: {singleSelectOptionId: $optionId}}) { projectV2Item { id } } }'
-        gh api graphql -f query="$mutation" -f projectId="$PROJECT_ID" -f itemId="$item_id" -f fieldId="$STATUS_FIELD_ID" -f optionId="$STATUS_OPTION_ID" >/dev/null
+        gh api graphql -f query="$mutation" -f projectId="$project_id" -f itemId="$item_id" -f fieldId="$status_field_id" -f optionId="$option_id" >/dev/null
+        echo "Issue #${ISSUE_NUMBER}: ${previous_status:-unset} -> ${TARGET_STATUS}"
