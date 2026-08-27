@@ -7,7 +7,7 @@ This is the **reader-facing progress dashboard** for Student #1.
 ## Current Status
 
 **Stage:** Stage 2 — Crash Course  
-**Current focus:** Wiki / Pages / Integrations operating architecture  
+**Current focus:** AI Agents + GitHub — deterministic dispatch vs agentic execution  
 **Baseline date:** 27 August 2026
 
 ## Starting Position
@@ -46,6 +46,12 @@ This is the **reader-facing progress dashboard** for Student #1.
 - Integrations recognised independently as a major AI-first operating layer.
 - Public Pages site tested as a real student/user; David identified that a successful deployment was still an unusable README-style website entry experience.
 - Pages source vs entry-file distinction introduced from the real failure: `main / (root)` stayed in place and a deliberate root `index.html` became the public course portal.
+- Deterministic GitHub Actions vs agentic AI recognised independently from live workflow behaviour.
+- Real GitHub fine-grained PAT created after correcting the mistaken idea that an Actions secret value could be an invented password.
+- ChatGPT Web → push → GitHub Action command bus physically proven through Issue #24 / Issue #34.
+- PAT visibility to Actions physically proven; the workflow reached GitHub's coding-agent assignment API.
+- Codex partner-agent execution correctly remains **unproven** because GitHub returned HTTP `403 Forbidden` at the downstream assignment layer.
+- Independent GitHub Copilot cloud-agent benchmark opened as Issue #38.
 
 ### Applied Architecture
 
@@ -57,12 +63,27 @@ GitHub
 ├── Pages public website
 │   └── index.html = deliberate public front door
 ├── Actions automation
-└── Integrations
-    ├── AI coding/review agents
+│   └── deterministic dispatchers
+└── AI / service integrations
+    ├── GitHub Copilot cloud agent
+    ├── Codex / Claude / Gemini partner agents
     └── deployment/services
 ```
 
-Two professional corrections now being learned are:
+The current agentic operating model is:
+
+```text
+ChatGPT Web
+→ decide / create Issue
+→ fire GitHub trigger
+→ deterministic Action
+→ authenticated agent hand-off
+→ AI worker
+→ branch + commits + PR
+→ review / merge / deployment
+```
+
+### Professional Corrections Now Learned
 
 ```text
 installed / authorised
@@ -72,14 +93,24 @@ permission for every operation
 operation proven end to end
 ```
 
-and:
-
 ```text
 green Pages deployment
 ≠
 correct entry page
 ≠
 good user experience
+```
+
+```text
+automatic GitHub work
+≠
+AI model executed
+```
+
+```text
+Actions secret
+= secure container for a real credential
+≠ invented password
 ```
 
 ### Still Requires Hands-On Mastery
@@ -90,8 +121,9 @@ good user experience
 - Actions beyond settings/configuration-level familiarity;
 - tag + GitHub Release workflow;
 - security/governance and least-privilege permission design;
-- one end-to-end AI integration test;
+- one end-to-end AI agent producing an agent-authored branch/commit/PR;
 - compare connected agents by proven capability rather than assumed equivalence;
+- diagnose trigger/authentication/agent/runtime failures unaided;
 - final Wiki vs Pages vs canonical Markdown explanation;
 - diagnose Pages source vs entry-file problems unaided.
 
@@ -102,6 +134,7 @@ good user experience
 - [Wiki / knowledge architecture learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-wiki.md)
 - [Pages / Actions / Integrations learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-integrations.md)
 - [Pages portal failure and fix learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-portal-fix.md)
+- [Deterministic automation vs agentic AI learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-deterministic-vs-agentic.md)
 
 ## Major Epiphanies
 
@@ -114,19 +147,24 @@ good user experience
 7. GitHub Pages turns the repository into a public website publishing source.
 8. Integrations can make GitHub the shared control plane connecting AI agents, automation and deployment services.
 9. A green deployment is not the same as a usable website: the publishing source, entry file and user journey must be evaluated separately.
+10. GitHub Actions can be deterministic command buses: **automation is not automatically AI**, and a Web agent can fire the trigger that hands work to a downstream AI worker.
 
 [Open the full epiphany log →](Epiphanies-and-Learning-Breakthroughs)
+
+## Live Integration Benchmarks
+
+- [Master matrix — Issue #23](https://github.com/tbhrc/github-course/issues/23)
+- [Codex partner-agent benchmark — Issue #24](https://github.com/tbhrc/github-course/issues/24)
+- [GitHub Copilot cloud-agent benchmark — Issue #38](https://github.com/tbhrc/github-course/issues/38)
 
 ## Public Course Site
 
 [Open GitHub Pages site →](https://tbhrc.github.io/github-course/)
 
-The public site now uses a deliberate root `index.html` portal rather than relying on the README as the effective entry experience.
-
 ## Current Next Step
 
-Run one bounded integration test with a connected AI agent and record exactly which operations succeed: repository read → Issue → branch/change → Pull Request → review/checks.
+Run Issue #38 through GitHub's own Copilot cloud-agent path. Success means an actual Copilot agent session and agent-authored branch/commit/PR. Failure must be classified precisely as plan, policy, permission or runtime evidence.
 
 ## Navigation
 
-[Home](Home) · [Course Manual](Course-Manual) · [Course Modules](Course-Modules) · [Exercises & Assessments](Exercises-and-Assessments) · [Epiphanies](Epiphanies-and-Learning-Breakthroughs)
+[Home](Home) · [AI Control Plane](AI-Control-Plane) · [Course Manual](Course-Manual) · [Course Modules](Course-Modules) · [Exercises & Assessments](Exercises-and-Assessments) · [Epiphanies](Epiphanies-and-Learning-Breakthroughs)

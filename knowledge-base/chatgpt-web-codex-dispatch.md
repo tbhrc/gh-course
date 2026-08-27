@@ -1,6 +1,6 @@
 # ChatGPT Web → Codex Dispatch
 
-**Status:** dispatcher implemented; user token verified visible to Actions; native Codex assignment under final API/policy verification  
+**Status:** deterministic command bus and user-authenticated API call verified; native Codex partner-agent assignment currently rejected with HTTP `403 Forbidden`  
 **Last verified:** 27 August 2026
 
 ## The operating model
@@ -26,7 +26,7 @@ trigger / automation
 AI reasoning
 ```
 
-A GitHub Action can be completely deterministic. Its job can simply be to react to an event and hand work to another system. In this architecture the Action is the dispatcher; Codex is the reasoning/execution agent.
+A GitHub Action can be completely deterministic. Its job can simply be to react to an event and hand work to another system. In this architecture the Action is the dispatcher; Codex would be the reasoning/execution agent.
 
 ## Why a push command bus is used
 
@@ -43,26 +43,46 @@ dispatch/codex/<issue-number>
 
 Creating the issue-linked dispatch branch from current `main` and committing the marker produces a normal push event. The workflow extracts the Issue number from the branch name and continues the dispatch.
 
-The workflow also retains an Issue-title trigger and a manual `workflow_dispatch` input for other GitHub surfaces, but the push command bus is the reliable ChatGPT Web route.
-
 ## Authentication boundary proved
 
-The connected ChatGPT GitHub surface is a GitHub App and can create Issues, branches, commits and Pull Requests. A direct attempt to assign `openai-code-agent[bot]` from that connection returned `403 Forbidden`.
+The connected ChatGPT GitHub surface is a GitHub App and can create Issues, branches, commits and Pull Requests. Direct partner-agent assignment from that app credential returned `403 Forbidden`.
 
 The repository therefore uses a user-authorised fine-grained GitHub token stored as the Actions secret `AGENT_DISPATCH_TOKEN`.
 
 Live run evidence now proves:
 
 - the push-triggered workflow runs;
-- `AGENT_DISPATCH_TOKEN` is visible to Actions;
+- `AGENT_DISPATCH_TOKEN` is visible to Actions as masked `***`;
 - preflight passes;
-- the workflow reaches the native coding-agent assignment API.
+- the workflow reaches the coding-agent assignment API using the user PAT.
+
+This distinguishes:
+
+```text
+connector GitHub App credential
+≠
+user-authorised PAT used by Actions
+```
+
+## Secret lesson
+
+An Actions secret is a secure container for a real credential. It is not an arbitrary password invented by the operator.
+
+The live setup moved through two states:
+
+```text
+invented / absent value
+→ workflow saw AGENT_DISPATCH_TOKEN as empty
+
+real GitHub-generated fine-grained PAT
+→ workflow saw AGENT_DISPATCH_TOKEN as ***
+```
+
+The repository also exposes a separate **Agents** secrets surface. That is not a replacement for the Actions secret used by this normal GitHub Actions workflow.
 
 ## Agent-assignment request shape
 
-GitHub's documented REST pattern for AI-agent assignment requires more than adding a bot login to `assignees`. The request must also include an `agent_assignment` object describing the target repository and base branch.
-
-The dispatcher therefore sends:
+The dispatcher now sends both the partner-agent bot and an `agent_assignment` object:
 
 ```json
 {
@@ -77,67 +97,100 @@ The dispatcher therefore sends:
 }
 ```
 
-The bot identity is `openai-code-agent[bot]`, the GitHub identity used by the Codex partner agent.
+PR #37 corrected the earlier dispatcher, which had only sent the bot assignee.
+
+## Current live result
+
+A fresh run after PR #37 used:
+
+- the corrected workflow from current `main`;
+- a fresh dispatch branch;
+- the real masked PAT;
+- the `agent_assignment` payload.
+
+GitHub still returned:
+
+```text
+HTTP 403 Forbidden
+```
+
+Therefore the following layers are now proven:
+
+```text
+✅ ChatGPT Web control surface
+✅ push command bus
+✅ GitHub Actions trigger
+✅ Issue resolution
+✅ Actions secret visibility
+✅ user-authenticated API request
+✅ corrected assignment payload
+❌ native Codex partner-agent assignment accepted
+❌ Codex agent session / PR
+```
+
+The remaining blocker is downstream partner-agent permission, policy or plan eligibility. It is no longer accurate to diagnose this as an Actions-trigger or missing-secret problem.
 
 ## Native Codex eligibility
 
 GitHub currently documents OpenAI Codex as a third-party coding agent available on **paid GitHub Copilot plans**. It must also be enabled in the applicable Copilot Cloud agent policy under **Partner agents → Allow Codex coding agent**.
 
-This is distinct from installing or granting permissions to the **ChatGPT Codex Connector** under ordinary GitHub integrations. Connector installation proves application access; it does not by itself prove native GitHub Codex coding-agent eligibility.
+This is distinct from installing or granting permissions to the **ChatGPT Codex Connector** under ordinary GitHub integrations.
+
+```text
+ChatGPT Codex Connector installed
+≠
+Codex partner agent enabled
+≠
+paid plan/policy eligible
+≠
+agent assignment accepted
+```
+
+## Native Codex vs GitHub Copilot cloud agent
+
+These are separate benchmark subjects.
+
+### Codex partner agent
+
+```text
+Issue #24
+→ GitHub third-party partner-agent assignment
+→ OpenAI Codex
+→ agent session / PR
+```
+
+Current result: assignment rejected with HTTP 403.
+
+### GitHub Copilot cloud agent
+
+```text
+Issue #38
+→ GitHub Copilot cloud-agent assignment
+→ Copilot agent session
+→ branch / PR
+```
+
+Issue #38 exists specifically to test GitHub's own agent without mixing Codex partner-agent evidence into it.
 
 ## Native Codex vs Agentic Workflow
 
-### Native Codex coding-agent assignment — preferred here
+A GitHub Agentic Workflow using a Codex engine is a different architecture from native partner-agent assignment. Do not silently substitute it during this benchmark because authentication and billing differ.
 
-```text
-Issue
-→ GitHub native partner-agent assignment
-→ OpenAI Codex
-→ GitHub-hosted agent session
-→ draft PR
-```
-
-This route uses GitHub's third-party coding-agent system and its GitHub Actions/AI-credit model according to the eligible Copilot plan.
-
-### GitHub Agentic Workflow using `engine: codex`
-
-```text
-Issue event
-→ Agentic Workflow
-→ Codex engine
-→ declared safe output
-```
-
-This is a different system. GitHub's current documentation requires an OpenAI API credential for the Codex engine. Do not silently substitute this route when the goal is native GitHub Codex assignment because authentication and billing differ.
-
-## One-time setup
-
-1. Store a real user-authorised fine-grained GitHub token as repository **Actions** secret `AGENT_DISPATCH_TOKEN`.
-2. Scope it only to `tbhrc/github-course` where possible.
-3. Give the permissions GitHub requires for coding-agent issue assignment: metadata read and Actions, Contents, Issues and Pull Requests read/write.
-4. Ensure the repository is enabled for Copilot Cloud agent.
-5. Ensure **OpenAI Codex** is enabled under the relevant Copilot **Partner agents** policy.
-6. Confirm the GitHub account/organization has an eligible paid Copilot plan for third-party coding agents.
-
-Do not commit the token.
-
-## Per-Issue operation after setup
+## Per-Issue operation after eligibility is satisfied
 
 The human operator should not need to open Codex manually.
 
 1. Prepare the Issue completely.
-2. ChatGPT Web creates `dispatch/codex/<issue-number>` from current `main`.
-3. ChatGPT Web writes `.dispatch/codex/<issue-number>.md` with the Issue URL and dispatch intent.
-4. The push event fires the deterministic dispatcher.
-5. GitHub attempts native Codex assignment with the documented `agent_assignment` payload.
-6. Codex should start an agent session and open a draft PR.
+2. ChatGPT Web creates the dispatch branch/marker.
+3. Push fires the deterministic dispatcher.
+4. The workflow authenticates with the user PAT.
+5. GitHub accepts the partner-agent assignment.
+6. Codex starts an agent session and opens a draft PR.
 7. Review the PR and evidence before merge.
-
-The dispatcher only runs when `github.actor == 'tbhrc'`, so outside visitors cannot spend AI credits by creating Issues or branches they cannot push.
 
 ## First benchmark
 
-Issue #24 is the first controlled Codex test.
+Issue #24 remains the controlled Codex test.
 
 Do not mark Codex as operationally proven until repository evidence shows:
 
@@ -154,19 +207,17 @@ Do not mark Codex as operationally proven until repository evidence shows:
 ```text
 ChatGPT Web = control / trigger surface
 GitHub push + Actions = deterministic command bus
-Codex = agentic execution surface
+Codex = downstream agentic execution surface
 GitHub = audit trail and governance plane
 ```
 
-And keep these distinctions explicit:
+And:
 
 ```text
-integration installed
-≠ native coding agent enabled
-≠ plan eligible
-≠ agent assignment operationally proven
+automation running
+≠ authentication proven
+≠ agent entitlement proven
+≠ agent execution proven
 ```
 
-A well-configured repository moves complexity into reusable rules and workflows so the founder's recurring operation becomes as small as:
-
-> decide the work → create the Issue → dispatch the agent
+Read `deterministic-actions-vs-agentic-ai.md` for the reusable failure-layer model.

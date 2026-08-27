@@ -63,6 +63,7 @@ use it in lesson / exercise / coaching
 - [`pages-entry-file-readme-trap.md`](pages-entry-file-readme-trap.md) — the verified Pages failure pattern where deployment succeeds but `README.md` becomes an unhelpful entry experience; covers entry-file diagnosis, portal fix and user-journey verification.
 - [`chatgpt-web-github-control-plane.md`](chatgpt-web-github-control-plane.md) — ChatGPT Web as the conversational front door and GitHub as the durable execution/control plane, including direct coding-agent assignment vs Agentic Workflows.
 - [`chatgpt-web-codex-dispatch.md`](chatgpt-web-codex-dispatch.md) — the deterministic ChatGPT Web → Issue trigger → native Codex assignment architecture, authentication boundary and one-time setup.
+- [`deterministic-actions-vs-agentic-ai.md`](deterministic-actions-vs-agentic-ai.md) — verified distinction between deterministic GitHub Actions, agent dispatch, downstream AI reasoning and delivery evidence, including the live Issue #24 failure ladder.
 - [`gap-register.md`](gap-register.md) — known knowledge gaps and verification status.
 
 ## Knowledge Note Standard
