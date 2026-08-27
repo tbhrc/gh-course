@@ -1,195 +1,425 @@
 # Student Dashboard — David
 
-This is the **reader-facing progress dashboard** for Student #1.
+This is the **reader-facing current progress dashboard** for Student #1.
 
-> Canonical learner evidence lives under [`students/david/`](https://github.com/tbhrc/github-course/tree/main/students/david). This Wiki page is a navigable summary, not a replacement for the evidence files.
+> Canonical learner evidence lives under [`students/david/`](https://github.com/tbhrc/github-course/tree/main/students/david). This Wiki page summarises and links to that evidence; it does not replace it.
+
+---
 
 ## Current Status
 
-**Stage:** Stage 2 — Crash Course  
-**Current focus:** AI Agents + GitHub — from deterministic dispatch to proven Free-plan AI inference  
-**Baseline date:** 27 August 2026
+**Stage:** Stage 2 — Crash Course / live operation  
+**Current hands-on focus:** **Module 04 — GitHub Projects**  
+**Next objective:** create and operate **GitHub Course — Execution & Mastery** using real course Issues/PRs.  
+**Baseline date:** 27 August 2026.
+
+[Open canonical current progress →](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md)
+
+---
 
 ## Starting Position
+
+David’s immutable baseline remains the comparison point.
 
 | Area | Starting level |
 | --- | --- |
 | Git fundamentals | ~6/10 |
 | GitHub platform operation | ~2/10 |
-| Pull Requests | Beginner |
+| Pull Requests | Beginner / misconception |
 | Issues | Beginner |
 | Projects | New |
 | Actions | New |
 | Wiki / knowledge architecture | New |
 | Releases / versioning | Beginner |
+| Security / governance | Basic–New |
 | AI-agent GitHub workflows | New |
+| GitHub as operating platform | New |
 
 [Open immutable baseline →](https://github.com/tbhrc/github-course/blob/main/students/david/baseline-2026-08-27.md)
 
-## Progress So Far
+The baseline is historical evidence and is never rewritten to reflect later improvement.
 
-### Demonstrated / materially improved
+---
 
-- Git vs repository vs GitHub mental model.
-- Commit vs push distinction.
-- Branching and diffs.
-- Issue-first governance recognised independently.
-- Semantic Versioning model learned: `MAJOR.MINOR.PATCH`.
-- Durable knowledge-base requirement recognised independently.
-- GitHub Wiki operated hands-on and recognised as a Git-backed documentation publishing surface.
-- GitHub Pages found and enabled independently.
-- Actions permissions, workflow approval settings and Integrations explored independently.
-- Public Pages site tested as a real user; the README-style entry failure was identified and fixed with a deliberate root `index.html` portal.
-- Deterministic GitHub Actions vs agentic AI recognised independently from live workflow behaviour.
-- Real fine-grained GitHub PAT created after correcting the mistaken idea that an Actions secret value could be an invented password.
-- ChatGPT Web → GitHub trigger → deterministic Action command bus physically proven.
-- Codex partner-agent assignment benchmark reached the authenticated API and returned HTTP `403`.
-- GitHub Copilot cloud-agent assignment benchmark independently reached the authenticated API and returned HTTP `403`.
-- David challenged the assumption that the cloud-agent failure meant Copilot Free could not run genuine AI automation at all.
-- Existing PAT was granted user Copilot-request permissions.
-- David explicitly preserved the official repository secret name `AGENT_DISPATCH_TOKEN`; the workflow maps it at runtime to `COPILOT_GITHUB_TOKEN` rather than renaming the secret.
-- **Copilot Free AI inference is now physically proven:** Issue #45 triggered Actions run `33076875845`, the Copilot CLI inference step succeeded, and original repository-aware AI analysis was posted back to the Issue.
+## Current Mental Model
 
-## Major New Breakthrough
+David has materially shifted from:
 
 ```text
-COPILOT FREE
-
-✅ Issue-triggered GitHub Actions
-✅ GitHub Copilot CLI
-✅ genuine AI inference
-✅ AI-generated safe output
-
-❌ autonomous Copilot cloud-agent Issue assignment
-❌ cloud-agent-authored branch / commit / PR
+GitHub ≈ remote/cloud repository storage
 ```
 
-This resolved an important product-model confusion:
-
-> **Copilot capability must be classified by execution mode, not by a single yes/no “does the plan have Copilot agents?” question.**
-
-[Open Copilot Free AI proof →](Copilot-Free-AI-Actions)
-
-### Applied Architecture
+toward:
 
 ```text
 GitHub
-├── repository truth
-├── Issues / PR governance
-├── Wiki handbook
-├── Pages public website
-├── Actions automation
-│   ├── deterministic scripts / dispatchers
-│   └── Copilot CLI AI inference
-└── AI / service integrations
-    ├── GitHub Copilot cloud agent
-    ├── Codex / Claude / Gemini partner agents
-    └── deployment/services
+= governed change-management operating platform
++ work tracking
++ review/evidence
++ automation
++ portfolio planning
++ documentation/publishing
++ AI/service control plane
 ```
 
-The founder-facing flow now physically proven is:
+Core chain:
 
 ```text
-ChatGPT Web
-→ create Issue
-→ GitHub event fires
-→ deterministic Action
-→ Copilot Free AI inference
-→ safe captured output
-→ durable GitHub evidence
+Issue
+→ branch
+→ commits
+→ Pull Request
+→ checks/review
+→ merge
+→ release/deployment when relevant
+→ durable history
 ```
 
-### Professional Corrections Now Learned
+---
+
+## Major Demonstrated Progress
+
+### Git / GitHub foundations
+
+Corrections materially learned:
+
+- Git is the version-control system, not the local repository itself;
+- commit records history; push sends commits to a remote;
+- Pull Request is a merge proposal/review surface, not `git pull`;
+- `.gitignore` does not remove an already committed secret;
+- one commit should represent a logical change rather than automatically one whole feature.
+
+### Issue-first governance
+
+David independently required the course to stop making substantive repository changes directly from chat without a governing Issue.
+
+This became:
+
+```text
+Issue
+→ branch
+→ commits
+→ PR
+→ review/checks
+→ merge
+→ Issue closes
+```
+
+**Evidence level:** strong conceptual judgement; full learner-operated end-to-end mastery still to prove.
+
+### Semantic Versioning
+
+David moved from a decimal-counter intuition to the professional model:
+
+```text
+MAJOR.MINOR.PATCH
+```
+
+He understands that `1.10.0` can follow `1.9.0` and that version numbers communicate release meaning rather than counting commits.
+
+[Open SemVer learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-semver.md)
+
+### Knowledge authority
+
+David explicitly rejected AI memory as the course’s final source of current GitHub truth.
+
+Resulting hierarchy:
+
+```text
+current official/live evidence
+→ knowledge-base/
+→ github-power-user Skill
+→ course modules
+→ old chat/model memory
+```
+
+### GitHub Wiki breakthrough
+
+David’s starting Wiki model was database/memory-oriented.
+
+Hands-on use produced the independent insight:
+
+> **GitHub Wiki is a Git-backed documentation website / lightweight documentation CMS.**
+
+That insight was applied directly: the course Wiki became the reader-facing handbook/dashboard and is now published from governed `wiki/` source through GitHub Actions.
+
+[Open Wiki learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-wiki.md)
+
+### GitHub Pages and user-journey validation
+
+David independently enabled Pages and later tested the public course from a real user perspective.
+
+He exposed the difference between:
+
+```text
+green deployment
+≠
+correct entry page
+≠
+good user experience
+```
+
+The course learned to separate Pages source, entry file and information architecture.
+
+[Open Pages portal learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-portal-fix.md)
+
+### Integrations as a control plane
+
+David identified repository Integrations as a major AI-first GitHub layer and pushed the course to test actual capabilities rather than assume installed access equals operational access.
+
+Professional model:
 
 ```text
 installed / authorised
 ≠
-permission for every operation
+permission granted for every operation
 ≠
 operation proven end to end
 ```
 
-```text
-automatic GitHub work
-≠
-AI model executed
-```
+### Deterministic Actions vs AI
+
+David independently recognised that automatic work can be ordinary deterministic automation.
 
 ```text
-Actions secret
-= secure container for a real credential
-≠ invented password
+GitHub event
+→ deterministic Action
+→ optional AI hand-off
 ```
+
+He then required the founder-facing pattern to become:
 
 ```text
-stored secret name
-≠
-runtime environment-variable name
+talk / decide in ChatGPT Web
+→ create governed Issue
+→ GitHub triggers/routes
+→ specialist executor works
+→ PR/evidence
 ```
+
+[Open deterministic-vs-agentic learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-deterministic-vs-agentic.md)
+
+### Secrets and credentials
+
+David now understands that an Actions secret stores a real credential; it is not an invented password.
+
+He also correctly defended the stable interface:
 
 ```text
-Copilot CLI inference
-≠
-Copilot cloud coding agent
+stored secret: AGENT_DISPATCH_TOKEN
+runtime variable: COPILOT_GITHUB_TOKEN
 ```
 
-### Still Requires Hands-On Mastery
+### Copilot execution modes
 
-- personally complete the full Issue → branch → commit → PR → merge workflow;
-- Pull Requests as the control gate;
+David challenged the idea that a blocked cloud-agent assignment meant all Copilot AI automation was unavailable.
+
+The course then physically proved genuine Copilot CLI inference inside Actions.
+
+Reusable lesson:
+
+> **Classify AI capability by execution mode, not by one product name or plan label.**
+
+[Open Copilot Free proof →](Copilot-Free-AI-Actions)
+
+---
+
+## Multi-Agent Benchmark Progress
+
+The course later proved several downstream executor routes beyond the early setup/403 stage.
+
+Canonical benchmark:
+
+[**Open AI Executor Benchmark & Leaderboard →**](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+
+Current bounded one-file benchmark:
+
+| Executor | End-to-end | Score /100 | Current proof |
+| --- | ---: | ---: | --- |
+| ChatGPT Web | 152s | **95.0** | governed connected GitHub work |
+| OpenAI Codex | 202s | **90.6** | Partner Agent branch/commit/PR |
+| Anthropic Claude | 195s | **89.4** | Partner Agent branch/commit/PR |
+| GitHub Copilot | 225s | **87.3** | cloud-agent branch/commit/PR |
+| Google Jules | 307s | **77.9** | Jules task/branch/commit/PR; first snapshot required factual review |
+| Gemini CLI/API | pending | pending | credential/inference route proven; quota prevents governed branch/PR completion |
+
+### Important learning distinction
+
+These runs prove the **course architecture and executors**.
+
+They do not automatically prove David personally configured/operated every underlying step unaided.
+
+[Open agent benchmark learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-agent-benchmarks.md)
+
+---
+
+## Jules / Gemini Separation Lesson
+
+A separate agent accidentally triggered Jules from Gemini Issue #26.
+
+That produced valid Jules activation evidence but mixed two executor lanes.
+
+Correct model:
+
+```text
+#26 → Gemini CLI/API
+#63 → Google Jules coding agent
+```
+
+The contaminated PR was preserved as history and not merged; the clean Jules benchmark used its own Issue/evidence lane.
+
+This strengthened David’s provenance discipline.
+
+---
+
+## Current Hands-On Focus — GitHub Projects
+
+David noticed that significant real work had accumulated without creating a Project and selected Projects as the next learning area.
+
+Key model:
+
+```text
+Issue / PR = actual work + evidence
+Project    = planning/control layer
+Field      = structured metadata
+View       = saved lens
+```
+
+### Course Project design
+
+**GitHub Course — Execution & Mastery**
+
+Initial fields:
+
+- Status;
+- Workstream;
+- Priority;
+- Type;
+- Target date only where real.
+
+Initial views:
+
+- Operating Board;
+- Master Table;
+- AI Benchmarks;
+- David Learning;
+- Roadmap when genuine dates exist.
+
+[Open Projects module →](https://github.com/tbhrc/github-course/tree/main/04-projects)
+
+[Open live Project blueprint →](https://github.com/tbhrc/github-course/blob/main/04-projects/live-example-github-course-execution-mastery.md)
+
+### Current evidence level
+
+**Concept and course design introduced. Not yet mastered.**
+
+David still needs to create/use the live Project and make real backlog decisions.
+
+[Open Projects learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-projects.md)
+
+---
+
+## Documentation Integrity Breakthrough
+
+David then used the public course and discovered that the backend had become far more sophisticated than several reader-facing pages.
+
+He correctly identified this as a system failure rather than asking for one stale link to be patched.
+
+New course lesson:
+
+```text
+current backend truth
++ stale reader summary
+=
+course integrity failure
+```
+
+Correct architecture:
+
+```text
+canonical repository truth
+→ Wiki reader summaries/navigation
+→ Pages public routing
+```
+
+[Open documentation-integrity learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-documentation-integrity.md)
+
+[Open Course Documentation Integrity SOP →](https://github.com/tbhrc/github-course/blob/main/sops/course-documentation-integrity.md)
+
+---
+
+## Demonstrated Strengths
+
+- Strong source-of-truth instinct.
+- Prefers live operation to theory.
+- Challenges claims that do not match observable evidence.
+- Thinks in founder/operator architecture rather than narrow developer mechanics.
+- Notices duplicated infrastructure and asks whether GitHub already provides the native capability.
+- Strong preference for traceability/history.
+- Uses the public/user surface to validate the system, not only backend status.
+- Diagnoses failures by layer.
+- Separates deterministic automation from agentic reasoning.
+- Pushes for automation that simplifies the human front door instead of adding unnecessary orchestration.
+
+---
+
+## Still Requires Hands-On Mastery
+
+1. **Projects** — create/use the live course Project and explain fields/views/status/labels.
+2. **Pull Requests** — personally operate a full review/merge gate.
+3. **Full Issue workflow** — personally complete Issue → branch → commit → PR → merge → closure.
+4. **Actions authoring** — read/create a workflow and diagnose it unaided.
+5. **Release workflow** — personally choose SemVer impact and publish/verify tag + Release.
+6. **Security/governance** — design/inspect rulesets, least privilege and agent merge authority.
+7. **AI-agent review** — personally review an AI-authored PR using provenance/diff/check evidence.
+8. **GitHub × FolderDesk architecture** — produce the ownership/integration/retire matrix.
+9. **Source-of-truth explanation** — explain repo canonical truth vs Wiki vs Pages vs Issues/PR evidence unaided.
+
+---
+
+## Evidence Index
+
+[Open all David assessments →](https://github.com/tbhrc/github-course/tree/main/students/david/assessments)
+
+Important checkpoints include:
+
+- diagnostic baseline;
+- SemVer;
+- Wiki/knowledge architecture;
+- Pages/Integrations;
+- Pages portal diagnosis;
+- ChatGPT Web control plane;
+- deterministic vs agentic automation;
+- Copilot Free Actions inference;
 - Projects;
-- Actions beyond settings/configuration-level familiarity;
-- tag + GitHub Release workflow;
-- security/governance and least-privilege permission design;
-- extend proven AI inference into a safely bounded AI-authored branch/commit/PR workflow;
-- compare connected agents and execution modes by proven capability;
-- diagnose trigger/authentication/inference/agent/runtime failures unaided;
-- final Wiki vs Pages vs canonical Markdown explanation.
+- multi-agent benchmark programme;
+- documentation integrity.
 
-## Learning Evidence
+---
 
-- [Canonical progress file](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md)
-- [Semantic Versioning learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-semver.md)
-- [Wiki / knowledge architecture learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-wiki.md)
-- [Pages / Actions / Integrations learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-integrations.md)
-- [Pages portal failure and fix learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-portal-fix.md)
-- [Deterministic automation vs agentic AI learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-deterministic-vs-agentic.md)
-- [Copilot Free AI inside Actions learning note](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-copilot-free-actions.md)
+## Evidence Rule
 
-## Major Epiphanies
+The course records separately:
 
-1. GitHub is an operating platform, not merely cloud repository storage.
-2. Substantive work should start from a durable Issue.
-3. Release numbers communicate change meaning; they are not decimal counters.
-4. AI coaches should teach from verified durable knowledge, not assumed memory.
-5. GitHub Wiki can function as a documentation website/CMS.
-6. Powerful GitHub features should be integrated into the operating model, not merely discovered.
-7. GitHub Pages turns a repository into a public publishing surface.
-8. Integrations can make GitHub the shared control plane connecting AI, automation and deployment.
-9. A green deployment is not the same as a usable website.
-10. GitHub Actions can be deterministic command buses: **automation is not automatically AI**.
-11. A working trigger, workflow and credential still do not prove agentic execution.
-12. **Copilot Free can run genuine AI inference inside GitHub Actions even though the autonomous cloud-agent assignee is unavailable.**
+```text
+concept understood
+performed with help
+performed unaided
+professional diagnosis / architecture judgement
+```
 
-[Open the full epiphany log →](Epiphanies-and-Learning-Breakthroughs)
+Agent/coach execution is not silently credited as David’s personal mastery.
 
-## Live Integration Benchmarks
-
-| Benchmark | Current result |
-| --- | --- |
-| [Master matrix — #23](https://github.com/tbhrc/github-course/issues/23) | active |
-| [Codex partner agent — #24](https://github.com/tbhrc/github-course/issues/24) | dispatcher/auth proven; assignment `403` |
-| [GitHub Copilot cloud agent — #38](https://github.com/tbhrc/github-course/issues/38) | dispatcher/auth proven; assignment `403` |
-| [Copilot Free AI Actions — #45](https://github.com/tbhrc/github-course/issues/45) | **AI inference proven** |
-
-## Public Course Site
-
-[Open GitHub Pages site →](https://tbhrc.github.io/github-course/)
+---
 
 ## Current Next Step
 
-Extend the proven Copilot Free inference route into one safely bounded workflow where AI proposes a repository change on an isolated branch and opens a PR, while human review remains the merge gate.
+**Create and operate the real GitHub Project.**
+
+Then use the Project to identify the next highest-value personal mastery task.
+
+---
 
 ## Navigation
 
-[Home](Home) · [AI Control Plane](AI-Control-Plane) · [Copilot Free AI Actions](Copilot-Free-AI-Actions) · [Course Manual](Course-Manual) · [Course Modules](Course-Modules) · [Exercises & Assessments](Exercises-and-Assessments) · [Epiphanies](Epiphanies-and-Learning-Breakthroughs)
+[Home](Home) · [Course Handbook](Course-Handbook) · [Course Manual](Course-Manual) · [Course Modules](Course-Modules) · [Course Materials](Course-Materials) · [AI Control Plane](AI-Control-Plane) · [Exercises](Exercises-and-Assessments) · [Epiphanies](Epiphanies-and-Learning-Breakthroughs)
