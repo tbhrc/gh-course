@@ -46,7 +46,7 @@ For this course the starting fields are:
 
 | Field | Options / purpose |
 |---|---|
-| Status | Backlog / Ready / In progress / Blocked / Review / Done |
+| Status | Backlog / Ready / In progress / Review / Done |
 | Workstream | Course / Learning / AI Integration / Knowledge Base / Publishing / Release |
 | Priority | P0 / P1 / P2 / P3 |
 | Type | Lesson / Exercise / Benchmark / Documentation / Infrastructure / Release |
@@ -66,7 +66,7 @@ Board grouped by `Status`.
 
 Use it for the daily question:
 
-> What is waiting, moving, blocked or ready for review?
+> What is waiting, moving, ready next or ready for review?
 
 ### 2. Master Table
 
@@ -88,25 +88,21 @@ Filtered view for the parent AI benchmark and executor/integration tests.
 
 Filtered view for hands-on mastery tasks such as Wiki, Projects and future personal exercises.
 
-## Important distinction: Issue status vs Project Status
+## Important distinction: Issue state vs Project Status
 
-An Issue has GitHub state such as `open` or `closed`.
-
-A Project can carry richer workflow state while the Issue remains open:
+An Issue has native GitHub state:
 
 ```text
-Issue = open
-Project Status = Blocked
+Issue state = Open / Closed
 ```
 
-or:
+For the live course Project, the proven Project workflow field is:
 
 ```text
-Issue = open
-Project Status = Review
+Project Status = Backlog / Ready / In progress / Review / Done
 ```
 
-Close the Issue when its acceptance criteria are actually complete. Do not use Project `Done` as a substitute for closing completed work correctly.
+That richer Project Status can change while the Issue stays open. Close the Issue only when its acceptance criteria are actually complete; do not use Project `Done` as a substitute for closing completed work correctly.
 
 ## Projects vs labels
 
@@ -143,7 +139,22 @@ Do not build automation merely to avoid one useful manual learning exercise.
 
 ### Agent execution command
 
-For the live course Project, moving an Issue card to `Ready` is a planning decision. It is not itself an AI command. To start a configured coding agent, use GitHub's **Assign agent to issue** control on the underlying Issue. The Project workflow then synchronises the native assignment, linked Pull Request and Issue closure into `In progress`, `Review` and `Done`.
+For the live course Project, moving an Issue card to `Ready` is a planning decision. It is not itself an AI command. To start a configured coding agent, use GitHub's **Assign agent to issue** control on the underlying Issue.
+
+The tested control plane is:
+
+```text
+Ready / Backlog
+→ Issue assigned to a supported coding agent
+→ deterministic GitHub Action marks Project Status In progress
+→ linked non-draft PR marks the Issue's Project item Review
+→ Issue close marks the Project item Done
+```
+
+Keep the executor boundary clear:
+
+- the deterministic GitHub Action applies the fixed Project-status rule;
+- the AI coding agent is the separate worker that writes code and opens the PR.
 
 ## Live exercise — Issue #60
 
@@ -156,15 +167,17 @@ We are using this repository itself as the exercise.
 5. Add AI Benchmarks and David Learning filtered views.
 6. Add Roadmap only after useful Target dates exist.
 7. Move Issue #60 to `In progress` while this lesson is being implemented.
-8. Review the board and identify what is genuinely blocked vs merely waiting.
+8. Review the board and identify what is waiting, active, review-ready or complete.
 
 See `live-example-github-course-execution-mastery.md` for the seed backlog.
 
 ## Authentication/API lesson discovered during this exercise
 
-The current ChatGPT GitHub connector can manage repository Issues, branches, commits and PRs but does not expose user-owned GitHub Project mutations.
+The current ChatGPT GitHub connector can manage repository Issues, branches, commits and PRs but does not expose direct user-owned GitHub Project mutations.
 
-GitHub's current documentation states that repository `GITHUB_TOKEN` cannot access Projects. User Project automation requires separate Project-authorised credentials; the documented GraphQL route uses a token with `project` scope for mutations.
+GitHub's current documentation states that repository `GITHUB_TOKEN` cannot access Projects. For this course control plane, `PROJECT_MANAGEMENT_TOKEN` is the Project write credential used by the deterministic workflow to read or mutate Project Status.
+
+That means ChatGPT Web can still request bounded Project Status changes through the GitHub-native dispatcher, but the dispatcher performs the actual Project mutation with `PROJECT_MANAGEMENT_TOKEN`. The request path is deterministic; the coding agent remains a separate execution layer.
 
 This is another example of:
 
@@ -183,7 +196,7 @@ You should be able to answer without prompts:
 3. What is a Project view?
 4. Why can one Issue appear on several views without duplication?
 5. When would you use a label instead of a Project field?
-6. Why can an open Issue legitimately have Project Status `Blocked` or `Review`?
+6. Why can an open Issue legitimately have Project Status `Ready`, `In progress` or `Review`?
 7. Why should we not create dozens of fields on day one?
 
 ## Official references

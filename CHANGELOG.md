@@ -8,6 +8,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Added
 
+- Module 04 concise Project-status control proof for Issue #107, documenting the live course status vocabulary, deterministic status transitions, `PROJECT_MANAGEMENT_TOKEN` boundary and bounded ChatGPT Web → dispatcher Project-status path.
 - Native-agent Project lifecycle pilot under Issue #92: GitHub Issue assignment synchronises Project Status, PR-to-Review and Issue-close-to-Done hooks, with no automatic merge or deployment.
 - Comprehensive course-integrity rebuild under Issue #71, expanding previously shallow canonical modules for Start Here, Pull Requests, Actions, Security/Governance and GitHub × FolderDesk into full operator lessons with live examples, hands-on tasks, mastery checks and evidence requirements.
 - Substantive GitHub Projects module and live `GitHub Course — Execution & Mastery` Project blueprint, including minimal fields/views and David's dated Projects learning evidence.
