@@ -6,6 +6,16 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-28
+
+### Highlights
+
+- Added deterministic GitHub Project intake and lifecycle automation so new Issues enter `Ready`, active work progresses through `In progress` and `Review`, and closed Issues reach `Done`; missing Project membership self-heals.
+- Proved bounded ChatGPT Web Project control and separated coding-agent dispatch authority from Project mutation authority.
+- Completed a reusable multi-agent benchmark framework with live evidence across GitHub Copilot, OpenAI Codex, Anthropic Claude, Google Jules and the Gemini authenticated/quota boundary.
+- Rebuilt course/documentation integrity around canonical repository truth, generated Wiki live state and a functional GitHub Pages front door.
+- Expanded core operator modules and advanced the portable `github-power-user` Skill to `1.8.0` with verified Project and AI-control-plane patterns.
+
 ### Added
 
 - Proven ChatGPT Web → bounded Project dispatcher → Project Status control under Issue #107, including `unset → Ready`, deliberate `Ready → Backlog`, Copilot assignment and deterministic `Backlog → In progress` lifecycle evidence; Project mutation and coding-agent dispatch use separate credentials.
@@ -46,6 +56,9 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Changed
 
+- Deterministic Project intake now adds every newly opened repository Issue to `GitHub Course — Execution & Mastery` as `Ready`; `Backlog` is reserved for deliberately parked/deferred work, and lifecycle transitions self-heal missing Project membership.
+- Issue-linked Web-direct branches and supported agent assignment move actionable work into `In progress`, non-draft linked PRs move it to `Review`, closing moves it to `Done`, and reopening returns it to `Ready`.
+- Project housekeeping reconciled stale active cards and superseded PRs while consolidating useful benchmark evidence into `main`, leaving active Project columns clean without falsely completing genuine future work.
 - Project acceptance-stage terminology standardised on **Review**, not Testing, for mixed code/documentation/governance/research/learning work; the live Project was reconciled from `Testing` back to `Review` with existing single-select option IDs preserved.
 - Course `github-power-user` Skill advanced from `1.7.0` to `1.8.0` (MINOR) to add the verified Projects control model, Review gate, deterministic lifecycle automation, credential separation, bounded ChatGPT Web Project control and safe populated-option rename guidance.
 - Project automation documentation now separates `AGENT_DISPATCH_TOKEN` (coding-agent assignment) from `PROJECT_MANAGEMENT_TOKEN` (user-owned Project read/write) instead of conflating those authorities.
