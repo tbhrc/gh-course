@@ -21,13 +21,13 @@ jobs:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: Add new Issue to Project Backlog
+      - name: Add new Issue to Project Ready
         if: env.PROJECT_MANAGEMENT_TOKEN != ''
         uses: ./.github/actions/set-course-project-status
         with:
           token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
-          target-status: Backlog
+          target-status: Ready
           add-if-missing: "true"
 
   web-direct-start:
