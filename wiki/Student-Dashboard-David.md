@@ -39,6 +39,22 @@ This is the **reader-facing progress dashboard** for Student #1.
 - Durable knowledge-base requirement recognised independently.
 - GitHub Wiki operated hands-on.
 - Wiki recognised independently as a Git-backed documentation publishing surface.
+- Applied product/operating judgement: the Wiki should become the actual course handbook/dashboard instead of remaining a standalone demonstration.
+
+### Current architecture application
+
+David's Wiki insight is now being applied through:
+
+```text
+canonical repository evidence
+→ governed wiki/*.md source
+→ Issue / branch / PR / merge
+→ GitHub Action
+→ .wiki.git
+→ live course Wiki
+```
+
+This is **not yet automation mastery** for David because the publishing workflow is being implemented by the coach. It is evidence of strong applied architectural judgement.
 
 ### Still requires hands-on mastery
 
@@ -49,7 +65,7 @@ This is the **reader-facing progress dashboard** for Student #1.
 - tag + GitHub Release workflow;
 - security/governance;
 - GitHub-native AI-agent workflows;
-- final Wiki vs Pages vs canonical Markdown explanation.
+- final Wiki vs Pages vs canonical Markdown explanation, including the governed publishing path.
 
 ## Learning Evidence
 
@@ -64,13 +80,14 @@ This is the **reader-facing progress dashboard** for Student #1.
 3. Release numbers communicate change meaning; they are not decimal counters.
 4. AI coaches should teach from verified durable knowledge, not assumed memory.
 5. GitHub Wiki can function as a documentation website/CMS and can support agent-built SOP libraries and handbooks.
+6. A powerful feature should be **integrated into the operating model**, not merely discovered; the Wiki should become the course's actual human interface.
 
 [Open the full epiphany log →](Epiphanies-and-Learning-Breakthroughs)
 
 ## Current Next Step
 
-Finish the Wiki knowledge-architecture exercise, then return to the first full learner-operated Issue workflow.
+Verify the redesigned Wiki and publishing Action, then complete the Module 07 explanation unaided. After that, return to the first full learner-operated Issue workflow.
 
 ## Navigation
 
-[Home](Home) · [Course Modules](Course-Modules) · [Exercises & Assessments](Exercises-and-Assessments) · [Epiphanies](Epiphanies-and-Learning-Breakthroughs)
+[Home](Home) · [Course Manual](Course-Manual) · [Course Modules](Course-Modules) · [Exercises & Assessments](Exercises-and-Assessments) · [Epiphanies](Epiphanies-and-Learning-Breakthroughs)
