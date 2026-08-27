@@ -1,21 +1,48 @@
-# SOPs
+# Standard Operating Procedures
 
-This directory holds stable standard operating procedures that emerge from repeated course practice.
+This folder contains concise operating procedures that have been practised or derived from real course operation.
 
-Examples may include:
+## Current SOPs
 
-- creating and classifying Issues;
-- starting work from an Issue;
-- branch naming;
-- opening and reviewing Pull Requests;
-- merging safely;
-- handling a failed workflow;
-- creating a Release;
-- onboarding an AI agent to a repository;
-- performing a repository health review.
+### Repository Change Workflow
 
-## SOP Rule
+[`repository-change-workflow.md`](repository-change-workflow.md)
 
-Create an SOP only after the workflow is understood and has been practised. Lessons explain. SOPs instruct.
+The default governed path for substantive repository work:
 
-Each SOP should be concise, action-oriented, testable and linked to the relevant course module.
+```text
+Issue
+→ issue-linked branch
+→ focused commits
+→ Pull Request
+→ review/checks
+→ merge
+→ verify
+→ Issue closes
+```
+
+### Course Documentation Integrity
+
+[`course-documentation-integrity.md`](course-documentation-integrity.md)
+
+Prevents canonical course/student evidence from drifting away from the Wiki and public Pages reader experience.
+
+Core rule:
+
+```text
+one canonical truth
+→ maintained reader summaries
+→ public navigation
+```
+
+Use it whenever module state, student progress, benchmark status or reader navigation changes materially.
+
+## SOP Standard
+
+An SOP should be:
+
+- short enough to use during real work;
+- based on practised evidence rather than theory;
+- linked to canonical repository objects/sources;
+- explicit about stop/verification conditions;
+- updated when live evidence proves the procedure wrong.
