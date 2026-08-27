@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "generated_from_commit": "seed-before-automation",
+  "source_contract": {
+    "course_home": "wiki/Home.md",
+    "student_state": "students/david/progress.md",
+    "executor_benchmark": "knowledge-base/executor-benchmark-framework.md",
+    "version": "VERSION"
+  },
+  "course": {
+    "version": "0.2.0",
+    "home_intro": "Welcome to the GitHub Professional Operator — AI-First Founder Crash Course."
+  },
+  "student": {
+    "course_stage": "Stage 2 — Crash Course / live operation",
+    "current_focus": "Module 04 — GitHub Projects",
+    "next_objective": "create and operate the real GitHub Course — Execution & Mastery Project using existing Issues/PRs."
+  },
+  "benchmark": {
+    "last_verified": "2026-08-27",
+    "review_ready_scoreboard": [
+      {"Executor": "ChatGPT Web", "Speed /30": "30.0", "Fidelity /20": "20", "Quality /15": "14", "Reliability /10": "8", "Autonomy /10": "10", "Governance /5": "5", "Provenance /5": "4", "Efficiency /5": "4", "Total /100": "95.0"},
+      {"Executor": "OpenAI Codex", "Speed /30": "22.6", "Fidelity /20": "20", "Quality /15": "15", "Reliability /10": "10", "Autonomy /10": "10", "Governance /5": "5", "Provenance /5": "5", "Efficiency /5": "3", "Total /100": "90.6"},
+      {"Executor": "Anthropic Claude", "Speed /30": "23.4", "Fidelity /20": "20", "Quality /15": "13", "Reliability /10": "10", "Autonomy /10": "10", "Governance /5": "5", "Provenance /5": "5", "Efficiency /5": "3", "Total /100": "89.4"},
+      {"Executor": "GitHub Copilot", "Speed /30": "20.3", "Fidelity /20": "20", "Quality /15": "14", "Reliability /10": "10", "Autonomy /10": "10", "Governance /5": "5", "Provenance /5": "5", "Efficiency /5": "3", "Total /100": "87.3"},
+      {"Executor": "Google Jules", "Speed /30": "14.9", "Fidelity /20": "20", "Quality /15": "12", "Reliability /10": "10", "Autonomy /10": "10", "Governance /5": "3", "Provenance /5": "4", "Efficiency /5": "4", "Total /100": "77.9"}
+    ],
+    "full_lifecycle": [
+      {"Executor": "ChatGPT Work Mode", "Model / surface": "GPT-5.6 Terra / light Work Mode", "Governing Issue": "#80", "PR": "#81", "T0": "17:22:49Z", "T5 merge": "17:26:01Z", "T6 Issue closed": "17:26:02Z", "Full-lifecycle time": "3m13s / 193s", "Review evidence": "No independent GitHub review object observed; merge occurred after direct diff inspection."}
+    ],
+    "timing_components": [],
+    "canonical_url": "https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md"
+  }
+}
