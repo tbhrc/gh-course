@@ -1,0 +1,65 @@
+name: Synchronise native agent work with Project
+
+on:
+  issues:
+    types: [assigned, closed]
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  agent-assigned:
+    if: github.event_name == 'issues' && github.event.action == 'assigned' && (github.event.assignee.login == 'Copilot' || github.event.assignee.login == 'Codex' || github.event.assignee.login == 'Claude')
+    runs-on: ubuntu-latest
+    env:
+      AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mark native agent work In progress
+        if: env.AGENT_DISPATCH_TOKEN != ''
+        uses: ./.github/actions/set-course-project-status
+        with:
+          token: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          status-option-id: 31346145
+          expected-status: Backlog
+
+  review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+      STATUS_REVIEW: 7b57c5f5
+    steps:
+      - name: Set Review on each linked Issue
+        if: env.AGENT_DISPATCH_TOKEN != ''
+        env:
+          GH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json closingIssuesReferences --jq '.closingIssuesReferences[].number' | while read -r issue; do
+            [ -z "$issue" ] && continue
+            gh api graphql -f query='query { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100) { nodes { id content { ... on Issue { number } } } } } } }' --jq ".data.user.projectV2.items.nodes[] | select(.content.number == ($issue | tonumber)) | .id" | while read -r item_id; do
+              gh api graphql -f query='mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) { updateProjectV2ItemFieldValue(input: {projectId: $projectId, itemId: $itemId, fieldId: $fieldId, value: {singleSelectOptionId: $optionId}}) { projectV2Item { id } } }' -f projectId=PVT_kwHODk17yc4BhrMc -f itemId="$item_id" -f fieldId=PVTSSF_lAHODk17yc4BhrMczhgmEFA -f optionId="$STATUS_REVIEW" >/dev/null
+            done
+          done
+
+  done:
+    if: github.event_name == 'issues' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    env:
+      AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mark closed Project Issue Done
+        if: env.AGENT_DISPATCH_TOKEN != ''
+        uses: ./.github/actions/set-course-project-status
+        with:
+          token: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          status-option-id: 5f44ab3f
+          allow-missing: "true"

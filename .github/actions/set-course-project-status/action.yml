@@ -1,0 +1,74 @@
+name: Set course Project status
+description: Update the linked GitHub Course Project item for one repository Issue.
+
+inputs:
+  token:
+    description: Classic token with the project scope.
+    required: true
+  issue-number:
+    description: Repository Issue number represented by the Project item.
+    required: true
+  status-option-id:
+    description: ID of the target Status single-select option.
+    required: true
+  expected-status:
+    description: Optional current Status required before the update.
+    required: false
+  update:
+    description: Set false to validate the Project item without changing its Status.
+    required: false
+    default: "true"
+  allow-missing:
+    description: Treat an Issue that is not on the Project as a successful no-op.
+    required: false
+    default: "false"
+
+outputs:
+  previous-status:
+    description: Status observed before the update.
+    value: ${{ steps.set.outputs.previous-status }}
+
+runs:
+  using: composite
+  steps:
+    - id: set
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        ISSUE_NUMBER: ${{ inputs.issue-number }}
+        STATUS_OPTION_ID: ${{ inputs.status-option-id }}
+        EXPECTED_STATUS: ${{ inputs.expected-status }}
+        UPDATE: ${{ inputs.update }}
+        ALLOW_MISSING: ${{ inputs.allow-missing }}
+        PROJECT_ID: PVT_kwHODk17yc4BhrMc
+        STATUS_FIELD_ID: PVTSSF_lAHODk17yc4BhrMczhgmEFA
+      run: |
+        set -euo pipefail
+
+        query='query { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100) { nodes { id content { ... on Issue { number } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } }'
+        item_json="$(gh api graphql -f query="$query" --jq ".data.user.projectV2.items.nodes[] | select(.content.number == (${ISSUE_NUMBER} | tonumber))")"
+
+        if [ -z "$item_json" ]; then
+          if [ "$ALLOW_MISSING" = "true" ]; then
+            echo "previous-status=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Issue #${ISSUE_NUMBER} is not an item in GitHub Course — Execution & Mastery." >&2
+          exit 1
+        fi
+
+        item_id="$(jq -r '.id' <<<"$item_json")"
+        previous_status="$(jq -r '.fieldValueByName.name // ""' <<<"$item_json")"
+        echo "previous-status=$previous_status" >> "$GITHUB_OUTPUT"
+
+        if [ -n "$EXPECTED_STATUS" ] && [ "$previous_status" != "$EXPECTED_STATUS" ]; then
+          echo "Issue #${ISSUE_NUMBER} must be ${EXPECTED_STATUS}; current Project Status is ${previous_status:-unset}." >&2
+          exit 1
+        fi
+
+        if [ "$UPDATE" != "true" ]; then
+          exit 0
+        fi
+
+        mutation='mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) { updateProjectV2ItemFieldValue(input: {projectId: $projectId, itemId: $itemId, fieldId: $fieldId, value: {singleSelectOptionId: $optionId}}) { projectV2Item { id } } }'
+        gh api graphql -f query="$mutation" -f projectId="$PROJECT_ID" -f itemId="$item_id" -f fieldId="$STATUS_FIELD_ID" -f optionId="$STATUS_OPTION_ID" >/dev/null

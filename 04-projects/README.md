@@ -141,6 +141,10 @@ Examples:
 
 Do not build automation merely to avoid one useful manual learning exercise.
 
+### Agent execution command
+
+For the live course Project, moving an Issue card to `Ready` is a planning decision. It is not itself an AI command. To start a configured coding agent, use GitHub's **Assign agent to issue** control on the underlying Issue. The Project workflow then synchronises the native assignment, linked Pull Request and Issue closure into `In progress`, `Review` and `Done`.
+
 ## Live exercise — Issue #60
 
 We are using this repository itself as the exercise.

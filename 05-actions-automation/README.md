@@ -302,6 +302,25 @@ This lets the human keep a simple front door while preserving a durable GitHub e
 
 Do not add an Action if native direct assignment already solves the problem cleanly. Automation should remove repeated friction, not create orchestration for its own sake.
 
+## Agent-ready Project command
+
+The live course Project uses GitHub's native agent-assignment model:
+
+```text
+Issue created in Backlog
++ agent selected through GitHub's Assign agent control
+→ native agent session
+→ Project Status = In progress
+→ linked PR = Review
+→ closed Issue = Done
+```
+
+The selected agent belongs in the Issue **Assignee** field, not inside a label. `agent-ready` remains an optional planning label that records human intent, but it does not choose or launch an agent.
+
+Do not treat a card drag as an execution command. The course Project is user-owned, and GitHub Actions does not receive a direct Project-item status-change trigger for this surface. Native assignment is the execution command; the workflow only synchronises the Project lifecycle after that action.
+
+The dispatcher requires `AGENT_DISPATCH_TOKEN` to have both the existing supported coding-agent assignment permission and the classic `project` scope. A missing/insufficient token is a visible setup boundary, not proof that an agent ran.
+
 ## Safe Workflow Design
 
 Before merging an Actions change, review:
