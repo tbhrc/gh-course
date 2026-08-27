@@ -6,15 +6,17 @@ This directory stores durable evidence from live GitHub integration benchmarks.
 
 It is **not** a place to record assumed capabilities. A provider is marked operational only when the repository contains observable evidence of the required execution path.
 
-## Current benchmark targets
+## Preserved benchmark evidence
 
-| Integration | Governing Issue | Expected evidence file |
+| Integration / surface | Governing Issue | Evidence |
 | --- | ---: | --- |
-| GitHub Copilot cloud agent | #38 | `copilot.md` |
-| OpenAI Codex coding agent | #24 | `codex.md` |
-| Anthropic Claude | #25 | `claude.md` |
-| Google Gemini | #26 | `gemini.md` |
-| Vercel | #27 | `vercel.md` |
+| ChatGPT Web | #53 | [`chatgpt-web.md`](chatgpt-web.md) |
+| OpenAI Codex Partner Agent | #24 | [`codex.md`](codex.md) |
+| Anthropic Claude Partner Agent | #25 | [`claude.md`](claude.md) |
+| Google Jules | #63 | [`jules.md`](jules.md) |
+| ChatGPT Work / Terra full-lifecycle run | benchmark framework | [`chatgpt-work-mode-terra-5-6-light-full-lifecycle.md`](chatgpt-work-mode-terra-5-6-light-full-lifecycle.md) |
+
+Gemini CLI/API evidence is maintained in the canonical executor benchmark and Issue #26 because the authenticated run stopped at the API quota boundary before producing a governed work branch/PR. Vercel is a deployment/service integration rather than a coding-agent benchmark; its decision record lives in `knowledge-base/vercel-integration-benchmark.md`.
 
 ## Evidence standard
 
@@ -46,6 +48,8 @@ The agent must not:
 - close the governing Issue;
 - bypass required checks;
 - silently use a different AI/API billing route.
+
+After the first review-ready snapshot has been scored and preserved, a human/Web operator may merge or supersede that PR and close the governing Issue through normal governance.
 
 ## Provenance to preserve
 
