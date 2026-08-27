@@ -3,7 +3,7 @@
 ## Current Status
 
 **Course stage:** Stage 2 — Crash Course  
-**Current module:** 01 — GitHub Mental Model  
+**Current module:** 01 — GitHub Mental Model, transitioning into 02 — Issues  
 **Baseline:** `baseline-2026-08-27.md`
 
 ## Completed
@@ -20,6 +20,8 @@
   - introductory `git blame`;
   - introductory merge-conflict concept.
 - Course repository created and converted into the live learning environment.
+- David explicitly established the repository operating rule that substantive repo changes must begin with a GitHub Issue and then be completed from that Issue.
+- Issue #1 became the first live implementation of the course workflow.
 
 ## Demonstrated Strengths
 
@@ -30,24 +32,45 @@
 - Diff inspection.
 - AI-assisted development familiarity.
 - Strong preference for traceability, history and durable operating evidence.
+- **New evidence:** David independently recognised that repository work should not be changed ad hoc from chat; he corrected the coach and required an Issue-first workflow before further repo development.
 
 ## Current Priority Gaps
 
-1. GitHub operating model as a whole.
-2. Issues and work lifecycle.
-3. Pull Requests as the control gate.
-4. Projects.
-5. Actions and automation.
-6. Releases and tags.
-7. Security and governance.
-8. GitHub-native AI-agent workflows.
-9. Knowledge architecture: repo files vs docs vs Wiki vs Discussions.
-10. GitHub × FolderDesk boundary and integration architecture.
+1. Complete hands-on Issue operation personally: create, classify and close an Issue with linked implementation evidence.
+2. Pull Requests as the control gate.
+3. Projects.
+4. Actions and automation.
+5. Releases and tags.
+6. Security and governance.
+7. GitHub-native AI-agent workflows.
+8. Knowledge architecture: repo files vs docs vs Wiki vs Discussions.
+9. GitHub × FolderDesk boundary and integration architecture.
+
+## Current Evidence — Issue #1
+
+David demonstrated the **reasoning** behind Issue-first operation by requiring:
+
+```text
+Issue → task execution → repository change
+```
+
+The coach then implemented the fuller workflow under Issue #1:
+
+```text
+Issue #1
+→ issue-linked branch
+→ commits
+→ Pull Request
+→ merge
+→ close
+```
+
+This is evidence of conceptual progress, but it is **not yet evidence that David can personally operate the entire workflow unaided**.
 
 ## Evidence Rule
 
-Do not mark a capability complete merely because David has read a lesson. Mark it complete only when he can explain it accurately and/or perform the relevant operation in GitHub.
+Do not mark a capability complete merely because David has read a lesson or watched the coach perform it. Mark it complete only when he can explain it accurately and/or perform the relevant operation in GitHub.
 
 ## Next Recommended Step
 
-Continue Module 01 with the complete GitHub operating model, then perform a short practical exercise inside this repository before moving to Module 02.
+After Issue #1 is merged, David should complete `exercises/first-issue-workflow.md` on a small real improvement. That becomes his first hands-on Module 02 mastery evidence.
