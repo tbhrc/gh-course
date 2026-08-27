@@ -14,9 +14,10 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Successful bounded cloud-agent benchmark evidence for GitHub Copilot, OpenAI Codex and Anthropic Claude using separate governed branches/commits/PRs after required entitlement/policy/identity setup was corrected.
 - Dedicated Google Jules benchmark under Issue #63 with separate Jules evidence lane; the accidental Jules run from Gemini Issue #26 is preserved as historical activation evidence and its contaminated PR was closed unmerged.
 - Gemini CLI/API authenticated benchmark path using `GEMINI_API_KEY`; run `33092569081` reached Gemini CLI/model inference and then stopped on HTTP 429 daily free-tier quota before governed branch/commit/PR delivery.
-- David's dated multi-agent benchmark learning checkpoint covering execution architectures, provenance, setup friction vs runtime and the current bounded leaderboard.
+- David's dated multi-agent benchmark learning checkpoint covering execution architectures, provenance, setup friction vs runtime and the bounded benchmark programme.
 - David's dated documentation-integrity learning checkpoint preserving his discovery that a current backend plus stale public/Wiki summaries is a course trust failure.
-- `sops/course-documentation-integrity.md`, a reusable source-of-truth/readers/publication completion gate for material curriculum, student, benchmark and navigation changes.
+- `sops/course-documentation-integrity.md`, defining the durable split between deterministic projection for volatile factual state and governed authoring for stable narrative content.
+- Deterministically generated Wiki live pages: `Student-Dashboard-David` is built from `students/david/progress.md` and `AI-Executor-Benchmark` is built from `knowledge-base/executor-benchmark-framework.md` during Wiki publication.
 - Expanded `exercises/README.md` with guided Projects, PR, Actions, release, AI review, security and GitHub × FolderDesk mastery exercises.
 - Verified `knowledge-base/chatgpt-web-github-control-plane.md` documenting ChatGPT Web as the conversational front door, GitHub as the durable execution plane, and the distinction between direct coding-agent assignment and GitHub Agentic Workflows.
 - Integration benchmark programme under Issue #23 with separate test Issues for Codex, Claude, Gemini, Vercel and fully automated Issue → agent → PR routing.
@@ -44,20 +45,22 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 ### Changed
 
 - Course root README now distinguishes curriculum/material state from learner mastery, points to the canonical executor benchmark and records Projects as David's current hands-on focus.
-- David's canonical `students/david/progress.md` and reader-facing dashboard now include the successful Copilot/Codex/Claude/Jules benchmark lanes, Gemini authenticated quota boundary, Projects learning state and documentation-integrity breakthrough without rewriting the immutable baseline.
+- David's canonical `students/david/progress.md` now records multi-agent learning without duplicating the live leaderboard; current executor timings/scores remain solely in the canonical benchmark.
 - Wiki Course Handbook and Course Manual rebuilt from short navigation stubs into substantive professional operating documents covering the complete GitHub workflow, Projects, Actions, releases, publishing, agents, provenance, security and source-of-truth governance.
 - Wiki Home, Course Modules, Course Materials, Exercises, AI Control Plane, Knowledge Base, Power User page, SOP library, glossary and sidebar reconciled to current canonical sources rather than stale Issue-body/status copies.
-- Public Pages Live Operations now points directly to `knowledge-base/executor-benchmark-framework.md` as the current AI benchmark authority rather than Issue #23.
-- Historical Copilot Free Wiki proof is explicitly framed as a preserved execution-mode milestone; current cloud-agent capability/ranking is routed to the canonical executor benchmark.
+- Wiki Home, Course Modules and AI Control Plane now route volatile learner/benchmark state to generated pages instead of embedding independent current-state copies.
+- `.github/workflows/publish-wiki.yml` now triggers on canonical learner/benchmark changes as well as `wiki/**`, generates live pages from canonical files, then publishes the combined governed/generated Wiki to `.wiki.git`.
+- Public Pages Live Operations routes current state to maintained generated/canonical sources rather than Issue #23.
+- Historical Copilot Free Wiki proof is explicitly framed as a preserved execution-mode milestone; current cloud-agent capability/ranking is routed to the generated/canonical executor benchmark.
 - Repository change SOP now includes the documentation-integrity gate and downstream Wiki/Pages/release/workflow verification before substantive work is considered complete.
 - Course `github-power-user` Skill advanced from `1.3.0` to `1.4.0` (MINOR) to add the Pages entry-file diagnostic, README trap and post-deployment user-journey verification.
 - Course `github-power-user` Skill advanced from `1.4.0` to `1.5.0` (MINOR) to add deterministic dispatcher architecture, agent proof ladders, secret/authentication diagnostics and failure-layer classification.
 - Course `github-power-user` Skill advanced from `1.5.0` to `1.6.0` (MINOR) to add Copilot Free inference inside Actions, execution-mode capability classification and stored-secret vs runtime-variable mapping.
-- Wiki Knowledge Base, Student Dashboard and Epiphanies pages expose the Pages portal problem/fix as reusable course knowledge and student evidence.
-- Earlier Wiki AI Control Plane/Student Dashboard updates recorded the initial Codex/Copilot 403 setup boundaries; later benchmark evidence now supersedes those states through the canonical executor benchmark and refreshed reader-facing summaries.
+- Course `github-power-user` Skill advanced from `1.6.0` to `1.7.0` (MINOR) to separate durable strategic guidance from volatile executor state and route current agent results to the canonical benchmark.
+- Earlier Wiki AI Control Plane/Student Dashboard updates recorded initial Codex/Copilot setup boundaries; later benchmark evidence now supersedes those states through the canonical generated benchmark view.
 - `knowledge-base/chatgpt-web-codex-dispatch.md` preserves the earlier authenticated Codex assignment boundary as setup evidence; later successful Codex Partner Agent benchmark results are maintained in the executor benchmark framework.
 - `knowledge-base/deterministic-actions-vs-agentic-ai.md` preserves the independent initial GitHub Copilot Issue #38 403 result as failure-layer evidence; later successful cloud-agent benchmark state is maintained in the executor benchmark framework.
-- David's progress distinguishes cloud-agent capability from Copilot CLI inference and now records later successful multi-agent benchmark evidence separately from personal learner mastery.
+- David's progress distinguishes cloud-agent capability from Copilot CLI inference and later multi-agent benchmark learning separately from personal learner mastery.
 
 ## [0.2.0] - 2026-08-27
 
