@@ -1,24 +1,36 @@
 # Epiphanies & Learning Breakthroughs
 
-This page preserves the moments where the learner's mental model changed materially.
+This page preserves the moments where David’s mental model changed materially.
 
-These are not polished hindsight summaries. The canonical student files preserve the original misunderstandings, corrections and evidence.
+It is intentionally a **reader summary**. The canonical student assessment notes preserve the fuller original misconceptions, corrections and evidence.
+
+---
 
 ## 1. GitHub Is Not Just Cloud Storage
 
 ### Before
 
-GitHub was largely understood as the cloud place where repositories are stored and synced.
+GitHub was largely understood as the cloud place where Git repositories are stored and synchronised.
 
 ### Breakthrough
 
 > **GitHub is a change-management operating platform built around repositories.**
 
-The repository is only the centre. Issues, Projects, Pull Requests, Actions, releases, governance, Wiki, agents and other systems surround it.
+```text
+repository
++ Issues
++ Projects
++ Pull Requests
++ Actions
++ releases
++ governance
++ Wiki / Pages
++ integrations / agents
+```
 
-### Why this matters
+### Why it matters
 
-It changes the question from:
+The operator question changes from:
 
 > Where do I save this code?
 
@@ -28,29 +40,31 @@ into:
 
 ---
 
-## 2. Work Should Start With an Issue
+## 2. Substantive Work Should Start With an Issue
 
 ### Before
 
-An AI agent could simply be told in chat to change the repository.
+An AI agent could simply be told in chat to modify the repository.
 
 ### Breakthrough
 
-David independently stopped the process and required a durable control point first.
+David stopped that pattern and required a durable control point:
 
 ```text
 Issue
 → branch
 → commits
 → Pull Request
-→ checks/review
+→ checks / review
 → merge
 → Issue closes
 ```
 
-### Why this matters
+### Why it matters
 
-The Issue explains **why the work exists** before code or documentation changes begin.
+The Issue preserves **why the work exists** before implementation begins.
+
+It became a repository-wide operating rule rather than a one-off preference.
 
 ---
 
@@ -58,13 +72,13 @@ The Issue explains **why the work exists** before code or documentation changes 
 
 ### Before
 
-The intuitive version model was approximately:
+The intuitive model was approximately:
 
 ```text
-0.1 → ... → 0.99 → 1.0 → ... → 1.99 → 2.0
+0.1 → ... → 0.99 → 1.0
 ```
 
-### Correction
+### Breakthrough
 
 ```text
 MAJOR.MINOR.PATCH
@@ -78,23 +92,21 @@ Example:
 
 There is no `.99` gate.
 
-### Partial recall evidence
+### Why it matters
 
-David later remembered **MAJOR** and **MINOR** but temporarily forgot **PATCH**. That is preserved as learning evidence rather than rewritten away.
+Release versions communicate meaning; they do not count commits.
 
-[Canonical SemVer learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-semver.md)
+[Canonical learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-semver.md)
 
 ---
 
-## 4. Don't Teach GitHub From Assumption
+## 4. Don’t Teach Current GitHub From AI Assumption
 
 ### Trigger
 
-David challenged the idea of relying on an AI model's old training memory for GitHub behaviour.
+David challenged the idea of relying on a model’s training memory for fast-changing GitHub behaviour.
 
 ### Breakthrough
-
-The course now uses this authority order:
 
 ```text
 current official/live evidence
@@ -104,187 +116,112 @@ current official/live evidence
 → model memory / old chat
 ```
 
-### Why this matters
+### Why it matters
 
-GitHub changes quickly. Verified durable knowledge is more reliable than an assistant saying what it vaguely remembers.
+GitHub changes quickly, particularly around agents, plans, Actions, Projects and security. Verified durable evidence is safer than remembered platform behaviour.
 
 ---
 
-## 5. Wiki Is a Documentation Website, Not Just a Knowledge Page
+## 5. Wiki Is a Documentation Website, Not Merely a Knowledge Page
 
 ### Before
 
-The initial mental model was Wiki as a possible database-like knowledge/memory layer.
+Wiki was initially imagined more like a database/memory layer.
 
 ### Hands-on discovery
 
-While creating the Wiki Home page, David noticed:
-
-- Preview;
-- rendered content;
-- links;
-- images;
-- revision history;
-- custom sidebar;
-- custom footer;
-- a separate `.wiki.git` repository.
-
-He then independently recognised:
+While using the Wiki editor and seeing rendered pages, links, revisions, sidebar/footer and the separate `.wiki.git` repository, David independently recognised:
 
 > **This feels like building a website.**
 
-### Professional model
+### Breakthrough
 
 ```text
 GitHub Wiki
-= Git-backed documentation website / lightweight documentation CMS
-
-Knowledge base
-= one possible use case
-
-GitHub Pages
-= fuller static website publishing layer
+= Git-backed documentation website
+= lightweight documentation CMS
 ```
 
-### Immediate operational application
+A knowledge base is only one use case.
 
-David identified that an AI agent could be instructed to build and maintain:
+### Why it matters
 
-- an SOP library;
-- an internal handbook;
-- an onboarding portal;
-- a documentation hub;
+David immediately saw Wiki as a native platform for:
 
-inside GitHub Wiki rather than rebuilding equivalent infrastructure manually.
+- SOP libraries;
+- handbooks;
+- onboarding portals;
+- FAQs;
+- internal documentation;
+- course material.
 
-[Canonical Wiki learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-wiki.md)
-
-[Verified Wiki platform note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-as-documentation-platform.md)
+[Canonical learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-wiki.md)
 
 ---
 
-## 6. Don't Merely Have a Wiki — Operate Through It
+## 6. Don’t Merely Have a Wiki — Operate Through It
 
 ### Trigger
 
-After recognising Wiki as a publishing surface, David rejected the idea of leaving it as a standalone demonstration.
+After discovering Wiki’s publishing power, David rejected leaving it as a demonstration.
 
 ### Breakthrough
 
-The Wiki should become the **actual human interface of the course**:
-
-- Home dashboard;
-- course handbook;
-- practical manual;
-- course materials;
-- student progress;
-- epiphany history;
-- exercises;
-- SOP library;
-- glossary and reference;
-- links into canonical repository evidence.
-
-### Governance problem discovered
-
-Direct Wiki editing is convenient, but the main repository has stronger Issue/branch/PR governance.
+The Wiki should become the **actual human interface** to the course.
 
 ### Applied architecture
 
 ```text
-canonical repo truth
-        ↓
-reader-facing wiki/*.md source
-        ↓
-Issue → branch → PR → merge
-        ↓
-GitHub Action
-        ↓
-.wiki.git
-        ↓
-live Wiki
+canonical repository truth
+→ governed wiki/*.md source
+→ Issue / branch / PR / merge
+→ Publish Wiki Action
+→ .wiki.git
+→ live Wiki
 ```
 
-This turns Wiki from an isolated feature into a governed publishing layer that agents can maintain as part of normal repository work.
+### Why it matters
 
-### Why this matters
+A native GitHub feature only creates leverage when it becomes part of the operating model and replaces manual/duplicate infrastructure.
 
-The principle generalises far beyond this course:
-
-> **Do not merely discover a powerful GitHub feature. Integrate it into the operating model so the feature replaces manual work.**
-
-[Verified publishing architecture →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
+[Publishing architecture →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
 
 ---
 
-## 7. GitHub Can Be the Integration Control Plane
+## 7. GitHub Can Be the AI / Integration Control Plane
 
 ### Trigger
 
-While independently exploring repository Settings, David moved from Wiki into Actions, Pages and Integrations.
+David independently explored Settings, Pages, Actions and Integrations.
 
-He reported:
+### Breakthrough
 
-- enabling **Allow all actions and reusable workflows**;
-- identifying the first-time-contributor workflow approval setting;
-- enabling GitHub Pages and publishing the course publicly;
-- discovering the repository Integrations area;
-- enabling/updating permissions for ChatGPT/Codex, Claude, Gemini and Vercel.
-
-### Spontaneous breakthrough
-
-The important realisation was not simply that GitHub supports plugins/apps.
-
-It was:
-
-> **GitHub can become the common integration/control plane connecting AI agents, repository governance, automation and deployment.**
+> **GitHub can become the common durable control plane connecting repository governance, automation, AI workers and deployment services.**
 
 ```text
 GitHub
-├── source truth
 ├── Issues / PRs
+├── Projects
 ├── Actions
-├── Wiki
-├── Pages
-└── Integrations
-    ├── Codex / ChatGPT
-    ├── Claude
-    ├── Gemini
-    └── deployment services such as Vercel
+├── Wiki / Pages
+└── Integrations / agents
 ```
 
 ### Professional refinement
 
-Visibility in Integrations is not proof of operational capability.
-
 ```text
 installed / authorised
 ≠
-permission for every operation
+permission available
 ≠
-operation proven successfully
+operation proven
 ```
 
-Likewise:
+### Why it matters
 
-```text
-Allow all actions/reusable workflows
-≠
-unlimited GITHUB_TOKEN permissions
-```
+The system can preserve one governed work/evidence trail even when several specialist agents execute downstream.
 
-The next professional step is to test each important integration through a bounded real workflow and record what actually succeeds.
-
-### Pages breakthrough
-
-GitHub Pages also changed from an abstract feature into a personally operated capability: David independently enabled the public course site at:
-
-`https://tbhrc.github.io/github-course/`
-
-This reinforces the larger mental model that GitHub contains both operating infrastructure and publishing infrastructure.
-
-[Canonical Pages / Integrations learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-integrations.md)
-
-[Verified control-plane note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-actions-integrations-control-plane.md)
+[Canonical control-plane learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-chatgpt-web-control-plane.md)
 
 ---
 
@@ -292,17 +229,11 @@ This reinforces the larger mental model that GitHub contains both operating infr
 
 ### Trigger
 
-After Pages was successfully deployed, David opened the public course site as a real student/external reader.
+David opened the successfully deployed GitHub Pages site as a real student/external reader.
 
-The infrastructure looked healthy, but the experience did not.
-
-The public site was effectively stuck on a README-style entry page and did not make the actual course system easy to reach: Wiki, dashboard, handbook, manual, modules, knowledge base, epiphanies and other operating surfaces.
+The build was green, but the experience was poor.
 
 ### Breakthrough
-
-> **A website can be technically deployed and still fail the user.**
-
-The new operator model is:
 
 ```text
 green deployment
@@ -312,48 +243,23 @@ correct entry page
 good user experience
 ```
 
-### Root cause discovered
-
-GitHub Pages distinguishes between:
+### Root-cause model
 
 ```text
 publishing source
-= where the site is published from
-
+≠
 entry file
-= what becomes the front door
-
+≠
 information architecture
-= whether the user can actually navigate the system
 ```
 
-The course source was already correct:
+The Pages source was already correct. The missing layer was a deliberate root `index.html` portal.
 
-```text
-main / (root)
-```
+### Why it matters
 
-The problem was not the source. The missing layer was a deliberate root `index.html`.
+> **Verify the real user journey, not only infrastructure status.**
 
-### Applied fix
-
-Issue #30 / PR #31 added a responsive public course portal while keeping the Pages source unchanged.
-
-The portal routes readers into the live Wiki, David's dashboard, handbook, manual, modules, knowledge base, epiphanies, AI Control Plane, repository operations and releases.
-
-The subsequent Pages build and deployment succeeded.
-
-### Why this matters
-
-This is a broader power-user lesson:
-
-> **Do not stop verification at infrastructure status. Test the actual user journey.**
-
-It also prevents unnecessary architecture changes. A poor homepage does not automatically mean the publishing branch/folder is wrong.
-
-[Canonical Pages portal learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-portal-fix.md)
-
-[Verified Pages entry-file failure pattern →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-entry-file-readme-trap.md)
+[Canonical learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-portal-fix.md)
 
 ---
 
@@ -361,149 +267,54 @@ It also prevents unnecessary architecture changes. A poor homepage does not auto
 
 ### Trigger
 
-David noticed that after ChatGPT Web performed repository operations, GitHub continued doing work automatically. Because Codex, Claude and Gemini were connected, he questioned whether those agents might already be executing behind the scenes.
-
-The audit showed something subtler and more useful.
-
-### Evidence
-
-The repository already contained deterministic GitHub automation:
-
-```text
-merge / push
-→ GitHub Action
-→ shell / API work
-→ Wiki / Pages / release result
-```
-
-No AI reasoning was required for those steps.
-
-David then articulated the core insight himself:
-
-> **A deterministic script only needs a trigger. The Web agent can be the trigger, and the Action can either do the work itself or fire another AI agent.**
-
-### New mental model
-
-```text
-CONTROL
-ChatGPT Web / human
-        ↓
-TRIGGER + DETERMINISTIC AUTOMATION
-GitHub event → Action
-        ↓
-AGENTIC EXECUTION
-Copilot / Codex / Claude / Gemini
-        ↓
-DELIVERY + EVIDENCE
-branch → commit → PR → checks → merge
-```
-
-### Live dispatcher learning
-
-Issue #34 / #24 and Issue #38 produced clean failure ladders:
-
-```text
-✅ Web agent created trigger
-✅ GitHub Action started
-✅ real GitHub PAT visible as ***
-✅ authenticated agent-assignment API reached
-❌ Codex assignment: HTTP 403
-❌ Copilot cloud-agent assignment: HTTP 403
-```
-
-This demonstrated:
-
-```text
-automation working
-≠
-authentication working
-≠
-agent entitlement working
-≠
-agent execution proven
-```
-
-### Secret correction
-
-A GitHub secret is a secure container for a real credential. It is not an arbitrary password the operator invents.
-
-That correction was learned hands-on when the dispatcher moved from an empty secret to a real GitHub-generated PAT.
-
-[Canonical learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-deterministic-vs-agentic.md)
-
-[Verified deterministic-vs-agentic knowledge note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/deterministic-actions-vs-agentic-ai.md)
-
----
-
-## 10. Copilot Free Can Run AI — But Execution Mode Matters
-
-### Trigger
-
-After the Copilot cloud-agent benchmark returned HTTP `403`, the early conclusion was that the Free plan could not demonstrate agentic AI execution.
-
-David challenged that conclusion rather than accepting it.
-
-He brought back Copilot Chat evidence that clarified the specific limitation: **the cloud agent is unavailable on Free**, while other Copilot capabilities still exist.
+David noticed GitHub continued doing work automatically after Web operations and questioned whether connected AI agents were running behind the scenes.
 
 ### Breakthrough
 
-The correct question is not:
-
-> Does Copilot Free have AI agents?
-
-It is:
-
-> **Which Copilot execution mode are we testing?**
-
-### Live proof
-
-A new Issue-triggered workflow invoked GitHub Copilot CLI instead of trying to assign the cloud agent.
-
 ```text
-Issue #45 opened
-→ GitHub Action
-→ install Copilot CLI
-→ build bounded context
-→ Copilot AI inference
-→ capture generated analysis
-→ deterministic Issue comment
+automatic
+≠
+agentic
 ```
 
-Actions run `33076875845` completed successfully, including **Run Copilot AI inference**.
+A deterministic Action only needs a trigger. It can publish, call APIs or dispatch another worker without itself performing AI reasoning.
 
-The resulting comment contained original repository-aware reasoning generated by Copilot.
-
-### Correct plan model
+### New model
 
 ```text
-COPILOT FREE
-
-✅ Issue-triggered Actions
-✅ Copilot CLI
-✅ genuine AI inference
-✅ AI-generated safe output
-
-❌ autonomous cloud-agent Issue assignment
-❌ cloud-agent branch / commit / PR
+control surface
+→ deterministic trigger / automation
+→ optional AI executor
+→ branch / commit / PR / output
 ```
 
-### Secret-interface lesson
+### Why it matters
 
-David also caught an implementation detail before it became drift.
+It creates a clean debugging ladder and prevents false attribution such as “the agent ran” merely because a workflow ran.
 
-The stored repository secret remains:
+[Canonical learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-deterministic-vs-agentic.md)
+
+---
+
+## 10. Secrets Store Real Credentials
+
+### Trigger
+
+A live dispatcher needed a GitHub credential.
+
+### Correction
+
+A repository secret is not an arbitrary password invented by the operator.
 
 ```text
-AGENT_DISPATCH_TOKEN
+secret name
+= lookup interface
+
+secret value
+= real credential generated by the authenticating service
 ```
 
-The workflow simply maps it to the runtime variable Copilot CLI expects:
-
-```text
-COPILOT_GITHUB_TOKEN
-```
-
-So:
+The course also learned:
 
 ```text
 stored secret name
@@ -511,39 +322,212 @@ stored secret name
 runtime environment-variable name
 ```
 
-### Why this matters
+Example:
 
-This is broader than Copilot pricing.
+```text
+AGENT_DISPATCH_TOKEN
+→ mapped to COPILOT_GITHUB_TOKEN at runtime
+```
 
-> **Capabilities should be classified by execution mode and proven independently.**
+### Why it matters
 
-The same discipline applies to cloud agents, CLIs, Agentic Workflows, partner agents, model APIs and repository integrations.
+It clarifies authentication architecture and reduces secret-name/configuration drift.
 
-[Copilot Free AI proof →](Copilot-Free-AI-Actions)
+---
 
-[Canonical learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-copilot-free-actions.md)
+## 11. AI Capability Must Be Classified by Execution Mode
 
-[Verified knowledge note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/copilot-free-ai-in-actions.md)
+### Trigger
+
+A Copilot cloud-agent assignment returned HTTP 403, which initially looked like “Copilot cannot do agentic work here”.
+
+David challenged that generalisation.
+
+### Breakthrough
+
+The correct question is:
+
+> **Which execution mode are we testing?**
+
+The course then proved genuine Copilot CLI inference inside GitHub Actions even though the tested Free-plan cloud coding-agent assignment route was unavailable at that moment.
+
+```text
+product name
+≠
+one capability switch
+```
+
+Later, with the required entitlement available, the cloud coding-agent branch/commit/PR route was also proven.
+
+### Why it matters
+
+Evaluate CLI, Actions inference, native cloud agent, Partner Agent, API workflow and other modes separately.
+
+[Historical Copilot Free proof →](Copilot-Free-AI-Actions)
+
+---
+
+## 12. One GitHub Control Plane Can Contain Several Agent Architectures
+
+### Trigger
+
+The course benchmarked multiple executors end to end rather than discussing integrations abstractly.
+
+### Breakthrough
+
+```text
+ChatGPT Web           = connected GitHub operations
+GitHub Copilot        = native cloud coding agent
+OpenAI Codex          = GitHub Partner Agent
+Anthropic Claude      = GitHub Partner Agent
+Google Jules          = Jules GitHub App/cloud task
+Gemini CLI/API        = Actions + provider API route
+```
+
+### Evidence lesson
+
+A valid benchmark needs separate:
+
+- governing Issue;
+- executor identity;
+- branch/commit/PR evidence;
+- setup friction;
+- runtime;
+- first-review-ready quality.
+
+The accidental Jules run from Gemini Issue #26 proved why **one executor needs one evidence lane**.
+
+### Why it matters
+
+> **One control plane does not mean one execution architecture.**
+
+[Canonical executor benchmark →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+
+[David benchmark learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-agent-benchmarks.md)
+
+---
+
+## 13. Autonomy Without Review Can Still Produce Wrong Evidence
+
+### Trigger
+
+Google Jules completed the clean benchmark autonomously and produced a branch, commit and PR.
+
+Review still found factual/provenance/governance errors.
+
+### Breakthrough
+
+```text
+agent completed autonomously
+≠
+agent output is correct
+```
+
+The executor benchmark therefore scores the **first review-ready snapshot** rather than letting human corrections retroactively improve the agent’s original result.
+
+### Why it matters
+
+AI output remains a proposal. PR review is part of the operating architecture, not a ceremonial final step.
+
+---
+
+## 14. Projects Is the Planning Layer, Not Another Copy of the Work
+
+### Trigger
+
+After substantial course work had accumulated, David noticed there was still no GitHub Project and deliberately moved Projects to the top of the learning queue.
+
+### Breakthrough
+
+```text
+Issue / PR = actual work + evidence
+Project    = planning/control surface over that work
+Field      = structured metadata
+View       = saved lens
+```
+
+One Issue can appear in a Board, Table, Roadmap and filtered benchmark view without being duplicated.
+
+### Why it matters
+
+Projects provides the missing portfolio/control layer across the existing Issues and PRs.
+
+The current live design is **GitHub Course — Execution & Mastery**.
+
+[Projects module →](https://github.com/tbhrc/github-course/tree/main/04-projects)
+
+[Projects learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-projects.md)
+
+---
+
+## 15. A Current Backend Can Still Produce a Stale Course
+
+### Trigger
+
+David used the public Pages site and clicked through the Handbook, Manual, module map and dashboard as a real learner.
+
+He found that the repository backend had become materially richer while several public/Wiki surfaces remained primitive or stale.
+
+### Breakthrough
+
+```text
+backend work complete
+≠
+reader experience current
+```
+
+More precisely:
+
+```text
+current canonical evidence
++ stale downstream summary
+=
+source-of-truth / trust failure
+```
+
+### Correct architecture
+
+```text
+canonical repository truth
+→ Wiki reader summaries/navigation
+→ Pages public routing
+```
+
+Issues/PRs remain work/evidence/history. A static Issue body should not be treated as the live dashboard when a maintained canonical file exists.
+
+### Applied governance
+
+The course now has a documentation-integrity SOP and change-workflow completion gate so material curriculum/student/benchmark changes trigger review of the minimum affected reader-facing surfaces.
+
+### Why it matters
+
+> **Validate the system from the consumer surface, not only from the implementation surface.**
+
+[Documentation integrity learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-documentation-integrity.md)
+
+[Documentation integrity SOP →](https://github.com/tbhrc/github-course/blob/main/sops/course-documentation-integrity.md)
 
 ---
 
 ## Teaching Rule
 
-Future learners should not always be given these conclusions first.
+Future learners should not always be handed these conclusions first.
 
-When possible, let the interface produce the discovery:
+When possible:
 
 ```text
 operate
 → notice
 → articulate
-→ correct/refine
+→ correct / refine
 → apply architecturally
 → preserve evidence
 ```
 
-That is often more powerful than passive explanation.
+The discovery itself is often the strongest lesson.
+
+---
 
 ## Navigation
 
-[Student Dashboard — David](Student-Dashboard-David) · [AI Control Plane](AI-Control-Plane) · [Copilot Free AI Actions](Copilot-Free-AI-Actions) · [Course Handbook](Course-Handbook) · [Home](Home)
+[Student Dashboard — David](Student-Dashboard-David) · [AI Control Plane](AI-Control-Plane) · [Course Handbook](Course-Handbook) · [Course Modules](Course-Modules) · [Home](Home)
