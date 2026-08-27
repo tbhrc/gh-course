@@ -3,7 +3,7 @@
 ## Current Status
 
 **Course stage:** Stage 2 — Crash Course  
-**Current module:** 07 — GitHub Knowledge Architecture, expanding into Pages / Integrations  
+**Current module:** 09 — AI Agents + GitHub, using live dispatch benchmarks  
 **Baseline:** `baseline-2026-08-27.md`
 
 ## Completed
@@ -31,6 +31,12 @@
 - David reported authorising/updating access for ChatGPT/Codex, Claude, Gemini and Vercel.
 - David tested the public Pages site as an actual student/user, identified that a green deployment was still an unusable README-style entry experience, and required a functional portal into the Wiki/dashboard/course surfaces.
 - Pages portal fix completed under Issue #30 / PR #31 while keeping the existing `main / (root)` Pages source.
+- David independently recognised from live repository behaviour that GitHub Actions can be deterministic automation and do not automatically imply that an AI model executed.
+- A real ChatGPT Web → push → GitHub Actions command bus was built and exercised under Issue #34.
+- David generated a real fine-grained GitHub PAT after learning that an Actions secret stores a genuine credential rather than an invented password.
+- Live workflow evidence proved the PAT became visible to Actions and the dispatcher reached GitHub's coding-agent assignment API.
+- The Codex benchmark currently stops at an authenticated HTTP `403 Forbidden`, isolating the remaining failure to partner-agent permission/plan/policy eligibility rather than the deterministic Action.
+- Independent GitHub Copilot cloud-agent benchmark opened as Issue #38.
 
 ## Demonstrated Strengths
 
@@ -50,6 +56,8 @@
 - **Pages initiative:** David independently found GitHub Pages in Settings and published the course as a public site rather than waiting for it to become a formal lesson.
 - **Integration-control-plane insight:** David independently recognised repository Integrations as a potentially major AI-first capability layer connecting GitHub to coding agents and deployment services.
 - **User-journey validation insight:** David did not accept a successful Pages deployment as proof that the website worked. He used the public site, identified the missing navigation/portal layer, questioned whether the publishing source was wrong, and required the architecture to be fixed and preserved as reusable learning.
+- **Deterministic-vs-agentic insight:** David independently reframed GitHub Actions as a trigger/automation layer that can run ordinary deterministic scripts or dispatch a separate AI worker. He explicitly recognised that the Web agent should fire the trigger while the downstream agent performs execution.
+- **Failure-layer reasoning:** David followed the live progression from missing secret → real PAT → authenticated API call → HTTP 403, reinforcing the habit of locating the exact failing layer instead of treating the whole system as one black box.
 
 ## Current Priority Gaps
 
@@ -59,11 +67,12 @@
 4. Actions and automation beyond configuration-level understanding.
 5. Complete hands-on release/tag/version workflow.
 6. Security, permission scoping and governance.
-7. GitHub-native AI-agent workflows, including one end-to-end integration test.
-8. Explain Wiki vs Pages vs canonical repository Markdown unaided.
-9. Diagnose Pages source vs entry-file problems unaided and choose an appropriate entry file for a new site.
-10. Compare installed integrations by actual proven capability rather than assuming equivalence.
-11. GitHub × FolderDesk boundary and integration architecture.
+7. Complete one end-to-end agentic AI execution benchmark producing an agent-authored branch/commit/PR.
+8. Explain deterministic Actions vs agentic AI and diagnose a failed run unaided.
+9. Explain Wiki vs Pages vs canonical repository Markdown unaided.
+10. Diagnose Pages source vs entry-file problems unaided and choose an appropriate entry file for a new site.
+11. Compare installed integrations by actual proven capability rather than assuming equivalence.
+12. GitHub × FolderDesk boundary and integration architecture.
 
 ## Current Evidence — Issue #1
 
@@ -222,6 +231,41 @@ Student outcome:
 
 Detailed learning evidence: `assessments/learning-note-2026-08-27-pages-portal-fix.md`.
 
+## Current Evidence — Deterministic Dispatch vs Agentic AI
+
+David noticed that GitHub work continued after the Web agent triggered repository events and asked whether connected AI agents might already be doing the work.
+
+The audit separated the layers:
+
+```text
+ChatGPT Web
+→ GitHub object / push
+→ GitHub Actions
+→ deterministic script/API work
+→ optional downstream AI-agent assignment
+```
+
+David independently articulated the deterministic factor: a Python/shell/API workflow does not need AI; it only needs a trigger. He then required the Web agent to become the recurring trigger surface so the human should not have to manually open each coding agent.
+
+Issue #34 implemented and exercised that architecture. Live evidence progressed through:
+
+```text
+push trigger works
+→ Action starts
+→ Issue resolved
+→ secret missing
+→ real GitHub PAT created
+→ PAT visible as ***
+→ coding-agent assignment API reached
+→ Codex partner-agent request returns HTTP 403
+```
+
+This means deterministic dispatch and authentication are proven; Codex agentic execution is not yet proven.
+
+A separate GitHub Copilot cloud-agent benchmark is now governed by Issue #38 so GitHub's own agent can be tested independently of Codex partner-agent eligibility.
+
+Detailed learning evidence: `assessments/learning-note-2026-08-27-deterministic-vs-agentic.md`.
+
 ## Evidence Rule
 
 Do not mark a capability complete merely because David has read a lesson or watched the coach perform it. Mark it complete only when he can explain it accurately and/or perform the relevant operation in GitHub.
@@ -230,4 +274,4 @@ Mistakes, misconceptions, corrections, partial recall, initiative and spontaneou
 
 ## Next Recommended Step
 
-Use the current momentum to perform one **real integration test** from GitHub: choose one connected AI agent and run a bounded Issue → agent → branch/change → Pull Request → review/checks flow. Record exactly which permissions and operations actually work. Then continue into Pull Requests / Projects / Actions with that live evidence.
+Run Issue #38 as the independent **GitHub Copilot cloud-agent** benchmark. If GitHub accepts the assignment, inspect the resulting agent identity, branch, commits and PR. If it rejects the assignment, classify the exact plan/policy/permission boundary from the API/Actions evidence. Then return to the Codex partner-agent benchmark without mixing the two evidence streams.
