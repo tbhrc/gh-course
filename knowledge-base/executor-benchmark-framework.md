@@ -71,6 +71,31 @@ Cloud-agent provisioning and startup latency count because they affect real oper
 - commits produced
 - setup/configuration events before an operational run
 
+## Deterministic dispatch versus agent execution
+
+Do not describe the whole elapsed duration as “AI time”. For an agent dispatched by GitHub Actions, it contains separate, operator-relevant intervals:
+
+| Marker | Meaning | Evidence source |
+|---|---|---|
+| D0 | Workflow run created | GitHub Actions run/job created_at |
+| D1 | Runner job started | GitHub Actions job started_at |
+| D2 | Dispatch/assignment call completed | Assignment-step completed_at |
+| A1 | Agent session/branch/PR first observable | Agent acknowledgement, branch or PR timestamp |
+| A2 | First substantive agent output | Agent-authored commit timestamp |
+| A3 | Review-ready delivery | PR review/request or final agent output |
+
+Derived intervals:
+
+- **Actions queue** = D1 − D0.
+- **Deterministic dispatch** = D2 − D1. This includes only runner setup, issue resolution, credential preflight and the assignment call.
+- **Post-dispatch time to visible session** = A1 − D2.
+- **Post-dispatch time to first output** = A2 − D2.
+- **Agent delivery tail** = A3 − A2.
+
+For cloud coding agents, A2 − D2 is an **observable post-dispatch black box**. It can include provider queueing, session provision, repository indexing, model inference, tool use and tests. GitHub does not expose model-token active time, so it must not be labelled “thinking time”.
+
+For a CLI/model step running inside Actions, the step duration is a valid **AI-process duration**, but still includes client setup/network/API time in addition to model inference.
+
 ## 100-point scoring matrix
 
 | Dimension | Weight | Scoring rule |
@@ -200,6 +225,31 @@ This table is distinct from the review-ready leaderboard. It records only runs t
 | ChatGPT Work Mode | GPT-5.6 Terra / light Work Mode | #80 | #81 | `17:22:49Z` | `17:26:01Z` | `17:26:02Z` | **3m13s / 193s** | No independent GitHub review object observed; merge occurred after direct diff inspection. |
 
 This is the first full-lifecycle result, so no cross-executor full-lifecycle speed score is calculated yet. It is not comparable to the older review-ready-only T4 scores.
+
+### Dispatch/agent timing audit — 27 August 2026
+
+All figures below are from GitHub Actions job and step timestamps. “Deterministic dispatch” excludes cloud-agent execution; “post-dispatch to first output” is not model-thinking time.
+
+| Executor / route | Actions queue | Deterministic dispatch | Post-dispatch to visible PR/session | Post-dispatch to first substantive commit | Commit → review-ready | What the evidence proves |
+|---|---:|---:|---:|---:|---:|---|
+| GitHub Copilot cloud agent — run 33080345287 | 2s | 3s | 5s | 161s | 58s | Assignment returned in 1s; the remaining 161s is cloud-agent queue/provision/context/execution combined. |
+| OpenAI Codex Partner Agent — run 33081457803 | 3s | 3s | 5s | 160s | 36s | Assignment returned in 2s; 160s after handoff is not separately attributable to model inference. |
+| Anthropic Claude Partner Agent — run 33083260139 | 3s | 3s | 6s | 130s | 58s | Assignment returned in 1s; Claude has the shortest observed handoff-to-first-commit interval in this set. |
+| Copilot CLI in Actions — run 33076875845 | 2s | 6s pre-AI setup | n/a (same job) | 17s AI-process step | 1s post | This is the cleanest direct separation: 6s deterministic setup, 17s CLI/model process, 3s deterministic posting/cleanup. |
+| Gemini CLI in Actions — run 33092569081 | 3s | 5s pre-AI setup | n/a (same job) | 257s failed AI-process step | 4s post | The process reached authenticated Gemini CLI but ended on quota failure; 257s includes CLI/API wait/retry/failure handling, not proven model-active time. |
+| Google Jules | n/a | n/a | 5s label → accepted task | 297s accepted task → commit | 5s | No GitHub Actions dispatcher was involved; provider session/provisioning and agent execution remain combined. |
+| ChatGPT Web / Work Mode direct GitHub | n/a | n/a | n/a | n/a | n/a | No deterministic Actions layer exists in the direct connected-GitHub route. |
+
+### Practical interpretation
+
+For Copilot, Codex and Claude cloud-agent dispatches, the GitHub deterministic part was only **3 seconds** from runner start to assignment completion (6–7 seconds including runner queue). Almost all of the 3–4 minute review-ready elapsed time occurred after successful handoff, outside the deterministic Action.
+
+The right comparison depends on the question:
+
+- **“How responsive is the control plane?”** Compare Actions queue + deterministic dispatch.
+- **“How long until an agent begins visibly operating?”** Compare D2 → A1.
+- **“How long until useful work exists?”** Compare D2 → A2.
+- **“How much was truly model compute?”** Unknown for cloud agents; only bounded AI-process step duration is available for in-Actions CLI routes.
 
 ### Jules clean-run timing details
 
