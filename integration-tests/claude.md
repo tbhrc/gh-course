@@ -56,10 +56,10 @@ This repository is the live learning environment for the **GitHub Professional O
 - Agent/bot identity: claude-sonnet-4.6 (model ID); running as Claude Code CLI
 - Session ID/link: not exposed to agent
 - Branch: `claude/tbhrc-claude-integration-benchmark`
-- Commit author(s): Claude (claude[bot] or the GitHub identity assigned to the integration — exact display name confirmed when commit is pushed)
+- Commit author(s): `anthropic-code-agent[bot]` — GitHub identity `242468646+Claude@users.noreply.github.com`
 - Committer(s): same as author (committed via `report_progress` tool which runs `git commit` and pushes)
-- PR author: determined by the GitHub token held by the integration
-- PR URL: to be recorded once PR is opened
+- PR author: `Claude` bot (`anthropic-code-agent[bot]`, GitHub Apps identity `in/2246796`)
+- PR URL: https://github.com/tbhrc/github-course/pull/58
 - Checks: no blocking checks observed
 - Comments/reviews: not attempted in this session
 
