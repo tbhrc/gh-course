@@ -22,7 +22,25 @@ The authoritative knowledge files live in the main repository under [`knowledge-
 - [Wiki as a documentation platform](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-as-documentation-platform.md)
 - [Governed Wiki publishing architecture](https://github.com/tbhrc/github-course/blob/main/knowledge-base/wiki-publishing-architecture.md)
 - [Pages, Actions & Integrations control plane](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-actions-integrations-control-plane.md)
+- [Pages entry-file README trap and portal fix](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-entry-file-readme-trap.md)
+- [ChatGPT Web + GitHub AI control plane](https://github.com/tbhrc/github-course/blob/main/knowledge-base/chatgpt-web-github-control-plane.md)
 - [Knowledge gap register](https://github.com/tbhrc/github-course/blob/main/knowledge-base/gap-register.md)
+
+## High-Value Failure Pattern
+
+A GitHub Pages site can be fully deployed and still be a bad website.
+
+```text
+green deployment
+≠
+correct entry page
+≠
+good user experience
+```
+
+If Pages behaves like an unhelpful README page, inspect the configured source **and** the top-level entry files before changing deployment architecture. A deliberate `index.html` or `index.md` may be the only missing layer.
+
+[Read the verified failure/fix note →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-entry-file-readme-trap.md)
 
 ## How New Knowledge Enters the Course
 

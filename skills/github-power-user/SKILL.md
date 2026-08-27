@@ -1,7 +1,7 @@
 ---
 name: github-power-user
 description: Use GitHub as a complete professional operating platform rather than only a Git remote. Use for GitHub architecture, Issues, Projects, Discussions, Wikis, Actions, agents, repository instructions, MCP, Codespaces, rulesets, security, releases, packages, Pages, integrations, CLI/API power use, automation, governance and cross-repository planning.
-version: 1.3.0
+version: 1.4.0
 status: active
 source: FolderDesk canonical github-power-user v1.0.0
 source_path: 470-skills/github-power-user/
@@ -171,6 +171,48 @@ Typical uses:
 
 Do not confuse Pages with Wiki: Wiki optimises for documentation authoring/navigation; Pages optimises for static-site publishing.
 
+### Pages Entry-File Diagnostic
+
+A successful Pages deployment does **not** prove the public site is useful.
+
+Current GitHub Pages behaviour allows the site entry file to be `index.html`, `index.md`, or `README.md`. For branch/folder publishing, the entry file must be at the top level of the selected source.
+
+Therefore diagnose these separately:
+
+```text
+Pages publishing source
+≠
+Pages entry file
+≠
+website information architecture
+```
+
+If a Pages site is live but behaves like an unhelpful README page:
+
+1. confirm the deployment succeeded;
+2. identify the configured branch/folder;
+3. inspect top-level `index.html`, `index.md`, and `README.md`;
+4. identify which file is becoming the public front door;
+5. define the intended reader journey;
+6. add or fix a deliberate `index.html` / `index.md` if needed;
+7. **do not change the Pages source merely because the homepage is poor**;
+8. redeploy through normal governance;
+9. verify the public navigation as a real user.
+
+Course failure pattern:
+
+```text
+green deployment
+≠
+correct entry page
+≠
+good user experience
+```
+
+For the course itself, `main / (root)` was already the correct source. The fix was adding root `index.html` as the public portal, not moving the Pages source.
+
+Read `../../knowledge-base/pages-entry-file-readme-trap.md`.
+
 ## Actions
 
 Think in triggers:
@@ -307,7 +349,8 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 6. update shared lessons only when the learning produces reusable value;
 7. preserve high-value discovery moments instead of pre-explaining every conclusion;
 8. keep the reader-facing Wiki useful when course structure, student dashboards or durable breakthroughs materially change;
-9. test integrations by actual capability rather than assuming installed access equals operational access.
+9. test integrations by actual capability rather than assuming installed access equals operational access;
+10. for Pages, verify deployment health, entry-file correctness and the real user journey as three separate checks.
 
 ## References
 
@@ -317,6 +360,7 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 - `../../knowledge-base/wiki-as-documentation-platform.md` — verified Wiki publishing model and Wiki-vs-Pages boundary.
 - `../../knowledge-base/wiki-publishing-architecture.md` — governed main-repo-to-Wiki publishing model.
 - `../../knowledge-base/pages-actions-integrations-control-plane.md` — Pages, Actions policy and integration capability model.
+- `../../knowledge-base/pages-entry-file-readme-trap.md` — Pages entry-file diagnosis, README trap and portal fix.
 
 ## Governing Principle
 

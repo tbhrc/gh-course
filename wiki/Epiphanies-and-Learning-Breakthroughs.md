@@ -288,6 +288,75 @@ This reinforces the larger mental model that GitHub contains both operating infr
 
 ---
 
+## 8. Green Deployment Does Not Mean a Usable Website
+
+### Trigger
+
+After Pages was successfully deployed, David opened the public course site as a real student/external reader.
+
+The infrastructure looked healthy, but the experience did not.
+
+The public site was effectively stuck on a README-style entry page and did not make the actual course system easy to reach: Wiki, dashboard, handbook, manual, modules, knowledge base, epiphanies and other operating surfaces.
+
+### Breakthrough
+
+> **A website can be technically deployed and still fail the user.**
+
+The new operator model is:
+
+```text
+green deployment
+≠
+correct entry page
+≠
+good user experience
+```
+
+### Root cause discovered
+
+GitHub Pages distinguishes between:
+
+```text
+publishing source
+= where the site is published from
+
+entry file
+= what becomes the front door
+
+information architecture
+= whether the user can actually navigate the system
+```
+
+The course source was already correct:
+
+```text
+main / (root)
+```
+
+The problem was not the source. The missing layer was a deliberate root `index.html`.
+
+### Applied fix
+
+Issue #30 / PR #31 added a responsive public course portal while keeping the Pages source unchanged.
+
+The portal routes readers into the live Wiki, David's dashboard, handbook, manual, modules, knowledge base, epiphanies, AI Control Plane, repository operations and releases.
+
+The subsequent Pages build and deployment succeeded.
+
+### Why this matters
+
+This is a broader power-user lesson:
+
+> **Do not stop verification at infrastructure status. Test the actual user journey.**
+
+It also prevents unnecessary architecture changes. A poor homepage does not automatically mean the publishing branch/folder is wrong.
+
+[Canonical Pages portal learning note →](https://github.com/tbhrc/github-course/blob/main/students/david/assessments/learning-note-2026-08-27-pages-portal-fix.md)
+
+[Verified Pages entry-file failure pattern →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/pages-entry-file-readme-trap.md)
+
+---
+
 ## Teaching Rule
 
 Future learners should not always be given these conclusions first.
