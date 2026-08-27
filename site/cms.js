@@ -72,7 +72,18 @@ function renderTimingComponents(rows) {
   const table = document.createElement("table");
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
-  for (const heading of ["Route", "Deterministic / handoff", "Provider / AI process", "Pure model"] ) {
+  const columns = [
+    ["Route", "Executor / route"],
+    ["Control / runner", "Control → runner/accept"],
+    ["Deterministic / handoff", "Deterministic orchestration / handoff"],
+    ["Provider / AI process", "Observable provider / AI-process interval"],
+    ["Delivery tail", "Delivery tail"],
+    ["Pure model", "Pure model compute"],
+    ["Review-ready wall clock", "Review-ready wall clock"],
+    ["Confidence", "Confidence"],
+  ];
+
+  for (const [heading] of columns) {
     const th = document.createElement("th");
     th.textContent = heading;
     headerRow.appendChild(th);
@@ -83,10 +94,9 @@ function renderTimingComponents(rows) {
   const tbody = document.createElement("tbody");
   for (const row of rows.slice(0, 7)) {
     const tr = document.createElement("tr");
-    tr.appendChild(cell(row["Executor / route"]));
-    tr.appendChild(cell(row["Deterministic orchestration / handoff"]));
-    tr.appendChild(cell(row["Observable provider / AI-process interval"]));
-    tr.appendChild(cell(row["Pure model compute"]));
+    for (const [, key] of columns) {
+      tr.appendChild(cell(row[key]));
+    }
     tbody.appendChild(tr);
   }
   table.appendChild(tbody);
