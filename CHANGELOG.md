@@ -13,6 +13,14 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - David's dated learning note preserving the two-layer AI-first founder operating-model breakthrough.
 - Wiki `AI-Control-Plane` page and navigation links to the live benchmark.
 - Functional root `index.html` for GitHub Pages, turning the public site into a responsive course portal with one-click access to the Wiki, student dashboard, handbook, manual, modules, knowledge base, epiphanies, AI Control Plane, exercises, SOP library, glossary, repository operations and releases.
+- Verified `knowledge-base/pages-entry-file-readme-trap.md` preserving the exact Pages failure where deployment succeeded but the README became an unhelpful public entry experience, including diagnosis, fix and prevention rules.
+- David's dated Pages portal learning note preserving the real user-journey problem, the source-vs-entry-file correction and the verified portal fix.
+- Module 07 practical failure lab teaching `green deployment ≠ correct entry page ≠ good user experience`.
+
+### Changed
+
+- Course `github-power-user` Skill advanced from `1.3.0` to `1.4.0` (MINOR) to add the Pages entry-file diagnostic, README trap and post-deployment user-journey verification.
+- Wiki Knowledge Base, Student Dashboard and Epiphanies pages now expose the Pages portal problem/fix as reusable course knowledge and student evidence.
 
 ## [0.2.0] - 2026-08-27
 
