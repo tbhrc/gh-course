@@ -15,14 +15,14 @@ jobs:
     if: github.event_name == 'issues' && github.event.action == 'assigned' && (github.event.assignee.login == 'Copilot' || github.event.assignee.login == 'Codex' || github.event.assignee.login == 'Claude')
     runs-on: ubuntu-latest
     env:
-      AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+      PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: Mark native agent work In progress
-        if: env.AGENT_DISPATCH_TOKEN != ''
+        if: env.PROJECT_MANAGEMENT_TOKEN != ''
         uses: ./.github/actions/set-course-project-status
         with:
-          token: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           status-option-id: 31346145
           expected-status: Backlog
@@ -31,13 +31,13 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     env:
-      AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+      PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
       STATUS_REVIEW: 7b57c5f5
     steps:
       - name: Set Review on each linked Issue
-        if: env.AGENT_DISPATCH_TOKEN != ''
+        if: env.PROJECT_MANAGEMENT_TOKEN != ''
         env:
-          GH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          GH_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -euo pipefail
@@ -52,14 +52,14 @@ jobs:
     if: github.event_name == 'issues' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     env:
-      AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+      PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: Mark closed Project Issue Done
-        if: env.AGENT_DISPATCH_TOKEN != ''
+        if: env.PROJECT_MANAGEMENT_TOKEN != ''
         uses: ./.github/actions/set-course-project-status
         with:
-          token: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          token: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           status-option-id: 5f44ab3f
           allow-missing: "true"

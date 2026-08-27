@@ -45,6 +45,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Changed
 
+- Project lifecycle synchronisation now uses the dedicated `PROJECT_MANAGEMENT_TOKEN`, keeping Project administration separate from agent-dispatch credentials.
 - Course root README now distinguishes curriculum/material state from learner mastery, points to the canonical executor benchmark and records Projects as David's current hands-on focus.
 - David's canonical `students/david/progress.md` now records multi-agent learning without duplicating the live leaderboard; current executor timings/scores remain solely in the canonical benchmark.
 - Wiki Course Handbook and Course Manual rebuilt from short navigation stubs into substantive professional operating documents covering the complete GitHub workflow, Projects, Actions, releases, publishing, agents, provenance, security and source-of-truth governance.
