@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_from_commit": "d71e84536bd219838e8838e374a98f6cb7757db3",
+  "generated_from_commit": "51dd18e13d707276d4f6efc7cca678c3a02f19d9",
   "source_contract": {
     "course_home": "wiki/Home.md",
     "student_state": "students/david/progress.md",
@@ -9,7 +9,7 @@
   },
   "course": {
     "version": "0.2.0",
-    "home_intro": "Welcome to the reader-facing operating handbook for the GitHub Professional Operator — AI-First Founder Crash Course."
+    "home_intro": "Welcome to the live GitHub Professional Operator course — a governed, AI-first learning system built by operating this repository."
   },
   "student": {
     "course_stage": "Stage 2 — Crash Course / live operation",
