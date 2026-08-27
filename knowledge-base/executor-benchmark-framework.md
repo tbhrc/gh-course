@@ -176,7 +176,8 @@ This lets the benchmark answer two different questions:
 | GitHub Copilot | dispatch run `33080345287` `14:05:45Z` | PR #51 `14:05:56Z` | commit `934590d` notification `14:08:32Z` | review request `14:09:30Z` | **3m45s / 225s** |
 | Google Jules | `jules` label on #63 `16:40:39Z` | PR #66 `16:45:46Z` | commit `8d712e3` `16:45:41Z` | open non-draft PR #66 `16:45:46Z` | **5m07s / 307s** |
 | Gemini CLI/API | run `33092569081` reached authenticated inference path | — | — | — | pending quota/billing |
-| Local coding agent | — | — | — | — | pending |
+| Codex Desktop (local Terra) | Issue #78 `17:16:32Z` | pending | pending | pending | pending |
+| Other local coding agents | — | — | — | — | pending |
 
 ### Jules clean-run timing details
 
@@ -197,7 +198,8 @@ Speed uses the fastest current operational result, ChatGPT Web at 152 seconds.
 | **GitHub Copilot** | 20.3 | 20 | 14 | 10 | 10 | 5 | 5 | 3 | **87.3** |
 | **Google Jules** | 14.9 | 20 | 12 | 10 | 10 | 3 | 4 | 4 | **77.9** |
 | Gemini CLI/API | pending | pending | pending | pending | pending | pending | pending | pending | pending |
-| Local coding agent | pending | pending | pending | pending | pending | pending | pending | pending | pending |
+| Codex Desktop (local Terra) | pending | pending | pending | pending | pending | pending | pending | pending | pending |
+| Other local coding agents | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 
 ### Claude quality note
 
@@ -255,7 +257,8 @@ A routing policy should be changed only when repeated evidence shows a meaningfu
 
 - Jules: clean benchmark #63 produced PR #66 in 307 seconds. Correct factual/provenance issues before merge; keep the first snapshot score unchanged.
 - Gemini CLI/API: Issue #26 has valid `GEMINI_API_KEY` authentication and reached `gemini-3.5-flash`; retry after free quota reset or enable paid Gemini API billing, then score only when a governed branch/commit/PR is produced.
-- Local agents: benchmark later with the same T0–T4 clock and identical evidence requirements.
+- Codex Desktop (local Terra): Issue #78 is the controlled local execution-surface run. Score only after the issue-linked PR is created; do not combine its timing with the GitHub Partner Agent Codex row.
+- Other local agents: benchmark later with the same T0–T4 clock and identical evidence requirements.
 
 ## Governing principle
 
