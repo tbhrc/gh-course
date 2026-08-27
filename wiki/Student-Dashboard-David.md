@@ -51,7 +51,8 @@ This is the **reader-facing progress dashboard** for Student #1.
 - ChatGPT Web → push → GitHub Action command bus physically proven through Issue #24 / Issue #34.
 - PAT visibility to Actions physically proven; the workflow reached GitHub's coding-agent assignment API.
 - Codex partner-agent execution correctly remains **unproven** because GitHub returned HTTP `403 Forbidden` at the downstream assignment layer.
-- Independent GitHub Copilot cloud-agent benchmark opened as Issue #38.
+- GitHub Copilot cloud-agent benchmark executed independently under Issue #38.
+- Copilot dispatcher passed trigger, Issue resolution, PAT and authenticated API-call stages, then GitHub returned HTTP `403 Forbidden` before any Copilot session began.
 
 ### Applied Architecture
 
@@ -113,6 +114,12 @@ Actions secret
 ≠ invented password
 ```
 
+```text
+dispatcher/authentication success
+≠ agent assignment accepted
+≠ agent session started
+```
+
 ### Still Requires Hands-On Mastery
 
 - personally complete the full Issue → branch → commit → PR → merge workflow;
@@ -148,14 +155,17 @@ Actions secret
 8. Integrations can make GitHub the shared control plane connecting AI agents, automation and deployment services.
 9. A green deployment is not the same as a usable website: the publishing source, entry file and user journey must be evaluated separately.
 10. GitHub Actions can be deterministic command buses: **automation is not automatically AI**, and a Web agent can fire the trigger that hands work to a downstream AI worker.
+11. A working trigger, workflow and credential still do not prove agentic execution; agent assignment and agent session must be evidenced separately.
 
 [Open the full epiphany log →](Epiphanies-and-Learning-Breakthroughs)
 
 ## Live Integration Benchmarks
 
-- [Master matrix — Issue #23](https://github.com/tbhrc/github-course/issues/23)
-- [Codex partner-agent benchmark — Issue #24](https://github.com/tbhrc/github-course/issues/24)
-- [GitHub Copilot cloud-agent benchmark — Issue #38](https://github.com/tbhrc/github-course/issues/38)
+| Benchmark | Current result |
+| --- | --- |
+| [Master matrix — #23](https://github.com/tbhrc/github-course/issues/23) | active |
+| [Codex partner agent — #24](https://github.com/tbhrc/github-course/issues/24) | dispatcher/auth proven; assignment `403` |
+| [GitHub Copilot cloud agent — #38](https://github.com/tbhrc/github-course/issues/38) | dispatcher/auth proven; assignment `403` |
 
 ## Public Course Site
 
@@ -163,7 +173,7 @@ Actions secret
 
 ## Current Next Step
 
-Run Issue #38 through GitHub's own Copilot cloud-agent path. Success means an actual Copilot agent session and agent-authored branch/commit/PR. Failure must be classified precisely as plan, policy, permission or runtime evidence.
+Resolve the GitHub plan/policy/eligibility boundary and rerun one agent benchmark until the repository shows a real agent session and agent-authored branch/commit/PR.
 
 ## Navigation
 

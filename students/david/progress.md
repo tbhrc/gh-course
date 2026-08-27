@@ -36,7 +36,8 @@
 - David generated a real fine-grained GitHub PAT after learning that an Actions secret stores a genuine credential rather than an invented password.
 - Live workflow evidence proved the PAT became visible to Actions and the dispatcher reached GitHub's coding-agent assignment API.
 - The Codex benchmark currently stops at an authenticated HTTP `403 Forbidden`, isolating the remaining failure to partner-agent permission/plan/policy eligibility rather than the deterministic Action.
-- Independent GitHub Copilot cloud-agent benchmark opened as Issue #38.
+- Independent GitHub Copilot cloud-agent benchmark executed under Issue #38.
+- The Copilot dispatcher resolved Issue #38, saw the PAT as `***`, sent the documented `copilot-swe-agent[bot]` + `agent_assignment` request, and received HTTP `403 Forbidden` before any Copilot agent session started.
 
 ## Demonstrated Strengths
 
@@ -58,6 +59,7 @@
 - **User-journey validation insight:** David did not accept a successful Pages deployment as proof that the website worked. He used the public site, identified the missing navigation/portal layer, questioned whether the publishing source was wrong, and required the architecture to be fixed and preserved as reusable learning.
 - **Deterministic-vs-agentic insight:** David independently reframed GitHub Actions as a trigger/automation layer that can run ordinary deterministic scripts or dispatch a separate AI worker. He explicitly recognised that the Web agent should fire the trigger while the downstream agent performs execution.
 - **Failure-layer reasoning:** David followed the live progression from missing secret → real PAT → authenticated API call → HTTP 403, reinforcing the habit of locating the exact failing layer instead of treating the whole system as one black box.
+- **Independent-agent benchmark discipline:** Codex and GitHub Copilot were tested separately, preventing one integration's evidence from being incorrectly attributed to another.
 
 ## Current Priority Gaps
 
@@ -260,9 +262,18 @@ push trigger works
 → Codex partner-agent request returns HTTP 403
 ```
 
-This means deterministic dispatch and authentication are proven; Codex agentic execution is not yet proven.
+A separate GitHub Copilot cloud-agent benchmark was then run under Issue #38:
 
-A separate GitHub Copilot cloud-agent benchmark is now governed by Issue #38 so GitHub's own agent can be tested independently of Codex partner-agent eligibility.
+```text
+push trigger works
+→ Copilot dispatcher starts
+→ PAT visible as ***
+→ copilot-swe-agent[bot] + agent_assignment sent
+→ GitHub returns HTTP 403 Forbidden
+→ no Copilot session / branch / PR
+```
+
+This means deterministic dispatch and user-authenticated API access are proven for both test paths; agentic execution is not yet proven for either.
 
 Detailed learning evidence: `assessments/learning-note-2026-08-27-deterministic-vs-agentic.md`.
 
@@ -274,4 +285,4 @@ Mistakes, misconceptions, corrections, partial recall, initiative and spontaneou
 
 ## Next Recommended Step
 
-Run Issue #38 as the independent **GitHub Copilot cloud-agent** benchmark. If GitHub accepts the assignment, inspect the resulting agent identity, branch, commits and PR. If it rejects the assignment, classify the exact plan/policy/permission boundary from the API/Actions evidence. Then return to the Codex partner-agent benchmark without mixing the two evidence streams.
+Resolve the GitHub Copilot/Codex plan-policy eligibility boundary, then rerun one benchmark until the repository shows an actual agent session and agent-authored branch/commit/PR. Keep the deterministic dispatcher architecture unchanged unless new evidence shows a dispatcher defect.

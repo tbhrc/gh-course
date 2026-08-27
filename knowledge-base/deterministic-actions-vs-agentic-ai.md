@@ -28,13 +28,15 @@ trigger
 The course has now physically demonstrated all of the following:
 
 1. ChatGPT Web creates or modifies governed GitHub objects.
-2. A Web-created push on `dispatch/codex/...` triggers `.github/workflows/dispatch-codex.yml`.
+2. A Web-created push can trigger a GitHub Actions dispatcher.
 3. GitHub Actions starts on its own after that push.
 4. The workflow resolves the target Issue deterministically.
-5. The workflow checks for `AGENT_DISPATCH_TOKEN` deterministically.
+5. The workflow checks `AGENT_DISPATCH_TOKEN` deterministically.
 6. After the real GitHub-generated PAT was stored as the repository Actions secret, the secret became visible to the workflow and preflight passed.
 7. The workflow reached GitHub's coding-agent assignment API.
-8. The Codex partner-agent assignment returned HTTP `403 Forbidden`, exposing a downstream plan/policy/eligibility boundary rather than an Actions failure.
+8. The Codex partner-agent assignment returned HTTP `403 Forbidden`.
+9. A separate GitHub Copilot cloud-agent dispatcher then targeted Issue #38 using `copilot-swe-agent[bot]` plus the documented `agent_assignment` payload.
+10. The Copilot dispatcher also passed trigger, secret and authentication preflight, reached the assignment API, and returned HTTP `403 Forbidden` before any Copilot agent session started.
 
 This proves that automation can be working correctly even when the downstream AI agent does not start.
 
@@ -80,7 +82,7 @@ A green result at one step does not prove later steps.
 
 A GitHub Actions secret is a secure storage location for a real credential. It is not a password invented by the operator.
 
-For the live Codex dispatcher:
+For the live dispatchers:
 
 ```text
 AGENT_DISPATCH_TOKEN
@@ -136,6 +138,34 @@ Use the exact failing layer:
 | assignment accepted but no agent work | agent/session/runtime problem |
 | agent work exists but PR/check fails | implementation/CI problem |
 
+## Independent agent benchmark results
+
+### OpenAI Codex partner agent — Issue #24
+
+```text
+✅ Web trigger
+✅ GitHub Action
+✅ real PAT visible
+✅ authenticated assignment API reached
+✅ corrected agent_assignment payload sent
+❌ HTTP 403 Forbidden
+❌ no Codex session / agent-authored PR
+```
+
+### GitHub Copilot cloud agent — Issue #38
+
+First run evidence:
+
+- workflow run: `33074951020`;
+- trigger branch: `dispatch/copilot/38`;
+- trigger commit: `be1b80123b15cee4518648cd7d0077bd0e528672`;
+- PAT visible to Actions as masked `***`;
+- request used `copilot-swe-agent[bot]` and the `agent_assignment` object;
+- GitHub response: HTTP `403 Forbidden`;
+- no Copilot agent session, agent-authored branch, commit or Pull Request appeared.
+
+Current GitHub documentation states the Copilot cloud agent is available on paid Copilot plans. The repository evidence proves the 403 boundary; it does not by itself identify which exact account-level plan or policy setting produced the refusal.
+
 ## Course benchmark mapping
 
 - Issue #24 — OpenAI Codex partner-agent benchmark.
@@ -151,6 +181,6 @@ The tests remain separate because GitHub Copilot cloud agent and third-party par
 ## Sources
 
 - GitHub Docs — GitHub Actions concepts and workflow events.
-- GitHub Docs — GitHub Copilot cloud agent.
+- GitHub Docs — GitHub Copilot cloud agent and Issue assignment.
 - GitHub Docs — third-party coding agents.
-- Live repository Actions runs and Issue #24 evidence on 27 August 2026.
+- Live repository Actions runs and Issues #24/#38 evidence on 27 August 2026.
