@@ -24,7 +24,7 @@ The target is not simply to understand GitHub features. A professional operator 
 This repository is simultaneously:
 
 1. **a course** — David learns and improves by operating GitHub; and
-2. **a reusable learning system** — the lessons, question banks, SOPs, Skills, templates and assessment model can later be used by other people and their AI coaches.
+2. **a reusable learning system** — the lessons, question banks, SOPs, Skills, templates, knowledge base and assessment model can later be used by other people and their AI coaches.
 
 The repository itself is part of the training environment.
 
@@ -45,7 +45,27 @@ student profile
 → final comparison against baseline
 ```
 
-Agent instructions live in `AGENTS.md`.
+Shared agent instructions live in `AGENTS.md`. GitHub Copilot repository-wide instructions live in `.github/copilot-instructions.md`.
+
+## Knowledge Authority
+
+The course does not treat model memory as the final authority for material GitHub behaviour.
+
+```text
+current official/live evidence
+→ knowledge-base/
+→ skills/github-power-user/
+→ course modules
+→ model memory / older chat
+```
+
+- `knowledge-base/` is the authoritative verified GitHub best-practices layer.
+- `skills/github-power-user/` is the strategic accelerator and feature map.
+- course modules convert that knowledge into teaching and hands-on operation.
+- `students/` preserves individual evidence, mistakes and progress.
+- GitHub Wiki can be used as a reader-friendly long-form/navigation layer, but it is not the only source of truth.
+
+See `knowledge-base/README.md`.
 
 ## Student #1 — David
 
@@ -118,8 +138,8 @@ GitHub
 | 03 | Pull Requests — The Control Gate | Pending |
 | 04 | GitHub Projects | Pending |
 | 05 | Actions & Automation | Pending |
-| 06 | Releases & Professional Versioning | Pending |
-| 07 | GitHub Knowledge Architecture | Pending |
+| 06 | Releases & Professional Versioning | In progress |
+| 07 | GitHub Knowledge Architecture | In progress |
 | 08 | Security & Governance | Pending |
 | 09 | AI Agents + GitHub | Pending |
 | 10 | GitHub × FolderDesk Architecture | Pending |
@@ -130,6 +150,15 @@ GitHub
 github-course/
 ├── README.md
 ├── AGENTS.md
+├── VERSION
+├── CHANGELOG.md
+├── .github/
+│   └── copilot-instructions.md
+├── knowledge-base/
+│   ├── README.md
+│   ├── source-policy.md
+│   ├── wiki-vs-repository-markdown.md
+│   └── gap-register.md
 ├── 00-start-here/
 ├── 01-github-mental-model/
 ├── 02-issues/
@@ -173,18 +202,23 @@ Each substantial module should evolve toward:
 
 ## Reusable Course Assets
 
+- `knowledge-base/` — verified, current GitHub best-practices knowledge and gap tracking.
 - `students/` — learner-specific truth and assessments.
 - `question-bank/` — reusable diagnostics, checkpoints, scenario tests and answer guides.
 - `templates/` — reusable student/course templates.
 - `docs/` — architecture and explanatory documentation.
 - `exercises/` — practical GitHub work.
 - `certification/` — final competency requirements and evidence.
-- `skills/` — reusable AI-agent Skills developed once workflows become stable.
+- `skills/` — reusable AI-agent Skills, including the `github-power-user` course accelerator.
 - `sops/` — concise standard operating procedures produced from practised workflows.
 
 ## Operator Principle #1
 
 > **Every meaningful change should have context, history and evidence.**
+
+## Knowledge Principle
+
+> **Verify what matters. Preserve what was verified. Teach from evidence.**
 
 ## Course Rule
 
