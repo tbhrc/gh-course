@@ -54,6 +54,19 @@ For this course the starting fields are:
 
 Add another field only when it changes an actual planning decision.
 
+### Status semantics
+
+For the live course Project:
+
+- **Backlog** — deliberately parked, deferred, pending a decision/dependency, or otherwise not available to start;
+- **Ready** — valid actionable work available to start; every newly opened repository Issue enters here automatically;
+- **In progress** — a human or agent has actually started execution;
+- **Blocked** — execution cannot proceed;
+- **Review** — work is ready for checks, validation and acceptance;
+- **Done** — work is accepted and the underlying Issue is closed.
+
+`Backlog` is not automatic intake. Moving work from `Ready` to `Backlog` is an explicit planning decision.
+
 ### Why the gate is called Review, not Testing
 
 `Review` is the broader acceptance stage for this mixed-work Project.
@@ -149,7 +162,7 @@ Professional rule:
 
 Examples:
 
-- automatically add relevant new Issues to the Project;
+- automatically add every new repository Issue to the Project as `Ready`;
 - archive completed items later;
 - use deterministic Actions for fixed rules;
 - use agentic workflows only where classification requires reasoning.
@@ -158,22 +171,23 @@ Do not build automation merely to avoid one useful manual learning exercise.
 
 ### Agent execution command
 
-Moving an Issue card to `Ready` is a planning decision. It is not itself an AI execution command.
+`Ready` means the Issue is available to start. It is not itself an AI execution command.
 
 To start a configured coding agent, assign the agent to the underlying Issue or use a governed deterministic dispatcher that performs that assignment.
 
 The live course lifecycle is:
 
 ```text
-Backlog / Ready
-→ supported coding agent assigned
+Issue opened
+→ deterministic Action adds it to Project as Ready
+→ work starts through issue-linked branch or supported agent assignment
 → deterministic Action sets In progress
 → linked non-draft PR reaches Review
 → Issue closes
 → deterministic Action sets Done
 ```
 
-`Blocked` remains a deliberate planning state. It is not inferred automatically unless a deterministic blocker signal exists.
+`Backlog` is a deliberate parking state for work that is not currently available to start. `Blocked` is also deliberate unless a deterministic blocker signal exists.
 
 ### Live ChatGPT Web control proof — Issue #107
 
@@ -256,10 +270,11 @@ You should be able to answer without prompts:
 3. What is a Project view?
 4. Why can one Issue appear on several views without duplication?
 5. When would you use a label instead of a Project field?
-6. Why can an open Issue legitimately have Project Status `Blocked` or `Review`?
-7. Why is `Review` broader and more reusable than `Testing` for this Project?
-8. What is the difference between `AGENT_DISPATCH_TOKEN` and `PROJECT_MANAGEMENT_TOKEN`?
-9. Why should we not create dozens of fields on day one?
+6. What is the difference between `Backlog` and `Ready` in this Project?
+7. Why can an open Issue legitimately have Project Status `Blocked` or `Review`?
+8. Why is `Review` broader and more reusable than `Testing` for this Project?
+9. What is the difference between `AGENT_DISPATCH_TOKEN` and `PROJECT_MANAGEMENT_TOKEN`?
+10. Why should we not create dozens of fields on day one?
 
 ## Official references
 
