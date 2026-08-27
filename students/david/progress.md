@@ -23,6 +23,7 @@
 - David explicitly established the repository operating rule that substantive repo changes must begin with a GitHub Issue and then be completed from that Issue.
 - Issue #1 became the first live implementation of the course workflow.
 - Semantic Versioning introduced and documented as a mandatory companion standard to professional Git/GitHub operation.
+- Authoritative GitHub knowledge-base architecture introduced under Issue #9.
 
 ## Demonstrated Strengths
 
@@ -36,6 +37,7 @@
 - **New evidence:** David independently recognised that repository work should not be changed ad hoc from chat; he corrected the coach and required an Issue-first workflow before further repo development.
 - **New versioning insight:** David identified that his agents were not consistently logging or applying version control and explicitly raised versioning as an operational gap that must be standardised.
 - **New SemVer progress:** David now understands that professional release versions use `MAJOR.MINOR.PATCH`, that the components communicate change significance rather than acting as decimal counters, and that Semantic Versioning should be taught alongside GitHub operation.
+- **New knowledge-architecture insight:** David explicitly rejected assumed GitHub knowledge as an operating basis and required a durable, reusable best-practices knowledge base that AI coaches can consult.
 
 ## Current Priority Gaps
 
@@ -46,7 +48,7 @@
 5. Complete hands-on release/tag/version workflow.
 6. Security and governance.
 7. GitHub-native AI-agent workflows.
-8. Knowledge architecture: repo files vs docs vs Wiki vs Discussions.
+8. Complete hands-on Wiki/knowledge-architecture exercise and explain the source-of-truth model unaided.
 9. GitHub × FolderDesk boundary and integration architecture.
 
 ## Current Evidence — Issue #1
@@ -100,6 +102,23 @@ Detailed learning evidence: `assessments/learning-note-2026-08-27-semver.md`.
 
 David also correctly identified the broader operating problem: agents need explicit rules for both **change history** and **release versioning**, rather than relying on ad hoc chat execution.
 
+## Current Evidence — Wiki and Knowledge Architecture
+
+David had not previously operated GitHub Wiki and initially described it as potentially turning repository folders/code into linked or machine-readable material and as a possible database-like memory layer.
+
+The useful instinct was the need for a durable knowledge source. The correction introduced is:
+
+```text
+GitHub Wiki = long-form linked documentation
+knowledge-base/ = canonical verified course knowledge
+```
+
+Wiki can be a reader-friendly handbook/navigation layer, but it is not automatically a database, semantic memory system or knowledge graph.
+
+David explicitly required the AI coach to avoid assumed GitHub knowledge and instead build a verified best-practices knowledge base that can be reused by any attached agent.
+
+Detailed learning evidence: `assessments/learning-note-2026-08-27-wiki.md`.
+
 ## Evidence Rule
 
 Do not mark a capability complete merely because David has read a lesson or watched the coach perform it. Mark it complete only when he can explain it accurately and/or perform the relevant operation in GitHub.
@@ -108,4 +127,4 @@ Mistakes, misconceptions, corrections and partial recall are valuable learning e
 
 ## Next Recommended Step
 
-David should complete `exercises/first-issue-workflow.md` on a small real improvement. A later release exercise should require him to choose a SemVer bump, update the changelog, create a tag and publish a GitHub Release without being given the answer first.
+David should complete `exercises/first-issue-workflow.md` on a small real improvement. He should also complete the Module 07 Wiki lab when we reach knowledge architecture. A later release exercise should require him to choose a SemVer bump, update the changelog, create a tag and publish a GitHub Release without being given the answer first.

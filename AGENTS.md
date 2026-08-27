@@ -110,6 +110,36 @@ Rules:
 - Use dated files under `students/<student-id>/assessments/` for significant checkpoints, misconceptions, tests and learning notes.
 - Student-specific learning evidence stays in the student folder; reusable teaching material belongs in shared course folders.
 
+## Knowledge Base and Freshness
+
+The repository has a durable knowledge authority layer under:
+
+```text
+knowledge-base/
+```
+
+For material GitHub teaching, architecture or operational claims, use this authority order:
+
+```text
+current official/live evidence
+→ knowledge-base/ verified notes
+→ skills/github-power-user/
+→ course modules
+→ AI model memory / older chat
+```
+
+Rules:
+
+1. Read `knowledge-base/README.md` before substantial course research or knowledge development.
+2. Use `skills/github-power-user/SKILL.md` as the strategic accelerator and feature map, not as proof that every volatile feature is still unchanged.
+3. Do not teach an assumption as a GitHub fact.
+4. When behaviour is current, volatile, plan-dependent, preview, safety-relevant or uncertain, verify an authoritative source—prefer official GitHub Docs or live GitHub evidence.
+5. When a verified finding fills a reusable gap, add/update a concise knowledge note through the normal Issue → branch → PR workflow.
+6. Record verification dates and primary sources in substantial knowledge notes.
+7. Keep student-specific misunderstandings under `students/`; keep reusable platform knowledge under `knowledge-base/`.
+8. GitHub Wiki may be used as a reader-friendly documentation surface, but `knowledge-base/` remains canonical for this AI-first course unless a future governed decision changes that.
+9. Avoid maintaining two independent copies of the same truth.
+
 ## Course Development Accelerator
 
 For substantial GitHub course development, read:
@@ -152,6 +182,8 @@ Rules:
 ## Repository Architecture
 
 ```text
+.github/
+knowledge-base/
 00-start-here/
 01-github-mental-model/
 02-issues/
