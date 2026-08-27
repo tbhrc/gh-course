@@ -4,6 +4,28 @@ A practical, AI-agent-friendly GitHub operator course designed to move learners 
 
 David is Student #1 and the first public case study. His starting knowledge, mistakes, assessments and progress are intentionally preserved so the course can prove improvement over time and later be reused by other founders and learners.
 
+## Course Wiki — Human Interface
+
+The course now has a **reader-facing Wiki operating handbook**:
+
+**https://github.com/tbhrc/github-course/wiki**
+
+Use it for:
+
+- Home dashboard;
+- course handbook and manual;
+- course materials and module navigation;
+- David's progress dashboard;
+- epiphanies and learning breakthroughs;
+- knowledge-base navigation;
+- exercises and assessments;
+- SOP library;
+- reference/glossary.
+
+The governed source for the published Wiki lives under `wiki/` in this repository and is published by `.github/workflows/publish-wiki.yml` after approved changes merge.
+
+> The Wiki is the reader-facing interface. Canonical verified knowledge, curriculum and student evidence remain in the main repository.
+
 ## Objective
 
 Become capable of confidently designing, operating, auditing and improving a professional GitHub environment, with particular emphasis on AI-agent workflows, traceability, automation and governance.
@@ -24,7 +46,7 @@ The target is not simply to understand GitHub features. A professional operator 
 This repository is simultaneously:
 
 1. **a course** — David learns and improves by operating GitHub; and
-2. **a reusable learning system** — the lessons, question banks, SOPs, Skills, templates, knowledge base and assessment model can later be used by other people and their AI coaches.
+2. **a reusable learning system** — lessons, question banks, SOPs, Skills, templates, knowledge base, Wiki and assessment model can later be used by other people and their AI coaches.
 
 The repository itself is part of the training environment.
 
@@ -41,6 +63,7 @@ student profile
 → assessment
 → evidence
 → progress update
+→ Wiki dashboard update when material
 → next lesson
 → final comparison against baseline
 ```
@@ -63,9 +86,9 @@ current official/live evidence
 - `skills/github-power-user/` is the strategic accelerator and feature map.
 - course modules convert that knowledge into teaching and hands-on operation.
 - `students/` preserves individual evidence, mistakes and progress.
-- GitHub Wiki can be used as a reader-friendly long-form/navigation layer, but it is not the only source of truth.
+- `wiki/` is the governed source for the human-facing course Wiki.
 
-See `knowledge-base/README.md`.
+See `knowledge-base/README.md` and the live Wiki.
 
 ## Student #1 — David
 
@@ -93,6 +116,8 @@ His baseline on **27 August 2026** shows:
 Approximate starting position: **Git fundamentals ~6/10; GitHub platform operation ~2/10.**
 
 The complete historical baseline is preserved in `students/david/baseline-2026-08-27.md`. It must not be rewritten later.
+
+Reader-facing progress: **https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David**
 
 ## Core Mental Model
 
@@ -134,12 +159,12 @@ GitHub
 | --- | --- | --- |
 | 00 | Start Here | In progress |
 | 01 | GitHub Mental Model | In progress |
-| 02 | Issues — GitHub's Work Engine | Pending |
+| 02 | Issues — GitHub's Work Engine | Pending hands-on mastery |
 | 03 | Pull Requests — The Control Gate | Pending |
 | 04 | GitHub Projects | Pending |
 | 05 | Actions & Automation | Pending |
 | 06 | Releases & Professional Versioning | In progress |
-| 07 | GitHub Knowledge Architecture | In progress |
+| 07 | GitHub Knowledge Architecture | Active hands-on |
 | 08 | Security & Governance | Pending |
 | 09 | AI Agents + GitHub | Pending |
 | 10 | GitHub × FolderDesk Architecture | Pending |
@@ -153,12 +178,11 @@ github-course/
 ├── VERSION
 ├── CHANGELOG.md
 ├── .github/
-│   └── copilot-instructions.md
+│   ├── copilot-instructions.md
+│   └── workflows/
+│       └── publish-wiki.yml
 ├── knowledge-base/
-│   ├── README.md
-│   ├── source-policy.md
-│   ├── wiki-vs-repository-markdown.md
-│   └── gap-register.md
+├── wiki/                       # governed source for live Wiki
 ├── 00-start-here/
 ├── 01-github-mental-model/
 ├── 02-issues/
@@ -171,11 +195,6 @@ github-course/
 ├── 09-ai-agents-github/
 ├── 10-github-folderdesk-architecture/
 ├── students/
-│   └── david/
-│       ├── profile.md
-│       ├── baseline-2026-08-27.md
-│       ├── progress.md
-│       └── assessments/
 ├── question-bank/
 ├── templates/
 ├── docs/
@@ -203,6 +222,7 @@ Each substantial module should evolve toward:
 ## Reusable Course Assets
 
 - `knowledge-base/` — verified, current GitHub best-practices knowledge and gap tracking.
+- `wiki/` — governed source for the reader-facing course Wiki.
 - `students/` — learner-specific truth and assessments.
 - `question-bank/` — reusable diagnostics, checkpoints, scenario tests and answer guides.
 - `templates/` — reusable student/course templates.
@@ -219,6 +239,10 @@ Each substantial module should evolve toward:
 ## Knowledge Principle
 
 > **Verify what matters. Preserve what was verified. Teach from evidence.**
+
+## Publishing Principle
+
+> **Keep source governed; make knowledge easy to navigate.**
 
 ## Course Rule
 
