@@ -12,6 +12,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Integration benchmark programme under Issue #23 with separate test Issues for Codex, Claude, Gemini, Vercel and fully automated Issue → agent → PR routing.
 - David's dated learning note preserving the two-layer AI-first founder operating-model breakthrough.
 - Wiki `AI-Control-Plane` page and navigation links to the live benchmark.
+- Functional root `index.html` for GitHub Pages, turning the public site into a responsive course portal with one-click access to the Wiki, student dashboard, handbook, manual, modules, knowledge base, epiphanies, AI Control Plane, exercises, SOP library, glossary, repository operations and releases.
 
 ## [0.2.0] - 2026-08-27
 
@@ -45,7 +46,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - `.github/workflows/publish-wiki.yml` to publish approved `wiki/*.md` source to the separate Wiki Git repository after merge.
 - Verified `knowledge-base/wiki-publishing-architecture.md` documenting the main-repo → Actions → `.wiki.git` publication model and its execution-verification requirement.
 - First governed Wiki publication verified successfully through `Publish Wiki` run #1 (run ID `33064302639`) after PR #17 merged; the publish job and `.wiki.git` publication step completed successfully.
-- `knowledge-base/pages-actions-integrations-control-plane.md` documenting GitHub Pages, Actions policy layers and GitHub Apps/integrations as an AI-first operating control plane.
+- `knowledge-base/pages-actions-integrations-control-plane.md` documenting GitHub Pages, Actions permissions and GitHub Apps/integrations as an AI-first operating control plane.
 - David's dated Pages / Actions / Integrations learning note preserving his independent Settings exploration and integration-control-plane breakthrough.
 - Expanded Module 09 with integration capability testing, permission boundaries and a Pages hands-on exercise.
 - Automated release publisher under `.github/workflows/publish-release.yml` so a deliberate `VERSION` change on `main` creates the matching Git tag and GitHub Release.
