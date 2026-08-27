@@ -2,7 +2,7 @@
 
 ## Objective
 
-Learn where information should live inside GitHub, how to build an evidence-backed knowledge layer, and how GitHub Wiki can function as a Git-backed documentation publishing surface.
+Learn where information should live inside GitHub, how to build an evidence-backed knowledge layer, and how GitHub Wiki and Pages can function as deliberate publishing surfaces rather than accidental file renderers.
 
 ## Discovery-First Coaching Rule
 
@@ -156,6 +156,10 @@ wiki/*.md                    ← governed reader-facing source
 GitHub Action                ← publisher
         ↓
 live Wiki                    ← handbook/dashboard/navigation
+
+index.html                   ← deliberate Pages entry portal
+        ↓
+GitHub Pages                 ← public front door
 ```
 
 A Wiki can become a knowledge base if structured deliberately, but for this course normal repository Markdown remains canonical because it participates directly in:
@@ -175,7 +179,8 @@ Do not maintain two independent versions of the same truth.
 
 | Object | Best use |
 | --- | --- |
-| `README.md` | orientation and entry point |
+| `README.md` | repository orientation and project introduction |
+| `index.html` / `index.md` | deliberate GitHub Pages website entry point |
 | `knowledge-base/` | verified authoritative GitHub knowledge |
 | `/docs` | architecture/explanatory project documentation |
 | `wiki/` source | governed reader-facing Wiki content |
@@ -248,6 +253,108 @@ Imagine you tell an AI agent:
 
 Explain why this is better governed than editing unrelated copies manually.
 
+---
+
+# Part 6 — Pages Failure Lab: Green Deployment, Bad Website
+
+This course produced a real failure pattern worth learning from.
+
+## The Symptom
+
+GitHub Pages was enabled and deployment succeeded, but the public site was effectively a README-style page. A student could not conveniently reach the Wiki, dashboard, handbook, manual, modules, knowledge base or other course surfaces.
+
+The site was technically online but functionally poor.
+
+## The Platform Rule
+
+Current GitHub documentation states that Pages looks for one of these entry files:
+
+```text
+index.html
+index.md
+README.md
+```
+
+For branch/folder publishing, the entry file must be at the top level of the selected source.
+
+That creates a subtle but important distinction:
+
+```text
+Pages publishing source
+≠
+Pages entry file
+≠
+website information architecture
+```
+
+## The Course Diagnosis
+
+The source was already valid:
+
+```text
+main / (root)
+```
+
+Changing branches or folders would have added complexity without solving the real problem.
+
+The missing layer was a deliberate website entry page.
+
+## The Fix
+
+Issue #30 → PR #31 added a root `index.html` designed as the public course portal.
+
+The source remained unchanged.
+
+The new page linked students and external readers directly to:
+
+- Wiki Home;
+- Student Dashboard;
+- handbook and manual;
+- modules and materials;
+- knowledge base;
+- epiphanies;
+- AI Control Plane;
+- exercises, SOPs and glossary;
+- repository Issues, PRs, Actions and Releases.
+
+The subsequent Pages workflow succeeded for build, status and deployment.
+
+## Operator Diagnostic
+
+When Pages is live but the website is wrong:
+
+```text
+1. verify deployment
+2. inspect configured source
+3. inspect top-level entry files
+4. identify which file is acting as the front door
+5. decide the intended reader journey
+6. add/fix index.html or index.md if needed
+7. avoid changing the source unless the source itself is wrong
+8. redeploy
+9. verify navigation as a real user
+```
+
+## Epiphany Checkpoint
+
+Answer:
+
+> **Why can a green Pages deployment still be a failed website?**
+
+Expected professional model:
+
+```text
+green deployment
+≠
+correct entry page
+≠
+good user experience
+```
+
+Read:
+
+- `knowledge-base/pages-entry-file-readme-trap.md`
+
 ## Mastery Evidence
 
 A learner demonstrates this module when they can:
@@ -260,7 +367,10 @@ A learner demonstrates this module when they can:
 - classify information into README, repository Markdown/knowledge base, Wiki, Issue, Discussion, Project, Release and Pages;
 - decide when an AI agent should build documentation in Wiki versus governed Markdown;
 - explain the `wiki/` → Action → `.wiki.git` publishing architecture;
-- verify the publishing workflow rather than assuming it worked.
+- verify the publishing workflow rather than assuming it worked;
+- distinguish a Pages publishing source from its entry file;
+- diagnose a README-like Pages homepage without immediately changing the publishing source;
+- verify website usability after deployment, not only workflow status.
 
 ## Official References
 
@@ -268,4 +378,6 @@ A learner demonstrates this module when they can:
 - https://docs.github.com/en/communities/documenting-your-project-with-wikis/adding-or-editing-wiki-pages
 - https://docs.github.com/en/communities/documenting-your-project-with-wikis/creating-a-footer-or-sidebar-for-your-wiki
 - https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
+- https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+- https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 - https://docs.github.com/en/actions/concepts/security/github_token
