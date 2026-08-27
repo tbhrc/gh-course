@@ -3,7 +3,7 @@
 ## Current Status
 
 **Course stage:** Stage 2 — Crash Course  
-**Current module:** 07 — GitHub Knowledge Architecture (hands-on Wiki lab active)  
+**Current module:** 07 — GitHub Knowledge Architecture (live Wiki operating-surface build active)  
 **Baseline:** `baseline-2026-08-27.md`
 
 ## Completed
@@ -25,6 +25,7 @@
 - Semantic Versioning introduced and documented as a mandatory companion standard to professional Git/GitHub operation.
 - Authoritative GitHub knowledge-base architecture introduced under Issue #9.
 - First GitHub Wiki Home page created and edited hands-on under Issue #11.
+- Wiki redesign requested under Issue #13 so the Wiki becomes a functional course handbook, knowledge navigator, student dashboard and learning-history surface rather than a standalone demo page.
 
 ## Demonstrated Strengths
 
@@ -40,6 +41,7 @@
 - **SemVer progress:** David now understands that professional release versions use `MAJOR.MINOR.PATCH`, that the components communicate change significance rather than acting as decimal counters, and that Semantic Versioning should be taught alongside GitHub operation.
 - **Knowledge-architecture insight:** David explicitly rejected assumed GitHub knowledge as an operating basis and required a durable, reusable best-practices knowledge base that AI coaches can consult.
 - **Wiki publishing insight:** While using GitHub Wiki hands-on, David independently recognised the interface as a Git-backed documentation website/CMS rather than merely a database-like knowledge store, and immediately generalised it to agent-built SOP libraries, handbooks and documentation portals.
+- **Applied Wiki architecture judgement:** David then required the Wiki to be made operational inside the course itself: Home dashboard, student progress, epiphanies, handbook/manual, course materials, SOP navigation and cross-links to canonical repository evidence.
 
 ## Current Priority Gaps
 
@@ -50,7 +52,7 @@
 5. Complete hands-on release/tag/version workflow.
 6. Security and governance.
 7. GitHub-native AI-agent workflows.
-8. Finish Module 07 Wiki navigation exercise and explain Wiki vs Pages vs canonical repository Markdown unaided.
+8. Finish Module 07 mastery explanation: Wiki vs Pages vs canonical repository Markdown, including the governed `wiki/` → Action → `.wiki.git` publishing model.
 9. GitHub × FolderDesk boundary and integration architecture.
 
 ## Current Evidence — Issue #1
@@ -135,7 +137,9 @@ Wiki  = documentation-focused publishing
 Pages = fuller static website publishing with HTML/CSS/JavaScript
 ```
 
-This is strong conceptual progress and direct hands-on evidence, but final Module 07 mastery still requires an unaided explanation of Wiki vs Pages vs `knowledge-base/` and completion of multi-page Wiki navigation.
+He subsequently applied the insight architecturally by asking for the course Wiki itself to become a working human interface with progress dashboards, epiphany history, handbook/manual navigation, course materials and interlinked references.
+
+The coach is implementing that publishing architecture under Issues #13/#14. **This implementation work does not by itself prove David can configure the automation unaided.** It is evidence of applied product/operating judgement, not automation mastery.
 
 Detailed learning evidence: `assessments/learning-note-2026-08-27-wiki.md`.
 
@@ -147,4 +151,4 @@ Mistakes, misconceptions, corrections, partial recall and spontaneous insight ar
 
 ## Next Recommended Step
 
-Complete the remaining Issue #11 Wiki exercise: create a second Wiki page, link both directions, inspect the new revisions, then explain Wiki vs Pages vs canonical repository Markdown unaided. After that, return to the first full Issue → branch → PR exercise.
+Complete the Module 07 explanation unaided after the redesigned Wiki is live and the publishing Action is verified. Then return to the first full learner-operated Issue → branch → PR workflow.

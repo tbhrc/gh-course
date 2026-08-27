@@ -1,7 +1,7 @@
 ---
 name: github-power-user
 description: Use GitHub as a complete professional operating platform rather than only a Git remote. Use for GitHub architecture, Issues, Projects, Discussions, Wikis, Actions, agents, repository instructions, MCP, Codespaces, rulesets, security, releases, packages, Pages, CLI/API power use, automation, governance and cross-repository planning.
-version: 1.1.0
+version: 1.2.0
 status: active
 source: FolderDesk canonical github-power-user v1.0.0
 source_path: 470-skills/github-power-user/
@@ -136,6 +136,49 @@ For this course, `knowledge-base/` in the main repository remains authoritative 
 
 Read `knowledge-base/wiki-as-documentation-platform.md` for the verified details and teaching pattern.
 
+## Governed Wiki Publishing Pattern
+
+When the Wiki should be a real operating surface **and** Wiki changes need normal repository review, keep Wiki source inside the main repository and publish it after merge.
+
+Example:
+
+```text
+wiki/*.md                 = governed Wiki source
+.github/workflows/...     = publisher
+repository.wiki.git       = live Wiki Git repository
+```
+
+Workflow:
+
+```text
+Issue
+→ branch
+→ edit wiki/*.md
+→ Pull Request
+→ merge
+→ GitHub Action
+→ push to .wiki.git
+→ live Wiki
+```
+
+This is especially useful for:
+
+- course handbooks;
+- student dashboards;
+- SOP portals;
+- internal operating manuals;
+- agent-maintained documentation hubs.
+
+Rules:
+
+1. Decide which main-repository files remain canonical factual truth.
+2. Keep Wiki pages reader-facing and link to canonical evidence instead of blindly duplicating it.
+3. Update Wiki navigation when a material new course surface is added.
+4. If a student edits the live Wiki directly for hands-on learning, reconcile any durable change back into governed `wiki/` source afterward.
+5. Verify the first publishing workflow run before claiming automated Wiki publication works.
+
+Read `knowledge-base/wiki-publishing-architecture.md` for the verified architecture and execution status.
+
 ## Pull Requests
 
 Treat PRs as the controlled integration boundary, not merely a diff viewer. A professional PR should have a focused change, linked Issue, automated checks where useful, review appropriate to risk, and clear acceptance evidence.
@@ -215,7 +258,8 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 4. create or reuse a GitHub Issue before substantive repository changes;
 5. preserve student-specific evidence separately from reusable course material;
 6. update shared lessons only when the learning produces reusable value;
-7. preserve high-value discovery moments instead of pre-explaining every conclusion.
+7. preserve high-value discovery moments instead of pre-explaining every conclusion;
+8. keep the reader-facing Wiki useful when course structure, student dashboards or durable breakthroughs materially change.
 
 ## References
 
@@ -223,6 +267,7 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 - `references/cheat-sheet.md` — commands, search and quick decisions.
 - `references/agentic-github.md` — AI-agent-first repository operation.
 - `../../knowledge-base/wiki-as-documentation-platform.md` — verified Wiki publishing model and Wiki-vs-Pages boundary.
+- `../../knowledge-base/wiki-publishing-architecture.md` — governed main-repo-to-Wiki publishing model.
 
 ## Governing Principle
 

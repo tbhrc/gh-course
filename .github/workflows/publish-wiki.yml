@@ -1,0 +1,48 @@
+name: Publish Wiki
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'wiki/**'
+      - '.github/workflows/publish-wiki.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-wiki
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out course repository
+        uses: actions/checkout@v4
+
+      - name: Publish governed Wiki source
+        env:
+          WIKI_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.wiki.git
+        run: |
+          set -euo pipefail
+
+          git clone "$WIKI_URL" wiki-repo
+
+          find wiki-repo -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp wiki/*.md wiki-repo/
+
+          git -C wiki-repo config user.name "github-actions[bot]"
+          git -C wiki-repo config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C wiki-repo add -A
+
+          if git -C wiki-repo diff --cached --quiet; then
+            echo "Wiki already matches governed source."
+            exit 0
+          fi
+
+          git -C wiki-repo commit -m "Publish governed course Wiki from ${GITHUB_SHA::7}"
+          git -C wiki-repo push origin HEAD

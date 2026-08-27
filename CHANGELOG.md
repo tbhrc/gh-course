@@ -23,10 +23,18 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Verified Wiki-as-documentation-platform knowledge note covering SOP/handbook use cases and the Wiki-vs-GitHub-Pages boundary.
 - Discovery-first Module 07 teaching pattern designed to let future learners independently recognise Wiki as a documentation website/CMS before revealing the answer.
 - David's hands-on Wiki evidence and spontaneous documentation-platform epiphany under Issue #11.
+- Governed `wiki/` source layer containing the course Home dashboard, handbook, manual, course materials, module map, knowledge navigator, David dashboard, epiphany log, exercises, Power User reference, SOP library, glossary, sidebar and footer.
+- `.github/workflows/publish-wiki.yml` to publish approved `wiki/*.md` source to the separate Wiki Git repository after merge.
+- Verified `knowledge-base/wiki-publishing-architecture.md` documenting the main-repo → Actions → `.wiki.git` publication model and its execution-verification requirement.
 
 ### Changed
 
-- Course `github-power-user` Skill advanced from `1.0.0` to `1.1.0` (MINOR) to add the reusable Wiki publishing-platform and GitHub Pages decision model. The root course version remains `0.1.0` because no new course release has been published.
+- Course `github-power-user` Skill advanced from `1.0.0` to `1.1.0` (MINOR) to add the reusable Wiki publishing-platform and GitHub Pages decision model.
+- Course `github-power-user` Skill advanced from `1.1.0` to `1.2.0` (MINOR) to add the governed Wiki publishing pattern and agent-maintained handbook/dashboard model.
+- `AGENTS.md`, Copilot instructions, README and Module 07 now treat the Wiki as a first-class reader-facing course operating surface while preserving canonical main-repository truth.
+- David's progress now records the applied judgement that the course Wiki should become an operational handbook/dashboard, without misclassifying the coach-built automation as David's technical mastery.
+
+The root course version remains `0.1.0` because no new course release has been published.
 
 ## [0.1.0] - 2026-08-27
 
