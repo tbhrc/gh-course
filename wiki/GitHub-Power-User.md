@@ -8,7 +8,7 @@ The `github-power-user` Skill helps an AI coach or operator answer:
 
 > **Which native GitHub capability should own this workflow before we build custom infrastructure?**
 
-Current course Skill version: **1.6.0**
+Current course Skill version: **1.7.0**
 
 [Open the canonical course Skill →](https://github.com/tbhrc/github-course/blob/main/skills/github-power-user/SKILL.md)
 
@@ -36,7 +36,7 @@ Current course Skill version: **1.6.0**
 | Static public website | Pages |
 | External AI/service connection | GitHub Apps / Integrations |
 | AI worker implementing repository work | Coding/custom agent |
-| Repository-wide AI contract | AGENTS.md / supported repository instructions |
+| Repository AI contract | AGENTS.md / supported repository instructions |
 | Repeatable AI task | Prompt file |
 | External tools/context | MCP |
 
@@ -244,6 +244,8 @@ Therefore:
 - use `knowledge-base/` for current verified platform truth;
 - use modules for teaching;
 - use exercises for mastery evidence.
+
+Version 1.7.0 also adds an explicit anti-staleness rule: temporary agent failures/plan boundaries remain historical lessons, while current executor status resolves to the canonical benchmark.
 
 [Open Knowledge Base →](Knowledge-Base)
 
