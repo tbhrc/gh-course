@@ -32,8 +32,8 @@ David in ChatGPT Desktop
 | Task launched | proven | Issue #78 was created at T0. |
 | Local agent session | proven | This Codex Desktop task is the execution surface; GitHub does not expose a separate agent-session object. |
 | Branch created | proven | `codex/issue-78-desktop-terra-benchmark` is the issue-linked local branch. |
-| Commit(s) created | pending | Recorded when the first substantive evidence commit is pushed. |
-| PR opened | pending | This benchmark stops at an open PR. |
+| Commit(s) created | proven | `146f04086f0440c329196def2f8ea31b7001f036` at `2026-08-27T17:18:32Z`. |
+| PR opened | proven | Open PR #79 at `2026-08-27T17:18:36Z`. |
 | Checks/statuses observed | not applicable | Documentation-only change; no required check is asserted. |
 | Human review completed | pending | Deliberately outside the benchmark stop condition. |
 
@@ -44,7 +44,14 @@ David in ChatGPT Desktop
 - Agent/bot identity: no GitHub bot identity; this is a local interactive executor
 - Session ID/link: not exposed as a GitHub object
 - Branch: `codex/issue-78-desktop-terra-benchmark`
-- Commit / PR / timing: completed values are recorded in the benchmark framework after the PR is created
+- Commit: `146f04086f0440c329196def2f8ea31b7001f036`, authored and committed by `tbhrc`
+- PR: #79, authored by `tbhrc`
+- T0: Issue #78 created `2026-08-27T17:16:32Z`
+- T1: not separately observable in GitHub for this local Desktop session
+- T3: first substantive commit `2026-08-27T17:18:32Z`
+- T2: PR #79 created open `2026-08-27T17:18:36Z`
+- T4: final review-ready benchmark commit `2026-08-27T17:19:43Z`
+- End-to-end: **191 seconds (3m11s)**
 
 ## Permissions, billing and policy evidence
 
@@ -54,7 +61,7 @@ David in ChatGPT Desktop
 
 ## Failure boundary
 
-No local-executor failure has occurred. This result does **not** prove the separate GitHub Partner Agent Codex path, which has its own identity, policy, billing and provisioning behaviour.
+One recoverable repository patch-context mismatch occurred while applying the first combined documentation patch. It made no file changes, was corrected by splitting the patch, and required no human intervention. This result does **not** prove the separate GitHub Partner Agent Codex path, which has its own identity, policy, billing and provisioning behaviour.
 
 ## Safety result
 
@@ -65,7 +72,7 @@ No local-executor failure has occurred. This result does **not** prove the separ
 ## Conclusion
 
 ```text
-PROVEN: Codex Desktop can complete the governed local Issue → branch → commit → PR path.
+PROVEN: Codex Desktop completed the governed local Issue → branch → commit → open PR path in 191 seconds.
 
 NOT YET PROVEN: any GitHub Partner Agent session, plan entitlement, or cloud-agent performance claim.
 

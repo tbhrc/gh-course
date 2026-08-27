@@ -176,7 +176,7 @@ This lets the benchmark answer two different questions:
 | GitHub Copilot | dispatch run `33080345287` `14:05:45Z` | PR #51 `14:05:56Z` | commit `934590d` notification `14:08:32Z` | review request `14:09:30Z` | **3m45s / 225s** |
 | Google Jules | `jules` label on #63 `16:40:39Z` | PR #66 `16:45:46Z` | commit `8d712e3` `16:45:41Z` | open non-draft PR #66 `16:45:46Z` | **5m07s / 307s** |
 | Gemini CLI/API | run `33092569081` reached authenticated inference path | — | — | — | pending quota/billing |
-| Codex Desktop (local Terra) | Issue #78 `17:16:32Z` | pending | pending | pending | pending |
+| Codex Desktop (local Terra) | Issue #78 created `17:16:32Z` | PR #79 `17:18:36Z` | commit `146f040` `17:18:32Z` | final benchmark commit `17:19:43Z` | **3m11s / 191s** |
 | Other local coding agents | — | — | — | — | pending |
 
 ### Jules clean-run timing details
@@ -186,6 +186,17 @@ This lets the benchmark answer two different questions:
 - T3: `16:45:41Z` — substantive commit `8d712e38facb5e88f86ca3a88b24688b853ef120`.
 - T2/T4: `16:45:46Z` — PR #66 created open and non-draft, making the first review-ready snapshot visible.
 
+### Codex Desktop local Terra timing details
+
+- T0: `17:16:32Z` — Issue #78 created.
+- T1: no separate GitHub-visible session object exists for this local Desktop execution mode.
+- T3: `17:18:32Z` — substantive commit `146f04086f0440c329196def2f8ea31b7001f036`.
+- T2: `17:18:36Z` — PR #79 created open.
+- T4: `17:19:43Z` — final benchmark commit made the review-ready snapshot visible.
+- End-to-end: **191 seconds**.
+
+This benchmark intentionally includes the user-requested matrix update in addition to the standard evidence file. It is a local interactive execution result, not evidence about the GitHub Partner Agent Codex route.
+
 ## Initial scored leaderboard
 
 Speed uses the fastest current operational result, ChatGPT Web at 152 seconds.
@@ -193,10 +204,11 @@ Speed uses the fastest current operational result, ChatGPT Web at 152 seconds.
 | Executor | Speed /30 | Fidelity /20 | Quality /15 | Reliability /10 | Autonomy /10 | Governance /5 | Provenance /5 | Efficiency /5 | Total /100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | **ChatGPT Web** | 30.0 | 20 | 14 | 8 | 10 | 5 | 4 | 4 | **95.0** |
-| **OpenAI Codex** | 22.6 | 20 | 15 | 10 | 10 | 5 | 5 | 3 | **90.6** |
-| **Anthropic Claude** | 23.4 | 20 | 13 | 10 | 10 | 5 | 5 | 3 | **89.4** |
-| **GitHub Copilot** | 20.3 | 20 | 14 | 10 | 10 | 5 | 5 | 3 | **87.3** |
-| **Google Jules** | 14.9 | 20 | 12 | 10 | 10 | 3 | 4 | 4 | **77.9** |
+| **Codex Desktop (local Terra)** | 23.9 | 20 | 15 | 8 | 10 | 5 | 5 | 4 | **90.9** |
+| **OpenAI Codex** | 18.4 | 20 | 15 | 10 | 10 | 5 | 5 | 3 | **86.4** |
+| **Anthropic Claude** | 19.1 | 20 | 13 | 10 | 10 | 5 | 5 | 3 | **85.1** |
+| **GitHub Copilot** | 16.5 | 20 | 14 | 10 | 10 | 5 | 5 | 3 | **83.5** |
+| **Google Jules** | 12.1 | 20 | 12 | 10 | 10 | 3 | 4 | 4 | **75.1** |
 | Gemini CLI/API | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 | Codex Desktop (local Terra) | pending | pending | pending | pending | pending | pending | pending | pending | pending |
 | Other local coding agents | pending | pending | pending | pending | pending | pending | pending | pending | pending |
@@ -220,7 +232,7 @@ The PR remained open and unmerged, so there was no main-branch risk. The body wa
 
 ## Interpretation of the first result
 
-For this small one-file GitHub evidence task, ChatGPT Web remains the fastest overall executor despite one recoverable self-review error and one evidence correction.
+For the current bounded documentation/evidence task, Codex Desktop (local Terra) completed in 191 seconds. ChatGPT Web remains fastest at 152 seconds; the local result is still a single interactive run and must not alone change the routing policy.
 
 The cloud agents showed useful autonomous behaviour and stronger distinct-agent provenance, but their session provisioning/planning overhead made them slower for this task class. Among the measured cloud coding agents, Claude is currently fastest by end-to-end time; Codex scores highest overall among cloud agents because its first evidence snapshot was more accurate; Jules is currently the slowest measured cloud agent for this bounded task and lost additional points for first-snapshot factual/provenance errors and the unsafe closing keyword.
 
@@ -257,7 +269,7 @@ A routing policy should be changed only when repeated evidence shows a meaningfu
 
 - Jules: clean benchmark #63 produced PR #66 in 307 seconds. Correct factual/provenance issues before merge; keep the first snapshot score unchanged.
 - Gemini CLI/API: Issue #26 has valid `GEMINI_API_KEY` authentication and reached `gemini-3.5-flash`; retry after free quota reset or enable paid Gemini API billing, then score only when a governed branch/commit/PR is produced.
-- Codex Desktop (local Terra): Issue #78 is the controlled local execution-surface run. Score only after the issue-linked PR is created; do not combine its timing with the GitHub Partner Agent Codex row.
+- Codex Desktop (local Terra): Issue #78 produced final review-ready PR #79 in 191 seconds. Keep it distinct from the GitHub Partner Agent Codex row; repeat the task class before changing routing policy.
 - Other local agents: benchmark later with the same T0–T4 clock and identical evidence requirements.
 
 ## Governing principle
