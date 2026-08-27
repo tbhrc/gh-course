@@ -9,6 +9,11 @@
 - [Course Materials](Course-Materials)
 - [Exercises & Assessments](Exercises-and-Assessments)
 
+## Current
+- [David Dashboard](Student-Dashboard-David)
+- [GitHub Projects — Current Focus](https://github.com/tbhrc/github-course/tree/main/04-projects)
+- [AI Executor Benchmark & Leaderboard](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
+
 ## Knowledge
 - [Knowledge Base](Knowledge-Base)
 - [GitHub Power User](GitHub-Power-User)
@@ -22,6 +27,9 @@
 
 ## System
 - [About This Learning System](About-This-Learning-System)
+- [Public Course Site](https://tbhrc.github.io/github-course/)
 - [Main Repository](https://github.com/tbhrc/github-course)
-- [Integration Benchmark #23](https://github.com/tbhrc/github-course/issues/23)
-- [Issues](https://github.com/tbhrc/github-course/issues)
+- [Open Issues](https://github.com/tbhrc/github-course/issues)
+- [Pull Requests](https://github.com/tbhrc/github-course/pulls)
+- [Actions](https://github.com/tbhrc/github-course/actions)
+- [Releases](https://github.com/tbhrc/github-course/releases)
