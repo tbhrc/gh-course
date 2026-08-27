@@ -51,7 +51,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Wiki Home, Course Modules, Course Materials, Exercises, AI Control Plane, Knowledge Base, Power User page, SOP library, glossary and sidebar reconciled to current canonical sources rather than stale Issue-body/status copies.
 - Wiki Home, Course Modules and AI Control Plane now route volatile learner/benchmark state to generated pages instead of embedding independent current-state copies.
 - `.github/workflows/publish-wiki.yml` now triggers on canonical learner/benchmark changes as well as `wiki/**`, generates live pages from canonical files, then publishes the combined governed/generated Wiki to `.wiki.git`.
-- Public Pages Live Operations routes current state to maintained generated/canonical sources rather than Issue #23.
+- Public Pages benchmark/live surfaces now route benchmark readers directly to the canonical benchmark source; Issue #23 remains benchmark programme history rather than the current matrix.
 - Historical Copilot Free Wiki proof is explicitly framed as a preserved execution-mode milestone; current cloud-agent capability/ranking is routed to the generated/canonical executor benchmark.
 - Repository change SOP now includes the documentation-integrity gate and downstream Wiki/Pages/release/workflow verification before substantive work is considered complete.
 - Course `github-power-user` Skill advanced from `1.3.0` to `1.4.0` (MINOR) to add the Pages entry-file diagnostic, README trap and post-deployment user-journey verification.

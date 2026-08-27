@@ -2,9 +2,9 @@
 
 This page explains the course's **stable AI-first operating architecture**.
 
-> **Current executor timings, scores and capability status are generated separately from the canonical benchmark.** This page deliberately does not maintain another live matrix.
+> **Current executor timings, scores and capability status live in the canonical benchmark source and its generated reader-facing view.** This page deliberately does not maintain another live matrix.
 
-[Open AI Executor Benchmark & Leaderboard →](AI-Executor-Benchmark)
+[Open canonical AI Executor Benchmark & Leaderboard →](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
 
 ---
 
@@ -181,9 +181,9 @@ AI-Executor-Benchmark
 = generated reader-facing view
 ```
 
-[**Open generated AI Executor Benchmark & Leaderboard →**](AI-Executor-Benchmark)
+[**Open canonical AI Executor Benchmark & Leaderboard →**](https://github.com/tbhrc/github-course/blob/main/knowledge-base/executor-benchmark-framework.md)
 
-The benchmark measures speed, fidelity, output quality, reliability, autonomy, governance, provenance and efficiency. Setup friction is tracked separately from operational runtime.
+The benchmark measures speed, fidelity, output quality, reliability, autonomy, governance, provenance and efficiency. Setup friction is tracked separately from operational runtime. The generated Wiki view remains a reader convenience, not a separate source of truth.
 
 ---
 
