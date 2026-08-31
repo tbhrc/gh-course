@@ -58,6 +58,99 @@ Rules:
 8. Tiny typo-only corrections may be grouped into an existing suitable Issue; do not create bureaucracy for its own sake.
 9. Before merge, apply the documentation-integrity check in `sops/course-documentation-integrity.md` when curriculum, learner state, benchmark state, reader navigation or public surfaces materially change.
 
+## Mandatory Issue planning and execution protocol
+
+**Checklist first. Execution second.** Every substantive task must be planned in the governing GitHub Issue before implementation begins. The Issue is the live execution control plane, not a short placeholder note.
+
+Use `sops/issue-planning-and-stage-governance.md` for the full procedure and the native templates under `.github/ISSUE_TEMPLATE/` when creating new work.
+
+### Required Issue structure
+
+Before substantive work starts, ensure the controlling Issue contains enough context that a fresh agent can continue without chat history:
+
+- **Objective** — the outcome to achieve.
+- **Why / context** — founder intent, problem, constraints and important decisions.
+- **Scope** — included and explicitly excluded work.
+- **Implementation checklist** — bounded work items to perform.
+- **Verification checklist** — how material outputs will be checked.
+- **Final outcome / acceptance criteria** — what must be true before closure.
+- **Dependencies / sequence** — when ordering matters.
+
+Do not reduce multi-part founder instructions to a few summary lines when omitted detail could change implementation.
+
+### Live checklist rule
+
+```text
+Founder instruction
+→ create or repair the Issue
+→ create the implementation checklist
+→ execute one bounded item
+→ verify the item
+→ check it off
+→ continue
+→ complete final verification
+→ close only when acceptance criteria pass
+```
+
+Rules:
+
+1. **Plan before changing files.** Do not start substantive implementation while the controlling Issue is vague.
+2. **Check off actual work.** Never bulk-check unfinished items at the end.
+3. **Keep the Issue current.** Update scope, design and sequencing before continuing when they materially change.
+4. **Record material discoveries.** Future agents must not depend on chat memory.
+5. **Checklist completion alone is insufficient.** Verification and acceptance criteria must pass.
+6. **Do not close with hidden work remaining.** Explicitly remove it from scope or place it in a linked Stage Issue.
+
+### Master Issue + linked Stage Issues for large work
+
+Large programmes and architecture changes use **one Master Issue plus clearly interlinked Stage Issues**.
+
+Create a Stage Issue when a stage:
+
+- has its own meaningful checklist and acceptance criteria;
+- is likely to need its own PR or verification cycle;
+- changes a separate subsystem, architecture layer or major document set;
+- depends on another stage;
+- would make the Master difficult to operate if kept inline;
+- can be completed and verified as a bounded outcome.
+
+Use the programme identifier only for readability while preserving the actual GitHub Issue number as the canonical identity. Example:
+
+```text
+Master GitHub Issue: #134
+Stage 1 actual GitHub Issue: #135
+Stage identifier: [134.1]
+Stage title: [134.1] Adopt checklist-first Issue governance
+```
+
+Each Stage begins with:
+
+```text
+Master issue: #134
+Stage: 1 of N
+```
+
+The Master keeps a forward tracker and every Stage links back to the Master. Detailed Stage checklists stay in the Stage Issue rather than being duplicated into the Master.
+
+Master / Stage rules:
+
+1. The **Master owns** founder intent, programme objective, architecture, sequence, dependencies and final acceptance.
+2. Each **Stage owns** one bounded implementation/verification outcome.
+3. Every Stage links back to the Master; the Master links to every Stage.
+4. Check off a Master stage only after its Stage Issue closes and is verified.
+5. The Master cannot close until all linked stages and end-to-end acceptance pass.
+6. New material stages require the Master to be updated first, then a two-way-linked Issue.
+7. Native GitHub sub-issues are optional enhancements, never a dependency for this operating model.
+8. Keep the hierarchy fully operable from ChatGPT Web and ordinary GitHub interfaces.
+
+### Size rule
+
+- **Small/reversible:** one Issue with a short explicit checklist.
+- **Standard:** one Issue with implementation and verification checklists.
+- **Large programme/architecture:** one Master plus linked Stage Issues.
+
+The purpose is to prevent scope loss, drift and incomplete handoffs—not to add ceremony.
+
 ## Version Control and Release Discipline
 
 This repository uses Semantic Versioning: `MAJOR.MINOR.PATCH`.

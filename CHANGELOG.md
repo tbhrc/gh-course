@@ -6,6 +6,15 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ## [Unreleased]
 
+### Added
+
+- Checklist-first Issue planning and Stage governance under `sops/issue-planning-and-stage-governance.md`, requiring substantive work to carry implementation, verification, dependency and final-acceptance checklists before execution.
+- Native `.github/ISSUE_TEMPLATE/substantive-work.md` and `.github/ISSUE_TEMPLATE/master-programme.md` templates so standard and large-programme work can start from executable GitHub Issues rather than placeholder notes.
+
+### Changed
+
+- `AGENTS.md` now defines **Checklist first. Execution second.** and the Master Issue + linked Stage Issue pattern for large architecture/programme work while keeping actual GitHub Issue numbers canonical.
+
 ## [0.3.0] - 2026-08-28
 
 ### Highlights
