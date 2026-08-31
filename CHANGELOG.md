@@ -10,6 +10,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 - Checklist-first Issue planning and Stage governance under `sops/issue-planning-and-stage-governance.md`, requiring substantive work to carry implementation, verification, dependency and final-acceptance checklists before execution.
 - Native `.github/ISSUE_TEMPLATE/substantive-work.md` and `.github/ISSUE_TEMPLATE/master-programme.md` templates so standard and large-programme work can start from executable GitHub Issues rather than placeholder notes.
+- Evidence-backed GitHub-first FolderDesk capability ownership audit under `knowledge-base/github-first-folderdesk-capability-ownership.md`, classifying duplicated work-control functions for GitHub retirement/use while preserving Microsoft 365 document authority and explicit local-runner/Graph/Skill-runtime experiments.
 
 ### Changed
 
@@ -84,7 +85,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - Course `github-power-user` Skill advanced from `1.3.0` to `1.4.0` (MINOR) to add the Pages entry-file diagnostic, README trap and post-deployment user-journey verification.
 - Course `github-power-user` Skill advanced from `1.4.0` to `1.5.0` (MINOR) to add deterministic dispatcher architecture, agent proof ladders, secret/authentication diagnostics and failure-layer classification.
 - Course `github-power-user` Skill advanced from `1.5.0` to `1.6.0` (MINOR) to add Copilot Free inference inside Actions, execution-mode capability classification and stored-secret vs runtime-variable mapping.
-- Course `github-power-user` Skill advanced from `1.6.0` to `1.7.0` (MINOR) to separate durable strategic guidance from volatile executor state and route current agent results to the canonical benchmark.
+- Course `github-power-user` Skill advanced from `1.6.0` to `1.7.0` (MINOR) to separate durable strategic guidance from volatile executor state and route current results to the canonical benchmark.
 - Earlier Wiki AI Control Plane/Student Dashboard updates recorded initial Codex/Copilot setup boundaries; later benchmark evidence now supersedes those states through the canonical generated benchmark view.
 - `knowledge-base/chatgpt-web-codex-dispatch.md` preserves the earlier authenticated Codex assignment boundary as setup evidence; later successful Codex Partner Agent benchmark results are maintained in the executor benchmark framework.
 - `knowledge-base/deterministic-actions-vs-agentic-ai.md` preserves the independent initial GitHub Copilot Issue #38 403 result as failure-layer evidence; later successful cloud-agent benchmark state is maintained in the executor benchmark framework.
