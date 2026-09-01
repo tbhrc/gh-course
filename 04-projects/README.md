@@ -233,7 +233,7 @@ We are using this repository itself as the exercise. The **GitHub Course — Exe
 7. Move active work through the real Status field as evidence changes.
 8. Review the board and identify what is genuinely blocked vs merely waiting.
 
-See `live-example-github-course-execution-mastery.md` for the seed backlog and live control proof. Current learner assignment/mastery state belongs in the generated `Student-Dashboard-David`, not in this module.
+See `live-example-github-course-execution-mastery.md` for the seed backlog and live control proof. Current learner assignment/mastery state belongs in the generated [Student Dashboard — David](https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David), not in this module.
 
 ## Authentication/API lesson discovered during this exercise
 
