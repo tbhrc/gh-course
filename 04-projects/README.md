@@ -222,18 +222,18 @@ Do not collapse those layers into “the agent changed the board”.
 
 ## Live exercise — Issue #60
 
-We are using this repository itself as the exercise.
+We are using this repository itself as the exercise. The **GitHub Course — Execution & Mastery** Project already exists; do not recreate it, its fields or its saved views.
 
-1. Create **GitHub Course — Execution & Mastery**.
-2. Add real existing Issues rather than dummy cards.
-3. Create the five starting fields above.
-4. Build Operating Board and Master Table first.
-5. Add AI Benchmarks and David Learning filtered views.
-6. Add Roadmap only after useful Target dates exist.
+1. Open the existing **GitHub Course — Execution & Mastery** Project.
+2. Inspect and operate real existing Issues rather than dummy cards.
+3. Use the existing Status, Workstream, Priority and Type fields deliberately.
+4. Use the Operating Board and Master Table intentionally.
+5. Inspect the AI Benchmarks and David Learning filtered views where relevant.
+6. Use Roadmap only when useful Target dates genuinely exist.
 7. Move active work through the real Status field as evidence changes.
 8. Review the board and identify what is genuinely blocked vs merely waiting.
 
-See `live-example-github-course-execution-mastery.md` for the seed backlog and live control proof.
+See `live-example-github-course-execution-mastery.md` for the seed backlog and live control proof. Current learner assignment/mastery state belongs in the generated `Student-Dashboard-David`, not in this module.
 
 ## Authentication/API lesson discovered during this exercise
 
