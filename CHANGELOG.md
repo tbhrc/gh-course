@@ -15,6 +15,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 ### Changed
 
 - `AGENTS.md` now defines **Checklist first. Execution second.** and the Master Issue + linked Stage Issue pattern for large architecture/programme work while keeping actual GitHub Issue numbers canonical.
+- Reconciled the reusable knowledge-gap register and Projects exercise surfaces with live repository evidence, routing current learner state to the generated student dashboard instead of duplicating it in shared authored documentation.
 
 ## [0.3.0] - 2026-08-28
 
