@@ -151,7 +151,7 @@ Current progress belongs in:
 
 **Module 04 — GitHub Projects**
 
-The course material and live Project blueprint are built. David still needs the hands-on evidence of creating/using the real **GitHub Course — Execution & Mastery** Project before Projects is credited as mastered.
+The course material and live **GitHub Course — Execution & Mastery** Project are already built and operational. David still needs hands-on evidence of personally operating that existing Project—triaging real work, using fields/views and completing a real acceptance decision without the coach performing the key Project mutations—before Projects is credited as mastered.
 
 ### Major progress already demonstrated
 
