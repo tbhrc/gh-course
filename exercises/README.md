@@ -44,20 +44,20 @@ Use:
 - [`../04-projects/README.md`](../04-projects/README.md)
 - [`../04-projects/live-example-github-course-execution-mastery.md`](../04-projects/live-example-github-course-execution-mastery.md)
 
-Create and operate:
+Operate the existing live Project:
 
 **GitHub Course — Execution & Mastery**
 
-Use real Issues/PRs, not dummy cards.
+Do **not** create a duplicate Project for the exercise. The course Project, fields, views and deterministic lifecycle already exist; the learner objective is to operate and explain that real control surface personally.
 
 Evidence required:
 
-- Project exists;
-- fields created intentionally;
-- Operating Board and Master Table used;
-- AI Benchmarks and David Learning views created;
-- at least five real items classified/moved;
-- David can explain Issue state vs Project Status, field vs view and label vs Project field.
+- open and inspect the existing Project;
+- use the Operating Board and Master Table intentionally;
+- inspect/use the existing Status / Workstream / Priority / Type fields and relevant saved views;
+- personally classify or move at least five real work items where the decisions are justified;
+- complete or validate a real Review → Done decision without the coach performing the key Project mutations;
+- explain Issue state vs Project Status, field vs view and label vs Project field without copying instructions.
 
 ### 3. Pull Request Control Gate
 
@@ -176,4 +176,4 @@ A good exercise should state:
 
 **GitHub Projects.**
 
-The next practical exercise is to build and use the real course Project before moving on to the next major hands-on module.
+The next practical exercise is to use and explain the existing **GitHub Course — Execution & Mastery** Project personally before moving on to the next major hands-on module. The infrastructure is already proven; the remaining gap is unaided operator evidence, not Project creation.
