@@ -74,7 +74,7 @@ jobs:
 
       - name: Checkout current main
         if: steps.preflight.outputs.ready == 'true'
-        uses: actions/checkout@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
           fetch-depth: 0
@@ -82,7 +82,7 @@ jobs:
       - name: Run Gemini benchmark task
         if: steps.preflight.outputs.ready == 'true'
         id: gemini
-        uses: google-github-actions/run-gemini-cli@v0
+        uses: google-github-actions/run-gemini-cli@f77273f4c914e4bf38440cf36a0369cb64a37489 # v0.1.22
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GEMINI_CLI_TRUST_WORKSPACE: 'true'
