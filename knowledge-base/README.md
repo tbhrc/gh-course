@@ -72,6 +72,7 @@ use it in lesson / exercise / coaching
 - [`web-first-local-by-exception-executor-policy.md`](web-first-local-by-exception-executor-policy.md) — executor-routing policy that keeps ChatGPT Web as the default executor and permits local-agent delegation only for explicit capability or demonstrated efficiency reasons.
 - [`executor-benchmark-framework.md`](executor-benchmark-framework.md) — repeatable T0–T4 timing model, 100-point scoring matrix and cross-agent leaderboard for Web, Copilot, Codex, Claude, Gemini and local executors.
 - [`gap-register.md`](gap-register.md) — known knowledge gaps and verification status.
+- [`talent-bridge-implementai-github-first-operating-model.md`](talent-bridge-implementai-github-first-operating-model.md) — canonical operating blueprint for Talent Bridge and iMPLEMENTAi: GitHub as work-control plane, OneDrive/SharePoint as document plane, PII rules, client hierarchy, self-learning pattern and Stage 8 pilot scope.
 
 ## Knowledge Note Standard
 
