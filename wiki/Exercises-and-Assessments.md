@@ -13,30 +13,32 @@ concept understood
 → can diagnose / improve professionally
 ```
 
+Current learner assignment, focus and mastery state belong in the generated [Student Dashboard — David](Student-Dashboard-David), backed by [`students/david/progress.md`](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md). This page keeps the reusable exercise contracts.
+
 ---
 
-## Current Exercise — GitHub Projects
+## GitHub Projects Exercise
 
-**Student:** David  
 **Canonical module:** [04 — GitHub Projects](https://github.com/tbhrc/github-course/tree/main/04-projects)
 
-The course material is already built. The mastery exercise is to create/use the real Project:
+The course material and live Project are already built. Operate the existing Project:
 
 **GitHub Course — Execution & Mastery**
 
 [Open live Project blueprint →](https://github.com/tbhrc/github-course/blob/main/04-projects/live-example-github-course-execution-mastery.md)
 
+Do **not** create a second Project for the exercise. Repository/platform capability is already proven; this exercise tests operation and explanation of the real control surface.
+
 ### Required evidence
 
-- Project physically exists;
-- real Issues/PRs added rather than dummy cards;
-- Status / Workstream / Priority / Type fields used;
-- Operating Board created;
-- Master Table created;
-- AI Benchmarks view created;
-- David Learning view created;
-- at least five real work items classified or moved;
-- David can explain the design without copying instructions.
+- open and inspect the existing Project;
+- use real Issues/PRs rather than dummy cards;
+- use the existing Status / Workstream / Priority / Type fields deliberately;
+- use the Operating Board and Master Table intentionally;
+- inspect the AI Benchmarks and David Learning views where relevant;
+- classify or move at least five real work items where the decisions are justified;
+- complete or validate a real Review → Done decision without the coach performing the key Project mutations;
+- explain the design without copying instructions.
 
 ### Mastery questions
 
@@ -53,7 +55,7 @@ The course material is already built. The mastery exercise is to create/use the 
 
 [Open canonical exercise →](https://github.com/tbhrc/github-course/blob/main/exercises/first-issue-workflow.md)
 
-David has already established the Issue-first rule conceptually, but still needs clear personal evidence of operating the entire path:
+Use the complete governed path:
 
 ```text
 Issue
@@ -66,7 +68,7 @@ Issue
 → verify Issue closure
 ```
 
-Coach/agent execution is not silently credited as David’s unaided mastery.
+Coach/agent execution is not silently credited as learner mastery.
 
 ---
 
@@ -231,31 +233,9 @@ The framework fixes:
 
 ---
 
-## David — Current Assessment State
+## Current learner state
 
-### Strong conceptual/architectural progress
-
-- GitHub as operating platform;
-- Issue-first governance;
-- knowledge authority;
-- Wiki/Pages architecture;
-- deterministic Actions vs AI;
-- integration/provenance discipline;
-- executor routing/benchmark thinking;
-- source-of-truth/documentation integrity.
-
-### Still needs personal hands-on evidence
-
-1. Projects;
-2. complete Issue lifecycle;
-3. PR review/merge gate;
-4. Actions authoring/diagnosis;
-5. Release/tag workflow;
-6. security/ruleset design;
-7. AI-authored PR review;
-8. GitHub × FolderDesk ownership matrix.
-
-[Open current David progress →](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md)
+Do not maintain a second hand-written assessment state here. Use the generated [Student Dashboard — David](Student-Dashboard-David) for the reader-facing current assignment and [`students/david/progress.md`](https://github.com/tbhrc/github-course/blob/main/students/david/progress.md) for canonical learner state.
 
 ---
 
@@ -287,7 +267,7 @@ Important dated notes currently include:
 4. Record partial recall honestly.
 5. Prefer GitHub evidence over conversational claims.
 6. Update current `progress.md` when evidence materially changes the learner state.
-7. Update the reader-facing dashboard when the current learning focus materially changes.
+7. Let the generated reader-facing dashboard reflect current learning focus; do not hand-maintain duplicate current state here.
 
 ---
 

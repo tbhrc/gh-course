@@ -147,11 +147,9 @@ Current progress belongs in:
 
 [`students/david/progress.md`](students/david/progress.md)
 
-### Current learning focus
+### Current learning state
 
-**Module 04 — GitHub Projects**
-
-The course material and live Project blueprint are built. David still needs the hands-on evidence of creating/using the real **GitHub Course — Execution & Mastery** Project before Projects is credited as mastered.
+Current learner focus, assignment and mastery state are not maintained as a second hand-written copy in this README. Use the [generated Student Dashboard — David](https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David), backed by [`students/david/progress.md`](students/david/progress.md).
 
 ### Major progress already demonstrated
 
