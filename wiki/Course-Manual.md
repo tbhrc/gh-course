@@ -498,6 +498,15 @@ ChatGPT Web
 
 Gemini CLI/API remains pending governed completion after authenticated inference hit quota.
 
+### AI Provider Failover and Quota Routing
+
+When provider quota/budget limits or HTTP 429 rate boundaries occur:
+
+- Treat quota exhaustion as a routine operational **routing event**, not an execution blocker (`tbhrc/skills#13` / `github-agent-workflow v1.1.0`).
+- Switch execution or review to an authorized alternate executor (e.g., Copilot, Claude, Jules, Gemini) without waiting for quota reset.
+- Enforce one-active-writer collision safety and durable handoffs before secondary execution.
+- Maintain all deterministic Action checks, Issue-linked branch workflows, and review criteria.
+
 ---
 
 ## 14. Review Agent Provenance

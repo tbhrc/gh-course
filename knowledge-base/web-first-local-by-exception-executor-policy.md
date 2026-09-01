@@ -44,6 +44,7 @@ A local handoff should normally require at least one concrete reason:
 3. **Verification requirement** — reliable completion requires tests or execution that Web cannot run or inspect adequately.
 4. **Demonstrated efficiency advantage** — benchmark evidence shows the local agent materially outperforms Web for this class of work.
 5. **Sustained/high-volume execution** — the task requires long-running, repeated, or high-volume execution better suited to a persistent local worker.
+6. **Canonical Provider Failover (Quota/Budget Exhaustion)** — primary provider encounters quota, rate limit (HTTP 429), or budget exhaustion, triggering an authorized failover routing event (`tbhrc/skills#13` / `github-agent-workflow v1.1.0`).
 
 If none applies, Web should execute the work.
 

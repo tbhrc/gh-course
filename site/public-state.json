@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_from_commit": "5f728f05b9630f2a3f3fc67a967d00356f55ce9d",
+  "generated_from_commit": "local-build",
   "source_contract": {
     "course_home": "wiki/Home.md",
     "student_state": "students/david/progress.md",

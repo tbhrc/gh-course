@@ -266,6 +266,21 @@ provider entitlement/policy
 
 The course’s 401/403/policy/identity failures were useful because they made these layers visible.
 
+## Canonical AI Provider Failover & Provider-Neutral Execution
+
+AI provider quota, rate limits (HTTP 429), or budget caps must be taught as **routine operational routing events**, never as hard blockers to delivery or review.
+
+Governed by parent Skill `tbhrc/skills#13` / `github-agent-workflow v1.1.0`.
+
+### Core Routing Principles
+
+1. **Provider Neutrality:** Design workflows around outcomes and verification rather than vendor lock-in. Use preferred executors when available; failover to alternate authorized providers (Copilot, Claude, Jules, Gemini, or future agents) when quota/budget boundaries are hit.
+2. **Preserve GitHub Control Plane:** Failover changes the *agent*, not the *governance*. Issue-linked branches, deterministic Action checks, review gates, and acceptance criteria remain invariant regardless of who executes or reviews.
+3. **One Active Writer Safety:** Ensure strict single-writer collision safety. Never run simultaneous active coding sessions on the same work branch across multiple AI engines. Complete a clean handoff or re-route prior to secondary execution.
+4. **Demonstrated Operational Patterns (1 September 2026):**
+   - **Review Failover:** When Codex review hit quota exhaustion, GitHub Copilot was substituted to perform code review without waiting for quota reset.
+   - **Dispatch Failover:** Applying the `jules` label on a governing Issue dispatched Google Jules autonomously when primary assignment routes were constrained.
+
 ## Failure Classification
 
 | Evidence | Likely boundary |
@@ -349,6 +364,8 @@ A learner demonstrates this module when they can:
 - identify the actor/session/branch/commit/PR chain;
 - safely review an AI-authored PR;
 - diagnose 401/403/429/runtime/check failures by layer;
+- route execution or review to an authorized alternate provider when primary quota/budget exhaustion occurs;
+- enforce one-active-writer collision safety and durable handoff during provider failover;
 - choose an executor based on capability and measured overhead;
 - explain why one control plane can contain several execution architectures.
 

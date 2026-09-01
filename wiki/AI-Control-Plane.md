@@ -283,11 +283,18 @@ Do not build automation merely because automation is possible.
 
 ---
 
-## 13. Executor Routing Principle
+## 13. Canonical AI Provider Failover and Routing Principle
 
 > **Delegate for capability or demonstrated efficiency — not merely because another agent is available.**
 
-Use the canonical benchmark to decide which executor is appropriate for a task class. Do not generalise one small-task leaderboard to every workload.
+When a preferred AI provider encounters quota limits, HTTP 429 rate exhaustion, or budget caps:
+
+1. **Routing Event:** Treat quota exhaustion as an operational routing event rather than an execution blocker.
+2. **Provider-Neutral Execution:** Switch execution or review to an authorized alternate provider (Copilot, Claude, Jules, Gemini, or future agents) without waiting for quota reset.
+3. **Collision Safety & Handoff:** Preserve one-active-writer collision safety and perform a clean handoff before launching a secondary executor.
+4. **Governance Invariance:** Maintain all Issue-linked branch workflows, deterministic Action checks, and review acceptance criteria regardless of provider failover.
+
+Governed by `tbhrc/skills#13` / `github-agent-workflow v1.1.0`.
 
 ---
 

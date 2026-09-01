@@ -8,13 +8,15 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Added
 
+- Canonical AI provider failover and provider-neutral routing protocol across `AGENTS.md`, Module 09 (`09-ai-agents-github/README.md`), `knowledge-base/executor-benchmark-framework.md`, `knowledge-base/web-first-local-by-exception-executor-policy.md`, `wiki/AI-Control-Plane.md`, and `wiki/Course-Manual.md`, referencing parent governance `tbhrc/skills#13` / `github-agent-workflow v1.1.0`.
 - Checklist-first Issue planning and Stage governance under `sops/issue-planning-and-stage-governance.md`, requiring substantive work to carry implementation, verification, dependency and final-acceptance checklists before execution.
 - Native `.github/ISSUE_TEMPLATE/substantive-work.md` and `.github/ISSUE_TEMPLATE/master-programme.md` templates so standard and large-programme work can start from executable GitHub Issues rather than placeholder notes.
 - Evidence-backed GitHub-first FolderDesk capability ownership audit under `knowledge-base/github-first-folderdesk-capability-ownership.md`, classifying duplicated work-control functions for GitHub retirement/use while preserving Microsoft 365 document authority and explicit local-runner/Graph/Skill-runtime experiments.
 
 ### Changed
 
-- `AGENTS.md` now defines **Checklist first. Execution second.** and the Master Issue + linked Stage Issue pattern for large architecture/programme work while keeping actual GitHub Issue numbers canonical.
+- `AGENTS.md` now incorporates the canonical AI provider failover routing rules, treating quota or budget exhaustion as an operational routing event rather than an execution blocker, enforcing one-active-writer collision safety and recording the 1 September 2026 Copilot review failover and Jules label-dispatch patterns.
+- `AGENTS.md` defines **Checklist first. Execution second.** and the Master Issue + linked Stage Issue pattern for large architecture/programme work while keeping actual GitHub Issue numbers canonical.
 
 ## [0.3.0] - 2026-08-28
 

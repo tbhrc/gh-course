@@ -409,6 +409,16 @@ Repeat across:
 
 Only change routing policy when repeated evidence shows a meaningful advantage by task class.
 
+# Provider Failover and Quota Routing
+
+Parent governance: `tbhrc/skills#13` / `github-agent-workflow v1.1.0`.
+
+When an executor or reviewer hits a provider quota limit, rate boundary (HTTP 429), or budget exhaustion during benchmarking or production execution:
+
+1. **Routing Event vs Execution Blocker:** Quota exhaustion is an operational routing event. The task or review routes to another authorized alternate provider (such as Copilot, Claude, Jules, Gemini, or future agents) rather than blocking on quota resets.
+2. **Benchmark Freshness vs Capability Status:** Fast-changing provider capability and status stay in this canonical benchmark framework. A quota boundary (e.g. Gemini HTTP 429 or Codex review limit) is recorded as the active state for that execution lane without removing provider-neutral routing options.
+3. **Collision Safety During Failover:** Clean handoffs must enforce single-writer collision safety before secondary execution begins on the same issue-linked branch.
+
 # Governing principle
 
 > **Fastest capable executor wins only when quality, governance and reliability remain acceptable — and wall-clock latency must never be misrepresented as pure AI compute time.**

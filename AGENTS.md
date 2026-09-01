@@ -262,6 +262,22 @@ Rules:
 7. Do not treat one AI integration's proven capability as proof that another integration has the same capability.
 8. Use `knowledge-base/pages-actions-integrations-control-plane.md` for the current course model.
 
+## Canonical AI Provider Failover and Routing Protocol
+
+Parent governance: `tbhrc/skills#13` / `github-agent-workflow v1.1.0`.
+
+When operating or coaching in an AI-agent environment, treat provider quota or budget exhaustion as a routine operational **routing event**, not an execution-blocking wall.
+
+### Failover & Provider-Neutral Execution Rules
+
+1. **Provider-Neutral Intent:** Preferred AI providers are used when available. If a primary provider encounters quota exhaustion, rate limits (HTTP 429), or budget caps, switch execution or review to another authorized provider (e.g. Copilot, Claude, Jules, Gemini, or future agents).
+2. **Preserve Governance & Safety:** Switching providers must preserve all deterministic checks, acceptance criteria, issue-linked branch workflows, and durable handoffs.
+3. **One Active Writer Rule:** Maintain strict single-writer collision safety. Never launch parallel active writing sessions across multiple agents on the same working branch. Hand off cleanly before invoking an alternate executor.
+4. **Demonstrated Operational Patterns (1 September 2026):**
+   - **Review Failover:** GitHub Copilot was successfully substituted to complete code review when Codex reached quota exhaustion.
+   - **Label-Based Dispatch Failover:** Google Jules was launched cleanly via applying the `jules` Issue label when primary execution routes hit boundaries.
+5. **Canon Linkage:** Do not duplicate full central Skill contracts locally; link to canonical parent governance (`tbhrc/skills#13` / `github-agent-workflow v1.1.0`) and teach the operational failover lesson.
+
 ## Reader Surfaces and Generated Live State
 
 The course uses three distinct layers:
