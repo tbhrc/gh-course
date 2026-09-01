@@ -20,7 +20,7 @@ jobs:
     env:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Add new Issue to Project Ready
         if: env.PROJECT_MANAGEMENT_TOKEN != ''
         uses: ./.github/actions/set-course-project-status
@@ -36,7 +36,7 @@ jobs:
     env:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Resolve Issue number from issue-linked branch
         id: linked
         env:
@@ -65,7 +65,7 @@ jobs:
     env:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Mark native agent work In progress
         if: env.PROJECT_MANAGEMENT_TOKEN != ''
         uses: ./.github/actions/set-course-project-status
@@ -82,7 +82,7 @@ jobs:
     env:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Find linked Issue
         id: linked
         if: env.PROJECT_MANAGEMENT_TOKEN != ''
@@ -109,7 +109,7 @@ jobs:
     env:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Mark closed Project Issue Done
         if: env.PROJECT_MANAGEMENT_TOKEN != ''
         uses: ./.github/actions/set-course-project-status
@@ -125,7 +125,7 @@ jobs:
     env:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Return reopened Project Issue to Ready
         if: env.PROJECT_MANAGEMENT_TOKEN != ''
         uses: ./.github/actions/set-course-project-status
