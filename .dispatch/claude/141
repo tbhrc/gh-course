@@ -1,0 +1,3 @@
+Dispatch Claude to canonical Stage Issue #141.
+
+Use the Issue body plus the latest orchestration claim comment as the complete specification. Write only the bounded business-operating-model surface and directly necessary navigation updates. Do not touch Stage #139's architecture README. Open a focused PR; do not self-merge or close the Stage.
