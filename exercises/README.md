@@ -48,14 +48,16 @@ Operate the existing live Project:
 
 **GitHub Course — Execution & Mastery**
 
-Do **not** create a duplicate Project for the exercise. The course Project, fields, views and deterministic lifecycle already exist; the learner objective is to operate and explain that real control surface personally.
+Do **not** create a duplicate Project for the exercise. The course Project, fields, views and deterministic lifecycle already exist; this exercise is about operating and explaining that real control surface.
+
+Current learner assignment/mastery state is not maintained in this shared exercise. Use the [generated Student Dashboard — David](https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David) and [`students/david/progress.md`](../students/david/progress.md) for current learner state.
 
 Evidence required:
 
 - open and inspect the existing Project;
 - use the Operating Board and Master Table intentionally;
 - inspect/use the existing Status / Workstream / Priority / Type fields and relevant saved views;
-- personally classify or move at least five real work items where the decisions are justified;
+- classify or move at least five real work items where the decisions are justified;
 - complete or validate a real Review → Done decision without the coach performing the key Project mutations;
 - explain Issue state vs Project Status, field vs view and label vs Project field without copying instructions.
 
@@ -172,8 +174,6 @@ A good exercise should state:
 7. mastery questions;
 8. clean-up/stop condition where relevant.
 
-## Current Priority for David
+## Current learner assignment
 
-**GitHub Projects.**
-
-The next practical exercise is to use and explain the existing **GitHub Course — Execution & Mastery** Project personally before moving on to the next major hands-on module. The infrastructure is already proven; the remaining gap is unaided operator evidence, not Project creation.
+Current assignment, learning focus and mastery state belong in the [generated Student Dashboard — David](https://github.com/tbhrc/github-course/wiki/Student-Dashboard-David), backed by [`students/david/progress.md`](../students/david/progress.md). Keep this shared exercise catalogue reusable rather than projecting learner state here.
