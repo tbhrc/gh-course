@@ -1,0 +1,3 @@
+Dispatch Claude to canonical Stage Issue #139.
+
+Objective: execute the GitHub-first target architecture lock using the Issue body as the governing specification. Preserve #139 as the only work object for scope. Read Master #134 and evidence Issues #136/#137/#138 before editing. Open a focused PR; do not self-merge or close the Stage.
