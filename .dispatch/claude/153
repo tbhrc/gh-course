@@ -1,0 +1,3 @@
+Issue #153 — independent GitHub multi-agent orchestration architecture audit.
+
+This file is only the governed trigger for `.github/workflows/dispatch-claude.yml`. The Issue body is the complete task specification.
