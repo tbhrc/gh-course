@@ -72,6 +72,7 @@ use it in lesson / exercise / coaching
 - [`web-first-local-by-exception-executor-policy.md`](web-first-local-by-exception-executor-policy.md) — executor-routing policy that keeps ChatGPT Web as the default executor and permits local-agent delegation only for explicit capability or demonstrated efficiency reasons.
 - [`executor-benchmark-framework.md`](executor-benchmark-framework.md) — repeatable T0–T4 timing model, 100-point scoring matrix and cross-agent leaderboard for Web, Copilot, Codex, Claude, Gemini and local executors.
 - [`gap-register.md`](gap-register.md) — known knowledge gaps and verification status.
+- [`multi-agent-orchestration-audit-issue-153.md`](multi-agent-orchestration-audit-issue-153.md) — independent architecture audit of the emerging `github-multi-agent-orchestrator` Skill: ownership boundaries, collision safety, reviewer routing, capacity routing, secret/control-plane boundary, cross-repo examples and legacy-rejection findings.
 
 ## Knowledge Note Standard
 
