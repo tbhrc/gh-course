@@ -592,6 +592,10 @@ AI coaches should use this Skill as a **curriculum accelerator**:
 - `../../knowledge-base/web-first-local-by-exception-executor-policy.md` — executor routing policy.
 - `../../sops/course-documentation-integrity.md` — anti-drift completion gate.
 
+## Navigation Integrity and Backlinks
+
+Material handoffs to another Skill, repository, external system, or publishing surface must expose a practical return or onward route (such as backlinks, parent pointers, Skill Bank/index links, or owning canon references). Unexplained one-way dead ends are architecture defects. Navigation and backlink loops must close so operators and AI agents can navigate back or onward, while structural ownership and governance boundaries remain distinct without artificial cyclic dependencies. (See parent canon: `tbhrc/skills#18`).
+
 ## Governing Principle
 
 > **Use native GitHub capability first when it is simpler, sufficiently governed and removes custom infrastructure. Keep one source of current truth and verify the real operation.**

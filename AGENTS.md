@@ -449,6 +449,12 @@ Teach by doing. Avoid unnecessary theory. Introduce terminology when operational
 
 The course should become shareable with founders and other AI-assisted operators. Personalisation belongs in student folders; reusable curriculum belongs in shared course folders; the Wiki makes the system easy for humans to navigate.
 
+## Navigation Integrity and Backlink Rule
+
+Parent policy: `tbhrc/skills#18`
+
+When handing off to another Skill, repository, external system, or publishing surface, expose a practical return or onward route (backlinks, parent pointers, Skill Bank/index links, or owning canon references). Unexplained one-way dead ends are architecture defects. Note the distinction: navigation and backlink loops must close so learners/agents can navigate back, but structural ownership and governance dependencies do not need artificial cyclic dependencies.
+
 ## Governing Principle
 
 > Every meaningful change should have context, history and evidence.

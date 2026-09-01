@@ -355,6 +355,16 @@ Read:
 
 - `knowledge-base/pages-entry-file-readme-trap.md`
 
+## Navigation Integrity Principle
+
+Material handoffs to another Skill, repository, external system, or publishing surface must expose a practical return or onward route (backlinks, parent pointers, Skill Bank/index links, or owning canon references). Unexplained one-way dead ends are architecture defects.
+
+Keep the distinction clear:
+- **Navigation/backlinks must close** — human readers and AI agents following a handoff must have a path back to the course, index, or parent canon.
+- **Ownership/dependency does not need artificial cycles** — functional control and ownership trees remain clean and hierarchical without forcing cyclic dependencies.
+
+(Parent canon policy: `tbhrc/skills#18`)
+
 ## Mastery Evidence
 
 A learner demonstrates this module when they can:
@@ -370,7 +380,8 @@ A learner demonstrates this module when they can:
 - verify the publishing workflow rather than assuming it worked;
 - distinguish a Pages publishing source from its entry file;
 - diagnose a README-like Pages homepage without immediately changing the publishing source;
-- verify website usability after deployment, not only workflow status.
+- verify website usability after deployment, not only workflow status;
+- ensure material knowledge/system handoffs include a return or onward navigation route so navigation integrity is preserved without introducing cyclic ownership dependencies.
 
 ## Official References
 
