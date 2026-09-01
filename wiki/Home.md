@@ -19,6 +19,7 @@ This Wiki is designed to be used as a course interface, not as an independent so
 | See David's live learner state | [Student Dashboard — David](Student-Dashboard-David) |
 | See live AI benchmark results | [AI Executor Benchmark & Leaderboard](AI-Executor-Benchmark) |
 | Understand the AI-first control-plane model | [AI Control Plane](AI-Control-Plane) |
+| See the GitHub-first target architecture | [GitHub × FolderDesk Architecture](https://github.com/tbhrc/github-course/tree/main/10-github-folderdesk-architecture) |
 | Do hands-on work | [Exercises & Assessments](Exercises-and-Assessments) |
 | Look up verified GitHub knowledge | [Knowledge Base](Knowledge-Base) |
 | Use the strategic GitHub feature map | [GitHub Power User](GitHub-Power-User) |

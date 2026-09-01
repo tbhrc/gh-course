@@ -267,6 +267,46 @@ agent execution ≠ learner mastery
 
 ---
 
+## GitHub × FolderDesk Architecture Terms
+
+### GitHub-first architecture
+The target operating model in which GitHub is the primary durable work and execution control plane. FolderDesk is reduced to a bounded cross-system context and integration adapter.
+
+### Canonical owner
+The single authoritative system for an object type. No architecture should require parallel state for the same object in two systems.
+
+### Dual-write (anti-pattern)
+Maintaining the same work state independently in two systems (e.g. a GitHub Issue and a FolderDesk task). Creates stale state, conflicting IDs, reconciliation logic and human confusion.
+
+### FolderDesk
+A cross-system context and integration adapter. In the GitHub-first target architecture, FolderDesk provides continuity memory and thin adapters for local/file/service boundaries with no practical native GitHub or Microsoft 365 route. It does not own work control, repository execution, task dashboards or document storage.
+
+### WebStream / LocalStream (legacy)
+FolderDesk terms for web-executed vs locally-executed work lanes. In the GitHub-first model these map to GitHub execution lane (web/cloud) and macOS runner lane (local/self-hosted). Prefer the GitHub-native terms for GitHub-governed work.
+
+### W### / L### (legacy)
+FolderDesk numbered request/response coordination protocol for web→local execution handoff. Retired for GitHub-governed work. Replace with GitHub Action run / job / result and Issue/PR comments as the canonical evidence surface.
+
+### Coordination file (legacy)
+A FolderDesk-specific Markdown file used to coordinate execution within a task. Retired for GitHub-owned work. Native Issue and PR comments are the coordination surface.
+
+### Cross-system context layer
+FolderDesk's retained capability to index and provide context across GitHub, Microsoft 365, local files and other business systems without owning or duplicating their canonical objects.
+
+### Continuity / semantic memory
+FolderDesk's retained capability for operational memory across sessions. Explicitly subordinate to canonical sources (GitHub Issues, Microsoft 365 files). Memory is a read/context layer, not an authority layer.
+
+### Thin integration adapter
+A minimal FolderDesk component retained only for a local/file/service boundary that has no practical native GitHub or Microsoft API route. Each adapter must be justified by a concrete boundary case.
+
+### Execution route (legacy: FolderDesk)
+The FolderDesk term for how a task is executed (web, local, etc.). In the GitHub-first model, equivalent concepts are expressed as workflow route, runner, or executor route.
+
+### Review gate (legacy: FolderDesk)
+The FolderDesk term for the acceptance stage. In the GitHub-first model this is the PR review / check / environment approval step.
+
+---
+
 ## Need More Detail?
 
 - [Course Manual](Course-Manual)
