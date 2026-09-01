@@ -20,23 +20,24 @@ concept understood
 **Student:** David  
 **Canonical module:** [04 — GitHub Projects](https://github.com/tbhrc/github-course/tree/main/04-projects)
 
-The course material is already built. The mastery exercise is to create/use the real Project:
+The course material and live Project are already built. The mastery exercise is to personally operate the existing Project:
 
 **GitHub Course — Execution & Mastery**
 
 [Open live Project blueprint →](https://github.com/tbhrc/github-course/blob/main/04-projects/live-example-github-course-execution-mastery.md)
 
+Do **not** create a second Project for the exercise. Repository/platform capability is already proven; the remaining learner gap is unaided operation and explanation.
+
 ### Required evidence
 
-- Project physically exists;
-- real Issues/PRs added rather than dummy cards;
-- Status / Workstream / Priority / Type fields used;
-- Operating Board created;
-- Master Table created;
-- AI Benchmarks view created;
-- David Learning view created;
-- at least five real work items classified or moved;
-- David can explain the design without copying instructions.
+- open and inspect the existing Project;
+- use real Issues/PRs rather than dummy cards;
+- use the existing Status / Workstream / Priority / Type fields deliberately;
+- use the Operating Board and Master Table intentionally;
+- inspect the AI Benchmarks and David Learning views where relevant;
+- classify or move at least five real work items where the decisions are justified;
+- complete or validate a real Review → Done decision without the coach performing the key Project mutations;
+- explain the design without copying instructions.
 
 ### Mastery questions
 
