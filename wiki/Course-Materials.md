@@ -256,7 +256,7 @@ The Wiki [Knowledge Base](Knowledge-Base) page is the reader-friendly index.
 
 ## GitHub Power User Skill
 
-[Open canonical course Skill →](https://github.com/tbhrc/github-course/blob/main/skills/github-power-user/SKILL.md)
+[Open the course's frozen public Skill snapshot →](https://github.com/tbhrc/github-course/blob/main/skills/github-power-user/SKILL.md)
 
 Use the Skill as the strategic feature map:
 

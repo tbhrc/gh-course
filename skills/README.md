@@ -8,9 +8,17 @@ Course lessons remain curriculum. Skills are reusable operating procedures and s
 
 ### `github-power-user`
 
-Primary strategic GitHub operating Skill for this course.
+**This local package is a frozen, non-canonical public teaching snapshot. It is not an independently editable Skill.**
 
-Use it when an AI coach, student or operator needs to decide which GitHub capability to use, design a professional GitHub workflow, or develop new course material across Issues, Projects, Pull Requests, Actions, agents, governance, security, releases, CLI/API and organisation-level patterns.
+The single editable reusable canon is:
+
+```text
+tbhrc/skills/github-power-user
+```
+
+That private Skill Bank repository is the authoritative source for authorised agents deciding which GitHub capability should own a workflow, designing a professional GitHub operating pattern, or evolving the reusable Skill itself. Agents with Skill Bank access should read and evolve the canon there, not this course copy.
+
+This course repository keeps the local copy only so a public learner without private repository access still has a complete, self-contained strategic feature map to read alongside the course. It must not be labelled canonical, must not be treated as the reusable operating Skill for authorised agents, and should not be independently evolved here — course-specific teaching improvements belong in `knowledge-base/`, the numbered modules or `wiki/`, not in this package.
 
 Path:
 
@@ -23,7 +31,7 @@ skills/github-power-user/
     └── agentic-github.md
 ```
 
-**Provenance:** portable course snapshot adapted from FolderDesk canonical `470-skills/github-power-user/` v1.0.0. The course copy is intentionally public/portable and excludes FolderDesk-only operational policy except where clearly relevant as case-study context.
+**Provenance:** frozen public snapshot originally adapted from FolderDesk canonical `470-skills/github-power-user/` v1.0.0, now superseded as canon by `tbhrc/skills/github-power-user`. This copy is retained for public teaching value only and excludes FolderDesk-only operational policy except where clearly relevant as case-study context.
 
 ## Skill Standard
 

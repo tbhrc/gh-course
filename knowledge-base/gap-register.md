@@ -9,7 +9,7 @@ This is **not** David's personal learning gap list. Student-specific understandi
 ## Status Key
 
 - **Verified** — current authoritative/live evidence has been checked and durable course/knowledge evidence exists.
-- **Mapped** — covered strategically by `github-power-user` or course material, but current reusable knowledge is not yet fully verified into the knowledge base.
+- **Mapped** — covered strategically by the `github-power-user` Skill (central canon or local frozen snapshot) or course material, but current reusable knowledge is not yet fully verified into the knowledge base.
 - **Pending** — material reusable knowledge gap still needs research/verification.
 - **Course proof pending** — platform knowledge is sufficiently understood, but this repository has not yet operationally proved the capability it would rely on.
 

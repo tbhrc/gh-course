@@ -2,19 +2,20 @@
 name: github-power-user
 description: Use GitHub as a complete professional operating platform rather than only a Git remote. Use for GitHub architecture, Issues, Projects, Discussions, Wikis, Actions, agents, repository instructions, MCP, Codespaces, rulesets, security, releases, packages, Pages, integrations, CLI/API power use, automation, governance and cross-repository planning.
 version: 1.8.0
-status: active
-source: FolderDesk canonical github-power-user v1.0.0
+status: frozen-snapshot (non-canonical)
+source: derived from FolderDesk canonical github-power-user v1.0.0; superseded as canon by tbhrc/skills/github-power-user
 source_path: 470-skills/github-power-user/
 imported_for: GitHub Professional Operator course
+canonical_home: tbhrc/skills/github-power-user (private Skill Bank; authorised agents only)
 ---
 
 # GitHub Power User
 
 ## Purpose
 
-This is the reusable strategic layer for the course. It helps an AI coach or operator decide **which GitHub capability should own a workflow** and how the capabilities fit together professionally.
+This is a **frozen public teaching snapshot**, not the reusable editable canon. The single editable operating Skill is `tbhrc/skills/github-power-user`; authorised agents should read and evolve the Skill there.
 
-It is a portable course snapshot adapted from the canonical FolderDesk `github-power-user` Skill v1.0.0. Course-specific changes may evolve independently; the provenance above must remain visible.
+This course copy remains here only so a public learner without private Skill Bank access still has a complete strategic feature map to read. It helps an AI coach or operator decide **which GitHub capability should own a workflow** and how the capabilities fit together professionally, but course-specific changes should no longer evolve independently in this file — the provenance above must remain visible, and material improvements belong in the central canon or in this course's `knowledge-base/`/modules/`wiki/`.
 
 ## First Principle
 

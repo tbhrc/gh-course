@@ -105,10 +105,11 @@ For material GitHub facts:
 ```text
 current official/live evidence
 → knowledge-base/
-→ skills/github-power-user/
 → course modules
 → model memory / older chat
 ```
+
+Authorised agents also have access to the central `tbhrc/skills/github-power-user` Skill canon (private Skill Bank) as a strategic accelerator. This repository keeps a frozen public snapshot at `skills/github-power-user/` for learners without private access; it is teaching material, not an independent canon.
 
 The course deliberately avoids teaching volatile GitHub behaviour from AI memory alone.
 
@@ -259,7 +260,7 @@ Use as the public front door. It should route readers to maintained sources rath
 ## Reusable Course Assets
 
 - `knowledge-base/` — current verified knowledge and architecture notes;
-- `skills/github-power-user/` — strategic GitHub feature/operating map;
+- `skills/github-power-user/` — frozen public snapshot of the strategic GitHub feature/operating map (canon lives in the private `tbhrc/skills/github-power-user` Skill Bank);
 - `integration-tests/` — durable AI executor evidence;
 - `students/` — student-specific truth;
 - `exercises/` — practical mastery work;

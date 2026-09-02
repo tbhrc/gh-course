@@ -71,7 +71,7 @@ Do not treat every surface as an equal source of truth.
 | Need | Primary source |
 | --- | --- |
 | Current verified GitHub facts | `knowledge-base/` |
-| Strategic feature map | `skills/github-power-user/` |
+| Strategic feature map | `skills/github-power-user/` (frozen public snapshot; canon: private `tbhrc/skills/github-power-user`) |
 | Reusable teaching | numbered modules |
 | Student-specific evidence | `students/<student-id>/` |
 | Practical exercises | `exercises/` and module labs |

@@ -11,7 +11,7 @@ The course must not depend on an AI model's memory, a single chat, or assumed Gi
 ```text
 1. Current official GitHub documentation / live GitHub evidence
 2. knowledge-base/ verified notes
-3. skills/github-power-user/ strategic playbook
+3. tbhrc/skills/github-power-user central Skill canon (authorised agents) / local frozen snapshot for public learners
 4. course modules and exercises
 5. AI model memory / older chat
 ```
@@ -20,7 +20,7 @@ Model knowledge is useful for discovery and explanation, but it is not durable p
 
 ## Relationship to the Power User Skill
 
-`skills/github-power-user/` is the accelerator and strategic map.
+The reusable, editable Skill canon lives in the private `tbhrc/skills/github-power-user` Skill Bank. This repository keeps a frozen public snapshot at `skills/github-power-user/` so learners without private access still have the accelerator and strategic map.
 
 Use it to answer:
 
@@ -42,7 +42,7 @@ Do not duplicate the entire Skill here. Convert gaps, volatile facts and importa
 ```text
 question / knowledge gap
         ↓
-check github-power-user Skill
+check github-power-user Skill (central canon or local frozen snapshot)
         ↓
 check existing knowledge-base note
         ↓

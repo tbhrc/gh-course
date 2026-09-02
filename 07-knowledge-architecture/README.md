@@ -145,7 +145,7 @@ current official/live evidence
         ↓
 knowledge-base/              ← authoritative verified knowledge
         ↓
-skills/github-power-user/    ← strategic accelerator / feature map
+skills/github-power-user/    ← frozen public snapshot (canon: private tbhrc/skills/github-power-user)
         ↓
 course modules               ← teaching sequence
         ↓

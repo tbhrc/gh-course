@@ -14,6 +14,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Changed
 
+- Retired the course-local `skills/github-power-user/` package as an independently editable canonical Skill; it is now a frozen public teaching snapshot, with the single editable operating canon living in the private `tbhrc/skills/github-power-user` Skill Bank. Updated `AGENTS.md`, `README.md`, `.github/copilot-instructions.md`, `knowledge-base/README.md`, the numbered-module architecture notes and Wiki `GitHub-Power-User`/`Course-Materials` pages accordingly.
 - `AGENTS.md` now defines **Checklist first. Execution second.** and the Master Issue + linked Stage Issue pattern for large architecture/programme work while keeping actual GitHub Issue numbers canonical.
 - Reconciled the reusable knowledge-gap register and Projects exercise surfaces with live repository evidence, routing current learner state to the generated student dashboard instead of duplicating it in shared authored documentation.
 - Hardened the GitHub Actions supply chain by pinning external Actions to immutable current-release commit SHAs (`actions/checkout` v7.0.1 and `google-github-actions/run-gemini-cli` v0.1.22) and enabling weekly GitHub Actions Dependabot update PRs.

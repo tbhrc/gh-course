@@ -69,7 +69,7 @@ It can form a useful navigable knowledge layer because pages can link to one ano
 For `tbhrc/github-course`:
 
 - `knowledge-base/` = canonical best-practices knowledge;
-- `skills/github-power-user/` = strategic accelerator/playbook;
+- `skills/github-power-user/` = frozen public accelerator/playbook snapshot (canon: private `tbhrc/skills/github-power-user`);
 - modules = curriculum;
 - `students/` = learner evidence;
 - Wiki = hands-on GitHub feature + optional human-facing handbook layer.

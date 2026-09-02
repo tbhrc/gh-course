@@ -1,6 +1,6 @@
 # GitHub Power User
 
-This page is the reader-facing entry point to the course’s strategic GitHub operating Skill.
+This page is the reader-facing entry point to the course's strategic GitHub operating Skill.
 
 ## What It Is
 
@@ -8,11 +8,11 @@ The `github-power-user` Skill helps an AI coach or operator answer:
 
 > **Which native GitHub capability should own this workflow before we build custom infrastructure?**
 
-Current course Skill version: **1.8.0**
+The single editable Skill canon lives in the private `tbhrc/skills/github-power-user` Skill Bank, used by authorised agents. This course keeps a frozen public snapshot (current version: **1.8.0**) so learners without private access still have the full strategic feature map.
 
-[Open the canonical course Skill →](https://github.com/tbhrc/github-course/blob/main/skills/github-power-user/SKILL.md)
+[Open the course's frozen public Skill snapshot →](https://github.com/tbhrc/github-course/blob/main/skills/github-power-user/SKILL.md)
 
-> The Skill is a strategic feature map and accelerator. Current volatile executor results belong in the verified knowledge/benchmark layer, not as duplicated live truth inside the Skill or this Wiki page.
+> The Skill is a strategic feature map and accelerator, not the reusable editable canon. Current volatile executor results belong in the verified knowledge/benchmark layer, not as duplicated live truth inside the Skill or this Wiki page.
 
 ---
 
@@ -246,7 +246,7 @@ The course uses:
 ```text
 current official/live evidence
 → knowledge-base/
-→ github-power-user Skill
+→ github-power-user Skill (central canon for authorised agents; local frozen snapshot otherwise)
 → modules/exercises
 → model memory
 ```

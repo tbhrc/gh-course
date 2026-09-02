@@ -6,7 +6,7 @@ This repository is an AI-agent-friendly GitHub Professional Operator course and 
 
 1. Treat root `AGENTS.md` as the shared agent operating contract.
 2. Identify the active student and read their profile, immutable baseline and current progress before coaching.
-3. For substantial GitHub teaching/course development, start with `skills/github-power-user/SKILL.md`.
+3. For substantial GitHub teaching/course development, authorised agents with Skill Bank access should start with the central `tbhrc/skills/github-power-user` canon; otherwise use the frozen public snapshot at `skills/github-power-user/SKILL.md`.
 4. Read `knowledge-base/README.md` and the relevant verified knowledge note before relying on model memory for a material GitHub claim.
 5. If the behaviour is current, volatile, plan-dependent or uncertain, verify an authoritative source—prefer official GitHub Docs—and update the knowledge base when the finding is reusable.
 6. Use the live Wiki as the reader-facing handbook/dashboard and `wiki/` as its governed source.
@@ -66,7 +66,7 @@ This repository uses Semantic Versioning (`MAJOR.MINOR.PATCH`).
 ```text
 current official/live evidence
 → knowledge-base/
-→ github-power-user Skill
+→ github-power-user Skill (central canon for authorised agents; local frozen snapshot otherwise)
 → course modules
 → model memory / old chat
 ```

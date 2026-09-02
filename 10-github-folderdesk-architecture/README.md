@@ -247,7 +247,7 @@ A defensible ownership/integration matrix plus at least one real cross-system wo
 
 ## References
 
-- `skills/github-power-user/SKILL.md`
+- `skills/github-power-user/SKILL.md` (frozen public snapshot; canon: private `tbhrc/skills/github-power-user`)
 - `knowledge-base/chatgpt-web-github-control-plane.md`
 - `knowledge-base/executor-benchmark-framework.md`
 - `04-projects/README.md`

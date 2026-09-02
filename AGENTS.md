@@ -220,7 +220,7 @@ For material GitHub teaching, architecture or operational claims, use this autho
 ```text
 current official/live evidence
 → knowledge-base/ verified notes
-→ skills/github-power-user/
+→ tbhrc/skills/github-power-user (central Skill canon, authorised agents)
 → course modules
 → AI model memory / older chat
 ```
@@ -228,7 +228,7 @@ current official/live evidence
 Rules:
 
 1. Read `knowledge-base/README.md` before substantial course research or knowledge development.
-2. Use `skills/github-power-user/SKILL.md` as the strategic accelerator and feature map, not as proof that every volatile feature is still unchanged.
+2. Authorised agents with Skill Bank access should use the central `tbhrc/skills/github-power-user` canon as the strategic accelerator and feature map, not as proof that every volatile feature is still unchanged. The local `skills/github-power-user/SKILL.md` in this repository is a frozen public teaching snapshot only — do not edit it as if it were the reusable operating canon.
 3. Do not teach an assumption as a GitHub fact.
 4. When behaviour is current, volatile, plan-dependent, preview, safety-relevant or uncertain, verify an authoritative source—prefer official GitHub Docs or live GitHub evidence.
 5. When a verified finding fills a reusable gap, add/update a concise knowledge note through the normal Issue → branch → PR workflow.
@@ -349,7 +349,13 @@ Rules:
 
 ## Course Development Accelerator
 
-For substantial GitHub course development, read:
+For substantial GitHub course development, authorised agents with Skill Bank access should read the central canon:
+
+```text
+tbhrc/skills/github-power-user (private Skill Bank; not in this repository)
+```
+
+Learners and agents without private access can read the frozen public snapshot retained in this repository instead:
 
 ```text
 skills/github-power-user/SKILL.md
