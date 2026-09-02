@@ -93,6 +93,29 @@ operating-system permissions of the runner machine
 
 Least privilege must exist at both layers.
 
+### Two permission systems to keep separate
+
+For a self-hosted runner, ask two different questions:
+
+```text
+1. What may this workflow do to GitHub?
+   → controlled by GitHub workflow/token permissions
+
+2. What may this runner process do on the host machine?
+   → controlled by the operating-system account and host configuration
+```
+
+For example:
+
+```yaml
+permissions:
+  contents: read
+```
+
+limits the workflow's GitHub token authority over repository contents. It does **not** by itself prevent the runner process from reading a local Mac file that its macOS account is allowed to read.
+
+This is why a production self-hosted runner should normally use a deliberately restricted account rather than casually running with broad administrator or personal-user access.
+
 ## How `runs-on` Routes a Job
 
 A workflow job declares the runner requirements it needs through `runs-on`.
@@ -161,6 +184,22 @@ Which statement best describes what GitHub should do with that job?
 **B)** Runner 1 is eligible because a matching runner must satisfy the complete requested label set  
 **C)** Runner 2 is preferred because custom labels are advisory metadata rather than routing criteria  
 **D)** Both runners receive the job and GitHub keeps the result from whichever finishes first
+
+## Beginner Checkpoint 3
+
+A self-hosted Mac runner operates under a macOS account called `github-runner`. The workflow has:
+
+```yaml
+permissions:
+  contents: read
+```
+
+The job then tries to read a local business file on the Mac. What most directly determines whether that local file can be read?
+
+**A)** The workflow's `contents: read` permission, because GitHub permissions govern the whole runner session  
+**B)** Repository visibility, because private repositories inherit local filesystem privileges  
+**C)** The macOS permissions granted to the `github-runner` operating-system account  
+**D)** Runner labels, because labels define routing and host filesystem privileges
 
 ## What Comes Next
 
