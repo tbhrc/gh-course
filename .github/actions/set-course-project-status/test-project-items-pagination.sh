@@ -10,12 +10,12 @@ fetch_course_project_items_page() {
   case "$cursor" in
     "")
       cat <<'JSON'
-{"nodes":[{"id":"ITEM-1","content":{"number":1,"title":"First","state":"OPEN","stateReason":null,"url":"https://example/1"},"fieldValueByName":{"name":"Ready"}}],"pageInfo":{"hasNextPage":true,"endCursor":"page-2"}}
+{"nodes":[{"id":"FOREIGN-130","content":{"number":130,"title":"Foreign collision","state":"OPEN","stateReason":null,"url":"https://example/foreign/130","repository":{"nameWithOwner":"tbhrc/drf"}},"fieldValueByName":{"name":"Ready"}},{"id":"ITEM-1","content":{"number":1,"title":"First","state":"OPEN","stateReason":null,"url":"https://example/1","repository":{"nameWithOwner":"tbhrc/github-course"}},"fieldValueByName":{"name":"Ready"}}],"pageInfo":{"hasNextPage":true,"endCursor":"page-2"}}
 JSON
       ;;
     page-2)
       cat <<'JSON'
-{"nodes":[{"id":"ITEM-130","content":{"number":130,"title":"Target","state":"OPEN","stateReason":null,"url":"https://example/130"},"fieldValueByName":{"name":"In progress"}},{"id":"ITEM-131","content":{"number":131,"title":"Later","state":"OPEN","stateReason":null,"url":"https://example/131"},"fieldValueByName":{"name":"Review"}}],"pageInfo":{"hasNextPage":false,"endCursor":null}}
+{"nodes":[{"id":"ITEM-130","content":{"number":130,"title":"Target","state":"OPEN","stateReason":null,"url":"https://example/130","repository":{"nameWithOwner":"tbhrc/github-course"}},"fieldValueByName":{"name":"In progress"}},{"id":"ITEM-131","content":{"number":131,"title":"Later","state":"OPEN","stateReason":null,"url":"https://example/131","repository":{"nameWithOwner":"tbhrc/github-course"}},"fieldValueByName":{"name":"Review"}}],"pageInfo":{"hasNextPage":false,"endCursor":null}}
 JSON
       ;;
     *)
@@ -26,11 +26,11 @@ JSON
 }
 
 item="$(find_course_project_item 130)"
-[ "$(jq -r '.id' <<<"$item")" = "ITEM-130" ] || { echo 'FAIL: target beyond page 1 not found.' >&2; exit 1; }
-echo 'PASS: target beyond page 1 found.'
+[ "$(jq -r '.id' <<<"$item")" = "ITEM-130" ] || { echo 'FAIL: target beyond page 1 not found or foreign same-number Issue was selected.' >&2; exit 1; }
+echo 'PASS: target beyond page 1 found without selecting foreign same-number Issue.'
 
 items="$(collect_course_project_items)"
-[ "$(jq 'length' <<<"$items")" -eq 3 ] || { echo 'FAIL: list did not aggregate all pages.' >&2; exit 1; }
+[ "$(jq 'length' <<<"$items")" -eq 4 ] || { echo 'FAIL: list did not aggregate all pages.' >&2; exit 1; }
 echo 'PASS: list aggregates all pages.'
 
 fetch_course_project_items_page() {
