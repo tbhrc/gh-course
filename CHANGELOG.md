@@ -17,6 +17,7 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 - `AGENTS.md` now defines **Checklist first. Execution second.** and the Master Issue + linked Stage Issue pattern for large architecture/programme work while keeping actual GitHub Issue numbers canonical.
 - Reconciled the reusable knowledge-gap register and Projects exercise surfaces with live repository evidence, routing current learner state to the generated student dashboard instead of duplicating it in shared authored documentation.
 - Hardened the GitHub Actions supply chain by pinning external Actions to immutable current-release commit SHAs (`actions/checkout` v7.0.1 and `google-github-actions/run-gemini-cli` v0.1.22) and enabling weekly GitHub Actions Dependabot update PRs.
+- Made issue-linked branch-start Project lifecycle handling monotonic and idempotent: only `Backlog`/`Ready` advance to `In progress`; `In progress` is already correct; `Review`/`Blocked`/`Done` are successful no-ops with deterministic transition-policy tests.
 
 ## [0.3.0] - 2026-08-28
 
