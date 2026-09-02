@@ -93,20 +93,46 @@ operating-system permissions of the runner machine
 
 Least privilege must exist at both layers.
 
+## Knowledge-Check Standard
+
+Use four plausible options for learner checks in this lesson. Avoid giveaway distractors. Increase difficulty as the learner demonstrates understanding, and require reasoning when a correct letter alone could be guessed.
+
 ## Beginner Checkpoint 1
 
 A GitHub Actions workflow sends a job to a self-hosted runner installed on your Mac.
 
 Where do the job's shell commands actually execute?
 
-**A)** On GitHub's servers  
-**B)** On your Mac
+**A)** Inside the repository's GitHub-hosted Actions environment, while the Mac only receives the result  
+**B)** On the Mac, under the operating-system context of the runner process  
+**C)** On whichever GitHub runner has the lowest current queue time, with the Mac used only as a fallback  
+**D)** In a GitHub-managed container that is automatically mounted onto the Mac
 
 Do not continue until you can explain *why* your answer is correct in one sentence.
 
+## Beginner Checkpoint 2
+
+A workflow contains:
+
+```yaml
+runs-on: [self-hosted, macOS, david-local]
+```
+
+Two self-hosted runners are online:
+
+- Runner 1 has labels `self-hosted`, `macOS`, `david-local`.
+- Runner 2 has labels `self-hosted`, `macOS`, `build-server`.
+
+Which statement best describes what GitHub should do with that job?
+
+**A)** Either runner is eligible because `self-hosted` and `macOS` are the only labels GitHub treats as routing constraints  
+**B)** Runner 1 is eligible because a matching runner must satisfy the complete requested label set  
+**C)** Runner 2 is preferred because custom labels are advisory metadata rather than routing criteria  
+**D)** Both runners receive the job and GitHub keeps the result from whichever finishes first
+
 ## What Comes Next
 
-After this checkpoint, learn in this order:
+After these checkpoints, learn in this order:
 
 1. how a machine becomes registered as a runner;
 2. how `runs-on` selects a runner;
