@@ -78,9 +78,11 @@ jobs:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Validate branch-start transition policy
+      - name: Validate Project lifecycle helpers
         shell: bash
-        run: bash .github/actions/set-course-project-status/test-transition-policy.sh
+        run: |
+          bash .github/actions/set-course-project-status/test-transition-policy.sh
+          bash .github/actions/set-course-project-status/test-project-items-pagination.sh
       - name: Mark Web-direct work In progress
         if: env.PROJECT_MANAGEMENT_TOKEN != ''
         uses: ./.github/actions/set-course-project-status
