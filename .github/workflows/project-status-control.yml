@@ -17,6 +17,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: List Ready Project Issues
         shell: bash
         run: |
@@ -26,8 +27,9 @@ jobs:
             exit 1
           fi
 
-          query='query { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100) { nodes { content { ... on Issue { number title state url } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } }'
-          ready="$(gh api graphql -f query="$query" --jq '.data.user.projectV2.items.nodes[] | select(.fieldValueByName.name == "Ready") | select(.content.state == "OPEN") | [.content.number, .content.title, .content.url] | @tsv')"
+          source .github/actions/set-course-project-status/project-items.sh
+          items_json="$(collect_course_project_items)"
+          ready="$(jq -r '.[] | select(.fieldValueByName.name == "Ready") | select(.content.state == "OPEN") | [.content.number, .content.title, .content.url] | @tsv' <<<"$items_json")"
 
           {
             echo '## Ready Project Issues'
@@ -48,6 +50,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: List active Project Issues
         shell: bash
         run: |
@@ -57,8 +60,9 @@ jobs:
             exit 1
           fi
 
-          query='query { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100) { nodes { content { ... on Issue { number title state stateReason url } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } }'
-          active="$(gh api graphql -f query="$query" --jq '.data.user.projectV2.items.nodes[] | select(.fieldValueByName.name == "Ready" or .fieldValueByName.name == "In progress" or .fieldValueByName.name == "Blocked" or .fieldValueByName.name == "Review") | [.fieldValueByName.name, .content.number, .content.state, (.content.stateReason // ""), .content.title, .content.url] | @tsv')"
+          source .github/actions/set-course-project-status/project-items.sh
+          items_json="$(collect_course_project_items)"
+          active="$(jq -r '.[] | select(.fieldValueByName.name == "Ready" or .fieldValueByName.name == "In progress" or .fieldValueByName.name == "Blocked" or .fieldValueByName.name == "Review") | [.fieldValueByName.name, .content.number, .content.state, (.content.stateReason // ""), .content.title, .content.url] | @tsv' <<<"$items_json")"
 
           {
             echo '## Active Project housekeeping queue'
