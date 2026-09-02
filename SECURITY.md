@@ -4,9 +4,9 @@
 
 Do **not** post suspected vulnerabilities, leaked credentials, tokens, exploit details, or other sensitive security information in public Issues, Discussions, pull requests, or comments.
 
-Use GitHub's private vulnerability reporting route for this repository from the **Security** tab when the **Report a vulnerability** option is available. That route creates a private security advisory visible only to the repository's authorised maintainers and the reporter.
+Use GitHub's private vulnerability reporting route for this repository from the **Security** tab when the **Report a vulnerability** option is available. That route creates a private security advisory instead of a public Issue; access is limited to the reporter and authorised repository participants or collaborators who have access to that advisory.
 
-If the private-reporting option is not available, stop before disclosing technical details publicly and contact the repository owner through an existing private, authenticated business channel so a private reporting route can be established.
+If the private-reporting option is not available, stop before disclosing any technical detail. If the repository owner or organisation profile publishes a private contact route, use that. Otherwise, open a normal public Issue containing only a request such as **"Private security reporting channel needed"**. Do not include vulnerability details, reproduction steps, affected paths, secret values, screenshots or exploit information. Ask the maintainer to establish an authenticated private channel, then continue the report only there.
 
 ## Credential or secret exposure
 
