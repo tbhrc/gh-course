@@ -116,6 +116,25 @@ limits the workflow's GitHub token authority over repository contents. It does *
 
 This is why a production self-hosted runner should normally use a deliberately restricted account rather than casually running with broad administrator or personal-user access.
 
+### Dedicated runner account = a real security boundary
+
+If the self-hosted runner runs as a dedicated non-admin operating-system account, it does **not** automatically inherit the permissions of the owner's normal personal account.
+
+Example:
+
+```text
+personal account
+→ can read ~/Documents/client-data.txt
+
+runner account
+→ cannot read that file
+
+workflow executes as runner account
+→ read attempt fails
+```
+
+Repository trust and GitHub authentication do not grant extra local filesystem rights. The runner receives only the host permissions of the account/process under which it runs, unless the host has separately been configured to grant more.
+
 ## How `runs-on` Routes a Job
 
 A workflow job declares the runner requirements it needs through `runs-on`.
@@ -200,6 +219,21 @@ The job then tries to read a local business file on the Mac. What most directly 
 **B)** Repository visibility, because private repositories inherit local filesystem privileges  
 **C)** The macOS permissions granted to the `github-runner` operating-system account  
 **D)** Runner labels, because labels define routing and host filesystem privileges
+
+## Beginner Checkpoint 4
+
+A self-hosted Mac runner uses a dedicated non-admin macOS account. A workflow from a trusted private repository runs:
+
+```bash
+cat ~/Documents/client-data.txt
+```
+
+The file exists, but only the owner's normal personal macOS account can read it. What is the most likely outcome?
+
+**A)** The command succeeds because trusted private repositories inherit the owner's local permissions  
+**B)** The command fails because the runner process does not inherit the personal account's filesystem permissions  
+**C)** GitHub temporarily elevates the runner account for authenticated workflows  
+**D)** The command succeeds only if the workflow also has `contents: write`
 
 ## What Comes Next
 
