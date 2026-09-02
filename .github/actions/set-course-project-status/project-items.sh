@@ -3,7 +3,7 @@
 fetch_course_project_items_page() {
   local cursor="${1:-}"
   local query
-  query='query($cursor: String) { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100, after: $cursor) { nodes { id content { ... on Issue { number title state stateReason url } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } pageInfo { hasNextPage endCursor } } } } }'
+  query='query($cursor: String) { user(login: "tbhrc") { projectV2(number: 1) { items(first: 100, after: $cursor) { nodes { id content { ... on Issue { number title state stateReason url repository { nameWithOwner } } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } pageInfo { hasNextPage endCursor } } } } }'
 
   local payload
   payload="$(jq -cn --arg query "$query" --arg cursor "$cursor" '{query:$query, variables:{cursor:(if $cursor == "" then null else $cursor end)}}')"
@@ -26,6 +26,7 @@ find_course_project_item() {
   local issue_number="$1"
   local cursor=""
   local page_json item_json has_next
+  local repository_name="tbhrc/github-course"
 
   while :; do
     if ! page_json="$(fetch_course_project_items_page "$cursor")"; then
@@ -34,7 +35,7 @@ find_course_project_item() {
     fi
     validate_course_project_items_page "$page_json" || return 1
 
-    item_json="$(jq -c --argjson issue "$issue_number" '.nodes[] | select(.content.number == $issue)' <<<"$page_json" | head -n1)"
+    item_json="$(jq -c --argjson issue "$issue_number" --arg repo "$repository_name" '.nodes[] | select(.content.number == $issue and .content.repository.nameWithOwner == $repo)' <<<"$page_json" | head -n1)"
     if [ -n "$item_json" ]; then
       printf '%s\n' "$item_json"
       return 0
