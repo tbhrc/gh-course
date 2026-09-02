@@ -217,6 +217,10 @@ Issue reopened
 
 The workflow uses `add-if-missing: true` for lifecycle transitions so missing Project membership self-heals rather than silently skipping the board.
 
+Branch-start replay is deliberately monotonic. An `issue-*` push may move only `Backlog` or `Ready` to `In progress`; an item already `In progress` is treated as already correct, while `Review`, `Blocked`, and `Done` are successful no-ops. This prevents a later or terminal planning state from being moved backwards merely because an issue branch receives another push. Explicit manual Project control remains available for a deliberate backwards transition.
+
+The branch-start policy is tested independently of the Projects API, and workflow logs distinguish `transitioned`, `already correct`, and `ignored because state is later/terminal` outcomes.
+
 ## ChatGPT Web Project-control proof
 
 Issue #107 proved a bounded conversational control route over a user-owned Project:
@@ -324,6 +328,7 @@ See `../04-projects/live-example-github-course-execution-mastery.md`.
 - treat `Ready` as actionable intake and `Backlog` as deliberate parking;
 - use `Review` as the general acceptance gate for mixed work;
 - automate fixed lifecycle transitions deterministically;
+- make replayable lifecycle events idempotent so later Project state cannot be silently regressed;
 - self-heal missing Project membership rather than silently skipping lifecycle updates;
 - preserve option IDs when renaming a populated single-select option;
 - keep Project mutation credentials separate from agent-dispatch credentials;
@@ -334,6 +339,7 @@ See `../04-projects/live-example-github-course-execution-mastery.md`.
 - use `Backlog` as a meaningless default bucket for every new Issue;
 - treat a Kanban card drag as proof that an AI agent started;
 - call the Project Status field the Issue status;
+- allow a repeated branch push to move `Review`, `Blocked`, or `Done` backwards to `In progress`;
 - use `Testing` as a universal acceptance stage when non-code work also flows through the Project;
 - assume repository `GITHUB_TOKEN` can mutate a user-owned Project;
 - delete/recreate populated status options when a safe identity-preserving rename is available.

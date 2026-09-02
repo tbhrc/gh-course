@@ -14,6 +14,9 @@ inputs:
   allowed-current-statuses:
     description: Optional comma-separated current Status names allowed before the update.
     required: false
+  no-op-current-statuses:
+    description: Optional comma-separated current Status names that should leave Project state unchanged and succeed.
+    required: false
   add-if-missing:
     description: Add the repository Issue to the Project before setting Status when it is not already an item.
     required: false
@@ -38,10 +41,12 @@ runs:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         TARGET_STATUS: ${{ inputs.target-status }}
         ALLOWED_CURRENT_STATUSES: ${{ inputs.allowed-current-statuses }}
+        NO_OP_CURRENT_STATUSES: ${{ inputs.no-op-current-statuses }}
         ADD_IF_MISSING: ${{ inputs.add-if-missing }}
         ALLOW_MISSING: ${{ inputs.allow-missing }}
       run: |
         set -euo pipefail
+        source "$GITHUB_ACTION_PATH/transition-policy.sh"
 
         query='query($number: Int!) { user(login: "tbhrc") { projectV2(number: 1) { id fields(first: 50) { nodes { ... on ProjectV2SingleSelectField { id name options { id name } } } } items(first: 100) { nodes { id content { ... on Issue { number } } fieldValueByName(name: "Status") { ... on ProjectV2ItemFieldSingleSelectValue { name } } } } } } repository(owner: "tbhrc", name: "github-course") { issue(number: $number) { id } } }'
         data_json="$(gh api graphql -f query="$query" -F number="$ISSUE_NUMBER" --jq '.data')"
@@ -86,31 +91,29 @@ runs:
         fi
 
         echo "previous-status=$previous_status" >> "$GITHUB_OUTPUT"
+        decision="$(project_status_decision "$previous_status" "$TARGET_STATUS" "$ALLOWED_CURRENT_STATUSES" "$NO_OP_CURRENT_STATUSES")"
 
-        if [ "$previous_status" = "$TARGET_STATUS" ]; then
-          echo "Issue #${ISSUE_NUMBER} is already ${TARGET_STATUS}."
-          exit 0
-        fi
-
-        # A freshly added Project item has no previous Status yet. In that case,
-        # allow the requested lifecycle state to become its first Status.
-        if [ -n "$ALLOWED_CURRENT_STATUSES" ] && [ -n "$previous_status" ]; then
-          allowed=false
-          IFS=',' read -ra statuses <<< "$ALLOWED_CURRENT_STATUSES"
-          for status in "${statuses[@]}"; do
-            status="${status#${status%%[![:space:]]*}}"
-            status="${status%${status##*[![:space:]]}}"
-            if [ "$previous_status" = "$status" ]; then
-              allowed=true
-              break
-            fi
-          done
-          if [ "$allowed" != "true" ]; then
+        case "$decision" in
+          already)
+            echo "Issue #${ISSUE_NUMBER} already correct: Project Status is ${TARGET_STATUS}."
+            exit 0
+            ;;
+          ignore)
+            echo "Issue #${ISSUE_NUMBER} ignored because current Project Status '${previous_status}' is later/terminal for requested '${TARGET_STATUS}'."
+            exit 0
+            ;;
+          reject)
             echo "Issue #${ISSUE_NUMBER} current Project Status '${previous_status:-unset}' is not allowed for transition to '${TARGET_STATUS}'." >&2
             exit 1
-          fi
-        fi
+            ;;
+          transition)
+            ;;
+          *)
+            echo "Unexpected Project Status transition decision '${decision}'." >&2
+            exit 1
+            ;;
+        esac
 
         mutation='mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) { updateProjectV2ItemFieldValue(input: {projectId: $projectId, itemId: $itemId, fieldId: $fieldId, value: {singleSelectOptionId: $optionId}}) { projectV2Item { id } } }'
         gh api graphql -f query="$mutation" -f projectId="$project_id" -f itemId="$item_id" -f fieldId="$status_field_id" -f optionId="$option_id" >/dev/null
-        echo "Issue #${ISSUE_NUMBER}: ${previous_status:-unset} -> ${TARGET_STATUS}"
+        echo "Issue #${ISSUE_NUMBER} transitioned: ${previous_status:-unset} -> ${TARGET_STATUS}"

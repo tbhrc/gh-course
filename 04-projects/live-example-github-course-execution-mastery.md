@@ -39,6 +39,25 @@ new Issue
 
 Use **Backlog** only when work is deliberately parked, deferred, pending a decision/dependency, or otherwise not available to start.
 
+### Branch-start lifecycle is monotonic
+
+An `issue-*` branch push may advance `Backlog` or `Ready` work to `In progress`, but replaying that push must never move later planning state backwards.
+
+```text
+Backlog / Ready
+→ In progress
+
+In progress
+→ already correct; no mutation
+
+Review / Blocked / Done
+→ successful no-op; preserve current Status
+```
+
+The workflow logs these outcomes separately as `transitioned`, `already correct`, or `ignored because state is later/terminal`. Manual Project control remains available when a deliberate backwards planning transition is genuinely required.
+
+Automatic deletion of completed issue branches is not required for correctness: branch-push handling is safe when replayed, while branch retention/deletion remains an ordinary repository-hygiene decision.
+
 ### Review means acceptance, not only software testing
 
 Keep the Project gate named **Review**.
