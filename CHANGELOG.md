@@ -8,6 +8,8 @@ This project uses [Semantic Versioning](https://semver.org/) and follows the pra
 
 ### Added
 
+- Root `AGENTS.md` operating rule adopting the canonical GitHub navigation-integrity backlink policy (`tbhrc/skills#18`), requiring material cross-Skill/repository/system handoffs to expose practical return or onward routes without creating artificial ownership/dependency cycles.
+- Integrated navigation-integrity backlink teaching principles into `skills/github-power-user/SKILL.md`, `07-knowledge-architecture/README.md`, and `10-github-folderdesk-architecture/README.md`.
 - Checklist-first Issue planning and Stage governance under `sops/issue-planning-and-stage-governance.md`, requiring substantive work to carry implementation, verification, dependency and final-acceptance checklists before execution.
 - Native `.github/ISSUE_TEMPLATE/substantive-work.md` and `.github/ISSUE_TEMPLATE/master-programme.md` templates so standard and large-programme work can start from executable GitHub Issues rather than placeholder notes.
 - Evidence-backed GitHub-first FolderDesk capability ownership audit under `knowledge-base/github-first-folderdesk-capability-ownership.md`, classifying duplicated work-control functions for GitHub retirement/use while preserving Microsoft 365 document authority and explicit local-runner/Graph/Skill-runtime experiments.

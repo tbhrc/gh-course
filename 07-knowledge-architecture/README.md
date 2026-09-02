@@ -173,7 +173,7 @@ Issue
 → merge
 ```
 
-Do not maintain two independent versions of the same truth.
+Do not maintain two independent versions of the same truth. Ensure navigation integrity across external handoffs: material links to another Skill, repository, or system must expose a practical return/onward route (`tbhrc/skills#18`). Unexplained dead ends are architecture defects.
 
 ## Compare
 

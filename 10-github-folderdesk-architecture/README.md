@@ -191,7 +191,8 @@ For integration design:
 3. automate only repeated mechanical synchronisation;
 4. avoid a custom middleware layer until a real need exists;
 5. prefer native GitHub events/APIs where GitHub owns the object;
-6. keep exceptions visible.
+6. keep exceptions visible;
+7. enforce navigation integrity: material handoffs between systems must expose a practical return or onward route (`tbhrc/skills#18`) so navigation loops close while keeping ownership and dependency boundaries distinct and acyclic.
 
 ## Hands-On Exercise — Capability Ownership Matrix
 

@@ -387,6 +387,7 @@ Rules:
 12. Do not commit credentials, API keys, secrets or sensitive company information.
 13. Do not build duplicate infrastructure before checking whether GitHub already provides the capability.
 14. For volatile factual reader state, update the canonical source and deterministic projection rather than hand-maintaining duplicate frontend copies.
+15. **Navigation Integrity:** Material handoffs to another Skill, repository, or system must expose a practical return or onward route (parent policy `tbhrc/skills#18`); unexplained one-way dead ends are architecture defects. Navigation backlinks must close while keeping ownership and dependency boundaries distinct and acyclic.
 
 ## Repository Architecture
 

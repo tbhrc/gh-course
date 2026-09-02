@@ -552,6 +552,10 @@ When material canonical state changes, run the documentation-integrity review in
 
 `../../sops/course-documentation-integrity.md`
 
+### Navigation Integrity Backlink Rule
+
+Material handoffs to another Skill, repository, or system must expose a practical return or onward route (parent policy `tbhrc/skills#18`). Unexplained one-way dead ends are architecture defects. Ensure navigation backlinks close while keeping ownership and dependency boundaries distinct and acyclic.
+
 ## Search Before Creating
 
 Before creating an Issue type, workflow, custom agent, dashboard, documentation portal, task tracker or custom system, check whether GitHub already provides the capability.
