@@ -37,6 +37,9 @@ jobs:
       PROJECT_MANAGEMENT_TOKEN: ${{ secrets.PROJECT_MANAGEMENT_TOKEN }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Validate branch-start transition policy
+        shell: bash
+        run: bash .github/actions/set-course-project-status/test-transition-policy.sh
       - name: Resolve Issue number from issue-linked branch
         id: linked
         env:
@@ -57,6 +60,7 @@ jobs:
           issue-number: ${{ steps.linked.outputs.issue }}
           target-status: In progress
           allowed-current-statuses: Backlog,Ready
+          no-op-current-statuses: Review,Blocked,Done
           add-if-missing: "true"
 
   agent-assigned:
