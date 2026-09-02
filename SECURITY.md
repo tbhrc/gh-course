@@ -26,6 +26,10 @@ This policy covers the GitHub Professional Operator course repository, including
 
 Security reports should focus on vulnerabilities in this repository or its configured automation. General GitHub platform vulnerabilities should be reported through GitHub's own security channels.
 
+## Course learning
+
+The live policy is also a course case study. Module 08 teaches the operating model, evidence standard and student exercise in [`08-security-governance/vulnerability-reporting-and-secret-response.md`](08-security-governance/vulnerability-reporting-and-secret-response.md).
+
 ## Disclosure and response
 
 Please allow maintainers a reasonable opportunity to investigate and remediate a valid report before public disclosure. Do not include real credentials, unnecessary personal data, or confidential third-party information in test cases or reports.
