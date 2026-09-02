@@ -93,6 +93,38 @@ operating-system permissions of the runner machine
 
 Least privilege must exist at both layers.
 
+## How `runs-on` Routes a Job
+
+A workflow job declares the runner requirements it needs through `runs-on`.
+
+Example:
+
+```yaml
+runs-on: [self-hosted, macOS, david-local]
+```
+
+Think of this as an **AND requirement** for label matching:
+
+```text
+self-hosted
+AND macOS
+AND david-local
+```
+
+A runner that has only some of those labels is not eligible for that job. A matching runner must satisfy the complete requested label set. If more than one eligible runner is available, GitHub can assign the job to an available matching runner.
+
+This lets an operator deliberately route work, for example:
+
+```text
+[self-hosted, macOS, david-local]
+→ David's Mac class of runner
+
+[self-hosted, Linux, production-vps]
+→ production VPS class of runner
+```
+
+Labels are therefore not merely descriptive tags; they can form part of the execution-routing boundary.
+
 ## Knowledge-Check Standard
 
 Use four plausible options for learner checks in this lesson. Avoid giveaway distractors. Increase difficulty as the learner demonstrates understanding, and require reasoning when a correct letter alone could be guessed.
