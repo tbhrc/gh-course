@@ -17,14 +17,15 @@ understand GitHub objects
 → secure permissions/runtimes
 → add agents + Skills
 → research recurring capability gaps
-→ reproduce the complete operating loop
+→ understand the complete operating loop
+→ hand off to Atlas and reproduce ARC
 ```
 
 ## Learning sequence
 
 | # | Module | ARC capability learned | Prove |
 |---:|---|---|---|
-| 0 | Start Here | Understand Course vs ARC vs live owner boundaries | Explain what belongs in Course, Skills, Research, AI Engine and domain repos |
+| 0 | Start Here | Understand Course vs ARC vs live owner boundaries | Explain what belongs in Course, ARC, Skills, Research, AI Engine and domain repos |
 | 1 | Foundations | Repository/commit/branch mental model | Trace a real change from working state to durable Git history |
 | 2 | Issues | Durable work/control plane | Write one actionable Issue with owner, scope and acceptance evidence |
 | 3 | Branches & Pull Requests | Safe isolated change + review/integration | Complete one Issue → branch → PR → merge cycle |
@@ -33,7 +34,7 @@ understand GitHub objects
 | 6 | Security & Governance | Least privilege + trusted execution | Identify unsafe secret, permission, branch and self-hosted-runner patterns |
 | 7 | AI Agents & Skills | Skills-first agent capability architecture | Choose instructions vs Skill vs agent vs Action/hook vs MCP/API for real needs |
 | 8 | Research & Capability Discovery | Problem-to-platform capability improvement | Expand one recurring local problem into symptom → workflow → capability → platform/system research |
-| 9 | Capstone | Full ARC operating loop | Deliver and verify one end-to-end improvement and identify its correct long-term owner |
+| 9 | Capstone | Full ARC understanding + live deployment handoff | Complete one durable improvement, then use Atlas to produce and verify a plan-first ARC reproduction exercise |
 
 ## The hidden curriculum
 
@@ -49,6 +50,7 @@ Every module should reinforce these ARC doctrines:
 8. **AI Engine is an exception path for privileged runtime gaps, not the normal execution layer.**
 9. **Verify real state.** Never confuse a plan, green check or installed integration with proven capability.
 10. **Promote reusable learning.** Improvements should compound across the ecosystem.
+11. **Course teaches; ARC deploys.** A learner must know when to leave this repository and use the live deployment owner.
 
 ## Progress rule
 
@@ -60,13 +62,18 @@ GitHub features, plans, previews and AI surfaces change. For volatile claims, ve
 
 ## Reproduction outcome
 
-By the end of the course, the student should be able to read an ARC deployment manifest and understand:
+By the end of the course, the student should be able to open the live public [`tbhrc/arc`](https://github.com/tbhrc/arc) repository, enter through Atlas and understand:
 
-- why each component exists;
+- why each ARC component exists;
 - which component owns which truth;
 - how work moves through Issues/branches/PRs;
 - how agents acquire reusable methods through Skills;
 - how Research introduces new capabilities;
 - when normal execution is enough;
 - when a privileged runtime bridge is justified;
-- what evidence proves the system is healthy.
+- how Atlas converts business context into a deployment plan;
+- why mutation is explicit rather than automatic;
+- what evidence proves the resulting system is healthy;
+- how to prove one real workflow after bootstrap.
+
+The Course does not require every learner to provision a production organisation. The capstone may use a safe sandbox/test target, but the learner must use the **real ARC/Atlas contract**, not an invented classroom copy.
