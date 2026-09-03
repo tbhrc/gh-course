@@ -6,13 +6,16 @@ The clean architecture deliberately separates **teaching** from **deployment can
 
 ```text
 GITHUB COURSE
-= learn + understand + practise + reproduce
+= learn + understand + practise
 
 ARC
-= deployable ecosystem blueprint/package
+= public deployable ecosystem blueprint/package
+
+ATLAS
+= ARC human + agent front door
 ```
 
-GitHub Course teaches the operating model. ARC will own the reproducible system definition.
+GitHub Course teaches the operating model. The live public [`tbhrc/arc`](https://github.com/tbhrc/arc) repository owns the reproducible system definition and deployment contract.
 
 ## Why the split matters
 
@@ -22,13 +25,13 @@ The correct boundary is:
 
 > **Teach the concept here. Maintain the deployable system in ARC. Operate live capabilities in their real owners.**
 
-## ARC — working system codename
+## ARC — system codename and public package
 
-**ARC** is the working canonical codename for the current ecosystem.
+**ARC** is the canonical codename for the current ecosystem and the name of its public deployment/reproduction repository: [`tbhrc/arc`](https://github.com/tbhrc/arc).
 
-It is intentionally treated as a product/system name first rather than forcing an acronym expansion. The name is already used in the canonical Human + AI Operations Map as the `ARC blueprint`, has no current repository-name collision in the TBHRC organisation, and gives operators a short reference comparable to the old `FD0` shorthand without inheriting FolderDesk history.
+It is intentionally treated as a product/system name first rather than forcing an acronym expansion. The name is also used in the canonical Human + AI Operations Map as the `ARC blueprint`, and gives operators a short reference comparable to the old `FD0` shorthand without inheriting FolderDesk history.
 
-`tbhrc/AOS` and FolderDesk are historical predecessor systems, not the new deployment canon.
+`tbhrc/AOS` and FolderDesk are historical predecessor systems, not current deployment canon.
 
 ## ARC mental model
 
@@ -87,8 +90,8 @@ proven reusable capability benefits the wider ecosystem
 
 | Need | Owner |
 |---|---|
-| Learn/reproduce the ecosystem | `tbhrc/gh-course` |
-| Deployable ecosystem manifest/package | future dedicated ARC repository |
+| Learn/understand/practise the ecosystem | `tbhrc/gh-course` |
+| Deploy/reproduce/recover the architecture | [`tbhrc/arc`](https://github.com/tbhrc/arc) + Atlas |
 | Reusable operating method | `tbhrc/skills` |
 | External OSS/tool/platform research | `tbhrc/research` |
 | Business/product truth | relevant domain repository/system |
@@ -96,34 +99,54 @@ proven reusable capability benefits the wider ecosystem
 | Private/client files | approved private file store |
 | Historical predecessor evidence | Git history / legacy repositories, not current canon |
 
-## What the future ARC repository should own
+## What ARC owns today
 
-ARC should be reproducible without becoming a dump of live company data.
+ARC is reproducible without becoming a dump of live company data.
 
-It should eventually maintain:
+The live public repository maintains:
 
 ```text
-manifest of required components
+architecture + component manifest
 repository/capability map
 bootstrap order
-dependency graph
 configuration contracts
 secret-name/placeholders only — never secret values
-installation/deployment profiles
-portable templates
-verification + benchmark gates
-upgrade/migration rules
-backup/restore/redeployment instructions
-versioned release snapshots
+generic and reference deployment profiles
+Atlas onboarding / agent front door
+plan-first bootstrap tooling
+verification gates
+portable templates / seeded agent contracts
+upgrade / recovery work as the product evolves
+versioned releases and safe-harbour manifests as they are proven
 ```
 
-It should **reference** canonical Skills and domain owners rather than copying their mutable truth.
+ARC **references** canonical Skills and live domain owners rather than copying their mutable truth.
 
 ## Course role in reproduction
 
-A new student/operator follows GitHub Course to understand why each ARC component exists and how to operate it safely. The ARC package then provides the deterministic blueprint for standing the ecosystem up in another business/environment.
+A new student/operator follows GitHub Course to understand why each ARC component exists and how to operate it safely. They then hand off to Atlas in the live ARC package for the actual deployment/reproduction flow.
 
 ```text
 COURSE = comprehension + operator capability
 ARC    = reproducibility + deployment contract
+ATLAS  = guided entry + plan + correct next action
 ```
+
+## The live handoff
+
+```text
+complete Course concepts
+→ https://github.com/tbhrc/arc
+→ Atlas (`/atlas` where supported)
+→ describe new or existing business
+→ inspect/reuse existing estate
+→ generate deployment plan
+→ explicit apply authority
+→ bootstrap
+→ verify
+→ prove one real workflow
+```
+
+The Course must not copy ARC's scripts, manifests or Skill body merely to make this handoff work. Links preserve one owner and keep the teaching material current.
+
+Programme owner: [`tbhrc/arc#5`](https://github.com/tbhrc/arc/issues/5).
