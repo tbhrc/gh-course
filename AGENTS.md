@@ -23,7 +23,7 @@ This repository owns:
 
 It does **not** own:
 - reusable TBHRC Skills;
-- the future deployable ARC manifest/package;
+- the deployable ARC manifest/package — that lives in [`tbhrc/arc`](https://github.com/tbhrc/arc);
 - business/domain truth;
 - shared credentials or secret replication;
 - production AI orchestration;
@@ -59,7 +59,22 @@ problem / opportunity
 → promote reusable learning
 ```
 
-The Course explains the model. The future ARC repository will own the deterministic deployment/reproduction contract. Live systems keep owning their own state.
+The Course explains the model. The public [`tbhrc/arc`](https://github.com/tbhrc/arc) repository owns the deployment/reproduction contract. Live systems keep owning their own state.
+
+When a learner is ready to reproduce the architecture, hand off to **Atlas** in ARC:
+
+```text
+Course comprehension
+→ tbhrc/arc
+→ Atlas
+→ plan
+→ explicit apply authority
+→ bootstrap
+→ verify
+→ prove one real workflow
+```
+
+Programme context: [`tbhrc/arc#5`](https://github.com/tbhrc/arc/issues/5). Course convergence Stage: [#171](https://github.com/tbhrc/gh-course/issues/171).
 
 ## Change workflow
 
@@ -115,7 +130,7 @@ Do not restore old architecture wholesale merely to preserve history.
 - No production agent dispatcher.
 - No generated Wiki/Pages/CMS state unless a future teaching Issue proves a real need.
 - No duplicated learner-state framework until a real multi-student requirement exists.
-- No copy of the future ARC deployment package inside the Course.
+- No copy of the ARC deployment package inside the Course; link to live [`tbhrc/arc`](https://github.com/tbhrc/arc).
 - Do not restore the pre-reset architecture wholesale. Git history is the archive.
 
 ## Teaching standard
