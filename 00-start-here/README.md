@@ -1,29 +1,72 @@
 # 00 — Start Here
 
-GitHub is more than a place to store code. In this course, treat it as a work operating surface:
+You are not here to memorise GitHub features.
+
+You are here to learn how a Skills-first human + AI operating ecosystem works and how to reproduce it safely.
+
+The system is called **ARC**.
+
+Before starting the modules, read:
+
+1. [The Origin Story](../ORIGIN-STORY.md)
+2. [Course Architecture](../ARCHITECTURE.md)
+3. [Curriculum](../CURRICULUM.md)
+
+## The first mental model
+
+GitHub is the durable operating desk, but GitHub alone is not ARC.
+
+```text
+problem / opportunity
+→ reusable Skill
+→ correct owner / source of truth
+→ durable GitHub work
+→ authorised agent + tools
+→ safe execution
+→ verification
+→ durable evidence
+```
+
+When repeated friction suggests a missing capability:
 
 ```text
 problem
-→ Issue
-→ branch
-→ change
-→ Pull Request
-→ review / checks
-→ merge
-→ verified outcome
+→ Research
+→ broader capability question
+→ existing solutions
+→ bounded test
+→ benchmark
+→ promote when proven
 ```
 
-Projects provide portfolio visibility. Actions automate deterministic work. Agents add judgement. Skills provide reusable methods. Research finds better capabilities when recurring friction points to a larger problem.
+## Why GitHub matters
+
+GitHub gives the system native objects for different jobs:
+
+```text
+Issue        → durable work / decision
+branch       → isolated change
+Pull Request → review + integration
+Project      → portfolio visibility
+Action       → deterministic automation
+runner       → physical execution environment
+repository   → governed owner/home for durable truth
+```
+
+Skills, Research, domain systems and AI Engine each have different ownership boundaries. The course will teach those boundaries progressively.
 
 ## First exercise
 
 Open this repository and identify:
 - the default branch;
-- one Issue;
-- one Pull Request;
+- Issue #169;
+- Pull Request #168 from the clean reset;
 - the commit history;
 - the repository visibility.
 
-Then explain what each object is for in one sentence.
+Then explain:
+1. why Git history is useful for preserving the old Course architecture;
+2. why the current tree can still remain simple;
+3. why Course and ARC should be separate products.
 
 Next: [01 — Foundations](../01-foundations/README.md)
