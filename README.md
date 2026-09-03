@@ -2,7 +2,7 @@
 
 A practical, AI-first course for learning and reproducing **ARC**: the Skills-first GitHub operating ecosystem developed through real TBHRC operations.
 
-> This repository is a **public learning and proving ground**. It teaches the architecture and methodology. It is not the live TBHRC Skill Bank, business canon, shared secret store, production control plane or future ARC deployment package.
+> This repository is a **public learning and proving ground**. It teaches the architecture and methodology. It is not the live TBHRC Skill Bank, business canon, shared secret store, production control plane or ARC deployment package.
 
 ## Why this course exists
 
@@ -40,6 +40,7 @@ problem / opportunity
 3. [Curriculum](CURRICULUM.md)
 4. [Architecture](ARCHITECTURE.md)
 5. [Operator Cheat Sheet](resources/cheat-sheet.md)
+6. When ready to deploy: [ARC + Atlas](https://github.com/tbhrc/arc)
 
 ## Course path
 
@@ -53,21 +54,40 @@ problem / opportunity
 | 06 — Security & Governance | Apply least privilege, protected change paths and secret-safe operation. |
 | 07 — AI Agents & Skills | Understand agents, instructions, Skills, MCP and agent-ready repositories. |
 | 08 — Research & Capability Discovery | Turn recurring friction into broader tool/platform research before inventing infrastructure. |
-| 09 — Capstone | Reproduce one real ARC operating loop from problem to verified outcome. |
+| 09 — Capstone | Understand the full ARC loop, then hand off to Atlas and reproduce a safe plan-first ARC deployment. |
 
 ## Course versus ARC
 
 ```text
 GitHub Course
-= HOW TO LEARN + UNDERSTAND + REPRODUCE THE SYSTEM
+= HOW TO LEARN + UNDERSTAND + PRACTISE THE SYSTEM
 
 ARC
-= THE REPRODUCIBLE SYSTEM / DEPLOYMENT BLUEPRINT ITSELF
+= THE PUBLIC REPRODUCIBLE SYSTEM / DEPLOYMENT BLUEPRINT
+
+Atlas
+= THE HUMAN + AGENT FRONT DOOR INTO ARC
 ```
 
-The future dedicated ARC repository will own the deployable ecosystem manifest: required repositories/capabilities, bootstrap order, configuration contracts, safe placeholders for secrets, verification, portability and redeployment guidance.
+The live public [`tbhrc/arc`](https://github.com/tbhrc/arc) repository owns the deployable ecosystem manifest: required repositories/capabilities, bootstrap order, configuration contracts, safe placeholders for secrets, verification, portability and redeployment guidance.
 
 The Course teaches that system without becoming another copy of it.
+
+### When you are ready to reproduce ARC
+
+```text
+finish the Course concepts
+→ open tbhrc/arc
+→ invoke Atlas (`/atlas` where supported)
+→ describe the target business
+→ review the generated deployment plan
+→ authorise apply only when the plan is correct
+→ bootstrap
+→ verify
+→ prove one real workflow
+```
+
+The Course remains useful after deployment: return here when an operator needs to understand *why* an ARC component or governance boundary exists.
 
 ## TBHRC operator integration
 
@@ -92,7 +112,7 @@ local problem
 → promote proven capability
 ```
 
-Canonical reusable HOW remains in `tbhrc/skills`; external research/proving evidence remains in `tbhrc/research`; privileged runtime infrastructure remains in `tbhrc/ai-engine` only where required.
+Canonical reusable HOW remains in `tbhrc/skills`; external research/proving evidence remains in `tbhrc/research`; privileged runtime infrastructure remains in `tbhrc/ai-engine` only where required; portable deployment/reproduction belongs in [`tbhrc/arc`](https://github.com/tbhrc/arc).
 
 ## Design principles
 
@@ -104,3 +124,4 @@ Canonical reusable HOW remains in `tbhrc/skills`; external research/proving evid
 - **Agents need tools.** Capability, permissions and execution routes matter as much as model intelligence.
 - **Testing is not adoption.** Prove before promotion.
 - **Git history is the archive.** The current course tree stays intentionally clear.
+- **Course teaches; ARC deploys.** Do not blur those ownership boundaries.
