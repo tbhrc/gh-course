@@ -1,16 +1,29 @@
 # Agent Contract — GitHub Course
 
-## Purpose
+## Mission
 
-`tbhrc/gh-course` is a **public learning and safe proving ground** for GitHub operation.
+`tbhrc/gh-course` is the public learning and safe proving ground for **ARC**, the Skills-first GitHub operating ecosystem developed through TBHRC's real migration and operations.
 
-It owns:
-- public teaching material;
-- bounded GitHub learning experiments;
-- course-specific examples and exercises.
+The Course has two responsibilities:
+
+1. preserve the human learning story that produced the architecture;
+2. teach a new operator/student the current methodology in the order needed to understand and reproduce it.
+
+It does **not** teach random GitHub features for their own sake.
+
+Read [`ORIGIN-STORY.md`](ORIGIN-STORY.md), [`ARCHITECTURE.md`](ARCHITECTURE.md) and [`CURRICULUM.md`](CURRICULUM.md) before materially changing the course mission or structure.
+
+## Ownership boundary
+
+This repository owns:
+- public ARC teaching material;
+- the origin/history narrative;
+- bounded GitHub/ARC learning exercises;
+- course-specific examples and explanations.
 
 It does **not** own:
 - reusable TBHRC Skills;
+- the future deployable ARC manifest/package;
 - business/domain truth;
 - shared credentials or secret replication;
 - production AI orchestration;
@@ -28,6 +41,25 @@ Before substantive repository work, use the current canonical private Skills whe
 Do not copy those Skill bodies into this public repository.
 
 Public learners must still be able to understand every course module without private access.
+
+## ARC teaching doctrine
+
+Every substantive lesson should reinforce the current operating loop where relevant:
+
+```text
+problem / opportunity
+→ Skills first
+→ correct owner / source of truth
+→ Issue / branch / PR when durable work is needed
+→ authorised agent + normal tools first
+→ Research when recurring friction exposes a broader capability gap
+→ AI Engine only for genuine privileged runtime gaps
+→ verify real state
+→ durable GitHub evidence
+→ promote reusable learning
+```
+
+The Course explains the model. The future ARC repository will own the deterministic deployment/reproduction contract. Live systems keep owning their own state.
 
 ## Change workflow
 
@@ -64,6 +96,17 @@ contain the immediate safe problem if necessary
 
 Research is not implementation ownership. AI Engine is used only when a qualified test genuinely needs privileged VPS/Mac/local-runtime access.
 
+## Historical preservation
+
+FolderDesk and `tbhrc/AOS` are predecessors and evidence sources, not current Course or ARC canon.
+
+Preserve important history through:
+- Git history for exact old repository state;
+- `ORIGIN-STORY.md` for the human/system narrative;
+- explicit case studies when an old experiment teaches a current principle.
+
+Do not restore old architecture wholesale merely to preserve history.
+
 ## Repository hygiene
 
 - No local `skills/` directory.
@@ -72,15 +115,18 @@ Research is not implementation ownership. AI Engine is used only when a qualifie
 - No production agent dispatcher.
 - No generated Wiki/Pages/CMS state unless a future teaching Issue proves a real need.
 - No duplicated learner-state framework until a real multi-student requirement exists.
+- No copy of the future ARC deployment package inside the Course.
 - Do not restore the pre-reset architecture wholesale. Git history is the archive.
 
 ## Teaching standard
 
 Every module should answer:
 1. What is it?
-2. Why does an operator care?
-3. What can go wrong?
-4. What is the smallest practical exercise?
-5. What evidence proves understanding?
+2. Why does it exist in ARC?
+3. Why does an operator care?
+4. What can go wrong?
+5. What is the smallest practical exercise?
+6. What evidence proves understanding?
+7. What owner/capability should the learner use next?
 
 Prefer clear operator language over developer jargon.
