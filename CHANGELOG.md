@@ -1,8 +1,14 @@
 # Changelog
 
+## 2026-09-08 — ARC renamed to FolderDesk
+
+- The working codename **ARC** is retired. The ecosystem's public deployable package is now **FolderDesk**, repository `tbhrc/folderdesk` (`tbhrc/arc` redirects). All Course material rewritten around "FolderDesk"; `tbhrc/arc` / `tbhrc/arc#5` links repointed to `tbhrc/folderdesk`.
+- The internal operating-system lineage is now **AOS**: `tbhrc/aos-core` (was `folderdesk-os`), `tbhrc/aos-runtime` (was `fd-os`). Naming canon: `tbhrc/skills/governance/references/folderdesk-aos-naming.md`.
+- Earlier changelog entries below keep their original "ARC" wording as dated history.
+
 ## 2026-09-03 — Live ARC convergence
 
-- Replaced remaining future-ARC wording with the live public [`tbhrc/arc`](https://github.com/tbhrc/arc) deployment/reproduction owner.
+- Replaced remaining future-ARC wording with the live public `tbhrc/arc` (now `tbhrc/folderdesk`) deployment/reproduction owner.
 - Made Atlas the explicit Course → deployment handoff.
 - Added a deploy-your-own-ARC capstone using the real public ARC/Atlas plan-first contract.
 - Updated Start Here, Architecture and Curriculum so learners can distinguish Course, ARC, Skills, Research, domain owners and AI Engine before deployment.

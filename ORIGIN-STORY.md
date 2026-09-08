@@ -1,4 +1,4 @@
-# The Origin Story — From Learning GitHub to ARC
+# The Origin Story — From Learning GitHub to FolderDesk
 
 ## The beginning
 
@@ -125,7 +125,7 @@ The sequence is itself a teaching method.
 
 A future learner should not receive a giant finished architecture diagram and be told to memorise it. They should understand the problems each component solved and why the boundaries exist.
 
-The Course therefore teaches ARC in dependency order:
+The Course therefore teaches FolderDesk in dependency order:
 
 ```text
 GitHub mental model
@@ -136,30 +136,30 @@ GitHub mental model
 → security/governance
 → AI agents + Skills
 → Research + capability discovery
-→ complete ARC operating loop
+→ complete FolderDesk operating loop
 ```
 
 This preserves the original strength of the GitHub Course: **learn something useful, apply it immediately, and let real evidence shape the next layer.**
 
-## The next chapter: ARC
+## The next chapter: FolderDesk
 
-The current ecosystem now needs a short name so humans and agents can refer to the same architecture without saying "the ecosystem" every time.
+The current ecosystem needs a short name so humans and agents refer to the same architecture without saying "the ecosystem" every time.
 
-Working canonical codename:
+Canonical name:
 
-# ARC
+# FolderDesk
 
-ARC is already present in the current canonical Human + AI Operations Map as the `ARC blueprint`. It is a clean name with no current `tbhrc/arc` repository collision and does not inherit the operational history attached to FolderDesk or the old AOS repository.
+It was built under the working codename **ARC** (a clean name chosen while the branding settled). That name is now retired: the ecosystem's public, deployable package is **FolderDesk**, repository [`tbhrc/folderdesk`](https://github.com/tbhrc/folderdesk) (`tbhrc/arc` redirects). The canonical Human + AI Operations Map refers to the `FolderDesk blueprint`.
 
-ARC is treated as the system/product name first. No forced acronym expansion is required.
+FolderDesk is the system/product name first — no forced acronym expansion. The internal operating-system lineage it packages is **AOS** (`tbhrc/aos-core`, `tbhrc/aos-runtime`).
 
 The long-term split is:
 
 ```text
 GitHub Course
-= teaches why + how to understand and reproduce ARC
+= teaches why + how to understand and reproduce FolderDesk
 
-ARC repository
+FolderDesk repository
 = maintains the portable deployment blueprint/package for reproducing the ecosystem
 
 Live repositories/systems
@@ -168,7 +168,7 @@ Live repositories/systems
 
 ## What reproducibility means
 
-A future ARC deployment repository should make it possible to reproduce the architecture for another business or environment without copying TBHRC's live data or secret values.
+A future FolderDesk deployment repository should make it possible to reproduce the architecture for another business or environment without copying TBHRC's live data or secret values.
 
 It should maintain a versioned, testable description of:
 
@@ -187,13 +187,13 @@ It should maintain a versioned, testable description of:
 
 That repository becomes the **safe harbour for reproducibility**.
 
-The Course remains the place where a person learns to understand and operate what ARC deploys.
+The Course remains the place where a person learns to understand and operate what FolderDesk deploys.
 
 ## The continuing principle
 
 The origin story is not finished.
 
-ARC should keep improving through the same loop that created it:
+FolderDesk should keep improving through the same loop that created it:
 
 ```text
 operate

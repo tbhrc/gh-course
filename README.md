@@ -1,8 +1,8 @@
 # GitHub Professional Operator
 
-A practical, AI-first course for learning and reproducing **ARC**: the Skills-first GitHub operating ecosystem developed through real TBHRC operations.
+A practical, AI-first course for learning and reproducing **FolderDesk**: the Skills-first GitHub operating ecosystem developed through real TBHRC operations.
 
-> This repository is a **public learning and proving ground**. It teaches the architecture and methodology. It is not the live TBHRC Skill Bank, business canon, shared secret store, production control plane or ARC deployment package.
+> This repository is a **public learning and proving ground**. It teaches the architecture and methodology. It is not the live TBHRC Skill Bank, business canon, shared secret store, production control plane or FolderDesk deployment package.
 
 ## Why this course exists
 
@@ -18,7 +18,7 @@ Read [The Origin Story](ORIGIN-STORY.md) for the preserved narrative.
 
 The course has moved from **discovering GitHub** to **teaching a reproducible operating system**.
 
-A student should not wander through random GitHub features. They should learn the smallest set of concepts, in the correct order, needed to understand and reproduce ARC:
+A student should not wander through random GitHub features. They should learn the smallest set of concepts, in the correct order, needed to understand and reproduce FolderDesk:
 
 ```text
 problem / opportunity
@@ -40,7 +40,7 @@ problem / opportunity
 3. [Curriculum](CURRICULUM.md)
 4. [Architecture](ARCHITECTURE.md)
 5. [Operator Cheat Sheet](resources/cheat-sheet.md)
-6. When ready to deploy: [ARC + Atlas](https://github.com/tbhrc/arc)
+6. When ready to deploy: [FolderDesk + Atlas](https://github.com/tbhrc/folderdesk)
 
 ## Course path
 
@@ -54,30 +54,30 @@ problem / opportunity
 | 06 — Security & Governance | Apply least privilege, protected change paths and secret-safe operation. |
 | 07 — AI Agents & Skills | Understand agents, instructions, Skills, MCP and agent-ready repositories. |
 | 08 — Research & Capability Discovery | Turn recurring friction into broader tool/platform research before inventing infrastructure. |
-| 09 — Capstone | Understand the full ARC loop, then hand off to Atlas and reproduce a safe plan-first ARC deployment. |
+| 09 — Capstone | Understand the full FolderDesk loop, then hand off to Atlas and reproduce a safe plan-first FolderDesk deployment. |
 
-## Course versus ARC
+## Course versus FolderDesk
 
 ```text
 GitHub Course
 = HOW TO LEARN + UNDERSTAND + PRACTISE THE SYSTEM
 
-ARC
+FolderDesk
 = THE PUBLIC REPRODUCIBLE SYSTEM / DEPLOYMENT BLUEPRINT
 
 Atlas
-= THE HUMAN + AGENT FRONT DOOR INTO ARC
+= THE HUMAN + AGENT FRONT DOOR INTO FolderDesk
 ```
 
-The live public [`tbhrc/arc`](https://github.com/tbhrc/arc) repository owns the deployable ecosystem manifest: required repositories/capabilities, bootstrap order, configuration contracts, safe placeholders for secrets, verification, portability and redeployment guidance.
+The live public [`tbhrc/folderdesk`](https://github.com/tbhrc/folderdesk) repository owns the deployable ecosystem manifest: required repositories/capabilities, bootstrap order, configuration contracts, safe placeholders for secrets, verification, portability and redeployment guidance.
 
 The Course teaches that system without becoming another copy of it.
 
-### When you are ready to reproduce ARC
+### When you are ready to reproduce FolderDesk
 
 ```text
 finish the Course concepts
-→ open tbhrc/arc
+→ open tbhrc/folderdesk
 → invoke Atlas (`/atlas` where supported)
 → describe the target business
 → review the generated deployment plan
@@ -87,7 +87,7 @@ finish the Course concepts
 → prove one real workflow
 ```
 
-The Course remains useful after deployment: return here when an operator needs to understand *why* an ARC component or governance boundary exists.
+The Course remains useful after deployment: return here when an operator needs to understand *why* an FolderDesk component or governance boundary exists.
 
 ## TBHRC operator integration
 
@@ -112,7 +112,7 @@ local problem
 → promote proven capability
 ```
 
-Canonical reusable HOW remains in `tbhrc/skills`; external research/proving evidence remains in `tbhrc/research`; privileged runtime infrastructure remains in `tbhrc/ai-engine` only where required; portable deployment/reproduction belongs in [`tbhrc/arc`](https://github.com/tbhrc/arc).
+Canonical reusable HOW remains in `tbhrc/skills`; external research/proving evidence remains in `tbhrc/research`; privileged runtime infrastructure remains in `tbhrc/ai-engine` only where required; portable deployment/reproduction belongs in [`tbhrc/folderdesk`](https://github.com/tbhrc/folderdesk).
 
 ## Design principles
 
@@ -124,4 +124,4 @@ Canonical reusable HOW remains in `tbhrc/skills`; external research/proving evid
 - **Agents need tools.** Capability, permissions and execution routes matter as much as model intelligence.
 - **Testing is not adoption.** Prove before promotion.
 - **Git history is the archive.** The current course tree stays intentionally clear.
-- **Course teaches; ARC deploys.** Do not blur those ownership boundaries.
+- **Course teaches; FolderDesk deploys.** Do not blur those ownership boundaries.

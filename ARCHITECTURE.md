@@ -8,14 +8,14 @@ The clean architecture deliberately separates **teaching** from **deployment can
 GITHUB COURSE
 = learn + understand + practise
 
-ARC
+FolderDesk
 = public deployable ecosystem blueprint/package
 
 ATLAS
-= ARC human + agent front door
+= FolderDesk human + agent front door
 ```
 
-GitHub Course teaches the operating model. The live public [`tbhrc/arc`](https://github.com/tbhrc/arc) repository owns the reproducible system definition and deployment contract.
+GitHub Course teaches the operating model. The live public [`tbhrc/folderdesk`](https://github.com/tbhrc/folderdesk) repository owns the reproducible system definition and deployment contract.
 
 ## Why the split matters
 
@@ -23,17 +23,17 @@ If one repository tries to be both a student curriculum and the live deployment 
 
 The correct boundary is:
 
-> **Teach the concept here. Maintain the deployable system in ARC. Operate live capabilities in their real owners.**
+> **Teach the concept here. Maintain the deployable system in FolderDesk. Operate live capabilities in their real owners.**
 
-## ARC — system codename and public package
+## FolderDesk — system codename and public package
 
-**ARC** is the canonical codename for the current ecosystem and the name of its public deployment/reproduction repository: [`tbhrc/arc`](https://github.com/tbhrc/arc).
+**FolderDesk** is the canonical name for the current ecosystem's public deployment/reproduction package and its repository: [`tbhrc/folderdesk`](https://github.com/tbhrc/folderdesk). It was developed under the working codename **ARC**; that name is retired and `tbhrc/arc` now redirects to `tbhrc/folderdesk`.
 
-It is intentionally treated as a product/system name first rather than forcing an acronym expansion. The name is also used in the canonical Human + AI Operations Map as the `ARC blueprint`, and gives operators a short reference comparable to the old `FD0` shorthand without inheriting FolderDesk history.
+It is treated as a product/system name first, no forced acronym expansion. The canonical Human + AI Operations Map refers to the `FolderDesk blueprint`.
 
-`tbhrc/AOS` and FolderDesk are historical predecessor systems, not current deployment canon.
+The internal operating-system lineage that FolderDesk packages is **AOS** (Agent Operating System): `tbhrc/aos-core` and `tbhrc/aos-runtime`. The uppercase `tbhrc/AOS` repository is an early conceptual predecessor, not current canon. See the [naming canon](https://github.com/tbhrc/skills/blob/main/governance/references/folderdesk-aos-naming.md).
 
-## ARC mental model
+## FolderDesk mental model
 
 ```text
 REQUEST / PROBLEM
@@ -91,7 +91,7 @@ proven reusable capability benefits the wider ecosystem
 | Need | Owner |
 |---|---|
 | Learn/understand/practise the ecosystem | `tbhrc/gh-course` |
-| Deploy/reproduce/recover the architecture | [`tbhrc/arc`](https://github.com/tbhrc/arc) + Atlas |
+| Deploy/reproduce/recover the architecture | [`tbhrc/folderdesk`](https://github.com/tbhrc/folderdesk) + Atlas |
 | Reusable operating method | `tbhrc/skills` |
 | External OSS/tool/platform research | `tbhrc/research` |
 | Business/product truth | relevant domain repository/system |
@@ -99,9 +99,9 @@ proven reusable capability benefits the wider ecosystem
 | Private/client files | approved private file store |
 | Historical predecessor evidence | Git history / legacy repositories, not current canon |
 
-## What ARC owns today
+## What FolderDesk owns today
 
-ARC is reproducible without becoming a dump of live company data.
+FolderDesk is reproducible without becoming a dump of live company data.
 
 The live public repository maintains:
 
@@ -120,15 +120,15 @@ upgrade / recovery work as the product evolves
 versioned releases and safe-harbour manifests as they are proven
 ```
 
-ARC **references** canonical Skills and live domain owners rather than copying their mutable truth.
+FolderDesk **references** canonical Skills and live domain owners rather than copying their mutable truth.
 
 ## Course role in reproduction
 
-A new student/operator follows GitHub Course to understand why each ARC component exists and how to operate it safely. They then hand off to Atlas in the live ARC package for the actual deployment/reproduction flow.
+A new student/operator follows GitHub Course to understand why each FolderDesk component exists and how to operate it safely. They then hand off to Atlas in the live FolderDesk package for the actual deployment/reproduction flow.
 
 ```text
 COURSE = comprehension + operator capability
-ARC    = reproducibility + deployment contract
+FolderDesk    = reproducibility + deployment contract
 ATLAS  = guided entry + plan + correct next action
 ```
 
@@ -136,7 +136,7 @@ ATLAS  = guided entry + plan + correct next action
 
 ```text
 complete Course concepts
-→ https://github.com/tbhrc/arc
+→ https://github.com/tbhrc/folderdesk
 → Atlas (`/atlas` where supported)
 → describe new or existing business
 → inspect/reuse existing estate
@@ -147,6 +147,6 @@ complete Course concepts
 → prove one real workflow
 ```
 
-The Course must not copy ARC's scripts, manifests or Skill body merely to make this handoff work. Links preserve one owner and keep the teaching material current.
+The Course must not copy FolderDesk's scripts, manifests or Skill body merely to make this handoff work. Links preserve one owner and keep the teaching material current.
 
-Programme owner: [`tbhrc/arc#5`](https://github.com/tbhrc/arc/issues/5).
+Programme owner: [`tbhrc/folderdesk#5`](https://github.com/tbhrc/folderdesk/issues/5).

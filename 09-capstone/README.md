@@ -1,8 +1,8 @@
-# 09 — Capstone: Understand It, Then Reproduce ARC
+# 09 — Capstone: Understand It, Then Reproduce FolderDesk
 
-The capstone has two parts. First prove you can operate one real GitHub improvement correctly. Then hand off to the **live public ARC package** and reproduce the architecture safely through Atlas.
+The capstone has two parts. First prove you can operate one real GitHub improvement correctly. Then hand off to the **live public FolderDesk package** and reproduce the architecture safely through Atlas.
 
-This is not a classroom copy of ARC. The deployment handoff uses [`tbhrc/arc`](https://github.com/tbhrc/arc).
+This is not a classroom copy of FolderDesk. The deployment handoff uses [`tbhrc/folderdesk`](https://github.com/tbhrc/folderdesk).
 
 ## Part A — Operate one real improvement
 
@@ -21,13 +21,13 @@ Required evidence:
 11. Explain what was learned and whether any reusable learning belongs elsewhere.
 12. Explain whether the problem exposed a broader Research/capability gap.
 
-## Part B — Deploy your own ARC
+## Part B — Deploy your own FolderDesk
 
 Use a safe sandbox, test organisation/account, or another explicitly authorised target. Do not use a production client/business merely to complete the exercise.
 
-### 1. Open ARC
+### 1. Open FolderDesk
 
-Go to [`tbhrc/arc`](https://github.com/tbhrc/arc) and read its README plus Atlas front door.
+Go to [`tbhrc/folderdesk`](https://github.com/tbhrc/folderdesk) and read its README plus Atlas front door.
 
 ### 2. Invoke Atlas
 
@@ -40,8 +40,8 @@ Where `/atlas` prompt-file invocation is supported:
 Otherwise tell the capable agent:
 
 ```text
-Use the Atlas Skill in the ARC repository.
-Onboard me to ARC for this target business.
+Use the Atlas Skill in the FolderDesk repository.
+Onboard me to FolderDesk for this target business.
 Start in plan mode. Do not mutate anything until the deployment plan is explicit.
 ```
 
@@ -77,7 +77,7 @@ A correct capstone does not approve a plan it cannot explain.
 
 ### 5. Apply only with explicit authority
 
-If the target is authorised for mutation, follow ARC's current bootstrap contract. If the exercise is plan-only, stop before apply and document why.
+If the target is authorised for mutation, follow FolderDesk's current bootstrap contract. If the exercise is plan-only, stop before apply and document why.
 
 The important lesson is the gate:
 
@@ -88,7 +88,7 @@ plan
 
 ### 6. Verify the target
 
-Use ARC's current verification path and inspect real resulting state. Do not treat a command exiting successfully as sufficient evidence if the required repositories/contracts are absent.
+Use FolderDesk's current verification path and inspect real resulting state. Do not treat a command exiting successfully as sufficient evidence if the required repositories/contracts are absent.
 
 ### 7. Prove one real workflow
 
@@ -108,20 +108,20 @@ request / problem
 
 Explain:
 
-- what ARC created or reused;
+- what FolderDesk created or reused;
 - what Atlas correctly inferred;
 - what required human input;
 - what the architecture intentionally left in specialist systems;
 - what failed or was unclear;
-- whether that lesson belongs in the Course, ARC, a Skill, Research or only the target business.
+- whether that lesson belongs in the Course, FolderDesk, a Skill, Research or only the target business.
 
 ## Capstone acceptance
 
 You have completed the capstone when you can prove both of these statements:
 
-> **I can operate durable GitHub work inside ARC's ownership model.**
+> **I can operate durable GitHub work inside FolderDesk's ownership model.**
 
-> **I can move from understanding the model to the live Atlas/ARC deployment path without confusing Course material with deployment canon.**
+> **I can move from understanding the model to the live Atlas/FolderDesk deployment path without confusing Course material with deployment canon.**
 
 ## Mastery test
 
@@ -134,7 +134,7 @@ You should be able to explain not just **what you clicked**, but:
 - what would have been over-engineering;
 - whether the problem should trigger broader Research;
 - why normal execution was sufficient or why a trusted runtime was genuinely required;
-- why Course teaches while ARC deploys;
+- why Course teaches while FolderDesk deploys;
 - what you would need to reproduce the same architecture for a second business.
 
-Programme reference: [`tbhrc/arc#5`](https://github.com/tbhrc/arc/issues/5).
+Programme reference: [`tbhrc/folderdesk#5`](https://github.com/tbhrc/folderdesk/issues/5).
