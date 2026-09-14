@@ -1,7 +1,10 @@
 # AGENTS.md — Repository Router
 
 <!-- ROUTER_SHARED_LIFECYCLE_START -->
-**Direct execution / optional continuity:** Execute authorised work directly. Use an existing GitHub Issue only when it materially helps continuity, handoff or coordination; create one only when that durable record is genuinely useful. Lifecycle/priority labels and the Lifecycle Lever are optional metadata/mechanics and must never trigger extra AI reads, writes, audits, reconciliation, approvals or execution gates. This rule supersedes older mandatory lifecycle/Issue-gate wording.
+**KISSS execution default:** Execute authorised work immediately through the shortest capable path. Route from the action actually required, not words or topics in the request. Mentioning agents, orchestration, Skills, context, security, documents, repositories or memory does not itself trigger specialist machinery.
+**Conditional depth only:** Load one specialist Skill/tool only when its HOW is materially needed; search canon/Hindsight only when current truth or ownership is materially unknown; use LIB1 only for unresolved placement/identity or a structural move/rename; use multi-agent orchestration only for real parallelism, delegation or a specialist gap; use an Issue only for material continuity or handoff.
+**Boundaries:** Human approval is reserved for root/super-admin authority changes, destructive or irreversible actions, spend, legal/compliance commitments, external private-data disclosure, or material external/client commitments.
+**Stop:** Do not create control-plane work around the work. Verify the requested outcome once, reconcile durable state only when applicable, then stop.
 <!-- ROUTER_SHARED_LIFECYCLE_END -->
 Read this first. Follow only the link needed for the task; do not preload documentation.
 
